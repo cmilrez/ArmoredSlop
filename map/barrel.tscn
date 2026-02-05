@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://oylta6226476"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://c2rqx5ejqesqw" path="res://misc/fric_1_phys_mtl.tres" id="1_2fwhx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dyyie"]
+height = 5.0
+radius = 1.8
+
+[sub_resource type="Gradient" id="Gradient_2fwhx"]
+offsets = PackedFloat32Array(0.3, 0.4, 0.45)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1, 0, 0.49803922, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_brjmj"]
+gradient = SubResource("Gradient_2fwhx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fwhx"]
+albedo_texture = SubResource("GradientTexture2D_brjmj")
+metallic = 1.0
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_brjmj"]
+material = SubResource("StandardMaterial3D_2fwhx")
+top_radius = 1.8
+bottom_radius = 1.8
+height = 5.0
+radial_segments = 16
+rings = 0
+
+[node name="Barrel" type="RigidBody3D" unique_id=1620608353]
+collision_layer = 2
+collision_mask = 23
+input_ray_pickable = false
+mass = 50.0
+physics_material_override = ExtResource("1_2fwhx")
+linear_damp = 0.3
+angular_damp = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=697287143]
+shape = SubResource("CylinderShape3D_dyyie")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1223976705]
+gi_mode = 0
+mesh = SubResource("CylinderMesh_brjmj")

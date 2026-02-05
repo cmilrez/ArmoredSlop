@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c56lrnpn713nc"]
+
+[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_o6m41"]
+[ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_4dbpr"]
+
+[sub_resource type="Resource" id="Resource_4dbpr"]
+script = ExtResource("2_4dbpr")
+metadata/_custom_type_script = "uid://bfbhdd2s003h1"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6m41"]
+albedo_color = Color(1.8247963, 1.8247963, 0, 1)
+metallic = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4dbpr"]
+material = SubResource("StandardMaterial3D_o6m41")
+radius = 0.2
+height = 1.0
+radial_segments = 16
+rings = 4
+
+[node name="Bullet" type="Node3D" unique_id=1299266127]
+top_level = true
+script = ExtResource("1_o6m41")
+data = SubResource("Resource_4dbpr")
+metadata/_custom_type_script = "uid://dktp0dq6ay20q"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1890110915]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 8
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("CapsuleMesh_4dbpr")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=400149118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+target_position = Vector3(0, 0, 1)
+collision_mask = 11
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0.11764706, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Timer" type="Timer" parent="." unique_id=1695841239]
+one_shot = true
