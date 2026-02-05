@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="NPCData" format=3 uid="uid://eypdpj3bdrc4"]
+
+[ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc/npc_data.gd" id="1_qiege"]
+
+[resource]
+script = ExtResource("1_qiege")
+max_hp = 30.0
+metadata/_custom_type_script = "uid://f665pyihvlvu"
