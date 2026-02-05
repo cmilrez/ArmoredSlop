@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dfubxg0n07rgo"]
+
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon.gd" id="1_66qhd"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_6poma"]
+[ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/template_bullet.tscn" id="2_hkpe4"]
+[ext_resource type="Script" uid="uid://dj6yhycshbdl6" path="res://parts/weapon_data.gd" id="3_6poma"]
+
+[sub_resource type="Resource" id="Resource_hkpe4"]
+script = ExtResource("2_6poma")
+damage = 5.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_6poma"]
+script = ExtResource("3_6poma")
+shot_interval = 0.1
+reload_time = 5.0
+clip_size = 30
+ammo_max = 240
+ammo_cost = 1
+damage_data = SubResource("Resource_hkpe4")
+projectile_scene = ExtResource("2_hkpe4")
+metadata/_custom_type_script = "uid://dj6yhycshbdl6"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66qhd"]
+albedo_color = Color(0, 1, 1, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_axxhe"]
+material = SubResource("StandardMaterial3D_66qhd")
+size = Vector3(0.5, 0.7, 4)
+
+[sub_resource type="Animation" id="Animation_hkpe4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wy3l3"]
+resource_name = "Ready"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6poma"]
+resource_name = "Reload"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5707964, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy3l3"]
+_data = {
+&"RESET": SubResource("Animation_hkpe4"),
+&"Ready": SubResource("Animation_wy3l3"),
+&"Reload": SubResource("Animation_6poma")
+}
+
+[node name="Weapon" type="Node3D" unique_id=1378723530 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_66qhd")
+spawners = NodePath("MeshInstance3D/Spawners")
+data = SubResource("Resource_6poma")
+metadata/_custom_type_script = "uid://b3jwuceipevwg"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2066032815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3)
+layers = 4
+gi_mode = 0
+mesh = SubResource("BoxMesh_axxhe")
+
+[node name="Spawners" type="Node3D" parent="MeshInstance3D" unique_id=1670736646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+
+[node name="Marker3D" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=397468549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+gizmo_extents = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1013885186]
+libraries/ = SubResource("AnimationLibrary_wy3l3")
+
+[node name="Timer" type="Timer" parent="." unique_id=1040541967]
+one_shot = true

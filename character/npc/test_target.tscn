@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cicwb732blvul"]
+
+[ext_resource type="Script" uid="uid://chokxxpgdkyt5" path="res://character/npc/test_target.gd" id="1_3kk41"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3kk41"]
+height = 1.0
+radius = 2.0
+
+[sub_resource type="Gradient" id="Gradient_3kk41"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 5
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pb44o"]
+gradient = SubResource("Gradient_3kk41")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcub6"]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_pb44o")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u2rho"]
+material = SubResource("StandardMaterial3D_kcub6")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 1.0
+radial_segments = 16
+rings = 0
+
+[node name="TestTarget" type="CharacterBody3D" unique_id=1851671608 node_paths=PackedStringArray("lock_on_marker")]
+collision_layer = 8
+collision_mask = 22
+input_ray_pickable = false
+motion_mode = 1
+script = ExtResource("1_3kk41")
+lock_on_marker = NodePath("VisibleOnScreenNotifier3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2071641657]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_3kk41")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1290929758]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 4
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("CylinderMesh_u2rho")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=938446974]
+layers = 4
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
