@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cnywqhnd5kiej" path="res://misc/state_machine.gd" id="3_y62ao"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="4_147df"]
 [ext_resource type="Script" uid="uid://d1fq0xbo8v0ic" path="res://character/player/player_camera.gd" id="4_djqcp"]
+[ext_resource type="PackedScene" uid="uid://qs1aigkqwumj" path="res://parts/template_missile_launcher.tscn" id="4_mm3tp"]
 [ext_resource type="Script" uid="uid://db8yln6odycyl" path="res://character/player/states/grounded.gd" id="4_mwxdq"]
 [ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://character/targeting.gd" id="5_djqcp"]
 [ext_resource type="Script" uid="uid://d30885cj1ep35" path="res://misc/state_transition.gd" id="5_qtvjb"]
@@ -2076,7 +2077,7 @@ transitions = ["Start", "slide", SubResource("AnimationNodeStateMachineTransitio
 
 [sub_resource type="Resource" id="Resource_mm3tp"]
 script = ExtResource("12_q4uji")
-aim_rect = Rect2(432.5, -6, 500, 500)
+aim_rect = Rect2(-249, -299, 500, 500)
 aim_rect_offset = Vector2(0, -50)
 metadata/_custom_type_script = "uid://drhv6xhso43sp"
 
@@ -2085,6 +2086,7 @@ radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djqcp"]
 shading_mode = 0
+albedo_color = Color(1.353256, 0, 0, 1)
 disable_receive_shadows = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_anxaj"]
@@ -2107,7 +2109,7 @@ advance_expression = "is_on_floor()"
 metadata/_custom_type_script = "uid://d30885cj1ep35"
 
 [node name="PlayerRobot" type="CharacterBody3D" unique_id=1597961581 node_paths=PackedStringArray("lock_on_marker")]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 23
 input_ray_pickable = false
 floor_constant_speed = true
@@ -2116,15 +2118,12 @@ platform_floor_layers = 3
 script = ExtResource("1_tb8wh")
 data = SubResource("Resource_f7rk5")
 team_group = "TeamA"
-lock_on_marker = NodePath("LockOnMarker")
+lock_on_marker = NodePath("MeshNode/Skeleton3D/Torso/LockOnMarker")
 metadata/_custom_type_script = "uid://b31okcihcprx6"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=181849056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("CapsuleShape3D_paxjy")
-
-[node name="LockOnMarker" type="Marker3D" parent="." unique_id=1149488759]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 
 [node name="MeshNode" type="Node3D" parent="." unique_id=680996108]
 
@@ -2308,8 +2307,8 @@ transform = Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.82
 bone_name = "BackUnit.R"
 bone_idx = 15
 
-[node name="Weapon" parent="MeshNode/Skeleton3D/BackUnitR" unique_id=2098918154 instance=ExtResource("2_7pq3o")]
-transform = Transform3D(-1, -1.5486178e-06, -8.7422976e-08, -1.5486173e-06, 1, 2.2770821e-07, 8.74226e-08, 2.2770838e-07, -1, 0, 0.48437786, 0)
+[node name="Weapon" parent="MeshNode/Skeleton3D/BackUnitR" unique_id=1194448808 instance=ExtResource("4_mm3tp")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 1, 0, 0)
 
 [node name="BackUnitL" type="BoneAttachment3D" parent="MeshNode/Skeleton3D" unique_id=1528119877]
 unique_name_in_owner = true
@@ -2318,7 +2317,15 @@ bone_name = "BackUnit.L"
 bone_idx = 14
 
 [node name="Weapon" parent="MeshNode/Skeleton3D/BackUnitL" unique_id=1890234413 instance=ExtResource("2_7pq3o")]
-transform = Transform3D(-1, -1.5486178e-06, -8.7422976e-08, -1.5486173e-06, 1, 2.2770821e-07, 8.74226e-08, 2.2770838e-07, -1, 0, 0.48437786, 0)
+transform = Transform3D(-1, -1.5486178e-06, -8.7422976e-08, -1.5486173e-06, 1, 2.2770821e-07, 8.74226e-08, 2.2770838e-07, -1, -0.21660523, 0.48437753, 1.8936193e-08)
+
+[node name="Torso" type="BoneAttachment3D" parent="MeshNode/Skeleton3D" unique_id=1584084535]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.450581e-09, 7.346743, 0.092853546)
+bone_name = "Core"
+bone_idx = 2
+
+[node name="LockOnMarker" type="Marker3D" parent="MeshNode/Skeleton3D/Torso" unique_id=1149488759]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="ArmsTest" type="MeshInstance3D" parent="MeshNode/Skeleton3D" unique_id=1567575528]
 layers = 4
@@ -2371,6 +2378,7 @@ shape = SubResource("SphereShape3D_itl3e")
 current = true
 
 [node name="EyeRay" type="RayCast3D" parent="PlayerCamera" unique_id=1476738954]
+enabled = false
 collision_mask = 3
 
 [node name="Targeting" type="Marker3D" parent="." unique_id=943173528]

@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://ct2ftp143gfyt"]
+
+[ext_resource type="Script" uid="uid://4yx46onl8y8g" path="res://projectile/missile.gd" id="1_trsiv"]
+[ext_resource type="Script" uid="uid://dqk5j2vf60io2" path="res://projectile/missile_data.gd" id="2_qjrrw"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://character/targeting.gd" id="3_0snrw"]
+
+[sub_resource type="Curve" id="Curve_qjrrw"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.4, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="Resource" id="Resource_0snrw"]
+script = ExtResource("2_qjrrw")
+homing_delay = 0.4
+speed_curve_duration = 0.5
+speed_curve = SubResource("Curve_qjrrw")
+speed = 50.0
+metadata/_custom_type_script = "uid://dqk5j2vf60io2"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xeyv"]
+albedo_color = Color(0, 1, 0.7058824, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_trsiv"]
+material = SubResource("StandardMaterial3D_7xeyv")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 1.5
+radial_segments = 8
+rings = 0
+
+[sub_resource type="Gradient" id="Gradient_7xeyv"]
+offsets = PackedFloat32Array(0, 0.8333333)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+metadata/_snap_count = 6
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_trsiv"]
+gradient = SubResource("Gradient_7xeyv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qjrrw"]
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+color_ramp = SubResource("GradientTexture1D_trsiv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0snrw"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_bhxmo"]
+material = SubResource("StandardMaterial3D_0snrw")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[node name="Missile" type="Node3D" unique_id=632454852]
+script = ExtResource("1_trsiv")
+data = SubResource("Resource_0snrw")
+metadata/_custom_type_script = "uid://4yx46onl8y8g"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=230436809]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 8
+gi_mode = 0
+mesh = SubResource("CylinderMesh_trsiv")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" unique_id=1705403537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+layers = 32
+cast_shadow = 0
+gi_mode = 0
+lifetime = 0.2
+visibility_aabb = AABB(-0.64542145, -0.8607628, -0.65526736, 1.2979743, 1.3531665, 1.3426714)
+process_material = SubResource("ParticleProcessMaterial_qjrrw")
+draw_pass_1 = SubResource("SphereMesh_bhxmo")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1029481077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, 2)
+collision_mask = 11
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0.11764706, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Targeting" type="Marker3D" parent="." unique_id=679727401]
+script = ExtResource("3_0snrw")
+metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
+
+[node name="Timer" type="Timer" parent="." unique_id=1735928104]
+one_shot = true

@@ -1,8 +1,9 @@
 class_name Death extends State
 
 func start(node):
-	node.velocity = Vector3.ZERO
+	node.move_direction = Vector3.ZERO
 	node.lock_on_marker.hide()
+	node.look_at_mod.active = false
 
 func exit(node):
 	pass
