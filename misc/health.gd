@@ -6,9 +6,9 @@ signal death
 @export var max_hp := 1.0
 @export var hp := 1.0:
 	set(value):
-		hp = minf(value, max_hp)
-		if hp <= 0.0:
+		if hp > 0.0 and value <= 0.0:
 			death.emit()
+		hp = minf(value, max_hp)
 
 func _ready():
 	if data:
@@ -16,10 +16,10 @@ func _ready():
 	hp = max_hp
 
 func take_damage(damage_data: DamageData):
+	if not damage_data:
+		return
 	var source = get_node(damage_data.source)
-	if source.is_in_group(Global.TEAM_C):
-		hp -= damage_data.damage
-		return
-	if source.is_in_group(owner.team_group):
-		return
+	if not source.is_in_group(Global.TEAM_C):
+		if source.is_in_group(owner.team_group):
+			return
 	hp -= damage_data.damage

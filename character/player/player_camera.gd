@@ -4,7 +4,7 @@ class_name PlayerCamera extends Node3D
 @onready var camera = $SpringArm3D/Camera3D
 @onready var eye_ray = $EyeRay
 @onready var targeting = %Targeting
-@onready var player: Player = owner
+@onready var player: Player = get_parent()
 
 @export_group('Camera Parameters')
 @export var mouse_sensitivity := 0.02
@@ -58,6 +58,11 @@ func get_target() -> Node3D:
 	return closest_target
 
 func _process(delta):
+	spring_arm.rotation.x += input_direction.y * delta * invert_y
+	spring_arm.rotation.x = clamp(spring_arm.rotation.x, min_angle_x, max_angle_x)
+	spring_arm.rotation.y += input_direction.x * delta * invert_x
+	input_direction *= 0
+	
 	eye_ray.global_position = camera.global_position
 	var target = null
 	if not manual_aim:
@@ -77,11 +82,6 @@ func _physics_process(delta):
 	var lerp_weight := 1.0 - pow(0.5, delta * 16)
 	position = position.lerp(player.position, lerp_weight)
 	position.y = player.position.y + height
-	
-	spring_arm.rotation.x += input_direction.y * delta * invert_y
-	spring_arm.rotation.x = clamp(spring_arm.rotation.x, min_angle_x, max_angle_x)
-	spring_arm.rotation.y += input_direction.x * delta * invert_x
-	input_direction *= 0
 
 func _unhandled_input(event):
 	if not camera.current:
