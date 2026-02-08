@@ -12,7 +12,7 @@ class_name DetectionZone extends Area3D
 func _ready():
 	input_ray_pickable = false
 	collision_layer = 0
-	collision_mask = 4 # layer 3
+	collision_mask = 20 # layer 3, 5d
 	collision_shape.shape.radius = data.distance_max
 	timer.timeout.connect(_on_timer_timout)
 
@@ -34,9 +34,13 @@ func _process(delta):
 
 func get_target(check_fov := true) -> Character:
 	for body in get_overlapping_bodies():
+		if body == owner:
+			continue
 		if not body.is_in_group(Global.TEAM_C):
 			if body.is_in_group(owner.team_group):
 				continue
+		if not body.alive:
+			continue
 		if check_fov:
 			var direction_to_body := body.global_position - global_position
 			var facing_direction := Vector3.FORWARD
