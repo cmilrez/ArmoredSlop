@@ -8,7 +8,7 @@ class_name Character extends CharacterBody3D
 		add_to_group(value)
 		team_group = value
 @export var lock_on_marker: Node3D = null
+@export var alive := true
 
 var move_direction := Vector3.ZERO
 var gravity := Vector3.ZERO
-var alive := true
