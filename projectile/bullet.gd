@@ -1,12 +1,14 @@
 class_name Bullet extends Node3D
 
 @onready var ray_cast = $RayCast3D
+@onready var timer = $Timer
 
 @export var data: BulletData = null
 var damage_data: DamageData = null
 
 func _ready():
-	$Timer.start(data.life_time)
+	timer.timeout.connect(destroy)
+	timer.start(data.life_time)
 
 func _process(delta):
 	var distance_delta: Vector3 = global_basis.z * data.speed * delta
@@ -16,9 +18,14 @@ func _process(delta):
 		var collider = ray_cast.get_collider()
 		if collider is Hitbox:
 			collider.hit.emit(damage_data)
-		$MeshInstance3D.hide()
-		$Timer.stop()
-		queue_free()
+		timer.stop()
+		destroy()
 
-func _on_timer_timeout():
+func set_up(spawn_transform: Transform3D, _damage_data: DamageData, target_position: Vector3):
+	global_transform = spawn_transform
+	damage_data = _damage_data
+	look_at(target_position, Vector3.UP, true)
+	top_level = true
+
+func destroy():
 	queue_free()

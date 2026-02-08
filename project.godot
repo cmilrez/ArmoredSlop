@@ -33,7 +33,7 @@ window/stretch/mode="canvas_items"
 
 [dotnet]
 
-project/assembly_name="Armored Slop OldGen"
+project/assembly_name="Armored Slop"
 
 [global_group]
 
@@ -106,6 +106,7 @@ reload={
 3d_render/layer_3="Character"
 3d_render/layer_4="Projectile"
 3d_render/layer_5="VFX"
+3d_render/layer_6="Particles"
 3d_physics/layer_1="World"
 3d_physics/layer_2="Object"
 3d_physics/layer_3="Player"

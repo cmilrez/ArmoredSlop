@@ -21,6 +21,14 @@ func _unhandled_input(event):
 func _unhandled_key_input(event):
 	state.key_input_event(base_node, event)
 
+func check_transition():
+	for transition: StateTransition in state.transitions:
+		if transition.evaluate_expression(base_node):
+			if transition.to_node:
+				state = state.get_node(transition.to_node)
+			else:
+				state = prev_state
+
 func set_state(new_state: State):
 	if not is_instance_valid(new_state):
 		push_warning('State node invalid: ', new_state)
@@ -33,13 +41,5 @@ func set_state(new_state: State):
 		prev_state.exit(base_node)
 	state.start(base_node)
 
-func check_transition():
-	for transition: StateTransition in state.transitions:
-		var node = base_node
-		if transition.base_node:
-			node = state.get_node(transition.base_node)
-		if transition.evaluate_expression(node):
-			if transition.to_node:
-				state = state.get_node(transition.to_node)
-			else:
-				state = prev_state
+func set_state_node_path(state_path: NodePath):
+	set_state(get_node(state_path))

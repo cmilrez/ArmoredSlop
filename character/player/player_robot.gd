@@ -49,7 +49,7 @@ func _physics_process(delta):
 		global_rotation.y = lerp_angle(rotation.y, camera.spring_arm.rotation.y, rot_weight)
 		for i in get_slide_collision_count():
 			Global.push_rigid_body_3d(get_slide_collision(i), velocity, mass)
-	update_anim_param(delta)
+	#update_anim_param(delta)
 	move_and_slide()
 
 func update_anim_param(delta: float):
