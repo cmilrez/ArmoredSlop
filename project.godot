@@ -41,6 +41,10 @@ TeamB=""
 TeamA=""
 TeamC=""
 
+[gui]
+
+theme/custom="uid://cu08h04xu6ms8"
+
 [input]
 
 move_forward={

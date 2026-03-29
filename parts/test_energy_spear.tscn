@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://dgm2xvvhj65dd"]
+
+[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_8obv2"]
+[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="2_umeg2"]
+[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="3_2worp"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="3_dw6pl"]
+
+[sub_resource type="Resource" id="Resource_2worp"]
+script = ExtResource("3_dw6pl")
+damage = 20.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_5jupd"]
+script = ExtResource("3_2worp")
+reload_time = 2.0
+damage_data = SubResource("Resource_2worp")
+metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umeg2"]
+albedo_color = Color(0, 1, 0.49803922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dw6pl"]
+material = SubResource("StandardMaterial3D_umeg2")
+size = Vector3(1, 1, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8obv2"]
+shading_mode = 0
+albedo_color = Color(0, 0, 1.353256, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_umeg2"]
+material = SubResource("StandardMaterial3D_8obv2")
+size = Vector3(1.5, 8, 1.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jupd"]
+radius = 1.0
+height = 9.0
+
+[sub_resource type="Animation" id="Animation_2worp"]
+resource_name = "Attack"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2), Vector3(0, 0, -4.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0.3, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5jupd"]
+resource_name = "Cooldown"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -4.75), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.1, 0.1, 0.1)]
+}
+
+[sub_resource type="Animation" id="Animation_dw6pl"]
+resource_name = "Prepare"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(1, 0.3, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_umeg2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2worp"]
+_data = {
+&"Attack": SubResource("Animation_2worp"),
+&"Cooldown": SubResource("Animation_5jupd"),
+&"Prepare": SubResource("Animation_dw6pl"),
+&"RESET": SubResource("Animation_umeg2")
+}
+
+[node name="EnergySpear" type="Node3D" unique_id=909781163]
+script = ExtResource("1_8obv2")
+data = SubResource("Resource_5jupd")
+metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1490588011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+layers = 4
+gi_mode = 0
+mesh = SubResource("BoxMesh_dw6pl")
+
+[node name="Blade" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1977456271]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, 0, 0)
+layers = 4
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("PrismMesh_umeg2")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1216747128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4.75)
+monitoring = false
+monitorable = false
+script = ExtResource("2_umeg2")
+damage_data = SubResource("Resource_2worp")
+metadata/_custom_type_script = "uid://p0vi8wansauj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1512502667]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_5jupd")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1076317409]
+libraries/ = SubResource("AnimationLibrary_2worp")
+
+[node name="Timer" type="Timer" parent="." unique_id=316283536]
+one_shot = true

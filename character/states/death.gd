@@ -1,4 +1,4 @@
-class_name Death extends State
+extends State
 
 func start(node):
 	node.move_direction = Vector3.ZERO

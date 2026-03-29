@@ -25,7 +25,7 @@ func _process(delta):
 		var direction: Vector3 = -global_position.direction_to(target_position)
 		var cross = direction.cross(global_basis.z).normalized()
 		var angle = direction.signed_angle_to(global_basis.z, cross)
-		global_rotate(cross, minf(angle, signf(angle) * data.turning_speed * delta))
+		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * delta))
 	var speed = data.speed
 	if data.speed_curve and speed_curve_offset < 1.0:
 		speed *= data.speed_curve.sample(speed_curve_offset)

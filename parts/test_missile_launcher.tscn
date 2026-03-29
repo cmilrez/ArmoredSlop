@@ -1,25 +1,25 @@
 [gd_scene format=3 uid="uid://qs1aigkqwumj"]
 
-[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon.gd" id="1_55oek"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_tu6mn"]
 [ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_wlqgi"]
 [ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/template_missile.tscn" id="3_55oek"]
-[ext_resource type="Script" uid="uid://dj6yhycshbdl6" path="res://parts/weapon_data.gd" id="4_wjq1a"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_manhd"]
 
-[sub_resource type="Resource" id="Resource_hkpe4"]
+[sub_resource type="Resource" id="Resource_smlln"]
 script = ExtResource("2_wlqgi")
-damage = 8.0
+damage = 5.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
-[sub_resource type="Resource" id="Resource_6poma"]
-script = ExtResource("4_wjq1a")
-multishot_interval = 0.1
-reload_time = 5.0
+[sub_resource type="Resource" id="Resource_qrs3s"]
+script = ExtResource("4_manhd")
+multishot_interval = 0.2
 clip_size = 6
-ammo_max = 48
+ammo_max = 180
 ammo_cost = 1
-damage_data = SubResource("Resource_hkpe4")
 projectile_scene = ExtResource("3_55oek")
-metadata/_custom_type_script = "uid://dj6yhycshbdl6"
+reload_time = 4.0
+damage_data = SubResource("Resource_smlln")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66qhd"]
 albedo_color = Color(0.8244517, 0.0017038286, 0.96291083, 1)
@@ -83,11 +83,11 @@ _data = {
 &"Reload": SubResource("Animation_6poma")
 }
 
-[node name="Weapon" type="Node3D" unique_id=1378723530 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_55oek")
+[node name="MissileLauncher" type="Node3D" unique_id=130711975 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_tu6mn")
 spawners = NodePath("MeshInstance3D/Spawners")
-data = SubResource("Resource_6poma")
-metadata/_custom_type_script = "uid://b3jwuceipevwg"
+data = SubResource("Resource_qrs3s")
+metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2066032815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

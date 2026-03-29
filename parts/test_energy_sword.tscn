@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://cxr16p8i8u6qh"]
+
+[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_g5dng"]
+[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="1_tjuil"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_tjuil"]
+[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="3_ymj4f"]
+
+[sub_resource type="Resource" id="Resource_climr"]
+script = ExtResource("2_tjuil")
+damage = 15.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_hi6a3"]
+script = ExtResource("3_ymj4f")
+reload_time = 3.0
+damage_data = SubResource("Resource_climr")
+metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjuil"]
+albedo_color = Color(1, 0.2509804, 1, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_g5dng"]
+material = SubResource("StandardMaterial3D_tjuil")
+size = Vector3(0.6, 0.4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tf1n"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1.8247963, 0.93739134, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_tjuil"]
+material = SubResource("StandardMaterial3D_7tf1n")
+size = Vector2(0.5, 10)
+center_offset = Vector3(0, 0, -5)
+orientation = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
+radius = 1.2
+height = 10.0
+
+[sub_resource type="Animation" id="Animation_climr"]
+resource_name = "Attack"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 0.4), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hi6a3"]
+resource_name = "Cooldown"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ymj4f"]
+resource_name = "Ready"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 0), Vector3(1, 1, 0.4)]
+}
+
+[sub_resource type="Animation" id="Animation_g5dng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_climr"]
+_data = {
+&"Attack": SubResource("Animation_climr"),
+&"Cooldown": SubResource("Animation_hi6a3"),
+&"Prepare": SubResource("Animation_ymj4f"),
+&"RESET": SubResource("Animation_g5dng")
+}
+
+[node name="EnergySword" type="Node3D" unique_id=1562911064]
+script = ExtResource("1_g5dng")
+data = SubResource("Resource_hi6a3")
+metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=677172602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+layers = 4
+gi_mode = 0
+mesh = SubResource("BoxMesh_g5dng")
+
+[node name="Blade" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1698943514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+layers = 4
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("QuadMesh_tjuil")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1436141130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -5.3)
+monitoring = false
+monitorable = false
+script = ExtResource("1_tjuil")
+damage_data = SubResource("Resource_climr")
+metadata/_custom_type_script = "uid://p0vi8wansauj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1879200327]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_g5dng")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1228015449]
+libraries/ = SubResource("AnimationLibrary_climr")
+
+[node name="Timer" type="Timer" parent="." unique_id=1677993991]
