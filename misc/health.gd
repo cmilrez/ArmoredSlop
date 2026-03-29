@@ -18,8 +18,9 @@ func _ready():
 func take_damage(damage_data: DamageData):
 	if not damage_data:
 		return
-	var source = get_node(damage_data.source)
-	if not source.is_in_group(Global.TEAM_C):
-		if source.is_in_group(owner.team_group):
-			return
+	var source = get_node_or_null(damage_data.source)
+	if source:
+		if not source.is_in_group(Global.TEAM_C):
+			if source.is_in_group(owner.team_group):
+				return
 	hp -= damage_data.damage

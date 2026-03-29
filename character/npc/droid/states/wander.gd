@@ -1,4 +1,4 @@
-class_name Wander extends State
+extends State
 
 @onready var timer = $Timer
 

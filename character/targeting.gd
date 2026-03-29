@@ -1,6 +1,9 @@
 class_name Targeting extends Marker3D
 
-var target: Character = null: set=set_target
+var target: Character = null:
+	set(value):
+		target = value
+		set_process(is_instance_valid(target))
 
 func _ready():
 	top_level = true
@@ -12,12 +15,10 @@ func _process(delta):
 		return
 	global_position =  target.lock_on_marker.global_position
 
-func set_target(new_target):
-	if new_target is Node or new_target == null:
-		target = new_target
-	if new_target is DamageData:
-		target = get_node(new_target.source)
-	set_process(is_instance_valid(target))
+func set_target_damage_source(damage_data: DamageData):
+	var source = get_node_or_null(damage_data.source)
+	if source:
+		target = source
 
 func get_targeting_position(bullet_speed: float, bullet_position: Vector3) -> Vector3:
 	if not is_instance_valid(target):

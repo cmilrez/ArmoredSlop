@@ -13,6 +13,7 @@ func _ready():
 	lock_on_marker.screen_exited.connect(func(): SignalBus.enemy_exited_screen.emit(self))
 	home_position = global_position
 	anim_tree.active = true
+	npc_weapon.damage_data = npc_weapon.damage_data.duplicate()
 	npc_weapon.damage_data.source = get_path()
 
 func _physics_process(delta):
@@ -32,8 +33,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func update_animation(delta: float):
-	var facing_direction := global_basis.z
-	var angle = facing_direction.signed_angle_to(move_direction, Vector3.UP)
+	var angle = global_basis.z.signed_angle_to(move_direction, Vector3.UP)
 	anim_tree.set('parameters/Default/Move/blend_position', Vector2.UP)
 	if targeting.target:
 		look_at_mod.active = true
@@ -46,4 +46,4 @@ func update_animation(delta: float):
 		elif angle < -Global.QUARTER_PI:
 			anim_tree.set('parameters/Default/Move/blend_position', Vector2.RIGHT)
 	quaternion = quaternion * anim_tree.get_root_motion_rotation()
-	rotate_y(sign(angle) * minf(delta, absf(angle)))
+	rotate_y(sign(angle) * minf(absf(angle), delta))
