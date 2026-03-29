@@ -198,6 +198,11 @@ animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ksu8n"]
 animation = &"Walk_Backward"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tarjm"]
 animation = &"Walk_Forward"
@@ -228,7 +233,7 @@ blend_mode = 1
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ebn4k"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_m80yl"]
-graph_offset = Vector2(-644, 23)
+graph_offset = Vector2(-557, 86)
 nodes/Move/node = SubResource("AnimationNodeBlendSpace2D_6oeat")
 nodes/Move/position = Vector2(-300, 100)
 nodes/Speed/node = SubResource("AnimationNodeTimeScale_ebn4k")
@@ -255,16 +260,16 @@ script = ExtResource("11_a1hos")
 damage = 3.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
+[sub_resource type="Resource" id="Resource_b2bnd"]
+script = ExtResource("9_47fdb")
+to_node = NodePath("../Chase")
+advance_expression = "targeting.target"
+metadata/_custom_type_script = "uid://d30885cj1ep35"
+
 [sub_resource type="Resource" id="Resource_v6vxi"]
 script = ExtResource("9_47fdb")
 to_node = NodePath("../Wander")
 advance_expression = "not targeting.target"
-metadata/_custom_type_script = "uid://d30885cj1ep35"
-
-[sub_resource type="Resource" id="Resource_ndre0"]
-script = ExtResource("9_47fdb")
-to_node = NodePath("../ChaseAndCircle")
-advance_expression = "targeting.target"
 metadata/_custom_type_script = "uid://d30885cj1ep35"
 
 [node name="Droid" type="CharacterBody3D" unique_id=1579288529 node_paths=PackedStringArray("lock_on_marker")]
@@ -325,7 +330,7 @@ shape = SubResource("CapsuleShape3D_47fdb")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [node name="ShinL" type="CollisionShape3D" parent="Hitbox" unique_id=965224846]
-transform = Transform3D(-1, 2.9748946e-07, -1.03013875e-07, -2.9331255e-07, -0.76152444, 0.6481365, 1.1436617e-07, 0.6481364, 0.7615244, 0.7890002, 0.9955809, -0.7401598)
+transform = Transform3D(-1, 2.9748946e-07, -1.0301386e-07, -2.9331255e-07, -0.76152444, 0.6481365, 1.143662e-07, 0.6481364, 0.7615244, 0.7890002, 0.9955809, -0.7401598)
 shape = SubResource("CapsuleShape3D_47fdb")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
@@ -377,14 +382,14 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(1, -2.1059923e-07, 2.030241e-07, 2.4611364e-07, 0.23058227, -0.9730528, 1.5811042e-07, 0.97305274, 0.23058228, 2.4859341e-09, 1.7399815, 2.50099e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(2.4859341e-09, 1.7399815, 2.50099e-07)
-bones/3/rotation = Quaternion(0.6202495, -1.1191076e-08, 1.4185233e-07, 0.7844046)
+bones/3/rotation = Quaternion(0.6202495, -1.1191079e-08, 1.4185233e-07, 0.7844046)
 bones/3/scale = Vector3(1, 0.9999999, 0.99999994)
 bones/4/name = "Feet.L"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 2.7955338e-07, -4.2791243e-07, -5.087098e-07, 0.62579006, -0.77999157, 4.9734055e-08, 0.7799917, 0.62579, 3.1686792e-08, 1.6648837, -6.246037e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(3.1686792e-08, 1.6648837, -6.246037e-08)
-bones/4/rotation = Quaternion(0.43255618, -1.0749144e-07, -1.1499373e-07, 0.90160704)
+bones/4/rotation = Quaternion(0.43255615, -1.0749143e-07, -1.1499373e-07, 0.901607)
 bones/4/scale = Vector3(1, 1.0000001, 1)
 bones/5/name = "Head"
 bones/5/parent = 1
@@ -419,7 +424,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(1, 3.741773e-07, 1.0249845e-06, 5.653229e-07, 0.62579006, -0.77999157, -9.3328015e-07, 0.7799917, 0.62579, -1.2394064e-08, 1.6648835, -1.6509148e-08)
 bones/9/enabled = true
 bones/9/position = Vector3(-1.2394064e-08, 1.6648835, -1.6509148e-08)
-bones/9/rotation = Quaternion(0.43255618, 5.429157e-07, 3.8800033e-07, 0.90160704)
+bones/9/rotation = Quaternion(0.43255615, 5.429157e-07, 3.8800025e-07, 0.901607)
 bones/9/scale = Vector3(1, 1.0000001, 1)
 
 [node name="LookAtMod" type="LookAtModifier3D" parent="Droid/Skeleton3D" unique_id=112567765]
@@ -491,7 +496,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9997744, 0.02123906, 0, -0.02123906, 0.999
 remote_path = NodePath("../../../../Hitbox/ThighL")
 
 [node name="ShinL" type="BoneAttachment3D" parent="Droid/Skeleton3D" unique_id=379188854]
-transform = Transform3D(-1, 3.003504e-07, -9.43476e-08, -2.9331255e-07, -0.7799912, 0.6257907, 1.1436617e-07, 0.6257906, 0.77999115, 0.789, 1.6521349, -1.2669162)
+transform = Transform3D(-1, 3.003504e-07, -9.4347584e-08, -2.9331255e-07, -0.7799912, 0.6257907, 1.143662e-07, 0.6257906, 0.77999115, 0.789, 1.6521349, -1.2669162)
 bone_name = "Shin.L"
 bone_idx = 3
 
@@ -558,29 +563,29 @@ base_node = NodePath("..")
 state = NodePath("Wander")
 metadata/_custom_type_script = "uid://cnywqhnd5kiej"
 
-[node name="ChaseAndCircle" type="Node" parent="StateMachine" unique_id=850112226 node_paths=PackedStringArray("gun", "targeting")]
+[node name="Wander" type="Node" parent="StateMachine" unique_id=73557106]
+script = ExtResource("6_0w2uu")
+transitions = Array[ExtResource("9_47fdb")]([SubResource("Resource_b2bnd")])
+metadata/_custom_type_script = "uid://bipmhs8ie4rat"
+
+[node name="Timer" type="Timer" parent="StateMachine/Wander" unique_id=1992807896]
+one_shot = true
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=850112226 node_paths=PackedStringArray("gun", "targeting")]
 script = ExtResource("10_ndre0")
 gun = NodePath("../../NPCWeapon")
 targeting = NodePath("../../Targeting")
 transitions = Array[ExtResource("9_47fdb")]([SubResource("Resource_v6vxi")])
 metadata/_custom_type_script = "uid://bipmhs8ie4rat"
 
-[node name="Timer" type="Timer" parent="StateMachine/ChaseAndCircle" unique_id=21913835]
+[node name="Timer" type="Timer" parent="StateMachine/Chase" unique_id=21913835]
 one_shot = true
 
-[node name="Wander" type="Node" parent="StateMachine" unique_id=1517450934]
-script = ExtResource("6_0w2uu")
-transitions = Array[ExtResource("9_47fdb")]([SubResource("Resource_ndre0")])
-metadata/_custom_type_script = "uid://cnfvqxd4ys473"
-
-[node name="Timer" type="Timer" parent="StateMachine/Wander" unique_id=1992807896]
-one_shot = true
-
-[node name="Death" type="Node" parent="StateMachine" unique_id=242625349]
+[node name="Death" type="Node" parent="StateMachine" unique_id=206134118]
 script = ExtResource("10_jadxt")
-metadata/_custom_type_script = "uid://cc3nxdefisnfe"
+metadata/_custom_type_script = "uid://bipmhs8ie4rat"
 
-[connection signal="hit" from="Hitbox" to="Targeting" method="set_target"]
+[connection signal="hit" from="Hitbox" to="Targeting" method="set_target_damage_source"]
 [connection signal="hit" from="Hitbox" to="Health" method="take_damage"]
-[connection signal="death" from="Health" to="DetectionZone" method="_deactivate"]
+[connection signal="death" from="Health" to="DetectionZone" method="deactivate"]
 [connection signal="death" from="Health" to="StateMachine" method="set_state_node_path" binds= [NodePath("Death")]]

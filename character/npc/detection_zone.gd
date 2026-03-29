@@ -12,7 +12,7 @@ class_name DetectionZone extends Area3D
 func _ready():
 	input_ray_pickable = false
 	collision_layer = 0
-	collision_mask = 20 # layer 3, 5d
+	collision_mask = 20 # layer 3, 5
 	collision_shape.shape.radius = data.distance_max
 	timer.timeout.connect(_on_timer_timout)
 
@@ -30,9 +30,9 @@ func _process(delta):
 		else:
 			timer.stop()
 	else:
-		targeting.target = get_target()
+		targeting.target = search_target()
 
-func get_target(check_fov := true) -> Character:
+func search_target(check_fov := true) -> Character:
 	for body in get_overlapping_bodies():
 		if body == owner:
 			continue
@@ -54,9 +54,17 @@ func get_target(check_fov := true) -> Character:
 		return body
 	return null
 
-func _on_timer_timout():
+func set_target_from_damage(dmg_data: DamageData):
+	var source = get_node_or_null(dmg_data.source)
+	if source:
+		if not source.is_in_group(Global.TEAM_C):
+			if source.is_in_group(owner.team_group):
+				return
+	targeting.target = source
+
+func deactivate():
+	set_process(false)
 	targeting.target = null
 
-func _deactivate():
-	set_process(false)
+func _on_timer_timout():
 	targeting.target = null

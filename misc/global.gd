@@ -7,7 +7,6 @@ const LARGE_9 = 999999999999.0
 func _ready():
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#SignalBus.player_death.connect(_on_player_death)
 
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):
@@ -15,17 +14,6 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-#func _on_player_death():
-	#var fade := ColorRect.new()
-	#fade.color = Color.from_hsv(0.0, 0.0, 0.0, 0.0)
-	#fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#fade.set_anchors_preset(Control.PRESET_FULL_RECT)
-	#get_tree().get_current_scene().add_child(fade)
-	#await create_tween().tween_property(fade, 'color', Color.BLACK, 5.0).finished
-	#var result := get_tree().reload_current_scene()
-	#if result != OK:
-		#print('Error reloading scene. ', result)
 
 func push_rigid_body_3d(collision: KinematicCollision3D, velocity: Vector3, mass: float):
 	var collider := collision.get_collider()
