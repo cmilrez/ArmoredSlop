@@ -1,5 +1,10 @@
 class_name ProjectileWeapon extends Weapon
 
+const START_ANIM = &'Start'
+const READY_ANIM = &'Ready'
+const SHOOT_ANIM = &'Shoot'
+const RELOAD_ANIM = &'Reload'
+
 @export var spawners: Node3D = null
 @export var data: ProjectileWeaponData = null
 var ammo_total := 0
@@ -83,33 +88,33 @@ func reload(manual_reload := false):
 
 func _anim_start():
 	can_use = false
-	if anim_player.has_animation('Start'):
-		anim_player.play('Start')
+	if anim_player.has_animation(START_ANIM):
+		anim_player.play(START_ANIM)
 		await anim_player.animation_finished
 	_anim_ready()
 
 func _anim_ready():
-	if anim_player.has_animation('Ready'):
-		anim_player.play('Ready')
-		if anim_player.get_animation('Ready').get_loop_mode() == Animation.LOOP_NONE:
+	if anim_player.has_animation(READY_ANIM):
+		anim_player.play(READY_ANIM)
+		if anim_player.get_animation(READY_ANIM).get_loop_mode() == Animation.LOOP_NONE:
 			await anim_player.animation_finished
 	can_use = true
 
 func _anim_shoot():
 	can_use = false
-	if anim_player.has_animation('Shoot'):
-		anim_player.play('Shoot')
+	if anim_player.has_animation(SHOOT_ANIM):
+		anim_player.play(SHOOT_ANIM)
 
 func _anim_reload():
 	can_use = false
 	reloading = true
 	timer.start(data.reload_time)
-	if anim_player.has_animation('Reload'):
-		anim_player.queue('Reload')
+	if anim_player.has_animation(RELOAD_ANIM):
+		anim_player.queue(RELOAD_ANIM)
 
 func _anim_shutdown():
 	can_use = false
-	if anim_player.has_animation('Ready') and anim_player.has_animation('Start'):
-		anim_player.play_backwards('Ready')
+	if anim_player.has_animation(READY_ANIM) and anim_player.has_animation(START_ANIM):
+		anim_player.play_backwards(READY_ANIM)
 		await anim_player.animation_finished
-		anim_player.play_backwards('Start')
+		anim_player.play_backwards(START_ANIM)
