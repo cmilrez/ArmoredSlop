@@ -12,7 +12,6 @@ func _ready():
 
 func _process(delta):
 	var distance_delta: Vector3 = global_basis.z * data.speed * delta
-	global_position += distance_delta
 	ray_cast.target_position = Vector3(0.0, 0.0, data.speed * delta)
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
@@ -20,6 +19,7 @@ func _process(delta):
 			collider.hit.emit(damage_data)
 		timer.stop()
 		destroy()
+	global_position += distance_delta
 
 func set_up(spawn_transform: Transform3D, _damage_data: DamageData, target_position: Vector3):
 	global_transform = spawn_transform
