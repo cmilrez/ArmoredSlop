@@ -20,17 +20,10 @@ func _ready():
 	timer.start(data.life_time)
 
 func _process(delta):
-	if homing:
-		var target_position = targeting.get_targeting_position(data.speed, global_position)
-		var direction: Vector3 = -global_position.direction_to(target_position)
-		var cross = direction.cross(global_basis.z).normalized()
-		var angle = direction.signed_angle_to(global_basis.z, cross)
-		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * delta))
 	var speed = data.speed
 	if data.speed_curve and speed_curve_offset < 1.0:
 		speed *= data.speed_curve.sample(speed_curve_offset)
 	var distance_delta: Vector3 = global_basis.z * speed * delta
-	global_position += distance_delta
 	ray_cast.target_position = Vector3(0.0, 0.0, speed * delta)
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
@@ -38,6 +31,14 @@ func _process(delta):
 			collider.hit.emit(damage_data)
 		timer.stop()
 		detonate()
+		return
+	if homing:
+		var target_position = targeting.get_targeting_position(data.speed, global_position)
+		var direction: Vector3 = -global_position.direction_to(target_position)
+		var cross = direction.cross(global_basis.z).normalized()
+		var angle = direction.signed_angle_to(global_basis.z, cross)
+		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * delta))
+	global_position += distance_delta
 
 func set_up(spawn_transform: Transform3D, _damage_data: DamageData, target_position: Vector3, target: Character = null):
 	global_transform = spawn_transform

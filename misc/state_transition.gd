@@ -2,15 +2,17 @@ class_name StateTransition extends Resource
 
 #@export var delay := 1.0
 @export_node_path('State') var to_node := ^''
-@export_custom(PROPERTY_HINT_EXPRESSION, '') var advance_expression: String = ''
+@export_custom(PROPERTY_HINT_EXPRESSION, '') var advance_expression: String = '':
+	set(value):
+		advance_expression = value
+		var error = expression.parse(advance_expression)
+		if not error == OK:
+			push_warning(expression.get_error_text())
+
 var expression := Expression.new()
 
 func evaluate_expression(node: Node) -> bool:
 	if not advance_expression:
-		return false
-	var error = expression.parse(advance_expression)
-	if not error == OK:
-		push_warning(expression.get_error_text())
 		return false
 	var result = expression.execute([], node)
 	if expression.has_execute_failed():

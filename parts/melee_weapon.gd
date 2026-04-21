@@ -59,7 +59,7 @@ func _anim_cooldown():
 	if anim_player.has_animation(COOLDOWN_ANIM):
 		anim_player.play(COOLDOWN_ANIM)
 
-func _anim_shutdown(): # unused yet
+func _anim_shutdown(): # unused
 	can_use = false
 	if anim_player.has_animation(READY_ANIM) and anim_player.has_animation(START_ANIM):
 		anim_player.play_backwards(READY_ANIM)
