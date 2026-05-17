@@ -307,6 +307,7 @@ metadata/_custom_type_script = "uid://b8r75t4pr7lpd"
 shape = SubResource("SphereShape3D_ndre0")
 debug_color = Color(1, 1, 0.5019608, 0.41960785)
 debug_fill = false
+metadata/_edit_lock_ = true
 
 [node name="EyeRay" type="RayCast3D" parent="DetectionZone" unique_id=212250594]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)

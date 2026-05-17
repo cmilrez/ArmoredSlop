@@ -1,25 +1,7 @@
 [gd_scene format=3 uid="uid://dfubxg0n07rgo"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_qpo6c"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_gp4q2"]
-[ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/template_bullet.tscn" id="3_pgoai"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_gp4q2"]
-
-[sub_resource type="Resource" id="Resource_pgoai"]
-script = ExtResource("2_gp4q2")
-damage = 3.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_abeo1"]
-script = ExtResource("4_gp4q2")
-shot_interval = 0.2
-clip_size = 25
-ammo_max = 300
-ammo_cost = 1
-projectile_scene = ExtResource("3_pgoai")
-reload_time = 3.0
-damage_data = SubResource("Resource_pgoai")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_1l6sn"]
+[ext_resource type="Resource" uid="uid://cenrt1si8y6n7" path="res://parts/test/test_rifle_data.tres" id="2_o4fl2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66qhd"]
 albedo_color = Color(0, 1, 1, 1)
@@ -83,10 +65,10 @@ _data = {
 &"Reload": SubResource("Animation_6poma")
 }
 
-[node name="Rifle" type="Node3D" unique_id=1456998054 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_qpo6c")
+[node name="Rifle" type="Node3D" unique_id=1868911248 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_1l6sn")
 spawners = NodePath("MeshInstance3D/Spawners")
-data = SubResource("Resource_abeo1")
+data = ExtResource("2_o4fl2")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2066032815]

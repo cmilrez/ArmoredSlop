@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://2h7dx28b5ejc"]
+
+[ext_resource type="ArrayMesh" uid="uid://ea1vtbrklpye" path="res://assets/TestPlayerRobot_LegsTest.res" id="1_3vu1o"]
+
+[node name="LegsBipedal" type="MeshInstance3D" unique_id=2065696801]
+layers = 4
+mesh = ExtResource("1_3vu1o")

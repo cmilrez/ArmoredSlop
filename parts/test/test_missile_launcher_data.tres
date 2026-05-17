@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponData" format=3 uid="uid://b6ktygege3u3q"]
+
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="1_ng0tu"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="1_pk8mb"]
+[ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/template_missile.tscn" id="2_pk8mb"]
+
+[sub_resource type="Resource" id="Resource_3n5fy"]
+script = ExtResource("1_pk8mb")
+damage_explosive = 5.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[resource]
+script = ExtResource("1_ng0tu")
+multishot_interval = 0.1
+reload_time = 4.0
+clip_size = 6
+ammo_max = 90
+ammo_cost = 1
+damage_data = SubResource("Resource_3n5fy")
+projectile_scene = ExtResource("2_pk8mb")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"

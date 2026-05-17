@@ -4,6 +4,7 @@ class_name Missile extends Node3D
 @onready var targeting = $Targeting
 @onready var timer = $Timer
 
+@export var explosion_scene: PackedScene = null
 @export var data: MissileData = null
 var damage_data: DamageData = null
 var speed_curve_offset := 0.0
@@ -15,6 +16,7 @@ func _ready():
 	if data.homing_delay > 0.0:
 		homing = false
 		create_tween().tween_property(self, 'homing', true, data.homing_delay)
+	top_level = true
 	timer.one_shot = true
 	timer.timeout.connect(detonate)
 	timer.start(data.life_time)
@@ -26,9 +28,15 @@ func _process(delta):
 	var distance_delta: Vector3 = global_basis.z * speed * delta
 	ray_cast.target_position = Vector3(0.0, 0.0, speed * delta)
 	if ray_cast.is_colliding():
-		var collider = ray_cast.get_collider()
-		if collider is Hitbox:
-			collider.hit.emit(damage_data)
+		if explosion_scene:
+			var collision_point = ray_cast.get_collision_point()
+			var explosion = explosion_scene.instantiate()
+			get_tree().current_scene.add_child(explosion)
+			explosion.set_up(collision_point, damage_data)
+		else:
+			var collider = ray_cast.get_collider()
+			if collider is Hitbox:
+				collider.hit.emit(damage_data)
 		timer.stop()
 		detonate()
 		return
@@ -45,7 +53,6 @@ func set_up(spawn_transform: Transform3D, _damage_data: DamageData, target_posit
 	damage_data = _damage_data
 	targeting.global_position = target_position
 	targeting.target = target
-	top_level = true
 
 func detonate():
 	queue_free()

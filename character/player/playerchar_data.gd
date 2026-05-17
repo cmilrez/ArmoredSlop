@@ -1,1 +1,0 @@
-class_name PlayerCharData extends CharacterData
