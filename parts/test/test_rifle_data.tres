@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponData" format=3 uid="uid://cenrt1si8y6n7"]
+
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="1_dulds"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="1_wlbf8"]
+[ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/template_bullet.tscn" id="2_yxlvy"]
+
+[sub_resource type="Resource" id="Resource_edt6b"]
+script = ExtResource("1_wlbf8")
+damage_bullet = 3.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[resource]
+script = ExtResource("1_dulds")
+shot_interval = 0.2
+reload_time = 3.0
+clip_size = 30
+ammo_max = 300
+ammo_cost = 1
+damage_data = SubResource("Resource_edt6b")
+projectile_scene = ExtResource("2_yxlvy")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"

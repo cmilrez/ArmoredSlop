@@ -1,20 +1,9 @@
 [gd_scene format=3 uid="uid://cxr16p8i8u6qh"]
 
-[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_g5dng"]
-[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="1_tjuil"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_tjuil"]
-[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="3_ymj4f"]
-
-[sub_resource type="Resource" id="Resource_climr"]
-script = ExtResource("2_tjuil")
-damage = 15.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_hi6a3"]
-script = ExtResource("3_ymj4f")
-reload_time = 3.0
-damage_data = SubResource("Resource_climr")
-metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
+[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_nymui"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_bgmkj"]
+[ext_resource type="Resource" uid="uid://c5vmqxfgofisg" path="res://parts/test/test_energy_sword_data.tres" id="2_nymui"]
+[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_lcwht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjuil"]
 albedo_color = Color(1, 0.2509804, 1, 1)
@@ -35,6 +24,11 @@ material = SubResource("StandardMaterial3D_7tf1n")
 size = Vector2(0.5, 10)
 center_offset = Vector3(0, 0, -5)
 orientation = 1
+
+[sub_resource type="Resource" id="Resource_climr"]
+script = ExtResource("2_bgmkj")
+damage = 15.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
 radius = 1.2
@@ -111,9 +105,9 @@ _data = {
 &"RESET": SubResource("Animation_g5dng")
 }
 
-[node name="EnergySword" type="Node3D" unique_id=1562911064]
-script = ExtResource("1_g5dng")
-data = SubResource("Resource_hi6a3")
+[node name="EnergySword" type="Node3D" unique_id=1950415004]
+script = ExtResource("1_nymui")
+data = ExtResource("2_nymui")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=677172602]
@@ -133,7 +127,7 @@ mesh = SubResource("QuadMesh_tjuil")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, -5.3)
 monitoring = false
 monitorable = false
-script = ExtResource("1_tjuil")
+script = ExtResource("4_lcwht")
 damage_data = SubResource("Resource_climr")
 metadata/_custom_type_script = "uid://p0vi8wansauj"
 

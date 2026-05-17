@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dj5ue86henduo"]
+
+[ext_resource type="Script" uid="uid://bbuqvixn24ldc" path="res://effect/explosion.gd" id="1_ikre1"]
+[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="2_tcrle"]
+
+[sub_resource type="Gradient" id="Gradient_batcs"]
+offsets = PackedFloat32Array(0.3, 0.5, 0.8)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 1, 1, 0.95, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_batcs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_batcs"]
+width = 384
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_batcs")
+color_ramp = SubResource("Gradient_batcs")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_batcs"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_batcs")
+texture_filter = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_pmqh8"]
+material = SubResource("StandardMaterial3D_batcs")
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_46l6p"]
+radius = 1.0
+
+[node name="Explosion" type="Node3D" unique_id=1018914711]
+script = ExtResource("1_ikre1")
+max_scale = 24.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1206525766]
+layers = 16
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("SphereMesh_pmqh8")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1270546891]
+script = ExtResource("2_tcrle")
+metadata/_custom_type_script = "uid://p0vi8wansauj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=2051077171]
+shape = SubResource("SphereShape3D_46l6p")
+debug_color = Color(1, 0, 0, 0.41960785)

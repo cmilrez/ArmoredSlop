@@ -1,25 +1,7 @@
 [gd_scene format=3 uid="uid://qs1aigkqwumj"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_tu6mn"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_wlqgi"]
-[ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/template_missile.tscn" id="3_55oek"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_manhd"]
-
-[sub_resource type="Resource" id="Resource_smlln"]
-script = ExtResource("2_wlqgi")
-damage = 5.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_qrs3s"]
-script = ExtResource("4_manhd")
-multishot_interval = 0.2
-clip_size = 6
-ammo_max = 180
-ammo_cost = 1
-projectile_scene = ExtResource("3_55oek")
-reload_time = 4.0
-damage_data = SubResource("Resource_smlln")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_ej6wy"]
+[ext_resource type="Resource" uid="uid://b6ktygege3u3q" path="res://parts/test/test_missile_launcher_data.tres" id="2_77ii2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66qhd"]
 albedo_color = Color(0.8244517, 0.0017038286, 0.96291083, 1)
@@ -83,10 +65,10 @@ _data = {
 &"Reload": SubResource("Animation_6poma")
 }
 
-[node name="MissileLauncher" type="Node3D" unique_id=130711975 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_tu6mn")
+[node name="MissileLauncher" type="Node3D" unique_id=155415789 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_ej6wy")
 spawners = NodePath("MeshInstance3D/Spawners")
-data = SubResource("Resource_qrs3s")
+data = ExtResource("2_77ii2")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2066032815]
