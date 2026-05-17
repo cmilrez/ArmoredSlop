@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cr8ff3217u0ji"]
+
+[ext_resource type="Script" uid="uid://bc8wm70ut14q5" path="res://effect/vfx_container.gd" id="1_vtot2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4yeu"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 0, 1)
+spread = 90.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtot2"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 0, 1)
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_2uoac"]
+material = SubResource("StandardMaterial3D_vtot2")
+size = Vector2(0.2, 0.6)
+
+[node name="Sparks" type="Node3D" unique_id=1931035974]
+script = ExtResource("1_vtot2")
+
+[node name="Timer" type="Timer" parent="." unique_id=1393603577]
+one_shot = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1269398340]
+layers = 16
+cast_shadow = 0
+gi_mode = 0
+emitting = false
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-3.7921615, -3.1931987, -0.6, 6.995351, 6.443631, 4.254067)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_x4yeu")
+draw_pass_1 = SubResource("QuadMesh_2uoac")

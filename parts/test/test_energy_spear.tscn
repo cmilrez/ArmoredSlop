@@ -1,20 +1,9 @@
 [gd_scene format=3 uid="uid://dgm2xvvhj65dd"]
 
-[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_8obv2"]
-[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="2_umeg2"]
-[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="3_2worp"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="3_dw6pl"]
-
-[sub_resource type="Resource" id="Resource_2worp"]
-script = ExtResource("3_dw6pl")
-damage = 20.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_5jupd"]
-script = ExtResource("3_2worp")
-reload_time = 2.0
-damage_data = SubResource("Resource_2worp")
-metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
+[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_lrm1f"]
+[ext_resource type="Resource" uid="uid://vpvpqdlbot1s" path="res://parts/test/test_energy_spear_data.tres" id="2_lrm1f"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_r74yd"]
+[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_037vq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umeg2"]
 albedo_color = Color(0, 1, 0.49803922, 1)
@@ -30,6 +19,11 @@ albedo_color = Color(0, 0, 1.353256, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_umeg2"]
 material = SubResource("StandardMaterial3D_8obv2")
 size = Vector3(1.5, 8, 1.5)
+
+[sub_resource type="Resource" id="Resource_2worp"]
+script = ExtResource("2_r74yd")
+damage = 20.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jupd"]
 radius = 1.0
@@ -154,9 +148,9 @@ _data = {
 &"RESET": SubResource("Animation_umeg2")
 }
 
-[node name="EnergySpear" type="Node3D" unique_id=909781163]
-script = ExtResource("1_8obv2")
-data = SubResource("Resource_5jupd")
+[node name="EnergySpear" type="Node3D" unique_id=1380468596]
+script = ExtResource("1_lrm1f")
+data = ExtResource("2_lrm1f")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1490588011]
@@ -176,7 +170,7 @@ mesh = SubResource("PrismMesh_umeg2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4.75)
 monitoring = false
 monitorable = false
-script = ExtResource("2_umeg2")
+script = ExtResource("4_037vq")
 damage_data = SubResource("Resource_2worp")
 metadata/_custom_type_script = "uid://p0vi8wansauj"
 

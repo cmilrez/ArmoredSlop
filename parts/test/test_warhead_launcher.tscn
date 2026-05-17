@@ -1,25 +1,7 @@
 [gd_scene format=3 uid="uid://c0o4shmbjai5a"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_01db6"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_fvtq3"]
-[ext_resource type="PackedScene" uid="uid://sb6nsxfb6r6k" path="res://projectile/template_slow_missile.tscn" id="3_idn2h"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_otg6x"]
-
-[sub_resource type="Resource" id="Resource_tfqo4"]
-script = ExtResource("2_fvtq3")
-damage = 25.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_2vj1k"]
-script = ExtResource("4_otg6x")
-multishot_interval = 0.3
-clip_size = 2
-ammo_max = 48
-ammo_cost = 1
-projectile_scene = ExtResource("3_idn2h")
-reload_time = 5.0
-damage_data = SubResource("Resource_tfqo4")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_ggqye"]
+[ext_resource type="Resource" uid="uid://rcoacbdrfp1g" path="res://parts/test/test_warhead_launcher_data.tres" id="2_d4ofe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66qhd"]
 metallic = 1.0
@@ -82,10 +64,10 @@ _data = {
 &"Reload": SubResource("Animation_6poma")
 }
 
-[node name="WarheadLauncher" type="Node3D" unique_id=677025655 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_01db6")
+[node name="WarheadLauncher" type="Node3D" unique_id=476591691 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_ggqye")
 spawners = NodePath("MeshInstance3D/Spawners")
-data = SubResource("Resource_2vj1k")
+data = ExtResource("2_d4ofe")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2066032815]

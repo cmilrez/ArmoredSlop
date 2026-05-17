@@ -45,7 +45,9 @@ func accelerate(wish_dir: Vector3, speed: float, delta: float) -> Vector3:
 	var vel_dir = (wish_dir * speed) - h_vel
 	var wish_speed = vel_dir.length()
 	var acceleration = minf(wish_speed, speed * delta * 2.0)
-	return acceleration * vel_dir.normalized()
+	if is_zero_approx(wish_speed):
+		return Vector3.ZERO
+	return acceleration * vel_dir / wish_speed
 
 	#var add_speed = speed - velocity.dot(wish_dir)
 	#if add_speed <= 0.0:
@@ -82,16 +84,16 @@ func activate_units():
 func setup_units():
 	const id = 0
 	var node_path = get_path()
-	if %ArmUnitR.get_child_count():
+	if %ArmUnitR.get_child(id) is Weapon:
 		right_arm_unit = %ArmUnitR.get_child(id)
 		right_arm_unit.data.damage_data.source = node_path
-	if %ArmUnitL.get_child_count():
+	if %ArmUnitL.get_child(id) is Weapon:
 		left_arm_unit = %ArmUnitL.get_child(id)
 		left_arm_unit.data.damage_data.source = node_path
-	if %BackUnitR.get_child_count():
+	if %BackUnitR.get_child(id) is Weapon:
 		right_back_unit = %BackUnitR.get_child(id)
 		right_back_unit.data.damage_data.source = node_path
-	if %BackUnitL.get_child_count():
+	if %BackUnitL.get_child(id) is Weapon:
 		left_back_unit = %BackUnitL.get_child(id)
 		left_back_unit.data.damage_data.source = node_path
 

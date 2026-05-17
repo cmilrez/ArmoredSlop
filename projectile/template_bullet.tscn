@@ -2,14 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_o6m41"]
 [ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_4dbpr"]
+[ext_resource type="PackedScene" uid="uid://cr8ff3217u0ji" path="res://effect/sparks.tscn" id="3_ihfru"]
 
 [sub_resource type="Resource" id="Resource_4dbpr"]
 script = ExtResource("2_4dbpr")
 metadata/_custom_type_script = "uid://bfbhdd2s003h1"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6m41"]
+shading_mode = 0
 albedo_color = Color(1.8247963, 1.8247963, 0, 1)
-metallic = 1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4dbpr"]
 material = SubResource("StandardMaterial3D_o6m41")
@@ -22,6 +23,7 @@ rings = 4
 top_level = true
 script = ExtResource("1_o6m41")
 data = SubResource("Resource_4dbpr")
+effect_scene = ExtResource("3_ihfru")
 metadata/_custom_type_script = "uid://dktp0dq6ay20q"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1890110915]

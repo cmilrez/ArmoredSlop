@@ -41,20 +41,20 @@ func activate(targeting: Targeting):
 	if not can_use:
 		return
 	_anim_shoot()
-	var remaining_shots := spawners.get_child_count()
+	var spawn_count := spawners.get_child_count()
 	for spawn: Node3D in spawners.get_children():
 		if ammo_loaded <= 0:
 			break
-		remaining_shots -= 1
+		spawn_count -= 1
 		var new_projectile = data.projectile_scene.instantiate()
-		get_tree().current_scene.add_child(new_projectile)
 		var target_position = targeting.get_targeting_position(new_projectile.data.speed, spawn.global_position)
+		get_tree().current_scene.add_child(new_projectile)
 		if new_projectile is Bullet:
-			new_projectile.set_up(spawn.global_transform, data.damage_data, target_position)
+			new_projectile.set_up(spawn.global_position, spawn.rotation, data.damage_data, target_position)
 		elif new_projectile is Missile:
 			new_projectile.set_up(spawn.global_transform, data.damage_data, target_position, targeting.target)
 		ammo_loaded -= data.ammo_cost
-		if data.multishot_interval > 0.0 and remaining_shots > 0:
+		if data.multishot_interval > 0.0 and spawn_count > 0:
 			timer.start(data.multishot_interval)
 			await timer.timeout
 	if ammo_loaded <= 0:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ct2ftp143gfyt"]
 
 [ext_resource type="Script" uid="uid://4yx46onl8y8g" path="res://projectile/missile.gd" id="1_trsiv"]
+[ext_resource type="PackedScene" uid="uid://dorht4bwny6qy" path="res://effect/explosion_small.tscn" id="2_bhxmo"]
 [ext_resource type="Script" uid="uid://dqk5j2vf60io2" path="res://projectile/missile_data.gd" id="2_qjrrw"]
 [ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://character/targeting.gd" id="3_0snrw"]
 
@@ -60,6 +61,7 @@ rings = 4
 
 [node name="Missile" type="Node3D" unique_id=632454852]
 script = ExtResource("1_trsiv")
+explosion_scene = ExtResource("2_bhxmo")
 data = SubResource("Resource_0snrw")
 metadata/_custom_type_script = "uid://4yx46onl8y8g"
 

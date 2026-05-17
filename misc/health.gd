@@ -3,8 +3,8 @@ class_name Health extends Node
 signal death
 
 @export var data: CharacterData = null
-@export var max_hp := 1.0
-@export var hp := 1.0:
+var max_hp := 1.0
+var hp := 1.0:
 	set(value):
 		if hp > 0.0 and value <= 0.0:
 			death.emit()
@@ -23,4 +23,7 @@ func take_damage(damage_data: DamageData):
 		if not source.is_in_group(Global.TEAM_C):
 			if source.is_in_group(owner.team_group):
 				return
-	hp -= damage_data.damage
+	var damage = damage_data.damage_bullet * 1.0 - (data.defense_bullet / 1000.0)
+	damage += damage_data.damage_energy * 1.0 - (data.defense_energy / 1000.0)
+	damage += damage_data.damage_explosive * 1.0 - (data.defense_explosive / 1000.0)
+	hp -= damage

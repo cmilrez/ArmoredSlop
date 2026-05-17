@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MeleeWeaponData" format=3 uid="uid://c5vmqxfgofisg"]
+
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="1_gm3l6"]
+[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="2_w0msd"]
+
+[sub_resource type="Resource" id="Resource_climr"]
+script = ExtResource("1_gm3l6")
+damage_energy = 15.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[resource]
+script = ExtResource("2_w0msd")
+reload_time = 3.0
+damage_data = SubResource("Resource_climr")
+metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
