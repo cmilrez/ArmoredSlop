@@ -33,7 +33,7 @@ func physics_update(node, delta):
 				timer.stop()
 				attack_started.emit()
 		else:
-			direction = node.lock_on_marker.global_position.direction_to(target.lock_on_marker.global_position)
+			direction = node.get_lock_position().direction_to(target.get_lock_position())
 			node.global_rotation.y = Vector2(direction.z, direction.x).angle() - PI
 	else:
 		direction = -node.global_basis.z

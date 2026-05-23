@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ouribyoau1dc"]
+
+[ext_resource type="ArrayMesh" uid="uid://qeqnup3xqinh" path="res://assets/TestPlayerRobot_CoreDroneTest.res" id="1_j55ij"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_bo0ho"]
+[ext_resource type="Resource" uid="uid://c05f22su0f45" path="res://parts/test/body_torso_drone_data.tres" id="3_c2x1j"]
+
+[node name="TestTorsoDrone" type="MeshInstance3D" unique_id=1338844704]
+mesh = ExtResource("1_j55ij")
+script = ExtResource("2_bo0ho")
+data = ExtResource("3_c2x1j")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

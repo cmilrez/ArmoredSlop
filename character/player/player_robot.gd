@@ -5,6 +5,7 @@ class_name Player extends Character
 @onready var state_machine = $StateMachine
 @onready var health = $Health
 @onready var targeting = %Targeting
+@onready var robot_hud = $RobotHud
 
 var right_arm_unit: Weapon = null
 var left_arm_unit: Weapon = null
@@ -15,7 +16,7 @@ var input_direction := Vector2.ZERO
 
 func _ready():
 	anim_tree.active = true
-	setup_units()
+	setup_parts()
 
 func _physics_process(delta):
 	gravity = get_gravity()
@@ -81,21 +82,50 @@ func activate_units():
 		if Input.is_action_pressed('back_unit_left'):
 			left_back_unit.activate(targeting)
 
-func setup_units():
-	const id = 0
+func setup_parts():
+	var legs: BodyPart = data.legs_part.instantiate()
+	var torso: BodyPart = data.torso_part.instantiate()
+	var arms: BodyPart = data.arms_part.instantiate()
+	var head: BodyPart = data.head_part.instantiate()
+	data.max_hp = legs.data.defense_bullet + torso.data.armor + arms.data.armor + head.data.armor
+	data.defense_bullet = (legs.data.defense_bullet + torso.data.defense_bullet + arms.data.defense_bullet + head.data.defense_bullet) / 1000.0
+	data.defense_energy = (legs.data.defense_energy + torso.data.defense_energy + arms.data.defense_energy + head.data.defense_energy) / 1000.0
+	data.defense_explosive = (legs.data.defense_explosive + torso.data.defense_explosive + arms.data.defense_explosive + head.data.defense_explosive) / 1000.0
+	%Skeleton3D.add_child(legs)
+	%Skeleton3D.add_child(torso)
+	%Skeleton3D.add_child(arms)
+	%Skeleton3D.add_child(head)
+	legs.skeleton = %Skeleton3D.get_path()
+	torso.skeleton = %Skeleton3D.get_path()
+	arms.skeleton = %Skeleton3D.get_path()
+	head.skeleton = %Skeleton3D.get_path()
+	#var skin = %Skeleton3D.create_skin_from_rest_transforms()
+	#legs.skin = skin
+	#torso.skin = skin
+	#arms.skin = skin
+	#head.skin = skin
+	
 	var node_path = get_path()
-	if %ArmUnitR.get_child(id) is Weapon:
-		right_arm_unit = %ArmUnitR.get_child(id)
-		right_arm_unit.data.damage_data.source = node_path
-	if %ArmUnitL.get_child(id) is Weapon:
-		left_arm_unit = %ArmUnitL.get_child(id)
-		left_arm_unit.data.damage_data.source = node_path
-	if %BackUnitR.get_child(id) is Weapon:
-		right_back_unit = %BackUnitR.get_child(id)
-		right_back_unit.data.damage_data.source = node_path
-	if %BackUnitL.get_child(id) is Weapon:
-		left_back_unit = %BackUnitL.get_child(id)
-		left_back_unit.data.damage_data.source = node_path
+	
+	right_arm_unit = data.right_arm_part.instantiate()
+	%ArmUnitR.add_child(right_arm_unit)
+	right_arm_unit.data.damage_data.source = node_path
+	right_arm_unit.ammo_changed.connect(robot_hud.update_ammo_display.bind(0))
+	
+	left_arm_unit = data.left_arm_part.instantiate()
+	%ArmUnitL.add_child(left_arm_unit)
+	left_arm_unit.data.damage_data.source = node_path
+	left_arm_unit.ammo_changed.connect(robot_hud.update_ammo_display.bind(1))
+	
+	right_back_unit = data.right_back_part.instantiate()
+	%BackUnitR.add_child(right_back_unit)
+	right_back_unit.data.damage_data.source = node_path
+	right_back_unit.ammo_changed.connect(robot_hud.update_ammo_display.bind(2))
+	
+	left_back_unit = data.left_back_part.instantiate()
+	%BackUnitL.add_child(left_back_unit)
+	left_back_unit.data.damage_data.source = node_path
+	left_back_unit.ammo_changed.connect(robot_hud.update_ammo_display.bind(3))
 
 func clear_melee_unit():
 	if active_melee_unit:

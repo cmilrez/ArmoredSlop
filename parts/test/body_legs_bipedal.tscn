@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://2h7dx28b5ejc"]
+
+[ext_resource type="ArrayMesh" uid="uid://qomd6g7vytc3" path="res://assets/TestPlayerRobot_LegsTest.res" id="1_k6fcv"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_iw1y4"]
+[ext_resource type="Resource" uid="uid://c0c7v5ajew11o" path="res://parts/test/body_legs_bipedal_data.tres" id="4_pytge"]
+
+[node name="TestLegsBipedal" type="MeshInstance3D" unique_id=666725027]
+layers = 4
+mesh = ExtResource("1_k6fcv")
+script = ExtResource("3_iw1y4")
+data = ExtResource("4_pytge")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"
