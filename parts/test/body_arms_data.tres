@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ArmsPartData" format=3 uid="uid://brgk57a06obrx"]
+
+[ext_resource type="Script" uid="uid://dj77y8eacejc8" path="res://parts/arms_part_data.gd" id="1_5cc3i"]
+
+[resource]
+script = ExtResource("1_5cc3i")
+metadata/_custom_type_script = "uid://dj77y8eacejc8"

@@ -257,7 +257,6 @@ transitions = ["Start", "Default", SubResource("AnimationNodeStateMachineTransit
 
 [sub_resource type="Resource" id="Resource_joahv"]
 script = ExtResource("11_a1hos")
-damage = 3.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="Resource" id="Resource_b2bnd"]

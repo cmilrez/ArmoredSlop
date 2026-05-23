@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cb8tx40201w3a"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_3lgcg"]
-[ext_resource type="Resource" uid="uid://dxi3v0awd160h" path="res://parts/test/test_shoulder_cannon_data.tres" id="2_huu1o"]
+[ext_resource type="Resource" uid="uid://dxi3v0awd160h" path="res://parts/test/shoulder_cannon_data.tres" id="2_huu1o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wllxb"]
 albedo_color = Color(1, 0.27450982, 0.27450982, 1)

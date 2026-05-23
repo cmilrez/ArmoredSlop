@@ -1,6 +1,6 @@
 @abstract class_name CharacterData extends Resource
 
 @export var max_hp := 1.0
-@export var defense_bullet := 0.0
-@export var defense_energy := 0.0
-@export var defense_explosive := 0.0
+@export var defense_bullet := 1.0
+@export var defense_energy := 1.0
+@export var defense_explosive := 1.0

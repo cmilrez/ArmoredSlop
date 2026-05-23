@@ -13,7 +13,7 @@ func _process(delta):
 	if not target.lock_on_marker.visible:
 		target = null
 		return
-	global_position =  target.lock_on_marker.global_position
+	global_position =  target.get_lock_position()
 
 func set_target_damage_source(damage_data: DamageData):
 	var source = get_node_or_null(damage_data.source)

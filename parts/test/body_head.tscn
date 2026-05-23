@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c76qwtabndyyf"]
+
+[ext_resource type="ArrayMesh" uid="uid://jnmotwobbl67" path="res://assets/TestPlayerRobot_HeadTest.res" id="1_h7on2"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_0fu3x"]
+[ext_resource type="Resource" uid="uid://bs6jr6qy1wct1" path="res://parts/test/body_head_data.tres" id="4_wx37r"]
+
+[node name="TestHead" type="MeshInstance3D" unique_id=1338844704]
+mesh = ExtResource("1_h7on2")
+script = ExtResource("3_0fu3x")
+data = ExtResource("4_wx37r")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

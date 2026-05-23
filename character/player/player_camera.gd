@@ -41,15 +41,15 @@ func get_target() -> Node3D:
 			continue
 		if target.is_in_group(player.team_group):
 			continue
-		var enemy_position = target.lock_on_marker.global_position
-		var distance := global_position.distance_to(enemy_position)
+		var target_position = target.get_lock_position()
+		var distance := global_position.distance_to(target_position)
 		if distance > param.max_distance:
 			continue
-		eye_ray.target_position = eye_ray.to_local(enemy_position)
+		eye_ray.target_position = eye_ray.to_local(target_position)
 		eye_ray.force_raycast_update()
 		if eye_ray.is_colliding():
 			continue
-		var pos_2d = camera.unproject_position(target.lock_on_marker.global_position)
+		var pos_2d = camera.unproject_position(target_position)
 		if param.aim_rect.has_point(pos_2d):
 			var target_distance_2d = pos_2d.distance_to(param.aim_rect.get_center())
 			if target_distance_2d < closest_distance_2d:
