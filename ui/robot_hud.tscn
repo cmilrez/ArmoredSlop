@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://glsq4kjcteso"]
+
+[ext_resource type="Script" uid="uid://cia1fesrg4i55" path="res://ui/robot_hud.gd" id="1_oflfl"]
+
+[node name="RobotHud" type="Control" unique_id=2067285992]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oflfl")
+
+[node name="ArmorText" type="Label" parent="." unique_id=1018274820]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -39.0
+offset_right = 79.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "ARMOR:"
+vertical_alignment = 1
+
+[node name="Armor" type="Label" parent="." unique_id=1796450237]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = -39.0
+offset_right = 132.00003
+offset_bottom = -16.0
+grow_vertical = 0
+text = "12345"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1507702426]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -55.0
+offset_right = 218.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="ArmRightText" type="Label" parent="HBoxContainer2" unique_id=1710036909]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "RIGHTARM:"
+vertical_alignment = 1
+
+[node name="ArmLeftText" type="Label" parent="HBoxContainer2" unique_id=2020471167]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "LEFTARM:"
+vertical_alignment = 1
+
+[node name="BackRightText" type="Label" parent="HBoxContainer2" unique_id=1806934790]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "RIGHTBACK:"
+vertical_alignment = 1
+
+[node name="BackLeftText" type="Label" parent="HBoxContainer2" unique_id=1928145706]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "LEFTBACK:"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1797341909]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -39.0
+offset_right = 140.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="AmmoArmRight" type="Label" parent="HBoxContainer" unique_id=1449277903]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "12345"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AmmoArmLeft" type="Label" parent="HBoxContainer" unique_id=302892170]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "12345"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AmmoBackRight" type="Label" parent="HBoxContainer" unique_id=1905633687]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "12345"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AmmoBackLeft" type="Label" parent="HBoxContainer" unique_id=1387463079]
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+text = "12345"
+horizontal_alignment = 2
+vertical_alignment = 1

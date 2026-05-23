@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d2ekutr5o5q7"]
+
+[ext_resource type="ArrayMesh" uid="uid://dgripvee5g8b0" path="res://assets/TestPlayerRobot_ArmsTest.res" id="1_cfgi6"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_o57ej"]
+[ext_resource type="Resource" uid="uid://brgk57a06obrx" path="res://parts/test/body_arms_data.tres" id="4_wiiee"]
+
+[node name="TestArms" type="MeshInstance3D" unique_id=1338844704]
+mesh = ExtResource("1_cfgi6")
+script = ExtResource("3_o57ej")
+data = ExtResource("4_wiiee")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

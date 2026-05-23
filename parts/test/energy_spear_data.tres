@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MeleeWeaponData" format=3 uid="uid://vpvpqdlbot1s"]
+[gd_resource type="Resource" script_class="MeleeWeaponData" format=3 uid="uid://r25xqy1fyatq"]
 
 [ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="1_pdclj"]
 [ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="2_vctkb"]

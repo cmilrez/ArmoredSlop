@@ -5,6 +5,8 @@ const READY_ANIM = &'Ready'
 const SHOOT_ANIM = &'Shoot'
 const RELOAD_ANIM = &'Reload'
 
+signal ammo_changed(value: int)
+
 @export var spawners: Node3D = null
 @export var data: ProjectileWeaponData = null
 var ammo_total := 0
@@ -12,6 +14,7 @@ var ammo_loaded := 0:
 	set(value):
 		value = clampi(value, 0, data.clip_size)
 		ammo_loaded = value
+		ammo_changed.emit(ammo_loaded)
 		check_ammo()
 var ammo_left := 0:
 	set(value):
@@ -33,9 +36,12 @@ func check_ammo():
 func _ready():
 	super._ready()
 	timer.timeout.connect(func (): if reloading: reload())
+	initialize.call_deferred()
+	_anim_start()
+
+func initialize():
 	ammo_loaded = data.clip_size
 	ammo_left = data.ammo_max
-	_anim_start()
 
 func activate(targeting: Targeting):
 	if not can_use:

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TorsoPartData" format=3 uid="uid://c05f22su0f45"]
+
+[ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_part_data.gd" id="1_cpadj"]
+
+[resource]
+script = ExtResource("1_cpadj")
+metadata/_custom_type_script = "uid://05nfh7x72hml"

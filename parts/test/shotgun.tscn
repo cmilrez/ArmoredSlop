@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdpuotsh72atu"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_j4cgr"]
-[ext_resource type="Resource" uid="uid://dsgifx0htyf76" path="res://parts/test/test_shotgun_data.tres" id="2_kfmxy"]
+[ext_resource type="Resource" uid="uid://dsgifx0htyf76" path="res://parts/test/shotgun_data.tres" id="2_kfmxy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4cgr"]
 albedo_color = Color(1, 0.7058824, 0.38039216, 1)

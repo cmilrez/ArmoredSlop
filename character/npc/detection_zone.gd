@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	if is_instance_valid(targeting.target):
-		var target_position: Vector3 = targeting.target.lock_on_marker.global_position
+		var target_position: Vector3 = targeting.target.get_lock_position()
 		if (data.distance_max * data.distance_max) < target_position.distance_squared_to(global_position):
 			targeting.target = null
 			return

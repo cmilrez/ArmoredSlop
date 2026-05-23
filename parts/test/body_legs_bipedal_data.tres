@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LegPartData" format=3 uid="uid://c0c7v5ajew11o"]
+
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/leg_part_data.gd" id="1_uh5hc"]
+
+[resource]
+script = ExtResource("1_uh5hc")
+armor = 100.0
+metadata/_custom_type_script = "uid://dto5awhd66xwa"
