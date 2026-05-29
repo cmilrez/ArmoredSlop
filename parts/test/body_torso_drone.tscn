@@ -1,11 +1,40 @@
 [gd_scene format=3 uid="uid://ouribyoau1dc"]
 
-[ext_resource type="ArrayMesh" uid="uid://qeqnup3xqinh" path="res://assets/TestPlayerRobot_CoreDroneTest.res" id="1_j55ij"]
+[ext_resource type="ArrayMesh" uid="uid://m3f1qlpatg8m" path="res://assets/TestParts_TorsoDroneTest.res" id="1_j55ij"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_bo0ho"]
 [ext_resource type="Resource" uid="uid://c05f22su0f45" path="res://parts/test/body_torso_drone_data.tres" id="3_c2x1j"]
 
+[sub_resource type="Skin" id="Skin_j55ij"]
+resource_name = "Skin6"
+bind_count = 8
+bind/0/name = &"Torso"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+bind/1/name = &"TorsoDrone.002"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.8252966, -1.819316, 1.7352592)
+bind/2/name = &"TorsoDrone.001"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.8252941, -1.819316, 1.7352604)
+bind/3/name = &"ArmJoint.R"
+bind/3/bone = -1
+bind/3/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.6052735, -1.4963869, 0.32757375)
+bind/4/name = &"ArmJoint.L"
+bind/4/bone = -1
+bind/4/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.605274, -1.4963869, 0.3275713)
+bind/5/name = &"Head"
+bind/5/bone = -1
+bind/5/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.0022268856, -1.630139, 0.10343361)
+bind/6/name = &"BackUnit.R"
+bind/6/bone = -1
+bind/6/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.8254782, -1.5904404, 2.0089247)
+bind/7/name = &"BackUnit.L"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.8254808, -1.5904404, 2.0089223)
+
 [node name="TestTorsoDrone" type="MeshInstance3D" unique_id=1338844704]
 mesh = ExtResource("1_j55ij")
+skin = SubResource("Skin_j55ij")
 script = ExtResource("2_bo0ho")
 data = ExtResource("3_c2x1j")
 metadata/_custom_type_script = "uid://c8w6sf47kb1bd"
