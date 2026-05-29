@@ -41,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.099999994),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, -2), Vector3(0, 0, -4.75)]
+"values": [Vector3(0, 0, 2), Vector3(0, 0, 4.75)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -53,7 +53,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1, 0.3, 1), Vector3(1, 1, 1)]
+"values": [Vector3(1.001, 0.3, 1.001), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5jupd"]
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, -4.75), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 4.75), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -97,7 +97,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -2)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -159,14 +159,14 @@ gi_mode = 0
 mesh = SubResource("BoxMesh_dw6pl")
 
 [node name="Blade" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1977456271]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, 0)
 layers = 4
 cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("PrismMesh_umeg2")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1216747128]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4.75)
 monitoring = false
 monitorable = false
 script = ExtResource("4_037vq")

@@ -53,25 +53,25 @@ grow_vertical = 0
 alignment = 1
 
 [node name="ArmRightText" type="Label" parent="HBoxContainer2" unique_id=1710036909]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "RIGHTARM:"
 vertical_alignment = 1
 
 [node name="ArmLeftText" type="Label" parent="HBoxContainer2" unique_id=2020471167]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "LEFTARM:"
 vertical_alignment = 1
 
 [node name="BackRightText" type="Label" parent="HBoxContainer2" unique_id=1806934790]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "RIGHTBACK:"
 vertical_alignment = 1
 
 [node name="BackLeftText" type="Label" parent="HBoxContainer2" unique_id=1928145706]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "LEFTBACK:"
 vertical_alignment = 1
@@ -92,29 +92,29 @@ grow_vertical = 0
 alignment = 1
 
 [node name="AmmoArmRight" type="Label" parent="HBoxContainer" unique_id=1449277903]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "12345"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AmmoArmLeft" type="Label" parent="HBoxContainer" unique_id=302892170]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "12345"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AmmoBackRight" type="Label" parent="HBoxContainer" unique_id=1905633687]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "12345"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AmmoBackLeft" type="Label" parent="HBoxContainer" unique_id=1387463079]
-custom_minimum_size = Vector2(96, 24)
+custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 text = "12345"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1

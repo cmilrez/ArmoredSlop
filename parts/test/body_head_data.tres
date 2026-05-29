@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="HeadPartData" format=3 uid="uid://bs6jr6qy1wct1"]
 
 [ext_resource type="Script" uid="uid://csj01mag55j6l" path="res://parts/head_part_data.gd" id="1_s0fyi"]
+[ext_resource type="Texture2D" uid="uid://dvdq7vrifrffq" path="res://ui/part_miniatures/test_head.png" id="2_cas1p"]
 
 [resource]
 script = ExtResource("1_s0fyi")
+ui_miniature = ExtResource("2_cas1p")
 metadata/_custom_type_script = "uid://csj01mag55j6l"

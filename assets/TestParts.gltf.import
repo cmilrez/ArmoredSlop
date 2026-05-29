@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://tn64duc6k2dn"
-path="res://.godot/imported/TestPlayerRobot.gltf-de1abcc89f4049e92ecfb60fc0e10a97.scn"
+uid="uid://rw3qf5e7atg8"
+path="res://.godot/imported/TestParts.gltf-d8f671dccb0d6b771a6f1e878080a3d1.scn"
 
 [deps]
 
-source_file="res://assets/TestPlayerRobot.gltf"
-dest_files=["res://.godot/imported/TestPlayerRobot.gltf-de1abcc89f4049e92ecfb60fc0e10a97.scn"]
+source_file="res://assets/TestParts.gltf"
+dest_files=["res://.godot/imported/TestParts.gltf-d8f671dccb0d6b771a6f1e878080a3d1.scn"]
 
 [params]
 
@@ -22,9 +22,9 @@ nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
-meshes/generate_lods=false
+meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=0
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -39,55 +39,41 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"TestPlayerRobot_ArmsTest": {
+"TestParts_ArmsTest": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/TestPlayerRobot_ArmsTest.res",
-"save_to_file/path": "uid://dgripvee5g8b0"
+"save_to_file/fallback_path": "res://assets/TestParts_ArmsTest.res",
+"save_to_file/path": "uid://c54q5wvvdxhvn"
 },
-"TestPlayerRobot_CoreDroneTest": {
+"TestParts_HeadTest": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/TestPlayerRobot_CoreDroneTest.res",
-"save_to_file/path": "uid://qeqnup3xqinh"
+"save_to_file/fallback_path": "res://assets/TestParts_HeadTest.res",
+"save_to_file/path": "uid://b1r3prr5d5oth"
 },
-"TestPlayerRobot_HeadTest": {
+"TestParts_LegsTest": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/TestPlayerRobot_HeadTest.res",
-"save_to_file/path": "uid://jnmotwobbl67"
+"save_to_file/fallback_path": "res://assets/TestParts_LegsTest.res",
+"save_to_file/path": "uid://d2djcveuaw2yt"
 },
-"TestPlayerRobot_LegsTest": {
+"TestParts_TorsoDroneTest": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/TestPlayerRobot_LegsTest.res",
-"save_to_file/path": "uid://qomd6g7vytc3"
-}
-},
-"nodes": {
-"PATH:MeshNode/Skeleton3D/ArmsTest": {
-"mesh_instance/layers": 4
-},
-"PATH:MeshNode/Skeleton3D/CoreDroneTest": {
-"mesh_instance/layers": 4
-},
-"PATH:MeshNode/Skeleton3D/HeadTest": {
-"mesh_instance/layers": 4
-},
-"PATH:MeshNode/Skeleton3D/LegsTest": {
-"mesh_instance/layers": 4
+"save_to_file/fallback_path": "res://assets/TestParts_TorsoDroneTest.res",
+"save_to_file/path": "uid://bowx341qxg746"
 }
 }
 }
