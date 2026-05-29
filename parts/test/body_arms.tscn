@@ -1,11 +1,40 @@
 [gd_scene format=3 uid="uid://d2ekutr5o5q7"]
 
-[ext_resource type="ArrayMesh" uid="uid://dgripvee5g8b0" path="res://assets/TestPlayerRobot_ArmsTest.res" id="1_cfgi6"]
+[ext_resource type="ArrayMesh" uid="uid://cgp32llepbfn6" path="res://assets/TestParts_ArmsTest.res" id="1_exchu"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_o57ej"]
 [ext_resource type="Resource" uid="uid://brgk57a06obrx" path="res://parts/test/body_arms_data.tres" id="4_wiiee"]
 
+[sub_resource type="Skin" id="Skin_exchu"]
+resource_name = "Skin2"
+bind_count = 8
+bind/0/name = &"Shoulder.L"
+bind/0/bone = -1
+bind/0/pose = Transform3D(0.9417657, -0.33626968, -3.3469412e-08, -0.33626854, -0.9417626, -0.0025756983, 0.0008660938, 0.0024256276, -0.9999968, 0, 0, 0)
+bind/1/name = &"Forearm.L"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 4.4878604e-08, 6.5570936e-07, 6.5192586e-07, -6.7520865e-08, -1.0000001, -4.2955435e-08, 1, 2.328025e-10, 0.5845236, -0.0044768266, 1.637032)
+bind/2/name = &"Hand.L"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-1, -1.7512036e-10, 1.6583876e-07, 1.7479983e-09, 1, 1.6065323e-08, -1.6962214e-07, 1.4181152e-14, -1.0000001, -0.60694766, 2.0632892, -2.0104015)
+bind/3/name = &"Hatch.L"
+bind/3/bone = -1
+bind/3/pose = Transform3D(-0.8287665, -0.5595941, -6.808931e-09, -0.55959386, 0.82876694, -2.5262818e-06, 1.4144086e-06, -2.1779745e-06, -1.0000002, -0.5599133, -0.3970669, -0.0003353782)
+bind/4/name = &"Shoulder.R"
+bind/4/bone = -1
+bind/4/pose = Transform3D(0.9417657, 0.33626968, 5.1921244e-08, 0.33626854, -0.9417626, -0.0025752329, -0.0008659355, 0.0024252173, -0.9999968, 0, 0, 0)
+bind/5/name = &"Forearm.R"
+bind/5/bone = -1
+bind/5/pose = Transform3D(1, -4.575671e-08, 6.5570936e-07, 6.439514e-07, 4.9127244e-08, -1.0000001, 4.5340357e-08, 1, 2.9730098e-14, -0.5845236, -0.0044766287, 1.637032)
+bind/6/name = &"Hand.R"
+bind/6/bone = -1
+bind/6/pose = Transform3D(-1, 1.0532304e-09, 1.6827137e-08, 6.3690636e-10, 1, -9.8720214e-08, -2.8585022e-08, -2.3285196e-10, -1.0000001, 0.61966926, 2.063289, -2.0104005)
+bind/7/name = &"Hatch.R"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-0.82876676, 0.5595941, 3.470064e-09, 0.55959404, 0.8287669, -1.8053923e-06, -1.025244e-06, -1.5600083e-06, -1.0000001, 0.5704541, -0.40418416, -0.00033473704)
+
 [node name="TestArms" type="MeshInstance3D" unique_id=1338844704]
-mesh = ExtResource("1_cfgi6")
+mesh = ExtResource("1_exchu")
+skin = SubResource("Skin_exchu")
 script = ExtResource("3_o57ej")
 data = ExtResource("4_wiiee")
 metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

@@ -16,7 +16,7 @@ material = SubResource("StandardMaterial3D_wllxb")
 height = 6.5
 radial_segments = 8
 rings = 0
-cap_top = false
+cap_bottom = false
 
 [sub_resource type="Animation" id="Animation_wllxb"]
 resource_name = "RESET"
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.3, -4.5)]
+"values": [Vector3(0, 0.3, 4.5)]
 }
 
 [sub_resource type="Animation" id="Animation_74cd2"]
@@ -59,7 +59,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1.0471976, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(-1.0471976, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -68,15 +68,15 @@ tracks/1/path = NodePath("Body/Barrel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.8),
+"times": PackedFloat32Array(0, 0.33333334, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.3, -2), Vector3(0, 0.3, -2), Vector3(0, 0.3, -4.5)]
+"values": [Vector3(0, 0.3, 2), Vector3(0, 0.3, 2), Vector3(0, 0.3, 4.5)]
 }
 
 [sub_resource type="Animation" id="Animation_lh3q2"]
 resource_name = "Reload"
-length = 0.7
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -84,10 +84,10 @@ tracks/0/path = NodePath("Body:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.0471976, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-1.0471976, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -96,10 +96,10 @@ tracks/1/path = NodePath("Body/Barrel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.70000005),
+"times": PackedFloat32Array(0, 0.3, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.3, -4.5), Vector3(0, 0.3, -4.5), Vector3(0, 0.3, -2)]
+"values": [Vector3(0, 0.3, 4.5), Vector3(0, 0.3, 4.5), Vector3(0, 0.3, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_hx7wj"]
@@ -124,10 +124,10 @@ tracks/1/path = NodePath("Body/Barrel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.26666668),
+"times": PackedFloat32Array(0, 0.06666667, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.3, -4.5), Vector3(0, 0.3, -2), Vector3(0, 0.3, -4.5)]
+"values": [Vector3(0, 0.3, 4.5), Vector3(0, 0.3, 2), Vector3(0, 0.3, 4.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_74cd2"]
@@ -140,7 +140,7 @@ _data = {
 
 [node name="ShoulderCannon" type="Node3D" unique_id=1687019098 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_3lgcg")
-spawners = NodePath("Body/Spawners")
+spawners = NodePath("Body/Barrel/Spawners")
 data = ExtResource("2_huu1o")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
@@ -150,15 +150,15 @@ gi_mode = 0
 mesh = SubResource("BoxMesh_74cd2")
 
 [node name="Barrel" type="MeshInstance3D" parent="Body" unique_id=30575547]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3, -4.5)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3, 4.5)
 layers = 4
 gi_mode = 0
 mesh = SubResource("CylinderMesh_kudf2")
 
-[node name="Spawners" type="Node3D" parent="Body" unique_id=77521989]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.3, -7.8)
+[node name="Spawners" type="Node3D" parent="Body/Barrel" unique_id=77521989]
+transform = Transform3D(-1, 0, 8.742278e-08, -8.742278e-08, -4.371139e-08, -1, 3.821371e-15, -1, 4.371139e-08, 0, 3, 0)
 
-[node name="Marker3D" type="Marker3D" parent="Body/Spawners" unique_id=1023832106]
+[node name="Marker3D" type="Marker3D" parent="Body/Barrel/Spawners" unique_id=1023832106]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931819844]
 libraries/ = SubResource("AnimationLibrary_74cd2")

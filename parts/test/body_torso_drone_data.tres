@@ -1,7 +1,18 @@
 [gd_resource type="Resource" script_class="TorsoPartData" format=3 uid="uid://c05f22su0f45"]
 
 [ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_part_data.gd" id="1_cpadj"]
+[ext_resource type="Texture2D" uid="uid://cime86ax1rb6" path="res://ui/part_miniatures/test_torso.png" id="2_5xbxn"]
 
 [resource]
 script = ExtResource("1_cpadj")
-metadata/_custom_type_script = "uid://05nfh7x72hml"
+bone_list = {
+"ArmJoint.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.605274, 1.4963869, -0.3275712), []],
+"ArmJoint.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.6052735, 1.4963869, -0.32757384), []],
+"BackUnit.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.825481, 1.5904404, -2.0089223), []],
+"BackUnit.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.825478, 1.5904404, -2.0089247), []],
+"Head": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.0022268922, 1.630139, -0.10343361), []],
+"Torso": [Transform3D(1, 0, 2.3841858e-07, 0, 1, 0, -2.3841858e-07, 0, 1, 0, 0, 0), ["TorsoDrone.002", "TorsoDrone.001", "ArmJoint.R", "ArmJoint.L", "Head", "BackUnit.R", "BackUnit.L"]],
+"TorsoDrone.001": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.825294, 1.819316, -1.7352604), []],
+"TorsoDrone.002": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.82529664, 1.819316, -1.7352592), []]
+}
+ui_miniature = ExtResource("2_5xbxn")
