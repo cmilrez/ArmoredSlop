@@ -29,11 +29,19 @@ func iterate(node: Node):
 		for bone: int in skeleton.get_parentless_bones():
 			iterate_skeleton(skeleton, bone, body_part.data, body_part.skin)
 		var scene := PackedScene.new()
-		var path = 'res://copyright_shit/' + part_id + '.tscn'
+		var path = 'res://copyright_shit/'
 		scene.pack(body_part)
-		var err = ResourceSaver.save(scene, path)
-		if not err == OK:
-			push_warning(part_id, ' ', node.name, ' not saved, ', err)
+		var error1 = ResourceSaver.save(scene, path + part_id + '.tscn')
+		if error1:
+			push_warning(part_id, ' ', node.name, ' not saved, ', error1)
+		else:
+			var index = PartIndex.new()
+			index.scene = ResourceLoader.load(path + part_id + '.tscn')
+			index.data = body_part.data
+			index.ui_miniature = ResourceLoader.load(path + 'miniatures/' + part_id + '.png')
+			var error2 = ResourceSaver.save(index, path + part_id + '_ID.tres')
+			if error2:
+				push_warning(part_id, ' index not saved, ', error1)
 	for child in node.get_children():
 		iterate(child)
 

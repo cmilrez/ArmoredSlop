@@ -20,6 +20,11 @@ var input_direction := Vector2.ZERO
 
 func _ready():
 	anim_tree.active = true
+	%LookAtTorso.active = true
+	%LookAtArmJointR.active = true
+	%LookAtArmJointL.active = true
+	%LookAtArmR.active = true
+	%LookAtArmL.active = true
 	build_body()
 	setup_weapons()
 
@@ -36,24 +41,25 @@ func _physics_process(delta):
 	move_and_slide()
 
 func update_anim_param(delta: float):
-	var weight := 1 - pow(0.5, delta * 4)
+	var weight := 1 - pow(0.5, delta * 24.0)
 	var blend_position: Vector2 = anim_tree.get('parameters/slide/blend_position')
 	blend_position = blend_position.lerp(input_direction, weight)
 	anim_tree.set('parameters/airborne/blend_position', blend_position)
 	anim_tree.set('parameters/slide/blend_position', blend_position)
+	anim_tree.set('parameters/run/blend_position', blend_position)
 
 func face_camera(delta: float):
-	var rot_weight = 1 - pow(0.5, delta * 8)
+	var rot_weight = 1 - pow(0.5, delta * 16.0)
 	global_rotation.y = lerp_angle(rotation.y, camera.spring_arm.rotation.y, rot_weight)
 
 func accelerate(wish_dir: Vector3, speed: float, delta: float) -> Vector3:
 	var h_vel = Vector3(velocity.x, 0.0, velocity.z)
-	var vel_dir = (wish_dir * speed) - h_vel
-	var wish_speed = vel_dir.length()
-	var acceleration = minf(wish_speed, speed * delta * 2.0)
+	var vel_diff = (wish_dir * speed) - h_vel
+	var wish_speed = vel_diff.length()
+	var acceleration = minf(wish_speed, speed * delta)
 	if is_zero_approx(wish_speed):
 		return Vector3.ZERO
-	return acceleration * vel_dir / wish_speed
+	return acceleration * vel_diff / wish_speed
 
 	#var add_speed = speed - velocity.dot(wish_dir)
 	#if add_speed <= 0.0:
@@ -88,25 +94,46 @@ func activate_units():
 			left_back_unit.activate(targeting)
 
 func set_part_scene(scene: PackedScene, part_type: int):
-	var rebuild = false
+	var rebuild_body = false
+	var rebuild_weapons = false
 	match part_type:
 		1:
 			if not data.head_part == scene:
-				rebuild = true
+				rebuild_body = true
 				data.head_part = scene
 		2:
 			if not data.arms_part == scene:
-				rebuild = true
+				rebuild_body = true
 				data.arms_part = scene
 		3:
 			if not data.torso_part == scene:
-				rebuild = true
+				rebuild_body = true
 				data.torso_part = scene
 		4:
 			if not data.legs_part == scene:
-				rebuild = true
+				rebuild_body = true
 				data.legs_part = scene
-	if rebuild:
+		5:
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				if not data.left_arm_part == scene:
+					rebuild_weapons = true
+					data.left_arm_part = scene
+			else:
+				if not data.right_arm_part == scene:
+					rebuild_weapons = true
+					data.right_arm_part = scene
+		6:
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				if not data.left_back_part == scene:
+					rebuild_weapons = true
+					data.left_back_part = scene
+			else:
+				if not data.right_back_part == scene:
+					rebuild_weapons = true
+					data.right_back_part = scene
+	if rebuild_weapons:
+		setup_weapons()
+	if rebuild_body:
 		build_body()
 
 func build_body():
@@ -134,13 +161,17 @@ func build_body():
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('ArmUnit.R'), %Skeleton3D.find_bone('Hand.R'))
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('ArmUnit.L'), %Skeleton3D.find_bone('Hand.L'))
 	%Skeleton3D.reset_bone_poses()
-	#%Skeleton3D.register_skin(%Skeleton3D.create_skin_from_rest_transforms())
 	%Hands.skeleton = %Skeleton3D.get_path()
 	%ArmUnitR.bone_idx = %Skeleton3D.find_bone('ArmUnit.R')
 	%ArmUnitL.bone_idx = %Skeleton3D.find_bone('ArmUnit.L')
 	%BackUnitR.bone_idx = %Skeleton3D.find_bone('BackUnit.R')
 	%BackUnitL.bone_idx = %Skeleton3D.find_bone('BackUnit.L')
 	%Torso.bone_idx = %Skeleton3D.find_bone('Torso')
+	%LookAtTorso.bone = %Torso.bone_idx
+	%LookAtArmJointR.bone = %Skeleton3D.find_bone('ArmJoint.R')
+	%LookAtArmJointL.bone = %Skeleton3D.find_bone('ArmJoint.L')
+	%LookAtArmR.bone = %Skeleton3D.find_bone('Forearm.R')
+	%LookAtArmL.bone = %Skeleton3D.find_bone('Forearm.L')
 
 func setup_body_part(scene: PackedScene) -> Node:
 	var part = scene.instantiate()
@@ -172,6 +203,7 @@ func setup_weapons():
 	if data.left_arm_part:
 		left_arm_unit = data.left_arm_part.instantiate()
 		%ArmUnitL.add_child(left_arm_unit)
+		left_arm_unit.left_side = true
 		left_arm_unit.data.damage_data.source = node_path
 		left_arm_unit.ammo_changed.connect(robot_hud.update_ammo_display.bind(1))
 	if data.right_back_part:
@@ -182,6 +214,7 @@ func setup_weapons():
 	if data.left_back_part:
 		left_back_unit = data.left_back_part.instantiate()
 		%BackUnitL.add_child(left_back_unit)
+		left_back_unit.left_side = true
 		left_back_unit.data.damage_data.source = node_path
 		left_back_unit.ammo_changed.connect(robot_hud.update_ammo_display.bind(3))
 
@@ -189,7 +222,6 @@ func setup_skeleton(skeleton: Skeleton3D, bone_list: Dictionary):
 	for bone: String in bone_list.keys():
 		var bone_id = skeleton.add_bone(bone)
 		skeleton.set_bone_rest(bone_id, bone_list[bone][0]) 
-		#print(bone, ' : ', skeleton.get_bone_rest(bone_id))
 	for parent: String in bone_list.keys():
 		var parent_id = skeleton.find_bone(parent)
 		for child: String in bone_list[parent][1]:

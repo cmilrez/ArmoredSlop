@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c76qwtabndyyf"]
 
-[ext_resource type="ArrayMesh" uid="uid://cudmobgjro5bj" path="res://assets/TestParts_HeadTest.res" id="1_8df0i"]
+[ext_resource type="ArrayMesh" uid="uid://b1r3prr5d5oth" path="res://assets/TestParts_HeadTest.res" id="1_8df0i"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_0fu3x"]
-[ext_resource type="Resource" uid="uid://bs6jr6qy1wct1" path="res://parts/test/body_head_data.tres" id="4_wx37r"]
+[ext_resource type="Resource" uid="uid://bs6jr6qy1wct1" path="res://parts/test/test_head_data.tres" id="4_wx37r"]
 
 [sub_resource type="Skin" id="Skin_8df0i"]
 resource_name = "Skin"

@@ -246,7 +246,7 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uawce"]
 xfade_time = 0.1
 advance_mode = 2
-advance_expression = "health.hp <= 0.0"
+advance_expression = "not alive"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a1hos"]
 states/Death/node = SubResource("AnimationNodeAnimation_b2bnd")
@@ -281,7 +281,7 @@ platform_floor_layers = 3
 script = ExtResource("1_q8xtr")
 data = ExtResource("2_3ks3v")
 team_group = "TeamB"
-lock_on_marker = NodePath("Hitbox/Torso/LockOnMarker")
+lock_on_marker = NodePath("LockOnMarker")
 metadata/_custom_type_script = "uid://cv6r5c12sbejw"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=208902669]
@@ -349,7 +349,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9341e-08, 3.69463, -2.4586
 shape = SubResource("SphereShape3D_2vxm3")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
-[node name="LockOnMarker" type="VisibleOnScreenNotifier3D" parent="Hitbox/Torso" unique_id=1945775132]
+[node name="LockOnMarker" type="VisibleOnScreenNotifier3D" parent="." unique_id=1945775132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9341e-08, 3.69463, -2.458692e-07)
 layers = 4
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
 
@@ -585,7 +586,8 @@ one_shot = true
 script = ExtResource("10_jadxt")
 metadata/_custom_type_script = "uid://bipmhs8ie4rat"
 
-[connection signal="hit" from="Hitbox" to="Targeting" method="set_target_damage_source"]
+[connection signal="hit" from="Hitbox" to="DetectionZone" method="set_target_from_damage"]
 [connection signal="hit" from="Hitbox" to="Health" method="take_damage"]
 [connection signal="death" from="Health" to="DetectionZone" method="deactivate"]
+[connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
 [connection signal="death" from="Health" to="StateMachine" method="set_state_node_path" binds= [NodePath("Death")]]

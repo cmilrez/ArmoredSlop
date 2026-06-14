@@ -1,10 +1,9 @@
 [gd_resource type="Resource" script_class="LegsPartData" format=3 uid="uid://c0c7v5ajew11o"]
 
-[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/leg_part_data.gd" id="1_uh5hc"]
-[ext_resource type="Texture2D" uid="uid://kcvnllsbwjb8" path="res://ui/part_miniatures/test_legs.png" id="2_yiv0i"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/leg_part_data.gd" id="1_8t1q0"]
 
 [resource]
-script = ExtResource("1_uh5hc")
+script = ExtResource("1_8t1q0")
 bone_list = {
 "Feet.L": [Transform3D(0.9999909, -5.1036477e-07, -0.00427094, -0.004240089, -0.1200968, -0.9927531, -0.0005124196, 0.99276215, -0.12009573, 7.788404e-08, 3.8820264, 2.0372681e-10), []],
 "Feet.R": [Transform3D(0.99999076, 4.956383e-07, 0.004270943, 0.004240089, -0.12009681, -0.99275315, 0.00051243446, 0.9927622, -0.120095715, -8.140742e-08, 3.8820267, 1.7462298e-08), []],
@@ -16,4 +15,3 @@ bone_list = {
 "Thigh.R": [Transform3D(-0.97455734, -0.22409165, 0.0050501423, 0.2241491, -0.9743076, 0.021956213, 1.8836047e-07, 0.022529518, 0.9997462, -0.40090784, 0, -3.5048476e-08), ["Shin.R"]],
 "TorsoJoint": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0028085625, 0.7104273, -0.09566149), []]
 }
-ui_miniature = ExtResource("2_yiv0i")

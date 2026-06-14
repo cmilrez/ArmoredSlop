@@ -2,25 +2,19 @@
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_ej6wy"]
 [ext_resource type="Resource" uid="uid://b6ktygege3u3q" path="res://parts/test/missile_launcher_data.tres" id="2_77ii2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66qhd"]
-albedo_color = Color(0.8244517, 0.0017038286, 0.96291083, 1)
-metallic = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_axxhe"]
-material = SubResource("StandardMaterial3D_66qhd")
-size = Vector3(2, 1.5, 3)
+[ext_resource type="Script" uid="uid://bmwkw0gcjr4vm" path="res://parts/hatch_opener.gd" id="3_0vhiq"]
+[ext_resource type="ArrayMesh" uid="uid://5luk57genld0" path="res://assets/TestWeapons02_MissileLauncher6.res" id="3_hfhwc"]
 
 [sub_resource type="Animation" id="Animation_hkpe4"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Skeleton3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
@@ -28,95 +22,217 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/path = NodePath("Skeleton3D/HatchOpener:progress")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1, 0.7, -1)]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_wy3l3"]
 resource_name = "Ready"
-length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Skeleton3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.6981317, 0, 0)]
+"values": [Vector3(-0.6981317, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D/HatchOpener:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_6poma"]
 resource_name = "Reload"
-length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Skeleton3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.6981317, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.6981317, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D/HatchOpener:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hfhwc"]
+resource_name = "Start"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D/HatchOpener:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wy3l3"]
 _data = {
 &"RESET": SubResource("Animation_hkpe4"),
 &"Ready": SubResource("Animation_wy3l3"),
-&"Reload": SubResource("Animation_6poma")
+&"Reload": SubResource("Animation_6poma"),
+&"Start": SubResource("Animation_hfhwc")
 }
 
 [node name="MissileLauncher" type="Node3D" unique_id=155415789 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_ej6wy")
-spawners = NodePath("MeshInstance3D/Spawners")
+spawners = NodePath("Skeleton3D/Body/Spawners")
 data = ExtResource("2_77ii2")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2066032815]
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -1, 0.7, -1)
-layers = 4
-gi_mode = 0
-mesh = SubResource("BoxMesh_axxhe")
-
-[node name="Spawners" type="Node3D" parent="MeshInstance3D" unique_id=1670736646]
-
-[node name="Marker3D1" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=397468549]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5, 0.5, 1)
-gizmo_extents = 0.5
-
-[node name="Marker3D2" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=421007361]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5, 0.5, 0)
-gizmo_extents = 0.5
-
-[node name="Marker3D3" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=2110625341]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5, 0.5, -1)
-gizmo_extents = 0.5
-
-[node name="Marker3D4" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=1977807504]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.5, 0.5, 1)
-gizmo_extents = 0.5
-
-[node name="Marker3D5" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=42768027]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.5, 0.5, 0)
-gizmo_extents = 0.5
-
-[node name="Marker3D6" type="Marker3D" parent="MeshInstance3D/Spawners" unique_id=1232936151]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.5, 0.5, -1)
-gizmo_extents = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1013885186]
 libraries/ = SubResource("AnimationLibrary_wy3l3")
 
 [node name="Timer" type="Timer" parent="." unique_id=1040541967]
 one_shot = true
+
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=159745103]
+bones/0/name = "Body"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Hatch.001"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1999998, 1.0034181, -1.6697476)
+bones/1/enabled = true
+bones/1/position = Vector3(-2.1999998, 1.0034181, -1.6697476)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "Hatch.002"
+bones/2/parent = 0
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1999998, 1.0034181, -0.66974765)
+bones/2/enabled = true
+bones/2/position = Vector3(-2.1999998, 1.0034181, -0.66974765)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "Hatch.003"
+bones/3/parent = 0
+bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1999998, 1.0034181, 0.33025235)
+bones/3/enabled = true
+bones/3/position = Vector3(-2.1999998, 1.0034181, 0.33025235)
+bones/3/rotation = Quaternion(0, 0, 0, 1)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/name = "Hatch.004"
+bones/4/parent = 0
+bones/4/rest = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.19999981, 1.0034181, -1.6697476)
+bones/4/enabled = true
+bones/4/position = Vector3(-0.19999981, 1.0034181, -1.6697476)
+bones/4/rotation = Quaternion(0, 1, 0, -7.54979e-08)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "Hatch.005"
+bones/5/parent = 0
+bones/5/rest = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.19999981, 1.0034181, -0.66974765)
+bones/5/enabled = true
+bones/5/position = Vector3(-0.19999981, 1.0034181, -0.66974765)
+bones/5/rotation = Quaternion(0, 1, 0, -7.54979e-08)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/name = "Hatch.006"
+bones/6/parent = 0
+bones/6/rest = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.19999981, 1.0034181, 0.33025235)
+bones/6/enabled = true
+bones/6/position = Vector3(-0.19999981, 1.0034181, 0.33025235)
+bones/6/rotation = Quaternion(0, 1, 0, -7.54979e-08)
+bones/6/scale = Vector3(1, 1, 1)
+
+[node name="MissileLauncher6" type="MeshInstance3D" parent="Skeleton3D" unique_id=870687191]
+layers = 4
+mesh = ExtResource("3_hfhwc")
+skeleton = NodePath("..")
+
+[node name="HatchOpener" type="SkeletonModifier3D" parent="Skeleton3D" unique_id=122309509]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_0vhiq")
+max_angle = 1.9198621771937625
+_hatch_bones = Array[int]([1, 2, 3, 4, 5, 6])
+metadata/_custom_type_script = "uid://bmwkw0gcjr4vm"
+
+[node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=885797793]
+bone_name = "Body"
+bone_idx = 0
+
+[node name="Spawners" type="Node3D" parent="Skeleton3D/Body" unique_id=1670736646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.45, -0.67)
+
+[node name="MissileSpawn_001" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1962946772]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, -0.9997476)
+
+[node name="MissileSpawn_002" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=2076642312]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, 0.00025236607)
+
+[node name="MissileSpawn_003" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=407795850]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, 1.0002522)
+
+[node name="MissileSpawn_004" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1472790491]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, -0.9997476)
+
+[node name="MissileSpawn_005" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=867690926]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, 0.00025236607)
+
+[node name="MissileSpawn_006" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=2008045242]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, 1.0002522)

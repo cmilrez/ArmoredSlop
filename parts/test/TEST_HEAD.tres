@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PartIndex" format=3 uid="uid://cau1765e2x0le"]
+
+[ext_resource type="Resource" uid="uid://bs6jr6qy1wct1" path="res://parts/test/test_head_data.tres" id="1_gm1ks"]
+[ext_resource type="PackedScene" uid="uid://c76qwtabndyyf" path="res://parts/test/test_head.tscn" id="2_drkiw"]
+[ext_resource type="Script" uid="uid://brs4dbcoxdwmd" path="res://parts/part_index.gd" id="3_d18yr"]
+[ext_resource type="Texture2D" uid="uid://dvdq7vrifrffq" path="res://parts/test/test_head.png" id="4_d18yr"]
+
+[resource]
+script = ExtResource("3_d18yr")
+scene = ExtResource("2_drkiw")
+data = ExtResource("1_gm1ks")
+ui_miniature = ExtResource("4_d18yr")
+metadata/_custom_type_script = "uid://brs4dbcoxdwmd"

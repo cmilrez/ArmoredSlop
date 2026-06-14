@@ -3,32 +3,27 @@ class_name Targeting extends Marker3D
 var target: Character = null:
 	set(value):
 		target = value
-		set_process(is_instance_valid(target))
 
 func _ready():
 	top_level = true
-	set_process(false)
 
 func _process(delta):
-	if not target.lock_on_marker.visible:
-		target = null
-		return
-	global_position =  target.get_lock_position()
-
-func set_target_damage_source(damage_data: DamageData):
-	var source = get_node_or_null(damage_data.source)
-	if source:
-		target = source
+	if is_instance_valid(target):
+		if not target.lock_on_marker.visible: # JANK
+			target = null
+			return
+		#position = position.move_toward(target.get_lock_position(), 200.0 * delta)
+		position = target.get_lock_position()
 
 func get_targeting_position(bullet_speed: float, bullet_position: Vector3) -> Vector3:
 	if not is_instance_valid(target):
-		return global_position
+		return position
 	var target_velocity := target.get_real_velocity()
 	if not target_velocity:
-		return global_position
-	var target_position := global_position
+		return position
+	var target_position := position
 	var time := 0.0
-	if bullet_speed > target_velocity.length(): # too slow, will never hit
+	if bullet_speed > target_velocity.length(): # if false = too slow, will never hit
 		var to_target := target_position - bullet_position
 		if to_target:
 			var a = bullet_speed * bullet_speed - target_velocity.length_squared()

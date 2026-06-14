@@ -26,7 +26,7 @@ func _process(delta):
 	if data.speed_curve and speed_curve_offset < 1.0:
 		speed *= data.speed_curve.sample(speed_curve_offset)
 	var distance_delta: Vector3 = global_basis.z * speed * delta
-	ray_cast.target_position = Vector3(0.0, 0.0, speed * delta)
+	ray_cast.target_position.z = speed * delta
 	if ray_cast.is_colliding():
 		if explosion_scene:
 			var collision_point = ray_cast.get_collision_point()

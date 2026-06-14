@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="TorsoPartData" format=3 uid="uid://c05f22su0f45"]
 
 [ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_part_data.gd" id="1_cpadj"]
-[ext_resource type="Texture2D" uid="uid://cime86ax1rb6" path="res://ui/part_miniatures/test_torso.png" id="2_5xbxn"]
 
 [resource]
 script = ExtResource("1_cpadj")
@@ -15,4 +14,3 @@ bone_list = {
 "TorsoDrone.001": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.825294, 1.819316, -1.7352604), []],
 "TorsoDrone.002": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.82529664, 1.819316, -1.7352592), []]
 }
-ui_miniature = ExtResource("2_5xbxn")

@@ -2,21 +2,22 @@
 
 [ext_resource type="Script" uid="uid://b31okcihcprx6" path="res://character/player/player_robot.gd" id="1_tb8wh"]
 [ext_resource type="PackedScene" uid="uid://dfubxg0n07rgo" path="res://parts/test/rifle.tscn" id="2_7pq3o"]
-[ext_resource type="PackedScene" uid="uid://d2ekutr5o5q7" path="res://parts/test/body_arms.tscn" id="2_28qib"]
+[ext_resource type="PackedScene" uid="uid://d2ekutr5o5q7" path="res://parts/test/test_arms.tscn" id="2_28qib"]
 [ext_resource type="Script" uid="uid://btwwmhfbra0fh" path="res://character/player/player_robot_data.gd" id="2_q4uji"]
-[ext_resource type="PackedScene" uid="uid://c76qwtabndyyf" path="res://parts/test/body_head.tscn" id="3_1cm5d"]
+[ext_resource type="PackedScene" uid="uid://c76qwtabndyyf" path="res://parts/test/test_head.tscn" id="3_1cm5d"]
 [ext_resource type="PackedScene" uid="uid://bdpuotsh72atu" path="res://parts/test/shotgun.tscn" id="3_xbl4i"]
 [ext_resource type="Script" uid="uid://cnywqhnd5kiej" path="res://misc/state_machine.gd" id="3_y62ao"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="4_147df"]
 [ext_resource type="Script" uid="uid://d1fq0xbo8v0ic" path="res://character/player/player_camera.gd" id="4_djqcp"]
 [ext_resource type="PackedScene" uid="uid://qs1aigkqwumj" path="res://parts/test/missile_launcher.tscn" id="4_mm3tp"]
+[ext_resource type="PackedScene" uid="uid://cb8tx40201w3a" path="res://parts/test/shoulder_cannon.tscn" id="5_1cm5d"]
 [ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://character/targeting.gd" id="5_djqcp"]
 [ext_resource type="Script" uid="uid://d30885cj1ep35" path="res://misc/state_transition.gd" id="5_qtvjb"]
-[ext_resource type="PackedScene" uid="uid://2h7dx28b5ejc" path="res://parts/test/body_legs_bipedal.tscn" id="5_v4gjr"]
+[ext_resource type="PackedScene" uid="uid://2h7dx28b5ejc" path="res://parts/test/test_legs_bipedal.tscn" id="5_v4gjr"]
 [ext_resource type="Script" uid="uid://c31x1eujv0clk" path="res://character/player/states/slide.gd" id="7_7pq3o"]
-[ext_resource type="AnimationLibrary" uid="uid://by7117lvfncg8" path="res://character/player/anim/test_anim_lib.res" id="7_xbl4i"]
 [ext_resource type="Script" uid="uid://dtnaqmcmkkxtq" path="res://character/char_animator.gd" id="8_xbl4i"]
-[ext_resource type="PackedScene" uid="uid://ouribyoau1dc" path="res://parts/test/body_torso_drone.tscn" id="9_0jjm5"]
+[ext_resource type="PackedScene" uid="uid://ouribyoau1dc" path="res://parts/test/test_torso_drone.tscn" id="9_0jjm5"]
+[ext_resource type="AnimationLibrary" uid="uid://cwnffmdeho2id" path="res://assets/AnimLibBipedal.gltf" id="11_1cm5d"]
 [ext_resource type="Script" uid="uid://cd8xenxvl4wb5" path="res://ui/lock_on_region.gd" id="11_anxaj"]
 [ext_resource type="Script" uid="uid://drhv6xhso43sp" path="res://parts/lock_on_parameters.gd" id="12_q4uji"]
 [ext_resource type="Texture2D" uid="uid://bcgl2ibdxeis7" path="res://copyright_shit/assets/Hand.png" id="13_28qib"]
@@ -34,7 +35,7 @@ legs_part = ExtResource("5_v4gjr")
 right_arm_part = ExtResource("3_xbl4i")
 left_arm_part = ExtResource("2_7pq3o")
 right_back_part = ExtResource("4_mm3tp")
-max_hp = 1000.0
+left_back_part = ExtResource("5_1cm5d")
 metadata/_custom_type_script = "uid://btwwmhfbra0fh"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1jo64"]
@@ -115,11 +116,59 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_n36vg")
 blend_point_4/pos = Vector2(1, 0)
 snap = Vector2(0.2, 0.25)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v4gjr"]
+animation = &"Run_Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0jjm5"]
+animation = &"Ground_Neutral"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mu4gv"]
+animation = &"Run_Left_Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fccsw"]
+animation = &"Run_Right_Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1cm5d"]
+animation = &"Run_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pqu1l"]
+animation = &"Run_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4whh7"]
+animation = &"Run_Right_Backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0jt44"]
+animation = &"Run_Left_Backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_823px"]
+animation = &"Run_Backward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_mu4gv"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_v4gjr")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_0jjm5")
+blend_point_1/pos = Vector2(0, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_mu4gv")
+blend_point_2/pos = Vector2(-1, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_fccsw")
+blend_point_3/pos = Vector2(1, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_1cm5d")
+blend_point_4/pos = Vector2(-1, 0)
+blend_point_5/node = SubResource("AnimationNodeAnimation_pqu1l")
+blend_point_5/pos = Vector2(1, 0)
+blend_point_6/node = SubResource("AnimationNodeAnimation_4whh7")
+blend_point_6/pos = Vector2(1, 1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_0jt44")
+blend_point_7/pos = Vector2(-1, 1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_823px")
+blend_point_8/pos = Vector2(0, 1)
+snap = Vector2(0.2, 0.25)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_paxjy"]
 animation = &"Slide_Back"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_geqfx"]
-animation = &"Slide_Neutral"
+animation = &"Run_Forward"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tb8wh"]
 animation = &"Slide_Neutral"
@@ -143,19 +192,6 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_mwxdq")
 blend_point_4/pos = Vector2(1, 0)
 snap = Vector2(0.2, 0.25)
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtvjb"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pm67d"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "not is_on_floor()"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_paxjy"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "is_on_floor()"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_icg6u"]
 xfade_time = 0.1
 switch_mode = 2
@@ -166,19 +202,29 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "active_melee_unit"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbl4i"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v4gjr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0jjm5"]
 xfade_time = 0.1
 advance_mode = 2
-advance_expression = "active_melee_unit"
+advance_expression = "not is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mu4gv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1jo64"]
 states/Melee/node = SubResource("AnimationNodeStateMachine_bw37k")
 states/Melee/position = Vector2(531, 191)
 states/airborne/node = SubResource("AnimationNodeBlendSpace2D_g5wh7")
 states/airborne/position = Vector2(657, 53)
+states/run/node = SubResource("AnimationNodeBlendSpace2D_mu4gv")
+states/run/position = Vector2(366, 137)
 states/slide/node = SubResource("AnimationNodeBlendSpace2D_paxjy")
-states/slide/position = Vector2(421, 53)
-transitions = ["Start", "slide", SubResource("AnimationNodeStateMachineTransition_qtvjb"), "slide", "airborne", SubResource("AnimationNodeStateMachineTransition_pm67d"), "airborne", "slide", SubResource("AnimationNodeStateMachineTransition_paxjy"), "Melee", "airborne", SubResource("AnimationNodeStateMachineTransition_icg6u"), "airborne", "Melee", SubResource("AnimationNodeStateMachineTransition_dxv0o"), "slide", "Melee", SubResource("AnimationNodeStateMachineTransition_xbl4i")]
+states/slide/position = Vector2(366, 53)
+transitions = ["Melee", "airborne", SubResource("AnimationNodeStateMachineTransition_icg6u"), "airborne", "Melee", SubResource("AnimationNodeStateMachineTransition_dxv0o"), "Start", "run", SubResource("AnimationNodeStateMachineTransition_v4gjr"), "run", "airborne", SubResource("AnimationNodeStateMachineTransition_0jjm5"), "airborne", "run", SubResource("AnimationNodeStateMachineTransition_mu4gv")]
 graph_offset = Vector2(-30, 16)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_paxjy"]
@@ -284,12 +330,13 @@ metadata/_custom_type_script = "uid://b31okcihcprx6"
 unique_name_in_owner = true
 active = false
 root_motion_track = NodePath("MeshNode/Skeleton3D:Root")
-libraries/ = ExtResource("7_xbl4i")
+libraries/ = ExtResource("11_1cm5d")
 tree_root = SubResource("AnimationNodeStateMachine_1jo64")
 advance_expression_base_node = NodePath("..")
 parameters/Melee/conditions/advance_combo = false
 parameters/Melee/conditions/start_combo = false
 parameters/airborne/blend_position = Vector2(0, 0)
+parameters/run/blend_position = Vector2(0, 0)
 parameters/slide/blend_position = Vector2(0, 0)
 script = ExtResource("8_xbl4i")
 
@@ -337,14 +384,14 @@ bones/0/parent = 4
 bones/0/rest = Transform3D(0.999989, 2.3264148e-07, 0.0046955813, 0.0046935203, -0.029677631, -0.9995485, 0.0001391212, 0.9995595, -0.029677305, -1.7953532e-08, 3.3056498, 2.8478098e-08)
 bones/0/enabled = true
 bones/0/position = Vector3(-1.7953532e-08, 3.3056498, 2.8478098e-08)
-bones/0/rotation = Quaternion(0.7484835, -0.00084935, -0.0021762685, 0.6631494)
+bones/0/rotation = Quaternion(0.7484834, -0.0008493429, -0.002176267, 0.6631494)
 bones/0/scale = Vector3(1, 1, 0.99999994)
 bones/1/name = "Feet.R"
 bones/1/parent = 5
 bones/1/rest = Transform3D(0.9999993, -1.7223647e-07, -0.0011730719, -0.0011725645, -0.029561043, -0.99956226, -3.4505036e-05, 0.999563, -0.029561043, -6.0385844e-08, 3.3063438, -2.7765054e-08)
 bones/1/enabled = true
 bones/1/position = Vector3(-6.0385844e-08, 3.3063438, -2.7765054e-08)
-bones/1/rotation = Quaternion(0.7484833, 0.00084933435, 0.0021762862, 0.6631496)
+bones/1/rotation = Quaternion(0.74848354, 0.00084933377, 0.00217629, 0.66314924)
 bones/1/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/2/name = "LegBase"
 bones/2/parent = 3
@@ -365,28 +412,28 @@ bones/4/parent = 6
 bones/4/rest = Transform3D(0.9784936, 0.2061865, 0.0061218357, -0.20626575, 0.9776927, 0.03964014, 0.0021879869, -0.040050346, 0.9991953, 9.473466e-08, 2.1905844, 2.4214387e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(9.473466e-08, 2.1905844, 2.4214387e-08)
-bones/4/rotation = Quaternion(-0.07165938, 0.0053900406, -0.11054118, 0.9912702)
+bones/4/rotation = Quaternion(-0.07165948, 0.0053900285, -0.110541195, 0.9912702)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Shin.R"
 bones/5/parent = 7
 bones/5/rest = Transform3D(0.9870281, -0.16047728, -0.0047459453, 0.16054678, 0.9866783, 0.026279194, 0.00046550785, -0.02670025, 0.9996433, 5.542767e-08, 2.0252688, 1.740409e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(5.542767e-08, 2.0252688, 1.740409e-08)
-bones/5/rotation = Quaternion(-0.071658805, -0.005389967, 0.11054119, 0.9912702)
+bones/5/rotation = Quaternion(-0.07165964, -0.005390044, 0.11054119, 0.9912701)
 bones/5/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/6/name = "Thigh.L"
 bones/6/parent = 2
 bones/6/rest = Transform3D(-0.97944915, 0.20166892, -0.002139196, -0.20167981, -0.9793963, 0.010389098, 3.7485645e-08, 0.01060705, 0.99994373, 0.5491813, -0.057144642, 0.16107525)
 bones/6/enabled = true
 bones/6/position = Vector3(0.5491813, -0.057144642, 0.16107525)
-bones/6/rotation = Quaternion(-0.0005131514, 0.011622916, 0.9935436, -0.11285268)
+bones/6/rotation = Quaternion(-0.0005131624, 0.011622985, 0.9935436, -0.11285268)
 bones/6/scale = Vector3(0.9999977, 0.99999994, 1)
 bones/7/name = "Thigh.R"
 bones/7/parent = 2
 bones/7/rest = Transform3D(-0.98722094, -0.15938921, -0.00046231633, 0.15939072, -0.9872116, -0.0028625005, -1.5235933e-07, -0.0028995941, 0.9999958, -0.66141266, -0.20248556, 0.18963873)
 bones/7/enabled = true
 bones/7/position = Vector3(-0.66141266, -0.20248556, 0.18963873)
-bones/7/rotation = Quaternion(0.00051308837, 0.011622539, 0.9935437, 0.1128527)
+bones/7/rotation = Quaternion(0.00051305094, 0.0116230445, 0.9935437, 0.1128527)
 bones/7/scale = Vector3(1.0000052, 1, 1)
 bones/8/name = "TorsoJoint"
 bones/8/parent = 2
@@ -512,14 +559,14 @@ bones/25/parent = 9
 bones/25/rest = Transform3D(-0.93988, 0.341503, 0.0011718264, -0.3415051, -0.9398741, -0.0032258257, -2.59839e-07, -0.0034320727, 0.9999941, 0, 0, 0)
 bones/25/enabled = true
 bones/25/position = Vector3(0, 0, 0)
-bones/25/rotation = Quaternion(-0.00021976157, 0.0012688277, 0.985333, -0.17063741)
+bones/25/rotation = Quaternion(-0.00021976042, 0.0012688255, 0.985333, -0.17063741)
 bones/25/scale = Vector3(1.0000001, 0.9999997, 1)
 bones/26/name = "Shoulder.R"
 bones/26/parent = 10
 bones/26/rest = Transform3D(-0.93988, -0.34150314, -0.0011725221, 0.34150517, -0.9398744, -0.0032258066, -4.004687e-07, -0.003432293, 0.9999941, -1.1920929e-07, 0, -3.8843318e-14)
 bones/26/enabled = true
 bones/26/position = Vector3(-1.1920929e-07, 0, -3.8843318e-14)
-bones/26/rotation = Quaternion(0.00021968602, 0.0012688062, 0.985333, 0.17063746)
+bones/26/rotation = Quaternion(0.00021968648, 0.001268809, 0.985333, 0.17063746)
 bones/26/scale = Vector3(1.0000001, 1, 1)
 bones/27/name = "ArmUnit.R"
 bones/27/parent = 22
@@ -544,13 +591,13 @@ skeleton = NodePath("..")
 
 [node name="ArmUnitR" type="BoneAttachment3D" parent="MeshNode/Skeleton3D" unique_id=19241375]
 unique_name_in_owner = true
-transform = Transform3D(-1, -3.146804e-07, -8.457059e-08, -3.163423e-07, 1, 3.0500811e-07, 7.193951e-08, 3.457535e-07, -1, 1.9468715, 6.5394516, -2.3113723)
+transform = Transform3D(-1, -3.1468494e-07, -8.643323e-08, -3.1633775e-07, 1, 3.1036322e-07, 7.386036e-08, 3.511086e-07, -1, 1.9468715, 6.5394516, -2.3113723)
 bone_name = "ArmUnit.R"
 bone_idx = 27
 
 [node name="ArmUnitL" type="BoneAttachment3D" parent="MeshNode/Skeleton3D" unique_id=954387833]
 unique_name_in_owner = true
-transform = Transform3D(-1.0000001, 1.9793288e-07, 2.2142697e-07, 4.675069e-07, 0.99999994, 2.5075855e-07, -2.1659568e-07, 2.428424e-07, -0.99999994, -1.9350364, 6.5394516, -2.3113718)
+transform = Transform3D(-1.0000001, 1.979256e-07, 2.1840017e-07, 4.6751032e-07, 0.99999994, 2.4680043e-07, -2.1351067e-07, 2.3865144e-07, -0.99999994, -1.9350364, 6.5394516, -2.3113718)
 bone_name = "ArmUnit.L"
 bone_idx = 28
 
@@ -580,9 +627,86 @@ cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("SphereMesh_anxaj")
 
+[node name="LookAtTorso" type="LookAtModifier3D" parent="MeshNode/Skeleton3D" unique_id=1123159923]
+unique_name_in_owner = true
+active = false
+target_node = NodePath("../../../Targeting")
+bone_name = "Torso"
+bone = 18
+use_secondary_rotation = false
+use_angle_limitation = true
+symmetry_limitation = true
+primary_limit_angle = 3.1415927
+primary_damp_threshold = 1.0
+
+[node name="LookAtArmJointR" type="LookAtModifier3D" parent="MeshNode/Skeleton3D" unique_id=164762437]
+unique_name_in_owner = true
+active = false
+target_node = NodePath("../../../Targeting")
+bone_name = "ArmJoint.R"
+bone = 10
+primary_rotation_axis = 0
+use_secondary_rotation = false
+origin_offset = Vector3(0, -5, 0)
+use_angle_limitation = true
+symmetry_limitation = false
+primary_positive_limit_angle = 0.43633232
+primary_positive_damp_threshold = 1.0
+primary_negative_limit_angle = 1.3962634
+primary_negative_damp_threshold = 1.0
+
+[node name="LookAtArmJointL" type="LookAtModifier3D" parent="MeshNode/Skeleton3D" unique_id=681159116]
+unique_name_in_owner = true
+active = false
+target_node = NodePath("../../../Targeting")
+bone_name = "ArmJoint.L"
+bone = 9
+primary_rotation_axis = 0
+use_secondary_rotation = false
+origin_offset = Vector3(0, -5, 0)
+use_angle_limitation = true
+symmetry_limitation = false
+primary_positive_limit_angle = 0.43633232
+primary_positive_damp_threshold = 1.0
+primary_negative_limit_angle = 1.3962634
+primary_negative_damp_threshold = 1.0
+
+[node name="LookAtArmR" type="LookAtModifier3D" parent="MeshNode/Skeleton3D" unique_id=921559716]
+unique_name_in_owner = true
+active = false
+target_node = NodePath("../../../Targeting")
+bone_name = "Forearm.R"
+bone = 20
+forward_axis = 2
+primary_rotation_axis = 0
+use_angle_limitation = true
+symmetry_limitation = true
+primary_limit_angle = 0.7853982
+primary_damp_threshold = 1.0
+secondary_limit_angle = 0.5235988
+secondary_damp_threshold = 1.0
+
+[node name="LookAtArmL" type="LookAtModifier3D" parent="MeshNode/Skeleton3D" unique_id=2101733372]
+unique_name_in_owner = true
+active = false
+target_node = NodePath("../../../Targeting")
+bone_name = "Forearm.L"
+bone = 19
+forward_axis = 2
+primary_rotation_axis = 0
+use_angle_limitation = true
+symmetry_limitation = true
+primary_limit_angle = 0.7853982
+primary_damp_threshold = 1.0
+secondary_limit_angle = 0.5235988
+secondary_damp_threshold = 1.0
+
 [node name="PlayerCamera" type="Node3D" parent="." unique_id=1923910416]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 script = ExtResource("4_djqcp")
+max_angle_x = 1.4835298641951802
+min_angle_x = -1.4835298641951802
+height = 12.0
 param = SubResource("Resource_mm3tp")
 metadata/_custom_type_script = "uid://d1fq0xbo8v0ic"
 
@@ -606,6 +730,7 @@ metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
 cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("SphereMesh_anxaj")
+metadata/_edit_lock_ = true
 
 [node name="Health" type="Node" parent="." unique_id=527874754]
 script = ExtResource("4_147df")

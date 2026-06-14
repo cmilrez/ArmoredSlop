@@ -13,7 +13,7 @@ class_name PlayerCamera extends Node3D
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var max_angle_x := PI / 2
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -PI / 2
 @export var arm_length := 10.0
-@export var height := 9.5
+@export var height := 10.0
 @export_group('Targeting Parameters')
 @export var param: LockOnParamenters = null
 
@@ -74,14 +74,17 @@ func _process(delta):
 		eye_ray.force_raycast_update()
 		if eye_ray.is_colliding():
 			point = eye_ray.get_collision_point()
-		targeting.global_position = point
+		targeting.position = point
 
 func _physics_process(delta):
 	if not camera.current:
 		return
-	var lerp_weight := 1.0 - pow(0.5, delta * 16)
-	position = position.lerp(player.position, lerp_weight)
-	position.y = player.position.y + height
+	var lerp_weight := 1.0 - pow(0.5, delta * 16.0)
+	var new_pos = Vector3(player.position.x, position.y, player.position.z)
+	position = position.lerp(new_pos, lerp_weight)
+	var lerp_weight2 := 1.0 - pow(0.5, delta * 8.0)
+	position.y = lerpf(position.y, player.position.y + height, lerp_weight2)
+	#position.y = player.position.y + height
 
 func _unhandled_input(event):
 	if not camera.current:
