@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d2ekutr5o5q7"]
 
-[ext_resource type="ArrayMesh" uid="uid://cgp32llepbfn6" path="res://assets/TestParts_ArmsTest.res" id="1_exchu"]
+[ext_resource type="ArrayMesh" uid="uid://c54q5wvvdxhvn" path="res://assets/TestParts_ArmsTest.res" id="1_exchu"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_o57ej"]
-[ext_resource type="Resource" uid="uid://brgk57a06obrx" path="res://parts/test/body_arms_data.tres" id="4_wiiee"]
+[ext_resource type="Resource" uid="uid://brgk57a06obrx" path="res://parts/test/test_arms_data.tres" id="4_wiiee"]
 
 [sub_resource type="Skin" id="Skin_exchu"]
 resource_name = "Skin2"

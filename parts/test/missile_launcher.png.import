@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6rwbx6mu1pi6"
-path="res://.godot/imported/test_arms.png-9370fcf0457b3f46dbb110ef5f0fa05c.ctex"
+uid="uid://gaaibqqae5sm"
+path="res://.godot/imported/missile_launcher.png-ace433d8d8f9eda963535662e500ffe1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/part_miniatures/test_arms.png"
-dest_files=["res://.godot/imported/test_arms.png-9370fcf0457b3f46dbb110ef5f0fa05c.ctex"]
+source_file="res://parts/test/missile_launcher.png"
+dest_files=["res://.godot/imported/missile_launcher.png-ace433d8d8f9eda963535662e500ffe1.ctex"]
 
 [params]
 

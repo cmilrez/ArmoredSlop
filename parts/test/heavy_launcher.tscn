@@ -1,0 +1,276 @@
+[gd_scene format=3 uid="uid://c0o4shmbjai5a"]
+
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_27rau"]
+[ext_resource type="Resource" uid="uid://rcoacbdrfp1g" path="res://parts/test/heavy_launcher_data.tres" id="2_eu0g1"]
+[ext_resource type="ArrayMesh" uid="uid://d1nr2s2yw05gw" path="res://assets/TestWeapons02_HeavyMissileLauncher.res" id="3_kknjx"]
+
+[sub_resource type="Animation" id="Animation_hkpe4"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -5.6623428e-08, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:HatchTopL")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.5514275, 1.9609356, 0.651864)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:HatchBottomL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.5514282, 1.1118504, 0.65178025)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:HatchTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -1.8184615, 1.9609356, 0.651864)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:HatchBottomR")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.8186519, 1.1118504, 0.65178025)
+
+[sub_resource type="Animation" id="Animation_ys1wh"]
+resource_name = "Ready"
+length = 0.7
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.38268346, 0, 0, 0.9238795, 0.5, 1, -5.6623428e-08, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:HatchTopL")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.3, 1, -0.5514275, 1.9609356, 0.651864, 0.70000005, 1, -0.551427, 2.4008975, 0.47874075)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:HatchBottomL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.3, 1, -0.5514282, 1.1118504, 0.65178025, 0.70000005, 1, -0.5514285, 0.72525555, 0.4996566)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:HatchTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -1.8184615, 1.9609356, 0.651864, 0.39999995, 1, -1.8184612, 2.3921003, 0.4822024)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:HatchBottomR")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.8186519, 1.1118504, 0.65178025, 0.39999995, 1, -1.8186523, 0.67007786, 0.4779444)
+
+[sub_resource type="Animation" id="Animation_2db5h"]
+resource_name = "Reload"
+length = 0.8
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -5.6623428e-08, 0, 0, 1, 0.8, 1, -0.38268346, 0, 0, 0.9238795)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:HatchTopL")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.551427, 2.4008975, 0.47874075, 0.3, 1, -0.5514275, 1.9609356, 0.651864)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:HatchBottomL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.5514285, 0.72525555, 0.4996566, 0.3, 1, -0.5514282, 1.1118504, 0.65178025)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:HatchTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.3, 1, -1.8184612, 2.3921003, 0.4822024, 0.6, 1, -1.8184615, 1.9609356, 0.651864)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:HatchBottomR")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.3, 1, -1.8186523, 0.67007786, 0.4779444, 0.6, 1, -1.8186519, 1.1118504, 0.65178025)
+
+[sub_resource type="Animation" id="Animation_27rau"]
+resource_name = "Shoot"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -5.6623428e-08, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:HatchTopL")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.551427, 2.4008975, 0.47874075)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:HatchBottomL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.5514285, 0.72525555, 0.4996566)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:HatchTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -1.8184612, 2.3921003, 0.4822024)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:HatchBottomR")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.8186523, 0.67007786, 0.4779444)
+
+[sub_resource type="Animation" id="Animation_qonak"]
+resource_name = "Start"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.7071068, 0, 0, 0.7071067, 1, 1, -5.6623428e-08, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:HatchTopL")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.6, 1, -0.5514275, 1.9609356, 0.651864, 1, 1, -0.551427, 2.4008975, 0.47874075)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:HatchBottomL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.6, 1, -0.5514282, 1.1118504, 0.65178025, 1, 1, -0.5514285, 0.72525555, 0.4996566)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:HatchTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.3, 1, -1.8184615, 1.9609356, 0.651864, 0.7, 1, -1.8184612, 2.3921003, 0.4822024)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:HatchBottomR")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.3, 1, -1.8186519, 1.1118504, 0.65178025, 0.7, 1, -1.8186523, 0.67007786, 0.4779444)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy3l3"]
+_data = {
+&"RESET": SubResource("Animation_hkpe4"),
+&"Ready": SubResource("Animation_ys1wh"),
+&"Reload": SubResource("Animation_2db5h"),
+&"Shoot": SubResource("Animation_27rau"),
+&"Start": SubResource("Animation_qonak")
+}
+
+[node name="HeavyLauncher" type="Node3D" unique_id=476591691 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_27rau")
+spawners = NodePath("Skeleton3D/Body/Spawners")
+data = ExtResource("2_eu0g1")
+metadata/_custom_type_script = "uid://brdkpe831f6pw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1013885186]
+libraries/ = SubResource("AnimationLibrary_wy3l3")
+
+[node name="Timer" type="Timer" parent="." unique_id=1040541967]
+one_shot = true
+
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=1713247836]
+bones/0/name = "Body"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 1, 1.13246855e-07, 0, -1.13246855e-07, 1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(-5.6623428e-08, 0, 0, 1)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "HatchTopL"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 8.940697e-07, -6.0898503e-07, -6.0898515e-07, 0.930549, 0.36616734, 8.9406956e-07, -0.36616734, 0.930549, -0.5514275, 1.9609356, 0.651864)
+bones/1/enabled = true
+bones/1/position = Vector3(-0.5514275, 1.9609356, 0.651864)
+bones/1/rotation = Quaternion(-0.18634775, -3.8246287e-07, -3.8246287e-07, 0.98248386)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "HatchTopR"
+bones/2/parent = 0
+bones/2/rest = Transform3D(1, 8.3446514e-07, -5.683861e-07, -5.683862e-07, 0.930549, 0.36616734, 8.34465e-07, -0.36616734, 0.930549, -1.8184615, 1.9609356, 0.651864)
+bones/2/enabled = true
+bones/2/position = Vector3(-1.8184615, 1.9609356, 0.651864)
+bones/2/rotation = Quaternion(-0.18634775, -3.5696542e-07, -3.5696544e-07, 0.98248386)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "HatchBottomR"
+bones/3/parent = 0
+bones/3/rest = Transform3D(1, -8.344649e-07, -5.683867e-07, -5.6838564e-07, -0.9305489, 0.36616763, -8.344656e-07, -0.3661676, -0.930549, -1.8186519, 1.1118504, 0.65178025)
+bones/3/enabled = true
+bones/3/position = Vector3(-1.8186519, 1.1118504, 0.65178025)
+bones/3/rotation = Quaternion(0.9824838, -3.569653e-07, -3.569657e-07, -0.1863479)
+bones/3/scale = Vector3(1, 1, 1.0000001)
+bones/4/name = "HatchBottomL"
+bones/4/parent = 0
+bones/4/rest = Transform3D(1, -8.344648e-07, -8.0680525e-07, -4.8108444e-07, -0.9305489, 0.36616763, -1.0563257e-06, -0.3661676, -0.930549, -0.5514282, 1.1118504, 0.65178025)
+bones/4/enabled = true
+bones/4/position = Vector3(-0.5514282, 1.1118504, 0.65178025)
+bones/4/rotation = Quaternion(0.9824838, -3.347509e-07, -4.7408693e-07, -0.1863479)
+bones/4/scale = Vector3(1, 1, 1.0000001)
+
+[node name="HeavyMissileLauncher" type="MeshInstance3D" parent="Skeleton3D" unique_id=1208593741]
+layers = 4
+gi_mode = 0
+mesh = ExtResource("3_kknjx")
+skeleton = NodePath("..")
+
+[node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=556809969]
+transform = Transform3D(1, 0, 0, 0, 1, 1.13246855e-07, 0, -1.13246855e-07, 1, 0, 0, 0)
+bone_name = "Body"
+bone_idx = 0
+
+[node name="Spawners" type="Node3D" parent="Skeleton3D/Body" unique_id=1670736646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1846516, 1.5364995, 0.25194114)
+
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1114073461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.633224, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1608615522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63400006, 0, 0)

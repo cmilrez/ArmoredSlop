@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PartIndex" format=3 uid="uid://c4lkrrvyv1uw0"]
+
+[ext_resource type="Resource" uid="uid://c05f22su0f45" path="res://parts/test/test_torso_drone_data.tres" id="1_h6v5t"]
+[ext_resource type="PackedScene" uid="uid://ouribyoau1dc" path="res://parts/test/test_torso_drone.tscn" id="2_w6usg"]
+[ext_resource type="Script" uid="uid://brs4dbcoxdwmd" path="res://parts/part_index.gd" id="3_xmymt"]
+[ext_resource type="Texture2D" uid="uid://cime86ax1rb6" path="res://parts/test/test_torso.png" id="4_xmymt"]
+
+[resource]
+script = ExtResource("3_xmymt")
+scene = ExtResource("2_w6usg")
+data = ExtResource("1_h6v5t")
+ui_miniature = ExtResource("4_xmymt")
+metadata/_custom_type_script = "uid://brs4dbcoxdwmd"

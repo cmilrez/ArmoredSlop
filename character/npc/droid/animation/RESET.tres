@@ -101,15 +101,3 @@ tracks/13/path = NodePath("Droid/Skeleton3D:Feet.R")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = PackedFloat32Array(0, 1, 0.4325562, 5.4291576e-07, 3.8800033e-07, 0.9016071)
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath(".:alive")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}

@@ -5,7 +5,7 @@ const READY_ANIM = &'Ready'
 const SHOOT_ANIM = &'Shoot'
 const RELOAD_ANIM = &'Reload'
 
-signal ammo_changed(value: int)
+signal ammo_changed(loaded: int, left: int)
 
 @export var spawners: Node3D = null
 @export var data: ProjectileWeaponData = null
@@ -14,12 +14,13 @@ var ammo_loaded := 0:
 	set(value):
 		value = clampi(value, 0, data.clip_size)
 		ammo_loaded = value
-		ammo_changed.emit(ammo_loaded)
+		ammo_changed.emit(ammo_loaded, ammo_left)
 		check_ammo()
 var ammo_left := 0:
 	set(value):
 		value = clampi(value, 0, data.ammo_max)
 		ammo_left = value
+		ammo_changed.emit(ammo_loaded, ammo_left)
 		check_ammo()
 var ammo_empty := false
 
@@ -97,7 +98,7 @@ func _anim_start():
 	if anim_player.has_animation(START_ANIM):
 		anim_player.play(START_ANIM)
 		await anim_player.animation_finished
-	_anim_ready()
+	can_use = true
 
 func _anim_ready():
 	if anim_player.has_animation(READY_ANIM):
@@ -120,7 +121,7 @@ func _anim_reload():
 
 func _anim_shutdown():
 	can_use = false
-	if anim_player.has_animation(READY_ANIM) and anim_player.has_animation(START_ANIM):
-		anim_player.play_backwards(READY_ANIM)
-		await anim_player.animation_finished
+	if anim_player.has_animation(START_ANIM):
+		if anim_player.is_playing():
+			await anim_player.animation_finished
 		anim_player.play_backwards(START_ANIM)

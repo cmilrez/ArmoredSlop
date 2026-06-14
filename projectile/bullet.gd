@@ -16,7 +16,7 @@ func _ready():
 
 func _process(delta):
 	var distance_delta: Vector3 = global_basis.z * data.speed * delta
-	ray_cast.target_position = Vector3(0.0, 0.0, data.speed * delta)
+	ray_cast.target_position.z = data.speed * delta
 	if ray_cast.is_colliding():
 		var collision_point = ray_cast.get_collision_point()
 		if explosion_scene:

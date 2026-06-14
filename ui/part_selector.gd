@@ -3,11 +3,11 @@ extends Control
 
 signal part_selected(part: PackedScene, part_type: int)
 
-@onready var head_parts = $Rows/HeadParts
-@onready var arm_parts = $Rows/ArmParts
-@onready var torso_parts = $Rows/TorsoParts
-@onready var leg_parts = $Rows/LegParts
-@onready var rows = $Rows
+@onready var head_parts = %HeadParts
+@onready var arm_parts = %ArmParts
+@onready var torso_parts = %TorsoParts
+@onready var leg_parts = %LegParts
+@onready var rows = %Rows
 
 @export_tool_button('GenMiniatures') var button1 = create_miniatures
 @export var sub_viewport: SubViewport = null
@@ -17,7 +17,7 @@ signal part_selected(part: PackedScene, part_type: int)
 			value += '/'
 		parts_path = value
 @export_tool_button('BuildUI') var button2 = build_ui
-@export var parts: Array[Array] = [[], [], [], []]
+@export var parts: Array[Array] = [[], [], [], [], [], []]
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -52,35 +52,33 @@ func build_ui():
 	#clear()
 	var names := ResourceLoader.list_directory(parts_path)
 	for file_name in names:
-		if not (file_name.ends_with('.tscn') or file_name.ends_with('.scn')):
+		if not (file_name.ends_with('_ID.tres') or file_name.ends_with('_ID.res')):
 			continue
-		var part_scene = ResourceLoader.load(parts_path + file_name)
-		var part = part_scene.instantiate()
-		if not part is MeshInstance3D:
+		var part_index = ResourceLoader.load(parts_path + file_name)
+		if not part_index is PartIndex:
 			continue
 		var tex_button = TextureButton.new()
-		tex_button.texture_normal = part.data.ui_miniature
+		tex_button.texture_normal = part_index.ui_miniature
 		tex_button.ignore_texture_size = true
 		tex_button.stretch_mode = TextureButton.STRETCH_SCALE
 		tex_button.custom_minimum_size = Vector2.ONE * 100.0
 		tex_button.mouse_filter = Control.MOUSE_FILTER_PASS
-		part.free()
 		match file_name.erase(0, 2).left(1):
 			'1':
 				head_parts.add_child(tex_button)
-				parts[0].append(part_scene)
+				parts[0].append(part_index.scene)
 				tex_button.name = '0' + str(parts[0].size() - 1)
 			'2':
 				arm_parts.add_child(tex_button)
-				parts[1].append(part_scene)
+				parts[1].append(part_index.scene)
 				tex_button.name = '1' + str(parts[1].size() - 1)
 			'3':
 				torso_parts.add_child(tex_button)
-				parts[2].append(part_scene)
+				parts[2].append(part_index.scene)
 				tex_button.name = '2' + str(parts[2].size() - 1)
 			'4':
 				leg_parts.add_child(tex_button)
-				parts[3].append(part_scene)
+				parts[3].append(part_index.scene)
 				tex_button.name = '3' + str(parts[3].size() - 1)
 		tex_button.owner = self
 		tex_button.pressed.connect(get_part_scene.bind(tex_button.name), Object.CONNECT_PERSIST)
@@ -89,12 +87,15 @@ var save_path := &'res://copyright_shit/miniatures/'
 func create_miniatures():
 	if not (Engine.is_editor_hint() and sub_viewport):
 		return
-	var names := ResourceLoader.list_directory(parts_path)
-	for file_name in names:
-		if not (file_name.ends_with('.tscn') or file_name.ends_with('.scn')):
-			print(file_name, ' not a scene')
+	for file_name in ResourceLoader.list_directory(parts_path):
+		if not (file_name.ends_with('_ID.tres') or file_name.ends_with('_ID.res')):
+			print(file_name, ' not a resource')
 			continue
-		var mesh = ResourceLoader.load(parts_path + file_name).instantiate()
+		var part_index = ResourceLoader.load(parts_path + file_name)
+		if not part_index is PartIndex:
+			print(file_name, ' not part index')
+			continue
+		var mesh = part_index.scene.instantiate()
 		if not mesh is MeshInstance3D:
 			print(file_name, ' not a mesh instance')
 			mesh.free()
@@ -108,13 +109,14 @@ func create_miniatures():
 		%Camera3D.look_at(aabb.get_center())
 		await RenderingServer.frame_post_draw
 		var img_name = file_name.get_slice('.', 0) + '.png'
-		var error = sub_viewport.get_texture().get_image().save_png(save_path + img_name)
-		if error:
-			print(img_name, ' not saved error: ', error)
+		var error1 = sub_viewport.get_texture().get_image().save_png(save_path + img_name)
+		if error1:
+			print(img_name, ' not saved, ', error1)
 			continue
 		print(img_name, ' saved to ', save_path)
-		mesh.data.ui_miniature = ResourceLoader.load(save_path + img_name)
-		var scene = PackedScene.new()
-		scene.pack(mesh)
-		ResourceSaver.save(scene, 'res://copyright_shit/' + file_name)
+		part_index.ui_miniature = ResourceLoader.load(save_path + img_name)
+		var error2 = ResourceSaver.save(part_index, 'res://copyright_shit/' + file_name)
+		if error2:
+			print(file_name, ' miniature not saved, ', error2)
+			continue
 		mesh.free()

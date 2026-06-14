@@ -1,30 +1,30 @@
 extends TextureRect
 
-var labels: Array[Label] = [null, null, null, null, null]
-var mark: Label = null
+const MAX_COUNT = 5
+var labels: Array[Label] = []
+var marker: Label = null
 var count := 0
 
 func _ready():
 	position = Vector2(6.0, 8.0)
-	mark = Label.new()
-	add_child(mark)
-	mark.text = '>'
-	mark.position.x = 8.0
-	mark.modulate = Color.RED
+	marker = Label.new()
+	add_child(marker)
+	marker.text = '>'
+	marker.position.x = 8.0
+	marker.modulate = Color.RED
+	for i in range(MAX_COUNT):
+		var new_label = Label.new()
+		add_child(new_label)
+		labels.append(new_label)
+		new_label.position.x = 24.0
+		new_label.position.y = i * 18.0
+		new_label.modulate = Color.LIME_GREEN
 
 func _input(event):
 	if event is InputEventMouseMotion or event.is_echo() or event.is_released():
 		return
-	if count > 4:
-		count = 0
-	var new_label = Label.new()
-	if is_instance_valid(labels[count]):
-		labels[count].free()
-	labels[count] = new_label
-	add_child(new_label)
-	new_label.text = event.as_text()
-	new_label.position.x = 24.0
-	new_label.position.y = count * 18.0
-	new_label.modulate = Color.LIME_GREEN
-	mark.position.y = count * 18.0
+	labels[count].text = event.as_text()
+	marker.position.y = count * 18.0
 	count += 1
+	if count >= MAX_COUNT:
+		count = 0

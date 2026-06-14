@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ouribyoau1dc"]
 
-[ext_resource type="ArrayMesh" uid="uid://m3f1qlpatg8m" path="res://assets/TestParts_TorsoDroneTest.res" id="1_j55ij"]
+[ext_resource type="ArrayMesh" uid="uid://bowx341qxg746" path="res://assets/TestParts_TorsoDroneTest.res" id="1_j55ij"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_bo0ho"]
-[ext_resource type="Resource" uid="uid://c05f22su0f45" path="res://parts/test/body_torso_drone_data.tres" id="3_c2x1j"]
+[ext_resource type="Resource" uid="uid://c05f22su0f45" path="res://parts/test/test_torso_drone_data.tres" id="3_c2x1j"]
 
 [sub_resource type="Skin" id="Skin_j55ij"]
 resource_name = "Skin6"

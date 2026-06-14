@@ -21,11 +21,12 @@ func physics_update(node, delta):
 			node.velocity.y = upward_speed
 	else:
 		node.velocity += node.gravity * delta * 6.0
+	var mult = 5.0
 	if node.move_direction.x or node.move_direction.z:
-		node.velocity += node.accelerate(node.move_direction, speed, delta)
+		node.velocity += node.accelerate(node.move_direction, speed, mult * delta)
 	else:
-		node.velocity.x -= node.velocity.x * delta * 2.0
-		node.velocity.z -= node.velocity.z * delta * 2.0
+		node.velocity.x -= node.velocity.x * mult * delta
+		node.velocity.z -= node.velocity.z * mult * delta
 	node.face_camera(delta)
 
 func input_event(node, event):

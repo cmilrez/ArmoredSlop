@@ -12,9 +12,9 @@ metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [resource]
 script = ExtResource("3_bwh84")
-reload_time = 2.0
-clip_size = 5
-ammo_max = 250
+reload_time = 2.2
+clip_size = 6
+ammo_max = 180
 ammo_cost = 1
 damage_data = SubResource("Resource_j4cgr")
 projectile_scene = ExtResource("2_7jl2x")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://oylta6226476"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://c2rqx5ejqesqw" path="res://misc/fric_1_phys_mtl.tres" id="1_2fwhx"]
+[ext_resource type="PhysicsMaterial" uid="uid://c2rqx5ejqesqw" path="res://misc/f1 pmtl.tres" id="1_2fwhx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dyyie"]
 height = 5.0
