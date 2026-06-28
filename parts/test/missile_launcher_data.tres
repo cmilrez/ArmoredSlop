@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_3n5fy"]
 script = ExtResource("1_pk8mb")
+source = NodePath("/root/@EditorNode@19544/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/TestRobotBuilder")
 damage_explosive = 5.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 

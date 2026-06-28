@@ -7,14 +7,15 @@ const advance_combo = &'parameters/Melee/conditions/advance_combo'
 const start_combo = &'parameters/Melee/conditions/start_combo'
 
 #@onready var playback: AnimationNodeStateMachinePlayback = get(&'parameters/playback')
-@export var anim_cancel := false
-@export var melee_hurtbox := false:
+var anim_cancel := false
+var melee_hurtbox := false:
 	set(value):
 		if not melee_hurtbox == value:
 			toggled_melee_hurtbox.emit(value)
 		melee_hurtbox = value
 
 func _ready():
+	active = true
 	get(&'parameters/playback').state_finished.connect(_on_state_finished)
 	get(&'parameters/Melee/playback').state_finished.connect(_on_state_finished)
 

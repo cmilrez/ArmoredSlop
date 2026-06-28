@@ -11,6 +11,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oflfl")
 
+[node name="Velocity" type="Label" parent="." unique_id=98598789]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -63.0
+offset_right = 108.0
+offset_bottom = -40.0
+grow_vertical = 0
+text = "12345 Km/h"
+vertical_alignment = 1
+
 [node name="ArmorText" type="Label" parent="." unique_id=1018274820]
 layout_mode = 1
 anchors_preset = 2

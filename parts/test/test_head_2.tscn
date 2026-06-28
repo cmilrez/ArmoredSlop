@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ddrymdiuiil7g"]
+
+[ext_resource type="ArrayMesh" uid="uid://db3etwbxsyaa3" path="res://assets/TestParts2_TestHead2.res" id="1_nnslh"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="1_wgfnu"]
+[ext_resource type="Resource" uid="uid://b3rs58mp6a4a4" path="res://parts/test/test_head_2_data.tres" id="3_tlty2"]
+
+[sub_resource type="Skin" id="Skin_j4vs0"]
+resource_name = "Skin2"
+bind_count = 1
+bind/0/name = &"Head"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+
+[node name="TestHead2" type="MeshInstance3D" unique_id=2037406719]
+mesh = ExtResource("1_nnslh")
+skin = SubResource("Skin_j4vs0")
+script = ExtResource("1_wgfnu")
+data = ExtResource("3_tlty2")

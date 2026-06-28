@@ -1,0 +1,330 @@
+[gd_scene format=3 uid="uid://cfaqalhv2d35p"]
+
+[ext_resource type="Script" uid="uid://cv6r5c12sbejw" path="res://character/npc.gd" id="1_7sdwg"]
+[ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc_data.gd" id="2_u6wqr"]
+[ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="3_5l4bd"]
+[ext_resource type="Script" uid="uid://btfrl44ml1u3e" path="res://character/orb/orb_controller.gd" id="3_61c0t"]
+[ext_resource type="Script" uid="uid://d27tsvudythye" path="res://character/npc_weapon.gd" id="4_5l4bd"]
+[ext_resource type="PackedScene" uid="uid://4k6kuq8h8g7i" path="res://projectile/template_laser.tscn" id="5_61c0t"]
+[ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="6_4g13y"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="6_o6hn8"]
+[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="8_fc5v5"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/targeting.gd" id="9_t4aug"]
+
+[sub_resource type="Resource" id="Resource_bq8tf"]
+script = ExtResource("2_u6wqr")
+distance_max = 150.0
+max_hp = 15.0
+metadata/_custom_type_script = "uid://f665pyihvlvu"
+
+[sub_resource type="Resource" id="Resource_vq2wp"]
+script = ExtResource("6_o6hn8")
+damage_energy = 5.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Animation" id="Animation_5l4bd"]
+resource_name = "Idle"
+length = 0.9666700504157693
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.5, 0), Vector3(0, 2.5, 0), Vector3(0, 3.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Bottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_61c0t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Bottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fuevr"]
+resource_name = "StartChase"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2), Vector3(0, 0, -2), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Bottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.2, 0), Vector3(0, -1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4g13y"]
+_data = {
+&"Idle": SubResource("Animation_5l4bd"),
+&"RESET": SubResource("Animation_61c0t"),
+&"StartChase": SubResource("Animation_fuevr")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u6wqr"]
+radius = 2.1
+height = 6.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ugwlr"]
+radius = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+albedo_color = Color(0, 0.78431374, 0.47843137, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+radius = 2.0
+height = 2.0
+radial_segments = 16
+rings = 8
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6wqr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_u6wqr")
+top_radius = 0.8
+bottom_radius = 0.8
+radial_segments = 8
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipfcj"]
+albedo_color = Color(0, 0.75, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fje11"]
+material = SubResource("StandardMaterial3D_ipfcj")
+size = Vector3(0.6, 0.8, 3)
+
+[node name="Orb" type="CharacterBody3D" unique_id=1778749596 node_paths=PackedStringArray("lock_on_marker", "weapons")]
+collision_layer = 16
+collision_mask = 23
+script = ExtResource("1_7sdwg")
+data = SubResource("Resource_bq8tf")
+lock_on_marker = NodePath("Model/LockOnMarker")
+weapons = [NodePath("NPCWeapon")]
+metadata/_custom_type_script = "uid://cv6r5c12sbejw"
+
+[node name="OrbController" type="Node" parent="." unique_id=1913204794 node_paths=PackedStringArray("character", "anim_player")]
+script = ExtResource("3_61c0t")
+character = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Timer" type="Timer" parent="OrbController" unique_id=28728876]
+one_shot = true
+
+[node name="Health" type="Node" parent="." unique_id=59683056]
+script = ExtResource("3_5l4bd")
+data = SubResource("Resource_bq8tf")
+metadata/_custom_type_script = "uid://ch5cqu8ctoscg"
+
+[node name="NPCWeapon" type="Node" parent="." unique_id=715111303 node_paths=PackedStringArray("spawners")]
+unique_name_in_owner = true
+script = ExtResource("4_5l4bd")
+spawners = NodePath("../Model/Pivot")
+projectile_scene = ExtResource("5_61c0t")
+damage_data = SubResource("Resource_vq2wp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=738103764]
+libraries/ = SubResource("AnimationLibrary_4g13y")
+autoplay = &"Idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=578458695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("CapsuleShape3D_u6wqr")
+
+[node name="DetectionZone" type="Area3D" parent="." unique_id=880002333]
+collision_layer = 0
+collision_mask = 20
+script = ExtResource("6_4g13y")
+data = SubResource("Resource_bq8tf")
+metadata/_custom_type_script = "uid://b8r75t4pr7lpd"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionZone" unique_id=1405580566]
+shape = SubResource("SphereShape3D_ugwlr")
+debug_color = Color(1, 1, 0.5019608, 0.41960785)
+debug_fill = false
+metadata/_edit_lock_ = true
+
+[node name="EyeRay" type="RayCast3D" parent="DetectionZone" unique_id=956922096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+enabled = false
+target_position = Vector3(0, 0, 1)
+collision_mask = 3
+
+[node name="Timer" type="Timer" parent="DetectionZone" unique_id=1782618239]
+one_shot = true
+
+[node name="Model" type="Node3D" parent="." unique_id=312480031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Top" type="MeshInstance3D" parent="Model" unique_id=359316941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 4
+mesh = SubResource("SphereMesh_vq2wp")
+
+[node name="Core" type="MeshInstance3D" parent="Model" unique_id=209981465]
+layers = 4
+mesh = SubResource("CylinderMesh_vq2wp")
+
+[node name="Pivot" type="Node3D" parent="Model" unique_id=1862489949]
+
+[node name="Cannon" type="MeshInstance3D" parent="Model/Pivot" unique_id=645619796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+layers = 4
+mesh = SubResource("BoxMesh_fje11")
+
+[node name="Bottom" type="MeshInstance3D" parent="Model" unique_id=1388654570]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0, -1, 0)
+layers = 4
+mesh = SubResource("SphereMesh_vq2wp")
+
+[node name="Hitbox" type="Area3D" parent="Model" unique_id=1131652989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+collision_layer = 8
+collision_mask = 32
+script = ExtResource("8_fc5v5")
+metadata/_custom_type_script = "uid://802cykxrtjmf"
+
+[node name="Body" type="CollisionShape3D" parent="Model/Hitbox" unique_id=2022865918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0000005, 0)
+shape = SubResource("CapsuleShape3D_u6wqr")
+
+[node name="LockOnMarker" type="VisibleOnScreenNotifier3D" parent="Model" unique_id=1199716181]
+layers = 4
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+
+[node name="Targeting" type="Marker3D" parent="." unique_id=848639494]
+unique_name_in_owner = true
+script = ExtResource("9_t4aug")
+metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
+
+[connection signal="death" from="Health" to="DetectionZone" method="deactivate"]
+[connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
+[connection signal="hit" from="Model/Hitbox" to="Health" method="take_damage"]
+[connection signal="hit" from="Model/Hitbox" to="DetectionZone" method="set_target_from_damage"]
