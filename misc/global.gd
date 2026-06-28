@@ -1,6 +1,6 @@
 extends Node
 
-const TEAM_C = StringName('TeamC')
+const TEAM_C = &'TeamC'
 const QUARTER_PI = PI/4.0
 const LARGE_9 = 999999999999.0
 
@@ -16,6 +16,8 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func push_rigid_body_3d(collision: KinematicCollision3D, velocity: Vector3, mass: float):
+	if not velocity:
+		return
 	var collider := collision.get_collider()
 	if not collider is RigidBody3D:
 		return

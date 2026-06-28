@@ -3,8 +3,8 @@ class_name PlayerCamera extends Node3D
 @onready var spring_arm = $SpringArm3D
 @onready var camera = $SpringArm3D/Camera3D
 @onready var eye_ray = $EyeRay
-@onready var targeting = %Targeting
-@onready var player: Player = get_parent()
+@onready var player: Character = get_parent()
+var targeting: Targeting = null
 
 @export_group('Camera Parameters')
 @export var mouse_sensitivity := 0.02
@@ -17,11 +17,12 @@ class_name PlayerCamera extends Node3D
 @export_group('Targeting Parameters')
 @export var param: LockOnParamenters = null
 
-var target_list: Array[Node3D]
+var target_list: Array[Node3D] = []
 var input_direction := Vector2.ZERO
 var manual_aim := false
 
 func _ready():
+	targeting = player.find_child('Targeting', false)
 	SignalBus.enemy_entered_screen.connect(append_target)
 	SignalBus.enemy_exited_screen.connect(erase_target)
 	spring_arm.spring_length = arm_length
@@ -33,13 +34,13 @@ func append_target(node: Node3D):
 func erase_target(node: Node3D):
 	target_list.erase(node)
 
-func get_target() -> Node3D:
+func search_target() -> Node3D:
 	var closest_target: Node3D = null
 	var closest_distance_2d := Global.LARGE_9
 	for target: Node3D in target_list:
 		if not is_instance_valid(target):
 			continue
-		if target.is_in_group(player.team_group):
+		if target.team_group == player.team_group:
 			continue
 		var target_position = target.get_lock_position()
 		var distance := global_position.distance_to(target_position)
@@ -58,23 +59,12 @@ func get_target() -> Node3D:
 	return closest_target
 
 func _process(delta):
+	if not camera.current:
+		return
 	spring_arm.rotation.x += input_direction.y * delta * invert_y
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, min_angle_x, max_angle_x)
 	spring_arm.rotation.y += input_direction.x * delta * invert_x
 	input_direction *= 0
-	
-	eye_ray.global_position = camera.global_position
-	var target = null
-	if not manual_aim:
-		target = get_target()
-	targeting.target = target
-	if not target:
-		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_9
-		var point = to_global(eye_ray.target_position)
-		eye_ray.force_raycast_update()
-		if eye_ray.is_colliding():
-			point = eye_ray.get_collision_point()
-		targeting.position = point
 
 func _physics_process(delta):
 	if not camera.current:
@@ -84,7 +74,19 @@ func _physics_process(delta):
 	position = position.lerp(new_pos, lerp_weight)
 	var lerp_weight2 := 1.0 - pow(0.5, delta * 8.0)
 	position.y = lerpf(position.y, player.position.y + height, lerp_weight2)
-	#position.y = player.position.y + height
+	
+	eye_ray.global_position = camera.global_position
+	var target = null
+	if not manual_aim:
+		target = search_target()
+	targeting.target = target
+	if not target:
+		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_9
+		var point = to_global(eye_ray.target_position)
+		eye_ray.force_raycast_update()
+		if eye_ray.is_colliding():
+			point = eye_ray.get_collision_point()
+		targeting.position = point
 
 func _unhandled_input(event):
 	if not camera.current:

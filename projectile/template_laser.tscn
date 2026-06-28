@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://4k6kuq8h8g7i"]
+
+[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_2hve0"]
+[ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_hotgm"]
+[ext_resource type="PackedScene" uid="uid://b3nhbo8ief3mx" path="res://effect/laser_sparks.tscn" id="3_2hve0"]
+
+[sub_resource type="Resource" id="Resource_2hve0"]
+script = ExtResource("2_hotgm")
+metadata/_custom_type_script = "uid://bfbhdd2s003h1"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb38e"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0.6487473, 3.2944162, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0uh68"]
+material = SubResource("StandardMaterial3D_xb38e")
+size = Vector2(5, 0.6)
+orientation = 0
+
+[node name="Bullet" type="Node3D" unique_id=1299266127]
+top_level = true
+script = ExtResource("1_2hve0")
+data = SubResource("Resource_2hve0")
+effect_scene = ExtResource("3_2hve0")
+metadata/_custom_type_script = "uid://dktp0dq6ay20q"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1890110915]
+layers = 8
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("QuadMesh_0uh68")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1021711657]
+transform = Transform3D(0.7071067, -0.70710677, 0, 0.70710677, 0.7071067, 0, 0, 0, 1, 0, 0, 0)
+layers = 8
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("QuadMesh_0uh68")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=423033802]
+transform = Transform3D(-2.9802322e-08, -0.9999999, 0, 0.9999999, -2.9802322e-08, 0, 0, 0, 1, 0, 0, 0)
+layers = 8
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("QuadMesh_0uh68")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1330324324]
+transform = Transform3D(-0.7071067, -0.7071067, 0, 0.7071067, -0.7071067, 0, 0, 0, 1, 0, 0, 0)
+layers = 8
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("QuadMesh_0uh68")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=400149118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+target_position = Vector3(0, 0, 1)
+collision_mask = 11
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0.11764706, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Timer" type="Timer" parent="." unique_id=1695841239]
+one_shot = true

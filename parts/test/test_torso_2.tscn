@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dxknaf0m85wpj"]
+
+[ext_resource type="ArrayMesh" uid="uid://bity65pr3js4n" path="res://assets/TestParts2_TestTorso2.res" id="1_y2ucp"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="1_y3c0i"]
+[ext_resource type="Resource" uid="uid://cysrhxhwsvfeh" path="res://parts/test/test_torso_2_data.tres" id="3_6amfx"]
+
+[sub_resource type="Skin" id="Skin_y2ucp"]
+resource_name = "Skin3"
+bind_count = 10
+bind/0/name = &"Torso"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 7.450581e-09, 0, 1.1250064e-15)
+bind/1/name = &"ArmJoint.L"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.5618533, -1.3942835, 0.402957)
+bind/2/name = &"ArmJoint.R"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.5374675, -1.3942823, 0.41045746)
+bind/3/name = &"OverboostTorso.002"
+bind/3/bone = -1
+bind/3/pose = Transform3D(4.371138e-08, 0, -1, 0, -1, 0, -1, 0, -4.371138e-08, 2.094313, 1.2930117, -0.8827028)
+bind/4/name = &"OverboostTorso.001"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88270295, -1.2930117, -2.094313)
+bind/5/name = &"OverboostTorso.004"
+bind/5/bone = -1
+bind/5/pose = Transform3D(4.371138e-08, 0, -1, 0, -1, 0, -1, 0, -4.371138e-08, 2.0983903, 1.2930108, 0.8563442)
+bind/6/name = &"OverboostTorso.003"
+bind/6/bone = -1
+bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8563441, -1.2930108, -2.0983903)
+bind/7/name = &"Head"
+bind/7/bone = -1
+bind/7/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020194843, -1.5789315, -0.091585)
+bind/8/name = &"BackUnit.L"
+bind/8/bone = -1
+bind/8/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.808, 1.441, 1.888)
+bind/9/name = &"BackUnit.R"
+bind/9/bone = -1
+bind/9/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.808, 1.441, 1.888)
+
+[node name="TestTorso2" type="MeshInstance3D" unique_id=130927337]
+mesh = ExtResource("1_y2ucp")
+skin = SubResource("Skin_y2ucp")
+script = ExtResource("1_y3c0i")
+data = ExtResource("3_6amfx")

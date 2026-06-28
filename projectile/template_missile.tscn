@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://4yx46onl8y8g" path="res://projectile/missile.gd" id="1_trsiv"]
 [ext_resource type="PackedScene" uid="uid://dorht4bwny6qy" path="res://effect/explosion_small.tscn" id="2_bhxmo"]
 [ext_resource type="Script" uid="uid://dqk5j2vf60io2" path="res://projectile/missile_data.gd" id="2_qjrrw"]
-[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://character/targeting.gd" id="3_0snrw"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/targeting.gd" id="3_0snrw"]
 
 [sub_resource type="Curve" id="Curve_qjrrw"]
 _data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]

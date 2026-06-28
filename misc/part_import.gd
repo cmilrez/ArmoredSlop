@@ -16,32 +16,39 @@ func iterate(node: Node):
 		body_part.mesh = node.mesh
 		body_part.skin = node.skin
 		var part_id = node.get_parent().get_parent().name
+		var path = 'res://parts/test/'
 		match part_id.erase(0, 2).left(1):
 			'1':
 				body_part.data = HeadPartData.new()
+				path += 'test_head_2_data.tres'
 			'2':
 				body_part.data = ArmsPartData.new()
+				path += 'test_arms_2_data.tres'
 			'3':
 				body_part.data = TorsoPartData.new()
+				path += 'test_torso_2_data.tres'
 			'4':
 				body_part.data = LegsPartData.new()
+				path += 'test_legs_reverse_data.tres'
 		var skeleton: Skeleton3D = node.get_parent()
 		for bone: int in skeleton.get_parentless_bones():
 			iterate_skeleton(skeleton, bone, body_part.data, body_part.skin)
-		var scene := PackedScene.new()
-		var path = 'res://copyright_shit/'
-		scene.pack(body_part)
-		var error1 = ResourceSaver.save(scene, path + part_id + '.tscn')
-		if error1:
-			push_warning(part_id, ' ', node.name, ' not saved, ', error1)
-		else:
-			var index = PartIndex.new()
-			index.scene = ResourceLoader.load(path + part_id + '.tscn')
-			index.data = body_part.data
-			index.ui_miniature = ResourceLoader.load(path + 'miniatures/' + part_id + '.png')
-			var error2 = ResourceSaver.save(index, path + part_id + '_ID.tres')
-			if error2:
-				push_warning(part_id, ' index not saved, ', error1)
+		var data = body_part.data
+		ResourceSaver.save(data, path)
+		#var scene := PackedScene.new()
+		#var path = 'res://copyright_shit/'
+		#scene.pack(body_part)
+		#var error1 = ResourceSaver.save(scene, path + part_id + '.tscn')
+		#if error1:
+			#push_warning(part_id, ' ', node.name, ' not saved, ', error1)
+		#else:
+			#var index = PartIndex.new()
+			#index.scene = ResourceLoader.load(path + part_id + '.tscn')
+			#index.data = body_part.data
+			#index.ui_miniature = ResourceLoader.load(path + 'miniatures/' + part_id + '.png')
+			#var error2 = ResourceSaver.save(index, path + part_id + '_ID.tres')
+			#if error2:
+				#push_warning(part_id, ' index not saved, ', error1)
 	for child in node.get_children():
 		iterate(child)
 
