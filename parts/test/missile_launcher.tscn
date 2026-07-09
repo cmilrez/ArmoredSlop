@@ -1,9 +1,27 @@
 [gd_scene format=3 uid="uid://qs1aigkqwumj"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_ej6wy"]
-[ext_resource type="Resource" uid="uid://b6ktygege3u3q" path="res://parts/test/missile_launcher_data.tres" id="2_77ii2"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_edyxe"]
 [ext_resource type="Script" uid="uid://bmwkw0gcjr4vm" path="res://parts/hatch_opener.gd" id="3_0vhiq"]
 [ext_resource type="ArrayMesh" uid="uid://5luk57genld0" path="res://assets/TestWeapons02_MissileLauncher6.res" id="3_hfhwc"]
+[ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/missile_basic.tscn" id="3_rw0fq"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_nuowb"]
+
+[sub_resource type="Resource" id="Resource_q4pmm"]
+script = ExtResource("2_edyxe")
+damage_explosive = 5.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_4chhe"]
+script = ExtResource("4_nuowb")
+multishot_interval = 0.1
+reload_time = 4.0
+clip_size = 6
+ammo_max = 90
+ammo_cost = 1
+damage_data = SubResource("Resource_q4pmm")
+projectile_scene = ExtResource("3_rw0fq")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"
 
 [sub_resource type="Animation" id="Animation_hkpe4"]
 length = 0.001
@@ -125,7 +143,7 @@ _data = {
 [node name="MissileLauncher" type="Node3D" unique_id=155415789 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_ej6wy")
 spawners = NodePath("Skeleton3D/Body/Spawners")
-data = ExtResource("2_77ii2")
+data = SubResource("Resource_4chhe")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1013885186]

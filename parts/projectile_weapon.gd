@@ -57,9 +57,9 @@ func activate(targeting: Targeting):
 		var target_position = targeting.get_targeting_position(new_projectile.data.speed, spawn.global_position)
 		get_tree().current_scene.add_child(new_projectile)
 		if new_projectile is Bullet:
-			new_projectile.set_up(spawn.global_position, spawn.rotation, data.damage_data, target_position)
+			new_projectile.set_up(spawn, data.damage_data, target_position)
 		elif new_projectile is Missile:
-			new_projectile.set_up(spawn.global_transform, data.damage_data, target_position, targeting.target)
+			new_projectile.set_up(spawn, data.damage_data, target_position, targeting.target)
 		ammo_loaded -= data.ammo_cost
 		if data.multishot_interval > 0.0 and spawn_count > 0:
 			timer.start(data.multishot_interval)

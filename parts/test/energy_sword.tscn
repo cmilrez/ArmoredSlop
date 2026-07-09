@@ -2,8 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_nymui"]
 [ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_bgmkj"]
-[ext_resource type="Resource" uid="uid://c5vmqxfgofisg" path="res://parts/test/energy_sword_data.tres" id="2_nymui"]
+[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="3_16qkg"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_lcwht"]
+
+[sub_resource type="Resource" id="Resource_dh08t"]
+script = ExtResource("2_bgmkj")
+damage_energy = 15.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_7w8g1"]
+script = ExtResource("3_16qkg")
+reload_time = 3.0
+damage_data = SubResource("Resource_dh08t")
+metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjuil"]
 albedo_color = Color(1, 0.2509804, 1, 1)
@@ -25,12 +36,13 @@ size = Vector2(0.5, 10)
 center_offset = Vector3(0, 0, -5)
 orientation = 1
 
-[sub_resource type="Resource" id="Resource_climr"]
+[sub_resource type="Resource" id="Resource_81hid"]
 script = ExtResource("2_bgmkj")
+damage_energy = 15.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
-radius = 1.2
+radius = 1.0
 height = 10.0
 
 [sub_resource type="Animation" id="Animation_climr"]
@@ -62,7 +74,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1, 0)]
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 0.1)]
 }
 
 [sub_resource type="Animation" id="Animation_ymj4f"]
@@ -78,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 0), Vector3(1, 1, 0.4)]
+"values": [Vector3(1, 1, 0.1), Vector3(1, 1, 0.4)]
 }
 
 [sub_resource type="Animation" id="Animation_g5dng"]
@@ -93,7 +105,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 1, 0)]
+"values": [Vector3(1, 1, 0.1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_climr"]
@@ -106,7 +118,7 @@ _data = {
 
 [node name="EnergySword" type="Node3D" unique_id=1950415004]
 script = ExtResource("1_nymui")
-data = ExtResource("2_nymui")
+data = SubResource("Resource_7w8g1")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=677172602]
@@ -116,22 +128,21 @@ gi_mode = 0
 mesh = SubResource("BoxMesh_g5dng")
 
 [node name="Blade" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1698943514]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 8.742278e-08, 0, 0, 0, 0, 0)
+transform = Transform3D(-1, 0, -1.509958e-08, 0, 1, 0, 1.509958e-07, 0, -0.1, 0, 0, -0.5)
 layers = 4
 cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("QuadMesh_tjuil")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1436141130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 5.3)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3, 0, 5)
 monitoring = false
 monitorable = false
 script = ExtResource("4_lcwht")
-damage_data = SubResource("Resource_climr")
+damage_data = SubResource("Resource_81hid")
 metadata/_custom_type_script = "uid://p0vi8wansauj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1879200327]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_g5dng")
 debug_color = Color(1, 0, 0, 0.41960785)
 

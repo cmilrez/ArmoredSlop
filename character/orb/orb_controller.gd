@@ -22,6 +22,8 @@ var state := WANDER:
 					move_direction = Vector3.ZERO
 					anim_player.play(&'StartChase')
 					timer.start(1.0)
+				DEATH:
+					anim_player.play(&'Death')
 
 func _ready():
 	set_deferred(&'home_position', character.global_position)
@@ -38,7 +40,7 @@ func _process(delta):
 func _physics_process(delta):
 	match state:
 		WANDER:
-			accel = 5.0
+			accel = 10.0
 			speed = 20.0
 			var home_dist = character.hor_distance(home_position)
 			var home_dir = character.hor_direction(home_position)
@@ -95,3 +97,4 @@ func _physics_process(delta):
 	else:
 		character.velocity.x = 0.0
 		character.velocity.z = 0.0
+	character.do_friction(2.0)

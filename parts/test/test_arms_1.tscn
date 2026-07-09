@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d2ekutr5o5q7"]
+
+[ext_resource type="ArrayMesh" uid="uid://bg0yr33u6scnb" path="res://assets/TestParts_TestArms1.res" id="1_exchu"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_o57ej"]
+[ext_resource type="Script" uid="uid://dj77y8eacejc8" path="res://parts/arms_part_data.gd" id="3_sd8mo"]
+
+[sub_resource type="Skin" id="Skin_ihl4d"]
+resource_name = "Skin7"
+bind_count = 6
+bind/0/name = &"Shoulder.L"
+bind/0/bone = -1
+bind/0/pose = Transform3D(0.94176567, -0.3362698, -6.263145e-08, -0.33626863, -0.94176257, -0.0025753872, 0.00086596864, 0.0024254424, -0.9999967, 0, 0, 0)
+bind/1/name = &"Forearm.L"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 1.5562819e-08, -5.820767e-11, 2.8521767e-09, -6.007031e-08, -1.0000001, -1.4179022e-08, 1, 8.2532783e-19, 0.58452374, -0.004476818, 1.637032)
+bind/2/name = &"Shoulder.R"
+bind/2/bone = -1
+bind/2/pose = Transform3D(0.9417657, 0.33626962, -1.1717202e-07, 0.3362685, -0.9417627, -0.0025754117, -0.0008661448, 0.0024253717, -0.9999968, 0, 0, 0)
+bind/3/name = &"Forearm.R"
+bind/3/bone = -1
+bind/3/pose = Transform3D(0.9999999, -7.4997594e-08, -5.8207647e-11, -1.7462269e-09, 1.697335e-07, -0.9999999, 1.4576695e-08, 0.9999999, -8.4847524e-19, -0.58452344, -0.0044764285, 1.6370319)
+bind/4/name = &"Hand.R"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6587573, 2.027463, 2.0115314)
+bind/5/name = &"Hand.L"
+bind/5/bone = -1
+bind/5/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6587573, 2.027463, 2.0115314)
+
+[sub_resource type="Resource" id="Resource_fiu15"]
+script = ExtResource("3_sd8mo")
+bone_list = {
+"Forearm.L": [Transform3D(0.9417657, 6.4260433e-07, -0.33626968, -0.33626857, 0.0025754615, -0.9417626, 0.00086544454, 0.99999666, 0.0024256976, 1.498458e-10, 1.738264, 2.910383e-10), ["Hand.L"]],
+"Forearm.R": [Transform3D(0.9417657, 6.220301e-07, 0.33626974, 0.3362686, 0.0025752874, -0.9417626, -0.00086657703, 0.99999666, 0.0024251083, -2.3241675e-10, 1.738264, 1.1641532e-10), ["Hand.R"]],
+"Hand.L": [Transform3D(-1, 4.4703455e-08, -8.2154804e-07, -8.2154804e-07, 0, 1, 4.4703455e-08, 1, 0, -0.02242581, 2.0059245, -0.4262571), []],
+"Hand.R": [Transform3D(-1, -4.4703455e-08, -6.7253654e-07, -6.7253654e-07, 0, 1, -4.4703455e-08, 1, 0, 0.035144355, 2.0059242, -0.4262571), []],
+"Hatch.L": [Transform3D(-0.59232986, -0.80569565, 2.0723317e-06, 0.80569315, -0.5923278, 0.0025771884, -0.0020752025, 0.001528215, 0.9999966, -0.6515686, 0.21592546, -0.00021975345), []],
+"Hatch.R": [Transform3D(-0.5923296, 0.80569565, -1.5084555e-06, -0.805693, -0.5923277, 0.0025762985, 0.0020748193, 0.0015272336, 0.9999966, 0.66354644, 0.2202023, -0.00023156957), []],
+"Shoulder.L": [Transform3D(-0.9417657, 0.3362685, -0.0008660159, -0.33626965, -0.94176257, 0.002425671, 9.54576e-08, 0.0025756287, 0.9999966, 0, 0, 0), ["Forearm.L", "Hatch.L"]],
+"Shoulder.R": [Transform3D(-0.9417657, -0.3362685, 0.0008660227, 0.33626965, -0.94176257, 0.002425251, 5.21511e-08, 0.0025752354, 0.9999966, 0, 0, 0), ["Forearm.R", "Hatch.R"]]
+}
+
+[node name="TestArms1" type="MeshInstance3D" unique_id=1338844704]
+layers = 4
+mesh = ExtResource("1_exchu")
+skin = SubResource("Skin_ihl4d")
+script = ExtResource("3_o57ej")
+data = SubResource("Resource_fiu15")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

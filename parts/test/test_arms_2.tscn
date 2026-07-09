@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cuqpbdjjnk4so"]
 
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="1_4g72k"]
-[ext_resource type="ArrayMesh" uid="uid://cj1msfi54y647" path="res://assets/TestParts2_TestArms2.res" id="1_od6c5"]
-[ext_resource type="Resource" uid="uid://bm4he1kj7u4fp" path="res://parts/test/test_arms_2_data.tres" id="3_t78n5"]
+[ext_resource type="ArrayMesh" uid="uid://btl4fe3rwnpub" path="res://assets/TestParts_TestArms2.res" id="1_od6c5"]
+[ext_resource type="Script" uid="uid://dj77y8eacejc8" path="res://parts/arms_part_data.gd" id="3_t78n5"]
 
 [sub_resource type="Skin" id="Skin_sacil"]
 resource_name = "Skin4"
@@ -26,8 +26,19 @@ bind/5/name = &"Hand.R"
 bind/5/bone = -1
 bind/5/pose = Transform3D(1, -5.2386895e-10, 2.4411997e-19, -5.272887e-08, 1, -4.6565818e-10, 1.6763805e-08, -1.3969839e-09, 1, -0.5339173, 1.8822902, 2.09553)
 
+[sub_resource type="Resource" id="Resource_3xjvn"]
+script = ExtResource("3_t78n5")
+bone_list = {
+"Forearm.L": [Transform3D(0.9473325, -0.017418759, -0.31977758, -0.31981438, 0.0007054317, -0.9474799, 0.016729504, 0.9998481, -0.004902491, -4.4812623e-08, 1.7395265, 1.3969839e-09), ["Hand.L"]],
+"Forearm.R": [Transform3D(0.94733256, 0.017418772, 0.31977746, 0.31981423, 0.0007056594, -0.94747996, -0.016729593, 0.999848, -0.0049022436, -1.4733814e-08, 1.7395265, 4.656613e-10), ["Hand.R"]],
+"Hand.L": [Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 0.022, 2.094, -0.234), []],
+"Hand.R": [Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -0.022, 2.094, -0.234), []],
+"Shoulder.L": [Transform3D(-0.94733256, 0.31981435, -0.016729426, -0.31977758, -0.94747996, -0.0049022483, -0.017418606, 0.0007056357, 0.999848, 0, 0, 0), ["Forearm.L"]],
+"Shoulder.R": [Transform3D(-0.94733256, -0.3198143, 0.01672967, 0.31977746, -0.94748, -0.0049022436, 0.017418833, 0.00070571655, 0.999848, 0, 0, 0), ["Forearm.R"]]
+}
+
 [node name="TestArms2" type="MeshInstance3D" unique_id=1143105870]
 mesh = ExtResource("1_od6c5")
 skin = SubResource("Skin_sacil")
 script = ExtResource("1_4g72k")
-data = ExtResource("3_t78n5")
+data = SubResource("Resource_3xjvn")

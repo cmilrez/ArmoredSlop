@@ -1,7 +1,7 @@
 @abstract class_name Character extends CharacterBody3D
 
 @export var data: CharacterData = null
-@export var mass := 40.0
+@export var mass := 80.0
 @export_enum('TeamA', 'TeamB', 'TeamC') var team_group := 'TeamB'
 @export var lock_on_marker: Node3D = null
 @export var weapons: Array[Node] = []
@@ -11,6 +11,12 @@ var boosting := false
 
 func get_lock_position() -> Vector3:
 	return lock_on_marker.global_position
+
+func distance_to(to: Vector3) -> float:
+	return get_lock_position().distance_to(to)
+
+func direction_to(to: Vector3) -> Vector3:
+	return get_lock_position().direction_to(to)
 
 func hor_direction(to: Vector3) -> Vector3:
 	var dir = Vector2(global_position.x, global_position.z).direction_to(Vector2(to.x, to.z))

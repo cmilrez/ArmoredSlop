@@ -23,7 +23,7 @@ orientation = 0
 top_level = true
 script = ExtResource("1_2hve0")
 data = SubResource("Resource_2hve0")
-effect_scene = ExtResource("3_2hve0")
+hitspawn_scene = ExtResource("3_2hve0")
 metadata/_custom_type_script = "uid://dktp0dq6ay20q"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1890110915]

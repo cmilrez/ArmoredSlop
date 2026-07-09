@@ -1,14 +1,20 @@
 class_name Missile extends Node3D
 
+signal started_homing
+
 @onready var ray_cast = $RayCast3D
 @onready var targeting = $Targeting
 @onready var timer = $Timer
 
-@export var explosion_scene: PackedScene = null
+@export var hitspawn_scene: PackedScene = null
 @export var data: MissileData = null
 var damage_data: DamageData = null
 var speed_curve_offset := 0.0
-var homing := true
+var homing := true:
+	set(value):
+		if not homing and value:
+			started_homing.emit()
+		homing = value
 
 func _ready():
 	if data.speed_curve_duration > 0.0:
@@ -17,42 +23,34 @@ func _ready():
 		homing = false
 		create_tween().tween_property(self, 'homing', true, data.homing_delay)
 	top_level = true
+	ray_cast.enabled = false
 	timer.one_shot = true
-	timer.timeout.connect(detonate)
+	timer.timeout.connect(destroy)
 	timer.start(data.life_time)
 
-func _process(delta):
+func move_and_collide() -> bool:
 	var speed = data.speed
 	if data.speed_curve and speed_curve_offset < 1.0:
 		speed *= data.speed_curve.sample(speed_curve_offset)
-	var distance_delta: Vector3 = global_basis.z * speed * delta
-	ray_cast.target_position.z = speed * delta
-	if ray_cast.is_colliding():
-		if explosion_scene:
-			var collision_point = ray_cast.get_collision_point()
-			var explosion = explosion_scene.instantiate()
-			get_tree().current_scene.add_child(explosion)
-			explosion.set_up(collision_point, damage_data)
-		else:
-			var collider = ray_cast.get_collider()
-			if collider is Hitbox:
-				collider.hit.emit(damage_data)
-		timer.stop()
-		detonate()
-		return
-	if homing:
-		var target_position = targeting.get_targeting_position(data.speed, global_position)
-		var direction: Vector3 = -global_position.direction_to(target_position)
-		var cross = direction.cross(global_basis.z).normalized()
-		var angle = direction.signed_angle_to(global_basis.z, cross)
-		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * delta))
-	global_position += distance_delta
+	var delta_speed = speed * get_process_delta_time()
+	position += basis.z * delta_speed
+	ray_cast.target_position.z = delta_speed
+	ray_cast.force_raycast_update()
+	return ray_cast.is_colliding()
 
-func set_up(spawn_transform: Transform3D, _damage_data: DamageData, target_position: Vector3, target: Character = null):
-	global_transform = spawn_transform
+func rotate_to_target(ahead := true):
+	if homing:
+		var target_position = targeting.get_targeting_position(data.speed, position) if ahead else targeting.position
+		var direction: Vector3 = -position.direction_to(target_position)
+		var cross = direction.cross(basis.z).normalized()
+		var angle = direction.signed_angle_to(basis.z, cross)
+		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * get_process_delta_time()))
+
+func set_up(spawn: Node3D, _damage_data: DamageData, target_position: Vector3, target: Character = null):
+	global_transform = spawn.global_transform
 	damage_data = _damage_data
 	targeting.global_position = target_position
 	targeting.target = target
 
-func detonate():
+func destroy():
 	queue_free()

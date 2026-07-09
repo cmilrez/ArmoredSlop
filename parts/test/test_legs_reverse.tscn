@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://csxxl0y4b2shk"]
 
-[ext_resource type="ArrayMesh" uid="uid://dyx4o7irlng5k" path="res://assets/TestParts2_TestLegReverse.res" id="1_gqre1"]
+[ext_resource type="ArrayMesh" uid="uid://bqbmprc5pufv5" path="res://assets/TestParts_TestLegReverse.res" id="1_gqre1"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_rl5l1"]
-[ext_resource type="Resource" uid="uid://c33jy0rn63cx6" path="res://parts/test/test_legs_reverse_data.tres" id="3_rl5l1"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/leg_part_data.gd" id="3_rl5l1"]
 
 [sub_resource type="Skin" id="Skin_i24fc"]
 resource_name = "Skin"
@@ -41,8 +41,27 @@ bind/10/name = &"Feet.R"
 bind/10/bone = -1
 bind/10/pose = Transform3D(0.9999739, 0.00546089, 0, -2.3362354e-05, 1.8095727e-06, -0.9999875, -0.005459156, 0.99998486, 0, -0.90213865, 0.37676033, -1.1983937)
 
-[node name="TestLegReverse" type="MeshInstance3D" unique_id=510005170]
+[sub_resource type="Resource" id="Resource_yjnkv"]
+script = ExtResource("3_rl5l1")
+leg_type = 1
+bone_list = {
+"Feet.L": [Transform3D(0.99998266, -0.004959339, 0.0031746102, 0.0049592895, 0.41865176, -0.9081335, 0.003174684, 0.9081336, 0.41866907, 3.7020072e-08, 1.6284803, 4.656613e-08), []],
+"Feet.R": [Transform3D(0.9999826, 0.004959337, -0.0031746095, -0.004959289, 0.41865176, -0.9081333, -0.0031746828, 0.9081333, 0.4186691, -3.5273843e-08, 1.62848, -2.0023435e-08), []],
+"Knee.L": [Transform3D(0.98810065, 0.1320619, -0.07884644, -0.094607025, 0.92602557, 0.3654122, 0.12127085, -0.35360458, 0.9275005, 7.0780516e-08, 1.7523271, -4.4703484e-08), ["Shin.L"]],
+"Knee.R": [Transform3D(0.98810065, -0.13206188, 0.07884638, 0.09460702, 0.9260256, 0.36541218, -0.12127079, -0.3536046, 0.9275005, 1.2479722e-07, 1.7523266, 4.4703484e-08), ["Shin.R"]],
+"LegBase": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -4.3456048e-09, 6.343733, 0.007192091), ["Thigh.L", "TorsoJoint", "Thigh.R"]],
+"Root": [Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0), ["LegBase"]],
+"Shin.L": [Transform3D(0.99998295, -0.005281118, 0.0024993597, 0.0052813957, 0.63408804, -0.77324283, 0.0024987725, 0.77324283, 0.6341051, 3.8184226e-08, 2.1379201, -9.872019e-08), ["Feet.L"]],
+"Shin.R": [Transform3D(0.99998295, 0.005281101, -0.0024993503, -0.0052813776, 0.634088, -0.77324283, -0.0024987655, 0.77324283, 0.6341051, 1.5366822e-08, 2.1379197, -1.1827797e-07), ["Feet.R"]],
+"Thigh.L": [Transform3D(-0.98776466, 0.09144599, -0.12643643, -0.08084835, -0.99296033, -0.08656901, -0.13346331, -0.0752859, 0.9881996, 0.7376084, 0.0016708374, 5.7964513e-08), ["Knee.L"]],
+"Thigh.R": [Transform3D(-0.9877648, -0.091445975, 0.12643623, 0.080848366, -0.99296033, -0.08656901, 0.13346311, -0.07528589, 0.9881998, -0.7376084, 0.0016708374, -7.100303e-08), ["Knee.R"]],
+"TorsoJoint": [Transform3D(1, 2.8247947e-34, 2.63e-43, -2.8247947e-34, 1, 1.8626478e-09, 2.63e-43, -1.8626478e-09, 1, 0.0031725198, 0.9172416, 0.002923907), []]
+}
+
+[node name="TestLegReverse" type="MeshInstance3D" unique_id=3355999]
+layers = 4
 mesh = ExtResource("1_gqre1")
 skin = SubResource("Skin_i24fc")
 script = ExtResource("2_rl5l1")
-data = ExtResource("3_rl5l1")
+data = SubResource("Resource_yjnkv")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

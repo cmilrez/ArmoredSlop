@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cime86ax1rb6"
-path="res://.godot/imported/test_torso.png-1e34e61c265d489397fc26377735c2b2.ctex"
+uid="uid://dkemlvuxpxept"
+path="res://.godot/imported/split_launcher.png-4f290f079645a8a4ce23e6c6a41330e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://parts/test/test_torso.png"
-dest_files=["res://.godot/imported/test_torso.png-1e34e61c265d489397fc26377735c2b2.ctex"]
+source_file="res://parts/test/split_launcher.png"
+dest_files=["res://.godot/imported/split_launcher.png-4f290f079645a8a4ce23e6c6a41330e3.ctex"]
 
 [params]
 

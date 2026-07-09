@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_cxkk6"]
 [ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_gofbb"]
-[ext_resource type="PackedScene" uid="uid://dj5ue86henduo" path="res://effect/explosion.tscn" id="3_gofbb"]
+[ext_resource type="PackedScene" uid="uid://dj5ue86henduo" path="res://effect/explosion_s24.tscn" id="3_gofbb"]
 
 [sub_resource type="Resource" id="Resource_cxkk6"]
 script = ExtResource("2_gofbb")
@@ -22,7 +22,7 @@ rings = 8
 top_level = true
 script = ExtResource("1_cxkk6")
 data = SubResource("Resource_cxkk6")
-explosion_scene = ExtResource("3_gofbb")
+hitspawn_scene = ExtResource("3_gofbb")
 metadata/_custom_type_script = "uid://dktp0dq6ay20q"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1890110915]

@@ -4,8 +4,7 @@ class_name Bullet extends Node3D
 @onready var timer = $Timer
 
 @export var data: BulletData = null
-@export var explosion_scene: PackedScene = null
-@export var effect_scene: PackedScene = null
+@export var hitspawn_scene: PackedScene = null
 var damage_data: DamageData = null
 
 func _ready():
@@ -15,30 +14,32 @@ func _ready():
 	timer.start(data.life_time)
 
 func _process(delta):
-	var distance_delta: Vector3 = global_basis.z * data.speed * delta
-	ray_cast.target_position.z = data.speed * delta
+	var delta_speed = data.speed * delta
+	global_position += basis.z * delta_speed
+	ray_cast.target_position.z = delta_speed
 	if ray_cast.is_colliding():
-		var collision_point = ray_cast.get_collision_point()
-		if explosion_scene:
-			var explosion = explosion_scene.instantiate()
-			get_tree().current_scene.add_child(explosion)
-			explosion.set_up(collision_point, damage_data)
+		if hitspawn_scene:
+			var collision_point = ray_cast.get_collision_point()
+			var node = hitspawn_scene.instantiate()
+			get_tree().current_scene.add_child(node)
+			if node is Explosion:
+				node.set_up(collision_point, damage_data)
+			elif node is VFXContainer:
+				node.set_up(collision_point, ray_cast.get_collision_normal())
+				var collider = ray_cast.get_collider()
+				if collider is Hitbox:
+					collider.hit.emit(damage_data)
 		else:
 			var collider = ray_cast.get_collider()
 			if collider is Hitbox:
 				collider.hit.emit(damage_data)
-		if effect_scene:
-			var effect = effect_scene.instantiate()
-			get_tree().current_scene.add_child(effect)
-			effect.set_up(collision_point, ray_cast.get_collision_normal())
 		timer.stop()
 		destroy()
-	global_position += distance_delta
 
-func set_up(spawn_point: Vector3, spawn_rotation: Vector3, _damage_data: DamageData, target_position: Vector3):
-	global_position = spawn_point
+func set_up(spawn: Node3D, _damage_data: DamageData, target_position: Vector3):
+	global_position = spawn.global_position
 	look_at(target_position, Vector3.UP, true)
-	global_rotation += spawn_rotation
+	global_rotation += spawn.rotation
 	damage_data = _damage_data
 
 func destroy():

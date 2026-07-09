@@ -17,7 +17,8 @@ func _ready():
 func _process(delta):
 	if is_instance_valid(targeting.target):
 		var target_position: Vector3 = targeting.target.get_lock_position()
-		if (data.distance_max * data.distance_max) < target_position.distance_squared_to(owner.get_lock_position()):
+		var parent = get_parent()
+		if (data.distance_max * data.distance_max) < target_position.distance_squared_to(parent.get_lock_position()):
 			targeting.target = null
 			return
 		eye_ray.target_position = eye_ray.to_local(target_position)
@@ -31,13 +32,14 @@ func _process(delta):
 		targeting.target = search_target()
 
 func search_target() -> Character:
+	var parent = get_parent()
 	for body in get_overlapping_bodies():
-		if body == owner:
+		if body == parent:
 			continue
 		if not body.alive:
 			continue
 		if not body.is_in_group(Global.TEAM_C):
-			if body.team_group == owner.team_group:
+			if body.team_group == parent.team_group:
 				continue
 		eye_ray.target_position = eye_ray.to_local(body.get_lock_position())
 		eye_ray.force_raycast_update()
@@ -58,14 +60,14 @@ func search_target() -> Character:
 func set_target_from_damage(dmg_data: DamageData):
 	var source = get_node_or_null(dmg_data.source)
 	if source:
-		if not source.is_in_group(Global.TEAM_C):
-			if source.team_group == owner.team_group:
+		if not source.team_group == Global.TEAM_C:
+			if source.team_group == get_parent().team_group:
 				return
-	targeting.target = source
+		targeting.target = source
 
 func deactivate():
-	set_process(false)
 	targeting.target = null
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_timer_timout():
 	targeting.target = null

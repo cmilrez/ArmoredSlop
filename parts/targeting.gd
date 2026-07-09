@@ -12,7 +12,6 @@ func _process(delta):
 		if not target.alive:
 			target = null
 			return
-		#position = position.move_toward(target.get_lock_position(), 200.0 * delta)
 		position = target.get_lock_position()
 
 func get_targeting_position(bullet_speed: float, bullet_position: Vector3) -> Vector3:
