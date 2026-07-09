@@ -12,6 +12,8 @@ const COOLDOWN_ANIM = &'Cooldown'
 func _ready():
 	super._ready()
 	timer.timeout.connect(func(): _anim_ready())
+	hurtbox.damage_data = data.damage_data
+	toggle_hurtbox(false)
 	_anim_start()
 
 func activate(targeting: Targeting):

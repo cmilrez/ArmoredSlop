@@ -1,9 +1,26 @@
 [gd_scene format=3 uid="uid://cb8tx40201w3a"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_3lgcg"]
-[ext_resource type="Resource" uid="uid://dxi3v0awd160h" path="res://parts/test/shoulder_cannon_data.tres" id="2_huu1o"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_5ji6c"]
 [ext_resource type="ArrayMesh" uid="uid://dbojpk327s0w8" path="res://assets/TestWeapons02_ShoulderCannon.res" id="3_l7aj2"]
+[ext_resource type="PackedScene" uid="uid://dfjb6oyx7ivop" path="res://projectile/template_bomb.tscn" id="3_njyf5"]
 [ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="4_65uri"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_ls2pc"]
+
+[sub_resource type="Resource" id="Resource_vc76s"]
+script = ExtResource("2_5ji6c")
+damage_explosive = 30.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_kbovk"]
+script = ExtResource("4_ls2pc")
+reload_time = 6.0
+clip_size = 1
+ammo_max = 40
+ammo_cost = 1
+damage_data = SubResource("Resource_vc76s")
+projectile_scene = ExtResource("3_njyf5")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"
 
 [sub_resource type="Animation" id="Animation_wllxb"]
 resource_name = "RESET"
@@ -291,7 +308,7 @@ rings = 0
 [node name="ShoulderCannon" type="Node3D" unique_id=1687019098 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_3lgcg")
 spawners = NodePath("Skeleton3D/Body/Spawners")
-data = ExtResource("2_huu1o")
+data = SubResource("Resource_kbovk")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931819844]

@@ -1,4 +1,4 @@
-extends Node3D
+class_name Explosion extends Node3D
 
 @onready var hurtbox = $Hurtbox
 @export var max_scale = 10.0

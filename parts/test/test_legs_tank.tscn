@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bcbxssuca2mwb"]
+
+[ext_resource type="ArrayMesh" uid="uid://k5lti4km43nq" path="res://assets/TestParts_TestTank.res" id="1_fev4d"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="1_ipm5h"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/leg_part_data.gd" id="3_sduoy"]
+
+[sub_resource type="Skin" id="Skin_t6vfm"]
+resource_name = "Skin8"
+bind_count = 6
+bind/0/name = &"Root"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+bind/1/name = &"LegBase"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -0.006617652, -2.9133718, 0.009921848)
+bind/2/name = &"OverboostLeg.001"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -0.023620393, -2.9133718, 4.171086)
+bind/3/name = &"TorsoJoint"
+bind/3/bone = -1
+bind/3/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -0.0044122348, -4.452234, -3.5474757e-06)
+bind/4/name = &"Track.L"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.527542, -1.376256, -0.26466107)
+bind/5/name = &"Track.R"
+bind/5/bone = -1
+bind/5/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.527542, -1.376256, -0.26466107)
+
+[sub_resource type="Resource" id="Resource_vu0pm"]
+script = ExtResource("3_sduoy")
+leg_type = 3
+bone_list = {
+"LegBase": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006617652, 2.9133718, -0.009921848), ["OverboostLeg.001", "TorsoJoint", "Track.L", "Track.R"]],
+"OverboostLeg.001": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01700274, 0, -4.161164), []],
+"Root": [Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0), ["LegBase", "Track.L", "Track.R"]],
+"TorsoJoint": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002205417, 1.538862, 0.009925395), []],
+"Track.L": [Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 2.527542, 1.376256, -0.2646607), []],
+"Track.R": [Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -2.527542, 1.376256, -0.26466146), []]
+}
+
+[node name="TestLegTank" type="MeshInstance3D" unique_id=1841574126]
+layers = 4
+mesh = ExtResource("1_fev4d")
+skin = SubResource("Skin_t6vfm")
+script = ExtResource("1_ipm5h")
+data = SubResource("Resource_vu0pm")
+metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

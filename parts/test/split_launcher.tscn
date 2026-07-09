@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://b80xvpw8k545s"]
+
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_prh4x"]
+[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_lw0i8"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="2_prh4x"]
+[ext_resource type="PackedScene" uid="uid://b3bw8s34mvk7j" path="res://projectile/missile_split.tscn" id="3_adrl1"]
+
+[sub_resource type="Resource" id="Resource_prh4x"]
+script = ExtResource("2_lw0i8")
+damage_explosive = 10.0
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
+[sub_resource type="Resource" id="Resource_ke21q"]
+script = ExtResource("2_prh4x")
+reload_time = 6.0
+clip_size = 1
+ammo_max = 50
+ammo_cost = 1
+damage_data = SubResource("Resource_prh4x")
+projectile_scene = ExtResource("3_adrl1")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"
+
+[sub_resource type="Animation" id="Animation_hkpe4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wy3l3"]
+resource_name = "Ready"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.2217305, 0, 0), Vector3(-0.5235988, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6poma"]
+resource_name = "Reload"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5235988, 0, 0), Vector3(-1.2217305, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hfhwc"]
+resource_name = "Start"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.70000005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(-0.5235988, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy3l3"]
+_data = {
+&"RESET": SubResource("Animation_hkpe4"),
+&"Ready": SubResource("Animation_wy3l3"),
+&"Reload": SubResource("Animation_6poma"),
+&"Start": SubResource("Animation_hfhwc")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prh4x"]
+albedo_color = Color(0.39999998, 1, 0.52, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_prh4x"]
+material = SubResource("StandardMaterial3D_prh4x")
+size = Vector3(2, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipfcj"]
+albedo_color = Color(0.6333332, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fje11"]
+material = SubResource("StandardMaterial3D_ipfcj")
+size = Vector3(1.5, 2, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adrl1"]
+albedo_color = Color(1, 0.3, 0.3, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bq8tf"]
+material = SubResource("StandardMaterial3D_adrl1")
+top_radius = 0.7
+bottom_radius = 0.7
+height = 0.7
+cap_bottom = false
+
+[node name="MissileLauncher" type="Node3D" unique_id=155415789 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_prh4x")
+spawners = NodePath("Spawners")
+data = SubResource("Resource_ke21q")
+metadata/_custom_type_script = "uid://brdkpe831f6pw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1013885186]
+libraries/ = SubResource("AnimationLibrary_wy3l3")
+
+[node name="Timer" type="Timer" parent="." unique_id=1040541967]
+one_shot = true
+
+[node name="Base" type="MeshInstance3D" parent="." unique_id=741955882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+layers = 4
+mesh = SubResource("BoxMesh_prh4x")
+
+[node name="Box" type="MeshInstance3D" parent="Base" unique_id=1868806964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.3, -0.9)
+layers = 4
+mesh = SubResource("BoxMesh_fje11")
+
+[node name="Cylinder" type="MeshInstance3D" parent="Base/Box" unique_id=1435318804]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.25, 1.85)
+layers = 4
+mesh = SubResource("CylinderMesh_bq8tf")
+
+[node name="Spawners" type="Node3D" parent="." unique_id=1276922404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 1.55, 0.25)
+
+[node name="Marker3D" type="Marker3D" parent="Spawners" unique_id=1927709313]

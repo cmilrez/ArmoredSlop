@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqkm7wad6nbxq" path="res://copyright_shit/BP1003.tscn" id="5_d1dyq"]
 [ext_resource type="Texture2D" uid="uid://83tu4h2o4frc" path="res://copyright_shit/miniatures/BP1004.png" id="5_jtsib"]
 [ext_resource type="Texture2D" uid="uid://bnuerce4hv8d1" path="res://copyright_shit/miniatures/BP2001.png" id="6_d3ic8"]
-[ext_resource type="PackedScene" uid="uid://c76qwtabndyyf" path="res://parts/test/test_head.tscn" id="6_hdygv"]
+[ext_resource type="PackedScene" uid="uid://c76qwtabndyyf" path="res://parts/test/test_head_1.tscn" id="6_hdygv"]
 [ext_resource type="PackedScene" uid="uid://bau6nwblbsusk" path="res://copyright_shit/BP1004.tscn" id="6_wfi4s"]
 [ext_resource type="Texture2D" uid="uid://dgat3eegvaxb4" path="res://copyright_shit/miniatures/BP2002.png" id="7_a22cb"]
 [ext_resource type="PackedScene" uid="uid://c4oebmmidyghc" path="res://copyright_shit/BP2001.tscn" id="8_5edor"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bl0rr6na1h1m1" path="res://copyright_shit/BP2003.tscn" id="10_d68et"]
 [ext_resource type="Texture2D" uid="uid://dq40hq8iq1sse" path="res://copyright_shit/miniatures/BP3001.png" id="10_uqpsl"]
 [ext_resource type="PackedScene" uid="uid://dy1mbhyrt5vok" path="res://copyright_shit/BP2004.tscn" id="11_2rjjg"]
-[ext_resource type="PackedScene" uid="uid://d2ekutr5o5q7" path="res://parts/test/test_arms.tscn" id="11_g5ywc"]
+[ext_resource type="PackedScene" uid="uid://d2ekutr5o5q7" path="res://parts/test/test_arms_1.tscn" id="11_g5ywc"]
 [ext_resource type="Texture2D" uid="uid://dypdt2j5kru5m" path="res://copyright_shit/miniatures/BP3002.png" id="11_js5ln"]
 [ext_resource type="Texture2D" uid="uid://ch1d0li0jtthn" path="res://copyright_shit/miniatures/BP3003.png" id="12_gd5ib"]
 [ext_resource type="PackedScene" uid="uid://cbvmyomexwwpa" path="res://copyright_shit/BP3001.tscn" id="13_uqpew"]
@@ -30,27 +30,31 @@
 [ext_resource type="Texture2D" uid="uid://d4mrs62lm4f3e" path="res://copyright_shit/miniatures/BP4002.png" id="15_yaoia"]
 [ext_resource type="Texture2D" uid="uid://cxi4br1novx5p" path="res://copyright_shit/miniatures/BP4003.png" id="16_bw7fo"]
 [ext_resource type="PackedScene" uid="uid://dlmb3x3vqwppr" path="res://copyright_shit/BP3004.tscn" id="16_dcyog"]
-[ext_resource type="PackedScene" uid="uid://ouribyoau1dc" path="res://parts/test/test_torso_drone.tscn" id="16_tghud"]
+[ext_resource type="PackedScene" uid="uid://ouribyoau1dc" path="res://parts/test/test_torso_1.tscn" id="16_tghud"]
 [ext_resource type="Texture2D" uid="uid://iagj4kuorenv" path="res://copyright_shit/miniatures/BP4004.png" id="17_gv25o"]
 [ext_resource type="PackedScene" uid="uid://ddq0u3ml56b24" path="res://copyright_shit/BP4001.tscn" id="18_7t2ma"]
 [ext_resource type="PackedScene" uid="uid://bgyw5x7bc8otc" path="res://copyright_shit/BP4002.tscn" id="19_p6dnb"]
 [ext_resource type="PackedScene" uid="uid://b1pj0sj1w2b7q" path="res://copyright_shit/BP4003.tscn" id="20_jyft5"]
 [ext_resource type="PackedScene" uid="uid://3k2j86om8wfh" path="res://copyright_shit/BP4004.tscn" id="21_52w52"]
-[ext_resource type="PackedScene" uid="uid://2h7dx28b5ejc" path="res://parts/test/test_legs_bipedal.tscn" id="21_m4gyw"]
+[ext_resource type="PackedScene" uid="uid://2h7dx28b5ejc" path="res://parts/test/test_legs_biped.tscn" id="21_m4gyw"]
 [ext_resource type="PackedScene" uid="uid://dfubxg0n07rgo" path="res://parts/test/rifle.tscn" id="22_d1dyq"]
+[ext_resource type="PackedScene" uid="uid://bcbxssuca2mwb" path="res://parts/test/test_legs_tank.tscn" id="22_jyft5"]
 [ext_resource type="PackedScene" uid="uid://bdpuotsh72atu" path="res://parts/test/shotgun.tscn" id="23_n62nf"]
 [ext_resource type="PackedScene" uid="uid://qs1aigkqwumj" path="res://parts/test/missile_launcher.tscn" id="23_wfi4s"]
 [ext_resource type="PackedScene" uid="uid://cb8tx40201w3a" path="res://parts/test/shoulder_cannon.tscn" id="25_uqpew"]
-[ext_resource type="Texture2D" uid="uid://dvdq7vrifrffq" path="res://parts/test/test_head.png" id="26_m4gyw"]
+[ext_resource type="Texture2D" uid="uid://dvdq7vrifrffq" path="res://parts/test/test_head_1.png" id="26_m4gyw"]
 [ext_resource type="PackedScene" uid="uid://c0o4shmbjai5a" path="res://parts/test/heavy_launcher.tscn" id="26_tkw3i"]
-[ext_resource type="Texture2D" uid="uid://6rwbx6mu1pi6" path="res://parts/test/test_arms.png" id="31_87oc8"]
-[ext_resource type="Texture2D" uid="uid://cime86ax1rb6" path="res://parts/test/test_torso.png" id="36_d1dyq"]
-[ext_resource type="Texture2D" uid="uid://kcvnllsbwjb8" path="res://parts/test/test_legs.png" id="41_wfi4s"]
+[ext_resource type="PackedScene" uid="uid://b80xvpw8k545s" path="res://parts/test/split_launcher.tscn" id="27_dcyog"]
+[ext_resource type="Texture2D" uid="uid://6rwbx6mu1pi6" path="res://parts/test/test_arms_1.png" id="31_87oc8"]
+[ext_resource type="Texture2D" uid="uid://cime86ax1rb6" path="res://parts/test/test_torso_1.png" id="36_d1dyq"]
+[ext_resource type="Texture2D" uid="uid://kcvnllsbwjb8" path="res://parts/test/test_legs_biped.png" id="41_wfi4s"]
+[ext_resource type="Texture2D" uid="uid://bm4obvkdtbpr0" path="res://parts/test/test_legs_tank.png" id="44_p6dnb"]
 [ext_resource type="Texture2D" uid="uid://boaixqtlt6oar" path="res://parts/test/rifle.png" id="44_wfi4s"]
 [ext_resource type="Texture2D" uid="uid://q8aeyhjrjgie" path="res://parts/test/shotgun.png" id="46_d68et"]
 [ext_resource type="Texture2D" uid="uid://gaaibqqae5sm" path="res://parts/test/missile_launcher.png" id="47_d68et"]
 [ext_resource type="Texture2D" uid="uid://dapsrjma4e1vt" path="res://parts/test/shoulder_cannon.png" id="49_mleyw"]
 [ext_resource type="Texture2D" uid="uid://c20u13md82x8e" path="res://parts/test/heavy_launcher.png" id="51_dcyog"]
+[ext_resource type="Texture2D" uid="uid://dkemlvuxpxept" path="res://parts/test/split_launcher.png" id="53_7t2ma"]
 
 [node name="PartSelector" type="Control" unique_id=664977063]
 layout_mode = 3
@@ -61,8 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_tl0pb")
-parts_path = "res://copyright_shit/"
-parts = Array[Array]([[ExtResource("6_hdygv"), ExtResource("3_m4gyw"), ExtResource("4_87oc8"), ExtResource("5_d1dyq"), ExtResource("6_wfi4s")], [ExtResource("11_g5ywc"), ExtResource("8_5edor"), ExtResource("9_n62nf"), ExtResource("10_d68et"), ExtResource("11_2rjjg")], [ExtResource("16_tghud"), ExtResource("13_uqpew"), ExtResource("14_mleyw"), ExtResource("15_tkw3i"), ExtResource("16_dcyog")], [ExtResource("21_m4gyw"), ExtResource("18_7t2ma"), ExtResource("19_p6dnb"), ExtResource("20_jyft5"), ExtResource("21_52w52")], [ExtResource("22_d1dyq"), ExtResource("23_n62nf")], [ExtResource("23_wfi4s"), ExtResource("25_uqpew"), ExtResource("26_tkw3i")]])
+parts = Array[Array]([[ExtResource("6_hdygv"), ExtResource("3_m4gyw"), ExtResource("4_87oc8"), ExtResource("5_d1dyq"), ExtResource("6_wfi4s")], [ExtResource("11_g5ywc"), ExtResource("8_5edor"), ExtResource("9_n62nf"), ExtResource("10_d68et"), ExtResource("11_2rjjg")], [ExtResource("16_tghud"), ExtResource("13_uqpew"), ExtResource("14_mleyw"), ExtResource("15_tkw3i"), ExtResource("16_dcyog")], [ExtResource("21_m4gyw"), ExtResource("18_7t2ma"), ExtResource("19_p6dnb"), ExtResource("20_jyft5"), ExtResource("21_52w52"), ExtResource("22_jyft5")], [ExtResource("22_d1dyq"), ExtResource("23_n62nf")], [ExtResource("23_wfi4s"), ExtResource("25_uqpew"), ExtResource("26_tkw3i"), ExtResource("27_dcyog")]])
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1169098796]
 custom_minimum_size = Vector2(530, 420)
@@ -70,6 +73,7 @@ layout_mode = 0
 offset_top = 100.0
 offset_right = 520.0
 offset_bottom = 520.0
+scroll_vertical = 100
 scroll_hint_mode = 1
 
 [node name="Rows" type="VBoxContainer" parent="ScrollContainer" unique_id=1392296082]
@@ -236,6 +240,15 @@ texture_normal = ExtResource("41_wfi4s")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="35" type="TextureButton" parent="ScrollContainer/Rows/LegParts" unique_id=1240887098]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+texture_normal = ExtResource("44_p6dnb")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="31" type="TextureButton" parent="ScrollContainer/Rows/LegParts" unique_id=1194707520]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -330,6 +343,16 @@ texture_normal = ExtResource("51_dcyog")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="53" type="TextureButton" parent="ScrollContainer/Rows/BackUnits" unique_id=418867871]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 3
+texture_normal = ExtResource("53_7t2ma")
+ignore_texture_size = true
+stretch_mode = 0
+
 [connection signal="pressed" from="ScrollContainer/Rows/HeadParts/00" to="." method="get_part_scene" binds= ["00"]]
 [connection signal="pressed" from="ScrollContainer/Rows/HeadParts/01" to="." method="get_part_scene" binds= [&"01"]]
 [connection signal="pressed" from="ScrollContainer/Rows/HeadParts/02" to="." method="get_part_scene" binds= [&"02"]]
@@ -346,6 +369,7 @@ stretch_mode = 0
 [connection signal="pressed" from="ScrollContainer/Rows/TorsoParts/23" to="." method="get_part_scene" binds= [&"23"]]
 [connection signal="pressed" from="ScrollContainer/Rows/TorsoParts/24" to="." method="get_part_scene" binds= [&"24"]]
 [connection signal="pressed" from="ScrollContainer/Rows/LegParts/30" to="." method="get_part_scene" binds= ["30"]]
+[connection signal="pressed" from="ScrollContainer/Rows/LegParts/35" to="." method="get_part_scene" binds= [&"35"]]
 [connection signal="pressed" from="ScrollContainer/Rows/LegParts/31" to="." method="get_part_scene" binds= [&"31"]]
 [connection signal="pressed" from="ScrollContainer/Rows/LegParts/32" to="." method="get_part_scene" binds= [&"32"]]
 [connection signal="pressed" from="ScrollContainer/Rows/LegParts/33" to="." method="get_part_scene" binds= [&"33"]]
@@ -355,3 +379,4 @@ stretch_mode = 0
 [connection signal="pressed" from="ScrollContainer/Rows/BackUnits/50" to="." method="get_part_scene" binds= ["50"]]
 [connection signal="pressed" from="ScrollContainer/Rows/BackUnits/51" to="." method="get_part_scene" binds= ["51"]]
 [connection signal="pressed" from="ScrollContainer/Rows/BackUnits/52" to="." method="get_part_scene" binds= ["52"]]
+[connection signal="pressed" from="ScrollContainer/Rows/BackUnits/53" to="." method="get_part_scene" binds= ["53"]]

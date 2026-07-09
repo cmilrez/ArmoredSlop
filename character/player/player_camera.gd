@@ -21,22 +21,25 @@ var target_list: Array[Node3D] = []
 var input_direction := Vector2.ZERO
 var manual_aim := false
 
+func get_arm_rotation() -> float:
+	return spring_arm.rotation.y
+
 func _ready():
 	targeting = player.find_child('Targeting', false)
-	SignalBus.enemy_entered_screen.connect(append_target)
-	SignalBus.enemy_exited_screen.connect(erase_target)
+	SignalBus.enemy_entered_screen.connect(_append_target)
+	SignalBus.enemy_exited_screen.connect(_erase_target)
 	spring_arm.spring_length = arm_length
 	set_as_top_level(true)
 
-func append_target(node: Node3D):
+func _append_target(node: Node3D):
 	target_list.append(node)
 
-func erase_target(node: Node3D):
+func _erase_target(node: Node3D):
 	target_list.erase(node)
 
-func search_target() -> Node3D:
+func _search_target() -> Node3D:
 	var closest_target: Node3D = null
-	var closest_distance_2d := Global.LARGE_9
+	var closest_distance_2d := Global.LARGE_FLOAT
 	for target: Node3D in target_list:
 		if not is_instance_valid(target):
 			continue
@@ -78,10 +81,10 @@ func _physics_process(delta):
 	eye_ray.global_position = camera.global_position
 	var target = null
 	if not manual_aim:
-		target = search_target()
+		target = _search_target()
 	targeting.target = target
 	if not target:
-		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_9
+		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_FLOAT
 		var point = to_global(eye_ray.target_position)
 		eye_ray.force_raycast_update()
 		if eye_ray.is_colliding():
@@ -95,5 +98,5 @@ func _unhandled_input(event):
 		return
 	if event is InputEventMouseMotion:
 		input_direction = event.screen_relative * mouse_sensitivity
-	elif event.is_action_released('manual_aim'):
+	elif event.is_action_pressed('manual_aim'):
 		manual_aim = not manual_aim

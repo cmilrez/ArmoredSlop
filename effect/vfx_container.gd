@@ -1,14 +1,14 @@
-extends Node3D
+class_name VFXContainer extends Node3D
 
 @onready var timer = $Timer
 @export var life_time = 1.0
 
 func _ready():
-	show_effects()
 	top_level = true
 	timer.one_shot = true
 	timer.timeout.connect(func(): queue_free())
 	timer.start(life_time)
+	show_effects()
 
 func show_effects():
 	for child in get_children():

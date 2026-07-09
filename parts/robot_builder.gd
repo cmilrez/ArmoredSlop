@@ -107,33 +107,33 @@ func _build_body():
 	%LookAtArmL.bone = %Skeleton3D.find_bone('Forearm.L')
 	if make_owner:
 		for node in body_nodes:
-			node.owner = owner
+			node.owner = get_parent()
 	body_built.emit(body_nodes)
 
 func _build_weapons():
 	clear_weapons()
-	var node_path = owner.get_path()
+	#var node_path = get_parent().get_path() if get_parent() is Character else ^''
 	if data.right_arm_part:
 		weapon_nodes.append(data.right_arm_part.instantiate())
 		%ArmUnitR.add_child(weapon_nodes.back())
-		weapon_nodes.back().data.damage_data.source = node_path
+		#weapon_nodes.back().data.damage_data.source = node_path
 	if data.left_arm_part:
 		weapon_nodes.append(data.left_arm_part.instantiate())
 		%ArmUnitL.add_child(weapon_nodes.back())
 		weapon_nodes.back().left_side = true
-		weapon_nodes.back().data.damage_data.source = node_path
+		#weapon_nodes.back().data.damage_data.source = node_path
 	if data.right_back_part:
 		weapon_nodes.append(data.right_back_part.instantiate())
 		%BackUnitR.add_child(weapon_nodes.back())
-		weapon_nodes.back().data.damage_data.source = node_path
+		#weapon_nodes.back().data.damage_data.source = node_path
 	if data.left_back_part:
 		weapon_nodes.append(data.left_back_part.instantiate())
 		%BackUnitL.add_child(weapon_nodes.back())
 		weapon_nodes.back().left_side = true
-		weapon_nodes.back().data.damage_data.source = node_path
+		#weapon_nodes.back().data.damage_data.source = node_path
 	if make_owner:
 		for node in weapon_nodes:
-			node.owner = owner
+			node.owner = get_parent()
 	weapons_built.emit(weapon_nodes)
 
 func _setup_body_part(scene: PackedScene) -> Node:

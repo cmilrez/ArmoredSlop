@@ -18,3 +18,8 @@ func _ready():
 
 @abstract func activate(targeting: Targeting) -> void
 @abstract func reload(manual_reload := false) -> void
+
+func set_dmg_source(path: NodePath) -> void:
+	var data = get('data')
+	if data:
+		data.damage_data.source = path

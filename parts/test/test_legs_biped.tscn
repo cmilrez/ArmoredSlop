@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://2h7dx28b5ejc"]
 
-[ext_resource type="ArrayMesh" uid="uid://d2djcveuaw2yt" path="res://assets/TestParts_LegsTest.res" id="1_5dblt"]
+[ext_resource type="ArrayMesh" uid="uid://b0fhkkwt6eqb8" path="res://assets/TestParts_TestLegBiped.res" id="1_5dblt"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/leg_part_data.gd" id="3_gb8ss"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="3_iw1y4"]
-[ext_resource type="Resource" uid="uid://c0c7v5ajew11o" path="res://parts/test/test_legs_bipedal_data.tres" id="4_pytge"]
 
 [sub_resource type="Skin" id="Skin_5dblt"]
 resource_name = "Skin10"
@@ -35,10 +35,24 @@ bind/8/name = &"TorsoJoint"
 bind/8/bone = -1
 bind/8/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.0028085625, -7.346743, 0.09566191)
 
-[node name="TestLegsBipedal" type="MeshInstance3D" unique_id=666725027]
+[sub_resource type="Resource" id="Resource_bx8xx"]
+script = ExtResource("3_gb8ss")
+bone_list = {
+"Feet.L": [Transform3D(0.9999909, -5.1036477e-07, -0.00427094, -0.004240089, -0.1200968, -0.9927531, -0.0005124196, 0.99276215, -0.12009573, 7.788404e-08, 3.8820264, 2.0372681e-10), []],
+"Feet.R": [Transform3D(0.99999076, 4.956383e-07, 0.004270943, 0.004240089, -0.12009681, -0.99275315, 0.00051243446, 0.9927622, -0.120095715, -8.140742e-08, 3.8820267, 1.7462298e-08), []],
+"LegBase": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 6.300036e-14, 6.636316, -4.172325e-07), ["Thigh.L", "Thigh.R", "TorsoJoint"]],
+"Root": [Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0), ["LegBase"]],
+"Shin.L": [Transform3D(0.9755036, 0.2183918, 0.02641936, -0.2199282, 0.9654915, 0.13949153, 0.0049561425, -0.14188485, 0.9898708, -2.4659494e-08, 2.1329713, -5.5879354e-09), ["Feet.L"]],
+"Shin.R": [Transform3D(0.9755036, -0.21839185, -0.026419349, 0.21992825, 0.9654915, 0.13949151, -0.004956156, -0.14188482, 0.9898709, 2.4435725e-08, 2.1329713, -1.8626451e-09), ["Feet.R"]],
+"Thigh.L": [Transform3D(-0.97455734, 0.22409165, -0.005050308, -0.2241491, -0.97430766, 0.021956211, -3.5017814e-07, 0.022529557, 0.99974614, 0.40090784, 0, 3.5048476e-08), ["Shin.L"]],
+"Thigh.R": [Transform3D(-0.97455734, -0.22409165, 0.0050501423, 0.2241491, -0.9743076, 0.021956213, 1.8836047e-07, 0.022529518, 0.9997462, -0.40090784, 0, -3.5048476e-08), ["Shin.R"]],
+"TorsoJoint": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0028085625, 0.7104273, -0.09566149), []]
+}
+
+[node name="TestLegsBiped" type="MeshInstance3D" unique_id=666725027]
 layers = 4
 mesh = ExtResource("1_5dblt")
 skin = SubResource("Skin_5dblt")
 script = ExtResource("3_iw1y4")
-data = ExtResource("4_pytge")
+data = SubResource("Resource_bx8xx")
 metadata/_custom_type_script = "uid://c8w6sf47kb1bd"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvdq7vrifrffq"
-path="res://.godot/imported/test_head.png-d42df0712db61af98d1f1e3e035448d7.ctex"
+uid="uid://bm4obvkdtbpr0"
+path="res://.godot/imported/test_legs_tank.png-58b41c857400cff62dbcecb711934b7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://parts/test/test_head.png"
-dest_files=["res://.godot/imported/test_head.png-d42df0712db61af98d1f1e3e035448d7.ctex"]
+source_file="res://parts/test/test_legs_tank.png"
+dest_files=["res://.godot/imported/test_legs_tank.png-58b41c857400cff62dbcecb711934b7f.ctex"]
 
 [params]
 

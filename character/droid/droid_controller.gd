@@ -39,7 +39,7 @@ func _physics_process(delta):
 			if timer.is_stopped():
 				var rand := randf_range(-1.0, 1.0)
 				move_direction = Vector3.FORWARD.rotated(Vector3.UP, rand * PI)
-				timer.start(maxf(5.0, 15.0 * absf(rand)))
+				timer.start(maxf(5.0, 15.0 * randf()))
 		CHASE:
 			look_at_mod.active = true
 			var distance = character.hor_distance(character.targeting.global_position)
