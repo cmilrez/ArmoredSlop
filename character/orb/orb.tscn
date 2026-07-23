@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cfaqalhv2d35p"]
 
-[ext_resource type="Script" uid="uid://cv6r5c12sbejw" path="res://character/npc.gd" id="1_7sdwg"]
 [ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc_data.gd" id="2_u6wqr"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="3_5l4bd"]
-[ext_resource type="Script" uid="uid://btfrl44ml1u3e" path="res://character/orb/orb_controller.gd" id="3_61c0t"]
+[ext_resource type="Script" uid="uid://btfrl44ml1u3e" path="res://character/orb/orb.gd" id="3_61c0t"]
 [ext_resource type="Script" uid="uid://d27tsvudythye" path="res://character/npc_weapon.gd" id="4_5l4bd"]
 [ext_resource type="PackedScene" uid="uid://4k6kuq8h8g7i" path="res://projectile/template_laser.tscn" id="5_61c0t"]
 [ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="6_4g13y"]
@@ -394,21 +393,17 @@ albedo_color = Color(0, 0.75, 1, 1)
 material = SubResource("StandardMaterial3D_ipfcj")
 size = Vector3(0.6, 0.8, 3)
 
-[node name="Orb" type="CharacterBody3D" unique_id=1778749596 node_paths=PackedStringArray("lock_on_marker", "weapons")]
+[node name="Orb" type="CharacterBody3D" unique_id=1778749596 node_paths=PackedStringArray("anim_player", "lock_on_marker", "weapons")]
 collision_layer = 16
 collision_mask = 23
-script = ExtResource("1_7sdwg")
+script = ExtResource("3_61c0t")
+anim_player = NodePath("AnimationPlayer")
 data = SubResource("Resource_bq8tf")
 lock_on_marker = NodePath("Model/LockOnMarker")
 weapons = [NodePath("NPCWeapon")]
 metadata/_custom_type_script = "uid://cv6r5c12sbejw"
 
-[node name="OrbController" type="Node" parent="." unique_id=1913204794 node_paths=PackedStringArray("character", "anim_player")]
-script = ExtResource("3_61c0t")
-character = NodePath("..")
-anim_player = NodePath("../AnimationPlayer")
-
-[node name="Timer" type="Timer" parent="OrbController" unique_id=28728876]
+[node name="Timer" type="Timer" parent="." unique_id=28728876]
 one_shot = true
 
 [node name="Health" type="Node" parent="." unique_id=59683056]
@@ -416,7 +411,7 @@ script = ExtResource("3_5l4bd")
 data = SubResource("Resource_bq8tf")
 metadata/_custom_type_script = "uid://ch5cqu8ctoscg"
 
-[node name="NPCWeapon" type="Node" parent="." unique_id=715111303 node_paths=PackedStringArray("spawners")]
+[node name="NPCWeapon" type="Node3D" parent="." unique_id=1427920058 node_paths=PackedStringArray("spawners")]
 unique_name_in_owner = true
 script = ExtResource("4_5l4bd")
 spawners = NodePath("../Model/Pivot")

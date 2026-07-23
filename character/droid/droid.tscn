@@ -1,11 +1,10 @@
 [gd_scene format=4 uid="uid://cpl2hwfaru3rt"]
 
 [ext_resource type="Texture2D" uid="uid://cepdqg1lyb7ao" path="res://assets/Tex_01.png" id="1_or5f5"]
-[ext_resource type="Script" uid="uid://cv6r5c12sbejw" path="res://character/npc.gd" id="1_q8xtr"]
-[ext_resource type="Resource" uid="uid://eypdpj3bdrc4" path="res://character/droid/droid_data.tres" id="2_3ks3v"]
 [ext_resource type="Texture2D" uid="uid://u4cakp3ggqkd" path="res://assets/Emission.png" id="2_fdj4s"]
+[ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc_data.gd" id="2_hatfo"]
 [ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="3_3ks3v"]
-[ext_resource type="Script" uid="uid://2rwqxea1asix" path="res://character/droid/droid_controller.gd" id="3_ksu8n"]
+[ext_resource type="Script" uid="uid://2rwqxea1asix" path="res://character/droid/droid.gd" id="3_ksu8n"]
 [ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/targeting.gd" id="3_ndre0"]
 [ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="4_0w2uu"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="5_1ufyl"]
@@ -19,6 +18,11 @@
 [ext_resource type="Animation" uid="uid://ctnvfhe2cmlgq" path="res://character/droid/animation/Turn_Right.tres" id="12_l6txc"]
 [ext_resource type="Animation" uid="uid://dwrt1jnbu1ktg" path="res://character/droid/animation/Walk_Backward.tres" id="13_it3tq"]
 [ext_resource type="Animation" uid="uid://clwu1p8rqtfcq" path="res://character/droid/animation/Walk_Forward.tres" id="14_6oeat"]
+
+[sub_resource type="Resource" id="Resource_65gwf"]
+script = ExtResource("2_hatfo")
+max_hp = 30.0
+metadata/_custom_type_script = "uid://f665pyihvlvu"
 
 [sub_resource type="Resource" id="Resource_joahv"]
 script = ExtResource("11_a1hos")
@@ -255,34 +259,30 @@ height = 2.6
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vxm3"]
 radius = 1.25
 
-[node name="Droid" type="CharacterBody3D" unique_id=1579288529 node_paths=PackedStringArray("lock_on_marker", "weapons")]
+[node name="Droid" type="CharacterBody3D" unique_id=1579288529 node_paths=PackedStringArray("anim_tree", "look_at_mod", "lock_on_marker", "weapons")]
 collision_layer = 16
 collision_mask = 23
 input_ray_pickable = false
 floor_constant_speed = true
 floor_snap_length = 1.0
 platform_floor_layers = 3
-script = ExtResource("1_q8xtr")
-data = ExtResource("2_3ks3v")
+script = ExtResource("3_ksu8n")
+anim_tree = NodePath("AnimationTree")
+look_at_mod = NodePath("Droid/Skeleton3D/LookAtMod")
+data = SubResource("Resource_65gwf")
 lock_on_marker = NodePath("LockOnMarker")
 weapons = [NodePath("NPCWeapon")]
 metadata/_custom_type_script = "uid://cv6r5c12sbejw"
 
-[node name="DroidController" type="Node" parent="." unique_id=791374204 node_paths=PackedStringArray("character", "anim_tree", "look_at_mod")]
-script = ExtResource("3_ksu8n")
-character = NodePath("..")
-anim_tree = NodePath("../AnimationTree")
-look_at_mod = NodePath("../Droid/Skeleton3D/LookAtMod")
-
-[node name="Timer" type="Timer" parent="DroidController" unique_id=21913835]
+[node name="Timer" type="Timer" parent="." unique_id=21913835]
 one_shot = true
 
 [node name="Health" type="Node" parent="." unique_id=27881115]
 script = ExtResource("5_1ufyl")
-data = ExtResource("2_3ks3v")
+data = SubResource("Resource_65gwf")
 metadata/_custom_type_script = "uid://ch5cqu8ctoscg"
 
-[node name="NPCWeapon" type="Node" parent="." unique_id=1821209980 node_paths=PackedStringArray("spawners")]
+[node name="NPCWeapon" type="Node3D" parent="." unique_id=665593390 node_paths=PackedStringArray("spawners")]
 script = ExtResource("9_v6vxi")
 spawners = NodePath("../Droid/Skeleton3D/Weapon")
 shot_interval = 0.2
@@ -307,7 +307,7 @@ collision_layer = 0
 collision_mask = 20
 input_ray_pickable = false
 script = ExtResource("3_3ks3v")
-data = ExtResource("2_3ks3v")
+data = SubResource("Resource_65gwf")
 skeleton = NodePath("../Droid/Skeleton3D")
 metadata/_custom_type_script = "uid://b8r75t4pr7lpd"
 

@@ -31,10 +31,15 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="Armored Slop"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/CustomResourcePreviewGenerator/plugin.cfg")
 
 [global_group]
 

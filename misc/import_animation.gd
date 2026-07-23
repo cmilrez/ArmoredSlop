@@ -19,8 +19,12 @@ func rename_track_paths(anim_player: AnimationPlayer) -> void:
 			animation.track_set_path(i, 'Skeleton3D:' + property.get_slice(':', 1))
 			#print(' - Before: ', property, ' - After: ', animation.track_get_path(i))
 		var anim_lib = anim_player.get_animation_library('')
-		if anim_name.contains('_Tank'):
-			anim_lib.rename_animation(anim_name, anim_name.replacen('_Tank', ''))
 		if anim_name.contains('_Biped'):
-			anim_lib.rename_animation(anim_name, anim_name.replacen('_Biped', ''))
+			anim_lib.rename_animation(anim_name, anim_name.trim_suffix('_Biped'))
+		if anim_name.contains('_Reverse'):
+			anim_lib.rename_animation(anim_name, anim_name.trim_suffix('_Reverse'))
+		if anim_name.contains('_Tank'):
+			anim_lib.rename_animation(anim_name, anim_name.trim_suffix('_Tank'))
+		if anim_name.contains('_Quad'):
+			anim_lib.rename_animation(anim_name, anim_name.trim_suffix('_Quad'))
 		

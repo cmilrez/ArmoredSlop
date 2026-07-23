@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://c6i343ptt0fgt"]
+
+[ext_resource type="Resource" uid="uid://vgqeyrrw638b" path="res://parts/test/rifle_weapon_param.tres" id="1_2u580"]
+[ext_resource type="Texture2D" uid="uid://coiua4y3nfgnp" path="res://ui/part_preview/rifle_data_preview.png" id="2_26o1o"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/unit_data.gd" id="2_iuatk"]
+[ext_resource type="PackedScene" uid="uid://dfubxg0n07rgo" path="res://parts/test/rifle.tscn" id="2_qhyhq"]
+
+[resource]
+script = ExtResource("2_iuatk")
+parameters = ExtResource("1_2u580")
+preview = ExtResource("2_26o1o")
+scene = ExtResource("2_qhyhq")

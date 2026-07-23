@@ -1,26 +1,9 @@
 [gd_scene format=3 uid="uid://cb8tx40201w3a"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_3lgcg"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_5ji6c"]
+[ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_65uri"]
 [ext_resource type="ArrayMesh" uid="uid://dbojpk327s0w8" path="res://assets/TestWeapons02_ShoulderCannon.res" id="3_l7aj2"]
-[ext_resource type="PackedScene" uid="uid://dfjb6oyx7ivop" path="res://projectile/template_bomb.tscn" id="3_njyf5"]
 [ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="4_65uri"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_ls2pc"]
-
-[sub_resource type="Resource" id="Resource_vc76s"]
-script = ExtResource("2_5ji6c")
-damage_explosive = 30.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_kbovk"]
-script = ExtResource("4_ls2pc")
-reload_time = 6.0
-clip_size = 1
-ammo_max = 40
-ammo_cost = 1
-damage_data = SubResource("Resource_vc76s")
-projectile_scene = ExtResource("3_njyf5")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
 
 [sub_resource type="Animation" id="Animation_wllxb"]
 resource_name = "RESET"
@@ -49,19 +32,19 @@ tracks/2/keys = PackedFloat32Array(0, 1, -1.1920929e-07, 0, 4.222782)
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton3D/RigidBody3D:position")
+tracks/3/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.732715, 1.5620031, -0.78043973)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D/RigidBody3D:rotation")
+tracks/4/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -73,7 +56,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Skeleton3D/RigidBody3D:freeze")
+tracks/5/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:freeze")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -85,7 +68,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Skeleton3D/RigidBody3D:visible")
+tracks/6/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -97,7 +80,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Skeleton3D/RigidBody3D:top_level")
+tracks/7/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:top_level")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -127,19 +110,19 @@ tracks/1/keys = PackedFloat32Array(0.3, 1, 0, 0, 1, 0.8, 1, -1.1920929e-07, 0, 4
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Skeleton3D/RigidBody3D:position")
+tracks/2/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.732715, 1.5620031, -0.78043973)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton3D/RigidBody3D:rotation")
+tracks/3/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -151,7 +134,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D/RigidBody3D:freeze")
+tracks/4/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:freeze")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -163,7 +146,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Skeleton3D/RigidBody3D:visible")
+tracks/5/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -175,7 +158,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Skeleton3D/RigidBody3D:top_level")
+tracks/6/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:top_level")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -205,11 +188,11 @@ tracks/1/keys = PackedFloat32Array(0, 1, -1.1920929e-07, 0, 4.222782, 0.5, 1, 0,
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Skeleton3D/RigidBody3D:freeze")
+tracks/2/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:freeze")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -217,11 +200,11 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton3D/RigidBody3D:visible")
+tracks/3/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -229,11 +212,11 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D/RigidBody3D:top_level")
+tracks/4/path = NodePath("Skeleton3D/Body/AmmoMagSpawn/RigidBody3D:top_level")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -308,7 +291,7 @@ rings = 0
 [node name="ShoulderCannon" type="Node3D" unique_id=1687019098 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_3lgcg")
 spawners = NodePath("Skeleton3D/Body/Spawners")
-data = SubResource("Resource_kbovk")
+param = ExtResource("2_65uri")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931819844]
@@ -365,8 +348,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25764912, 1.5345082, 7.619
 [node name="AmmoMagSpawn" type="Node3D" parent="Skeleton3D/Body" unique_id=647657317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732715, 1.5620031, -0.78043973)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Skeleton3D" unique_id=1804900725]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732715, 1.5620031, -0.78043973)
+[node name="RigidBody3D" type="RigidBody3D" parent="Skeleton3D/Body/AmmoMagSpawn" unique_id=1804900725]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 visible = false
 collision_layer = 0
 collision_mask = 3
@@ -375,11 +358,11 @@ mass = 25.0
 physics_material_override = ExtResource("4_65uri")
 freeze = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/RigidBody3D" unique_id=557519446]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Skeleton3D/Body/AmmoMagSpawn/RigidBody3D" unique_id=557519446]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_l7aj2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Skeleton3D/RigidBody3D/CollisionShape3D" unique_id=1837774564]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Skeleton3D/Body/AmmoMagSpawn/RigidBody3D/CollisionShape3D" unique_id=1837774564]
 layers = 2
 gi_mode = 0
 mesh = SubResource("CylinderMesh_65uri")

@@ -1,47 +1,43 @@
-[gd_scene format=3 uid="uid://ouribyoau1dc"]
+[gd_scene format=3 uid="uid://desf1l8cfnugm"]
 
-[ext_resource type="ArrayMesh" uid="uid://cxcdl375ay836" path="res://assets/TestParts_TestTorso1.res" id="1_k45ld"]
-[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_4ox35"]
-[ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_part_data.gd" id="3_x8yw2"]
+[ext_resource type="ArrayMesh" uid="uid://cxcdl375ay836" path="res://assets/TestParts_TestTorso1.res" id="1_xsdut"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_k45ld"]
 
-[sub_resource type="Skin" id="Skin_aj0pv"]
-resource_name = "Skin5"
-bind_count = 6
+[sub_resource type="Skin" id="Skin_xsdut"]
+resource_name = "Skin9"
+bind_count = 10
 bind/0/name = &"Torso"
 bind/0/bone = -1
-bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 7.450581e-09, -4.7683716e-07, 1.1250064e-15)
-bind/1/name = &"Head"
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+bind/1/name = &"TorsoDrone.002"
 bind/1/bone = -1
-bind/1/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -9.04243e-09, -1.615139, 0.10343334)
-bind/2/name = &"ArmJoint.L"
+bind/1/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.8252966, -1.9036508, 1.7516663)
+bind/2/name = &"TorsoDrone.001"
 bind/2/bone = -1
-bind/2/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.6959991, -1.4885597, 0.30286577)
+bind/2/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.8226292, -1.9036508, 1.7516665)
 bind/3/name = &"ArmJoint.R"
 bind/3/bone = -1
-bind/3/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.6959991, -1.4885597, 0.30286607)
-bind/4/name = &"TorsoDrone.002"
+bind/3/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.6052735, -1.4963869, 0.32757375)
+bind/4/name = &"ArmJoint.L"
 bind/4/bone = -1
-bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81880385, -1.8309231, -2.1373603)
-bind/5/name = &"TorsoDrone.001"
+bind/4/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.605274, -1.4963869, 0.3275713)
+bind/5/name = &"Head"
 bind/5/bone = -1
-bind/5/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8188042, -1.8309231, -2.1373603)
+bind/5/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.0022268856, -1.630139, 0.10343361)
+bind/6/name = &"BackUnit.R"
+bind/6/bone = -1
+bind/6/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.8254782, -1.5904404, 2.0089247)
+bind/7/name = &"BackUnit.L"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.8254808, -1.5904404, 2.0089223)
+bind/8/name = &"TorsoBooster01"
+bind/8/bone = -1
+bind/8/pose = Transform3D(1, -3.1391707e-07, -2.1787886e-07, -1.6292016e-07, -0.8660246, 0.5000006, -3.4564567e-07, -0.49999964, -0.86602426, 0.6303952, -0.43217915, 1.8697312)
+bind/9/name = &"TorsoBooster02"
+bind/9/bone = -1
+bind/9/pose = Transform3D(1, -1.5893292e-08, -5.9314516e-08, 1.5893304e-08, -0.8660251, 0.5000003, -5.9314353e-08, -0.49999982, -0.866025, -0.63039494, -0.43217826, 1.8697327)
 
-[sub_resource type="Resource" id="Resource_ccmrj"]
-script = ExtResource("3_x8yw2")
-bone_list = {
-"ArmJoint.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.605274, 1.4963869, -0.3275712), []],
-"ArmJoint.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.6052735, 1.4963869, -0.32757384), []],
-"BackUnit.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.825481, 1.5904404, -2.0089223), []],
-"BackUnit.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.825478, 1.5904404, -2.0089247), []],
-"Head": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.0022268922, 1.630139, -0.10343361), []],
-"Torso": [Transform3D(1, 0, 2.3841858e-07, 0, 1, 0, -2.3841858e-07, 0, 1, 0, 0, 0), ["TorsoDrone.002", "TorsoDrone.001", "ArmJoint.R", "ArmJoint.L", "Head", "BackUnit.R", "BackUnit.L"]],
-"TorsoDrone.001": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.825294, 1.819316, -1.7352604), []],
-"TorsoDrone.002": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.82529664, 1.819316, -1.7352592), []]
-}
-
-[node name="TestTorso1" type="MeshInstance3D" unique_id=1338844704]
-mesh = ExtResource("1_k45ld")
-skin = SubResource("Skin_aj0pv")
-script = ExtResource("2_4ox35")
-data = SubResource("Resource_ccmrj")
-metadata/_custom_type_script = "uid://c8w6sf47kb1bd"
+[node name="TestTorso1" type="MeshInstance3D" unique_id=2043723224]
+mesh = ExtResource("1_xsdut")
+skin = SubResource("Skin_xsdut")
+script = ExtResource("2_k45ld")

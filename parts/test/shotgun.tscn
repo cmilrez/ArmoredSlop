@@ -1,24 +1,7 @@
 [gd_scene format=4 uid="uid://bdpuotsh72atu"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_j4cgr"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_dkopk"]
-[ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/template_bullet.tscn" id="3_gw461"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_data.gd" id="4_sartp"]
-
-[sub_resource type="Resource" id="Resource_yq7b3"]
-script = ExtResource("2_dkopk")
-damage_bullet = 3.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_rgmwy"]
-script = ExtResource("4_sartp")
-reload_time = 2.2
-clip_size = 6
-ammo_max = 180
-ammo_cost = 1
-damage_data = SubResource("Resource_yq7b3")
-projectile_scene = ExtResource("3_gw461")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
+[ext_resource type="Resource" uid="uid://closvskqvpgns" path="res://parts/test/shotgun_param.tres" id="2_nn1c1"]
 
 [sub_resource type="Animation" id="Animation_nn1c1"]
 length = 0.001
@@ -175,7 +158,7 @@ is_hemisphere = true
 [node name="Shotgun" type="Node3D" unique_id=1369157447 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_j4cgr")
 spawners = NodePath("Spawners")
-data = SubResource("Resource_rgmwy")
+param = ExtResource("2_nn1c1")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1013885186]

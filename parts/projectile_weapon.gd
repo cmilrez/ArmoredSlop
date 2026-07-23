@@ -7,18 +7,21 @@ const RELOAD_ANIM = &'Reload'
 
 signal ammo_changed(loaded: int, left: int)
 
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var timer: Timer = $Timer
+
 @export var spawners: Node3D = null
-@export var data: ProjectileWeaponData = null
+@export var param: ProjectileWeaponParam = null
 var ammo_total := 0
 var ammo_loaded := 0:
 	set(value):
-		value = clampi(value, 0, data.clip_size)
+		value = clampi(value, 0, param.clip_size)
 		ammo_loaded = value
 		ammo_changed.emit(ammo_loaded, ammo_left)
 		check_ammo()
 var ammo_left := 0:
 	set(value):
-		value = clampi(value, 0, data.ammo_max)
+		value = clampi(value, 0, param.ammo_max)
 		ammo_left = value
 		ammo_changed.emit(ammo_loaded, ammo_left)
 		check_ammo()
@@ -35,14 +38,13 @@ func check_ammo():
 		reload(true)
 
 func _ready():
-	super._ready()
 	timer.timeout.connect(func (): if reloading: reload())
 	initialize.call_deferred()
 	_anim_start()
 
 func initialize():
-	ammo_loaded = data.clip_size
-	ammo_left = data.ammo_max
+	ammo_loaded = param.clip_size
+	ammo_left = param.ammo_max
 
 func activate(targeting: Targeting):
 	if not can_use:
@@ -53,23 +55,23 @@ func activate(targeting: Targeting):
 		if ammo_loaded <= 0:
 			break
 		spawn_count -= 1
-		var new_projectile = data.projectile_scene.instantiate()
+		var new_projectile = param.projectile_scene.instantiate()
 		var target_position = targeting.get_targeting_position(new_projectile.data.speed, spawn.global_position)
 		get_tree().current_scene.add_child(new_projectile)
 		if new_projectile is Bullet:
-			new_projectile.set_up(spawn, data.damage_data, target_position)
+			new_projectile.set_up(spawn, param.damage_data, target_position)
 		elif new_projectile is Missile:
-			new_projectile.set_up(spawn, data.damage_data, target_position, targeting.target)
-		ammo_loaded -= data.ammo_cost
-		if data.multishot_interval > 0.0 and spawn_count > 0:
-			timer.start(data.multishot_interval)
+			new_projectile.set_up(spawn, param.damage_data, target_position, targeting.target)
+		ammo_loaded -= param.ammo_cost
+		if param.multishot_interval > 0.0 and spawn_count > 0:
+			timer.start(param.multishot_interval)
 			await timer.timeout
 	if ammo_loaded <= 0:
 		if ammo_left > 0 and not reloading:
 			_anim_reload()
 		return
-	if data.shot_interval > 0.0:
-		timer.start(data.shot_interval)
+	if param.shot_interval > 0.0:
+		timer.start(param.shot_interval)
 		await timer.timeout
 	can_use = true
 
@@ -77,7 +79,7 @@ func reload(manual_reload := false):
 	if ammo_left <= 0:
 		reloading = false
 		return
-	var difference = data.clip_size - ammo_loaded
+	var difference = param.clip_size - ammo_loaded
 	if difference <= 0:
 		return # clip full
 	if manual_reload:
@@ -85,7 +87,7 @@ func reload(manual_reload := false):
 			_anim_reload()
 		return
 	if difference < ammo_left:
-		ammo_loaded = data.clip_size
+		ammo_loaded = param.clip_size
 		ammo_left -= difference
 	else:
 		ammo_loaded += ammo_left
@@ -115,7 +117,7 @@ func _anim_shoot():
 func _anim_reload():
 	can_use = false
 	reloading = true
-	timer.start(data.reload_time)
+	timer.start(param.reload_time)
 	if anim_player.has_animation(RELOAD_ANIM):
 		anim_player.queue(RELOAD_ANIM)
 

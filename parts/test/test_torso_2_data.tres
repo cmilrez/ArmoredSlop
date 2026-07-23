@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="TorsoData" format=3 uid="uid://cysrhxhwsvfeh"]
+
+[ext_resource type="Texture2D" uid="uid://7mgeccaarorl" path="res://ui/part_preview/test_torso_2_data_preview.png" id="1_hptpf"]
+[ext_resource type="PackedScene" uid="uid://t6gmjg35gaww" path="res://parts/test/test_torso_2.tscn" id="1_sf0bw"]
+[ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_data.gd" id="2_hptpf"]
+
+[resource]
+script = ExtResource("2_hptpf")
+bone_list = Dictionary[StringName, Array]({
+&"ArmJoint.L": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5618534, 1.3942835, -0.4029569), []],
+&"ArmJoint.R": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5374674, 1.3942823, -0.41045755), []],
+&"BackUnit.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.8076444, 1.4407654, -1.8877279), []],
+&"BackUnit.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.8076439, 1.4407654, -1.8877283), []],
+&"Head": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.020194864, 1.5789315, -0.091585), []],
+&"Torso": [Transform3D(1, 0, 2.3841858e-07, 0, 1, 0, -2.3841858e-07, 0, 1, -7.450581e-09, 0, 6.5135044e-16), [&"ArmJoint.L", &"ArmJoint.R", &"TorsoOverbooster02", &"TorsoOverbooster01", &"TorsoOverbooster04", &"TorsoOverbooster03", &"Head", &"BackUnit.L", &"BackUnit.R", &"TorsoBooster01", &"TorsoBooster02"]],
+&"TorsoBooster01": [Transform3D(-1, 1.4901164e-07, -2.0875011e-07, 4.2241467e-08, -0.70710677, -0.7071069, -2.5297572e-07, -0.7071068, 0.7071068, 0.2999874, 0.5562002, -1.6961757), []],
+&"TorsoBooster02": [Transform3D(-1, 8.9406846e-08, -3.6684256e-07, 1.9617711e-07, -0.7071058, -0.70710766, -3.226168e-07, -0.70710766, 0.7071058, -0.29998687, 0.5562, -1.693906), []],
+&"TorsoOverbooster01": [Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0.88270324, 1.2930117, -2.0943127), []],
+&"TorsoOverbooster02": [Transform3D(-1.1920929e-07, 0, 0.99999994, 0, -1, 0, 0.99999994, 0, 1.7881393e-07, 0.88270324, 1.2930117, -2.0943127), []],
+&"TorsoOverbooster03": [Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -0.8563438, 1.2930108, -2.0983906), []],
+&"TorsoOverbooster04": [Transform3D(-1.1920929e-07, 0, 0.99999994, 0, -1, 0, 0.99999994, 0, 1.7881393e-07, -0.8563438, 1.2930108, -2.0983906), []]
+})
+preview = ExtResource("1_hptpf")
+scene = ExtResource("1_sf0bw")

@@ -1,22 +1,16 @@
-[gd_scene format=3 uid="uid://ddrymdiuiil7g"]
+[gd_scene format=3 uid="uid://dlv6q78qhpy6n"]
 
-[ext_resource type="ArrayMesh" uid="uid://5a4r7yx8r7dd" path="res://assets/TestParts_TestHead2.res" id="1_nnslh"]
-[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="1_wgfnu"]
-[ext_resource type="Script" uid="uid://csj01mag55j6l" path="res://parts/head_part_data.gd" id="3_nnslh"]
+[ext_resource type="ArrayMesh" uid="uid://5a4r7yx8r7dd" path="res://assets/TestParts_TestHead2.res" id="1_2ljgc"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_nnslh"]
 
-[sub_resource type="Skin" id="Skin_40mih"]
+[sub_resource type="Skin" id="Skin_2ljgc"]
 resource_name = "Skin2"
 bind_count = 1
 bind/0/name = &"Head"
 bind/0/bone = -1
 bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
 
-[sub_resource type="Resource" id="Resource_tlty2"]
-script = ExtResource("3_nnslh")
-
-[node name="TestHead2" type="MeshInstance3D" unique_id=1938115884]
-mesh = ExtResource("1_nnslh")
-skin = SubResource("Skin_40mih")
-script = ExtResource("1_wgfnu")
-data = SubResource("Resource_tlty2")
-metadata/_custom_type_script = "uid://c8w6sf47kb1bd"
+[node name="TestHead2" type="MeshInstance3D" unique_id=362690449]
+mesh = ExtResource("1_2ljgc")
+skin = SubResource("Skin_2ljgc")
+script = ExtResource("2_nnslh")

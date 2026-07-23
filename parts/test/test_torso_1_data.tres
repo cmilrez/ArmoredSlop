@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TorsoData" format=3 uid="uid://dot84okom8lcg"]
+
+[ext_resource type="PackedScene" uid="uid://desf1l8cfnugm" path="res://parts/test/test_torso_1.tscn" id="1_b66r8"]
+[ext_resource type="Texture2D" uid="uid://cikvyj30643w2" path="res://ui/part_preview/test_torso_1_data_preview.png" id="1_upm3r"]
+[ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_data.gd" id="2_upm3r"]
+
+[resource]
+script = ExtResource("2_upm3r")
+bone_list = Dictionary[StringName, Array]({
+&"ArmJoint.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.605274, 1.4963869, -0.3275712), []],
+&"ArmJoint.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.6052735, 1.4963869, -0.32757384), []],
+&"BackUnit.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.825481, 1.5904404, -2.0089223), []],
+&"BackUnit.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.825478, 1.5904404, -2.0089247), []],
+&"Head": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.0022268922, 1.630139, -0.10343361), []],
+&"Torso": [Transform3D(1, 0, 2.3841858e-07, 0, 1, 0, -2.3841858e-07, 0, 1, 0, 0, 0), [&"TorsoDrone.002", &"TorsoDrone.001", &"ArmJoint.R", &"ArmJoint.L", &"Head", &"BackUnit.R", &"BackUnit.L", &"TorsoBooster01", &"TorsoBooster02"]],
+&"TorsoBooster01": [Transform3D(-1, 2.3841841e-07, 2.1488088e-07, -3.1391662e-07, -0.86602557, -0.5000012, 6.688273e-08, -0.5000008, 0.8660262, 0.6303948, 0.56059015, -1.8353255), []],
+&"TorsoBooster02": [Transform3D(-1, 5.9604634e-08, -7.1451765e-08, -1.589323e-08, -0.8660255, -0.50000054, -9.168132e-08, -0.50000036, 0.8660258, -0.6303947, 0.56059015, -1.8353257), []],
+&"TorsoDrone.001": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.82262915, 1.9036508, -1.7516665), []],
+&"TorsoDrone.002": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.82529664, 1.9036508, -1.7516663), []]
+})
+preview = ExtResource("1_upm3r")
+scene = ExtResource("1_b66r8")

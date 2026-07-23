@@ -2,28 +2,27 @@
 
 @export var data: CharacterData = null
 @export var mass := 80.0
-@export_enum('TeamA', 'TeamB', 'TeamC') var team_group := 'TeamB'
+@export var team_group: Global.Teams = Global.Teams.TEAM_B
 @export var lock_on_marker: Node3D = null
-@export var weapons: Array[Node] = []
+@export var weapons: Array[Weapon] = []
 
 var alive := true
-var boosting := false
 
 func get_lock_position() -> Vector3:
 	return lock_on_marker.global_position
 
-func distance_to(to: Vector3) -> float:
+func lock_distance_to(to: Vector3) -> float:
 	return get_lock_position().distance_to(to)
 
-func direction_to(to: Vector3) -> Vector3:
+func lock_direction_to(to: Vector3) -> Vector3:
 	return get_lock_position().direction_to(to)
 
 func hor_direction(to: Vector3) -> Vector3:
-	var dir = Vector2(global_position.x, global_position.z).direction_to(Vector2(to.x, to.z))
+	var dir = Vector2(position.x, position.z).direction_to(Vector2(to.x, to.z))
 	return Vector3(dir.x, 0.0, dir.y)
 
 func hor_distance(to: Vector3) -> float:
-	return Vector2(global_position.x, global_position.z).distance_to(Vector2(to.x, to.z))
+	return Vector2(position.x, position.z).distance_to(Vector2(to.x, to.z))
 
 func do_friction(friction: float) -> void:
 	var speed = velocity.length()

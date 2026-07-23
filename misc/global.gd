@@ -1,6 +1,7 @@
 extends Node
 
-const TEAM_C := &'TeamC'
+enum Teams {TEAM_A, TEAM_B, TEAM_C}
+
 const QUARTER_PI := PI/4.0
 const LARGE_FLOAT: float = 0x7FEFFFFFFFFFFFFF
 
