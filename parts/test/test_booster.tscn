@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bgktynat53xno"]
+
+[ext_resource type="Script" uid="uid://4vyd3nx7u8jk" path="res://parts/booster.gd" id="1_ms4hs"]
+[ext_resource type="PackedScene" uid="uid://cetqckpufr7kw" path="res://effect/booster_fire.tscn" id="2_8v0n7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2ucp"]
+albedo_color = Color(1, 0.6, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_y2ucp")
+top_radius = 0.2
+bottom_radius = 0.3
+height = 1.0
+radial_segments = 16
+rings = 0
+cap_top = false
+
+[node name="TestBooster" type="Node3D" unique_id=2008024911 node_paths=PackedStringArray("vfx")]
+script = ExtResource("1_ms4hs")
+vfx = NodePath("Node3D")
+
+[node name="BoosterMesh" type="MeshInstance3D" parent="." unique_id=1382655892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 4
+mesh = SubResource("CylinderMesh_vq2wp")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=102159702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="BoosterFire" parent="Node3D" unique_id=1699389257 instance=ExtResource("2_8v0n7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

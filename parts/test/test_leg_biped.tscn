@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ba5mb5g5ophvw"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0fhkkwt6eqb8" path="res://assets/TestParts_TestLegBiped.res" id="1_kmjor"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_iihjx"]
+
+[sub_resource type="Skin" id="Skin_kmjor"]
+resource_name = "Skin5"
+bind_count = 11
+bind/0/name = &"Root"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+bind/1/name = &"LegBase"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -6.300036e-14, -6.636316, 4.172325e-07)
+bind/2/name = &"Thigh.L"
+bind/2/bone = -1
+bind/2/pose = Transform3D(0.9745585, -0.22414963, -1.0696281e-06, -0.22408806, -0.97428703, -0.023440907, 0.0052539725, 0.022844605, -0.9997253, 1.8782358, 6.375838, -0.14949724)
+bind/3/name = &"Shin.L"
+bind/3/bone = -1
+bind/3/pose = Transform3D(0.9999946, -0.00427109, -1.0720148e-06, -0.0042391205, -0.99269354, 0.12059044, -0.000515283, -0.120589435, -0.9927025, 0.8983528, 4.527146, 0.49957663)
+bind/4/name = &"Feet.L"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1.0000037, 1.7458e-07, 5.820788e-11, 7.466906e-07, 5.2154206e-08, -1.0000001, -9.563992e-07, 1.0000001, -5.5669765e-17, 0.89535254, 0.41816482, -0.70425314)
+bind/5/name = &"LegBooster01"
+bind/5/bone = -1
+bind/5/pose = Transform3D(0.9996715, -0.022637883, -0.012320001, -0.012319852, -0.8395946, 0.54307413, -0.022636881, -0.5427421, -0.8395944, 0.9825181, 2.3720543, 2.5832658)
+bind/6/name = &"Thigh.R"
+bind/6/bone = -1
+bind/6/pose = Transform3D(0.9745586, 0.22414966, 1.0803384e-06, 0.22408807, -0.97428703, -0.023440905, -0.005253983, 0.022844601, -0.9997253, -1.878236, 6.3758383, -0.14949721)
+bind/7/name = &"Shin.R"
+bind/7/bone = -1
+bind/7/pose = Transform3D(0.9999947, 0.0042710975, 1.1443673e-06, 0.004239098, -0.9926935, 0.12059044, 0.0005153325, -0.12058944, -0.9927024, -0.898353, 4.527146, 0.4995766)
+bind/8/name = &"Feet.R"
+bind/8/bone = -1
+bind/8/pose = Transform3D(1.0000038, -2.0453525e-07, -5.8209416e-11, -7.673547e-07, -6.705509e-08, -1.0000001, 1.0103217e-06, 1.0000002, 7.450583e-09, -0.8953526, 0.41816503, -0.7042531)
+bind/9/name = &"LegBooster02"
+bind/9/bone = -1
+bind/9/pose = Transform3D(0.9996717, 0.022637786, 0.012319973, 0.012319814, -0.8395957, 0.54307264, 0.022636753, -0.54274064, -0.83959556, -0.9825175, 2.3720615, 2.5832634)
+bind/10/name = &"TorsoJoint"
+bind/10/bone = -1
+bind/10/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -1.4020496e-08, -7.3440456, 0.092853546)
+
+[node name="TestLegBiped" type="MeshInstance3D" unique_id=909053302]
+mesh = ExtResource("1_kmjor")
+skin = SubResource("Skin_kmjor")
+script = ExtResource("2_iihjx")

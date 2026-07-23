@@ -37,7 +37,6 @@ collision_mask = 22
 input_ray_pickable = false
 motion_mode = 1
 script = ExtResource("1_3kk41")
-team_group = "TeamC"
 lock_on_marker = NodePath("VisibleOnScreenNotifier3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2071641657]

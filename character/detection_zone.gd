@@ -38,7 +38,7 @@ func search_target() -> Character:
 			continue
 		if not body.alive:
 			continue
-		if not body.is_in_group(Global.TEAM_C):
+		if not body.team_group == Global.Teams.TEAM_C:
 			if body.team_group == parent.team_group:
 				continue
 		eye_ray.target_position = eye_ray.to_local(body.get_lock_position())
@@ -60,7 +60,7 @@ func search_target() -> Character:
 func set_target_from_damage(dmg_data: DamageData):
 	var source = get_node_or_null(dmg_data.source)
 	if source:
-		if not source.team_group == Global.TEAM_C:
+		if not source.team_group == Global.Teams.TEAM_C:
 			if source.team_group == get_parent().team_group:
 				return
 		targeting.target = source

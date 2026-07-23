@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ArmsData" format=3 uid="uid://bm4he1kj7u4fp"]
+
+[ext_resource type="Texture2D" uid="uid://crf7vsvr7grqx" path="res://ui/part_preview/test_arms_2_data_preview.png" id="1_13u6o"]
+[ext_resource type="PackedScene" uid="uid://dr8253iwug65h" path="res://parts/test/test_arms_2.tscn" id="1_qrb5n"]
+[ext_resource type="Script" uid="uid://dj77y8eacejc8" path="res://parts/arms_data.gd" id="2_13u6o"]
+
+[resource]
+script = ExtResource("2_13u6o")
+bone_list = Dictionary[StringName, Array]({
+&"Forearm.L": [Transform3D(0.9473325, -0.017418806, -0.31977758, -0.31981438, 0.00070543226, -0.9474799, 0.016729549, 0.9998481, -0.004902505, -4.485264e-08, 1.7395265, 1.3969839e-09), [&"Hand.L"]],
+&"Forearm.R": [Transform3D(0.9473325, 0.01741879, 0.31977752, 0.31981432, 0.00070566003, -0.9474799, -0.016729608, 0.99984807, -0.0049022837, -1.4733814e-08, 1.7395265, 4.656613e-10), [&"Hand.R"]],
+&"Hand.L": [Transform3D(1, 2.9802319e-08, 1.862647e-09, 1.8626407e-09, 1.7881393e-07, -0.99999994, -2.980232e-08, 0.99999994, 1.7881393e-07, 0.022408077, 2.0943024, -0.23412359), []],
+&"Hand.R": [Transform3D(1, -1.1734666e-07, -3.5527137e-15, -3.5527137e-15, 0, -1, 1.1734666e-07, 1, 0, -0.022408025, 2.0943024, -0.23412356), []],
+&"Shoulder.L": [Transform3D(-0.94733256, 0.31981435, -0.016729454, -0.31977758, -0.94747996, -0.0049022567, -0.017418636, 0.0007056371, 0.999848, 0, 0, 0), [&"Forearm.L"]],
+&"Shoulder.R": [Transform3D(-0.94733256, -0.3198143, 0.01672967, 0.31977746, -0.94748, -0.0049022436, 0.017418833, 0.00070571655, 0.999848, 0, 0, 0), [&"Forearm.R"]]
+})
+preview = ExtResource("1_13u6o")
+scene = ExtResource("1_qrb5n")

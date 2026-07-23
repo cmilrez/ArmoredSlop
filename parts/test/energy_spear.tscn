@@ -1,20 +1,9 @@
 [gd_scene format=3 uid="uid://dgm2xvvhj65dd"]
 
 [ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_lrm1f"]
+[ext_resource type="Resource" uid="uid://bnoxbmrnonice" path="res://parts/test/energy_spear_param.tres" id="2_bjf87"]
 [ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_r74yd"]
-[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_data.gd" id="3_bjf87"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_037vq"]
-
-[sub_resource type="Resource" id="Resource_bjf87"]
-script = ExtResource("2_r74yd")
-damage_energy = 25.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_ymaok"]
-script = ExtResource("3_bjf87")
-reload_time = 2.0
-damage_data = SubResource("Resource_bjf87")
-metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umeg2"]
 albedo_color = Color(0, 1, 0.49803922, 1)
@@ -160,7 +149,7 @@ _data = {
 
 [node name="EnergySpear" type="Node3D" unique_id=1380468596]
 script = ExtResource("1_lrm1f")
-data = SubResource("Resource_ymaok")
+param = ExtResource("2_bjf87")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1490588011]

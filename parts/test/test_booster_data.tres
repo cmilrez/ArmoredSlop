@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BoosterData" format=3 uid="uid://yxu43b60ukm1"]
+
+[ext_resource type="Texture2D" uid="uid://ssmnq6hif6m8" path="res://ui/part_preview/test_booster_data_preview.png" id="1_dti1l"]
+[ext_resource type="PackedScene" uid="uid://bgktynat53xno" path="res://parts/test/test_booster.tscn" id="1_j7wnb"]
+[ext_resource type="Script" uid="uid://br6yyc1s7h6bu" path="res://parts/booster_data.gd" id="1_qlj55"]
+
+[resource]
+script = ExtResource("1_qlj55")
+preview = ExtResource("1_dti1l")
+scene = ExtResource("1_j7wnb")
+metadata/_custom_type_script = "uid://br6yyc1s7h6bu"

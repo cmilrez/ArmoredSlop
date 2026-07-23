@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HeadData" format=3 uid="uid://dfrkswb1sdbox"]
+
+[ext_resource type="PackedScene" uid="uid://bupcpm45htcrq" path="res://parts/test/test_head_1.tscn" id="1_fcdxb"]
+[ext_resource type="Texture2D" uid="uid://capapkhntqifk" path="res://ui/part_preview/test_head_1_data_preview.png" id="1_xgwf0"]
+[ext_resource type="Script" uid="uid://csj01mag55j6l" path="res://parts/head_data.gd" id="2_xgwf0"]
+
+[resource]
+script = ExtResource("2_xgwf0")
+bone_list = Dictionary[StringName, Array]({
+&"Head": [Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0), []]
+})
+preview = ExtResource("1_xgwf0")
+scene = ExtResource("1_fcdxb")

@@ -6,13 +6,15 @@ const PREPARE_ANIM = &'Prepare'
 const ATTACK_ANIM = &'Attack'
 const COOLDOWN_ANIM = &'Cooldown'
 
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var timer: Timer = $Timer
 @onready var hurtbox = $Hurtbox
-@export var data: MeleeWeaponData = null
+
+@export var param: MeleeWeaponParam = null
 
 func _ready():
-	super._ready()
 	timer.timeout.connect(func(): _anim_ready())
-	hurtbox.damage_data = data.damage_data
+	hurtbox.damage_data = param.damage_data
 	toggle_hurtbox(false)
 	_anim_start()
 
@@ -57,7 +59,7 @@ func _anim_attack():
 func _anim_cooldown():
 	can_use = false
 	cooling = true
-	timer.start(data.reload_time)
+	timer.start(param.reload_time)
 	if anim_player.has_animation(COOLDOWN_ANIM):
 		anim_player.play(COOLDOWN_ANIM)
 

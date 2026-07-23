@@ -23,7 +23,7 @@ func initialize():
 func take_damage(dmg_data: DamageData):
 	var source = get_node_or_null(dmg_data.source)
 	if source:
-		if not source.team_group == Global.TEAM_C:
+		if not source.team_group == Global.Teams.TEAM_C:
 			if source.team_group == get_parent().team_group:
 				return
 	var damage = dmg_data.damage_bullet * data.defense_bullet

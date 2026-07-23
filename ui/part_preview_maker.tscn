@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://kfosphnao66r"]
+
+[ext_resource type="Script" uid="uid://rda1aufwokqu" path="res://ui/part_preview_maker.gd" id="1_yf0e4"]
+
+[node name="PartPreviewMaker" type="Node3D" unique_id=948707579 node_paths=PackedStringArray("viewport", "camera")]
+script = ExtResource("1_yf0e4")
+viewport = NodePath("SubViewportContainer/SubViewport")
+camera = NodePath("SubViewportContainer/SubViewport/Camera3D")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=691004438]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1809053448]
+transparent_bg = true
+msaa_3d = 3
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=796245524]
+transform = Transform3D(-0.7071067, -0.13758877, 0.69359154, 0, 0.9808867, 0.19457987, -0.7071067, 0.13758877, -0.69359154, 4.6340036, 2.4012585, -3.9813347)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1444404333]
+transform = Transform3D(-0.70710677, 0.18301268, -0.6830126, 0, 0.96592575, 0.258819, 0.70710677, 0.18301268, -0.6830126, -10, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 50.0
