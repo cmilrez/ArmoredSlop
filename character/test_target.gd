@@ -4,9 +4,9 @@ extends Character
 	set(value):
 		follow = value
 		set_physics_process(is_instance_valid(follow))
-@export var speed := 40.0
 
 func _ready():
+	speed = 40.0
 	lock_on_marker.screen_entered.connect(func(): SignalBus.enemy_entered_screen.emit(self))
 	lock_on_marker.screen_exited.connect(func(): SignalBus.enemy_exited_screen.emit(self))
 	follow = follow

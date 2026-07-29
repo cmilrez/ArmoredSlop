@@ -6,9 +6,7 @@ enum {WANDER, CHASE, DEATH}
 
 @export var anim_player: AnimationPlayer = null
 var home_position := Vector3.ZERO
-var move_direction := Vector3.ZERO
-var speed := 20.0
-var accel := 3.0
+var accel := 10.0
 var state := WANDER:
 	set(value):
 		if not state == value:
@@ -67,7 +65,6 @@ func _physics_process(delta):
 			var dir = hor_direction(target_pos)
 			rotation.y = Vector2(dir.z, dir.x).angle()
 			if timer.is_stopped():
-				speed = 30.0
 				var dist = hor_distance(target_pos)
 				if dist < 100.0:
 					speed = 200.0
@@ -85,6 +82,7 @@ func _physics_process(delta):
 						velocity = Vector3.ZERO
 						timer.start(maxf(1.0, 2.0 * randf()))
 				else:
+					speed = 30.0
 					move_direction = dir
 		DEATH:
 			move_direction = Vector3.ZERO

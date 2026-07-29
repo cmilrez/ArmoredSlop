@@ -292,6 +292,7 @@ rings = 0
 script = ExtResource("1_3lgcg")
 spawners = NodePath("Skeleton3D/Body/Spawners")
 param = ExtResource("2_65uri")
+recoil = true
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931819844]

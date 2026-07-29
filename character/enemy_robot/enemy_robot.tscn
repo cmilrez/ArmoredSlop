@@ -1,22 +1,52 @@
 [gd_scene format=3 uid="uid://dbx5uyvurl0nb"]
 
+[ext_resource type="Resource" uid="uid://bm4he1kj7u4fp" path="res://parts/test/test_arms_2_data.tres" id="2_u4a80"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="3_0j0i7"]
+[ext_resource type="Resource" uid="uid://yxu43b60ukm1" path="res://parts/test/test_booster_data.tres" id="3_t8q8f"]
+[ext_resource type="Resource" uid="uid://bed12ld81mg4b" path="res://parts/test/test_generator_data.tres" id="4_13vie"]
 [ext_resource type="PackedScene" uid="uid://qs1aigkqwumj" path="res://parts/test/missile_launcher.tscn" id="4_jhhky"]
 [ext_resource type="Script" uid="uid://c2tribd38lidp" path="res://parts/booster_controller.gd" id="4_sm8mv"]
 [ext_resource type="AnimationLibrary" uid="uid://cbc7ajiih8yvq" path="res://assets/AnimBiped.gltf" id="5_0ciy8"]
+[ext_resource type="Resource" uid="uid://b3rs58mp6a4a4" path="res://parts/test/test_head_2_data.tres" id="5_hyvsg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d0l8o7aa41i5l" path="res://character/player_robot/anim_machine_robot.res" id="5_ufs7v"]
+[ext_resource type="Resource" uid="uid://cowfkhskd3huo" path="res://parts/test/missile_launcher_data.tres" id="6_h3mma"]
 [ext_resource type="PackedScene" uid="uid://dfubxg0n07rgo" path="res://parts/test/rifle.tscn" id="6_venrh"]
+[ext_resource type="Resource" uid="uid://651u4k6na56j" path="res://parts/test/test_leg_reverse_data.tres" id="7_8nlwl"]
 [ext_resource type="Script" uid="uid://dtnaqmcmkkxtq" path="res://character/robot_animator.gd" id="7_f8ko1"]
+[ext_resource type="Resource" uid="uid://dsleum4ja8lju" path="res://parts/test/test_lock_on_data.tres" id="8_kya15"]
 [ext_resource type="Script" uid="uid://cr1qyxdonwv2j" path="res://character/enemy_robot/enemy_robot.gd" id="9_0ciy8"]
+[ext_resource type="Resource" uid="uid://c6i343ptt0fgt" path="res://parts/test/rifle_data.tres" id="9_jlwej"]
+[ext_resource type="PackedScene" uid="uid://dlv6q78qhpy6n" path="res://parts/test/test_head_2.tscn" id="10_bexq8"]
+[ext_resource type="Script" uid="uid://btwwmhfbra0fh" path="res://character/robot_data.gd" id="10_scifp"]
 [ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="10_wctin"]
 [ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc_data.gd" id="11_bexq8"]
+[ext_resource type="Resource" uid="uid://cysrhxhwsvfeh" path="res://parts/test/test_torso_2_data.tres" id="11_lclvh"]
+[ext_resource type="PackedScene" uid="uid://dr8253iwug65h" path="res://parts/test/test_arms_2.tscn" id="11_ufs7v"]
+[ext_resource type="ArrayMesh" uid="uid://bhkkwlbbtl7qj" path="res://assets/TestParts_TestTorso2.res" id="12_bexq8"]
+[ext_resource type="PackedScene" uid="uid://cxa6o0chdas68" path="res://parts/test/test_leg_reverse.tscn" id="13_f8ko1"]
 [ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/targeting.gd" id="13_na68p"]
+[ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="13_ufs7v"]
+[ext_resource type="PackedScene" uid="uid://bgktynat53xno" path="res://parts/test/test_booster.tscn" id="14_ufs7v"]
 [ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="15_0j0i7"]
 [ext_resource type="ArrayMesh" uid="uid://dfp5hjm5gu3dc" path="res://assets/Hands_Hands.res" id="15_f8ko1"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="16_0ciy8"]
-[ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/template_bullet.tscn" id="17_f8ko1"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="18_4eak0"]
-[ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/missile_basic.tscn" id="19_f8ko1"]
+
+[sub_resource type="Resource" id="Resource_0ciy8"]
+script = ExtResource("10_scifp")
+head = ExtResource("5_hyvsg")
+arms = ExtResource("2_u4a80")
+torso = ExtResource("11_lclvh")
+legs = ExtResource("7_8nlwl")
+right_arm = ExtResource("9_jlwej")
+left_back = ExtResource("6_h3mma")
+booster = ExtResource("3_t8q8f")
+generator = ExtResource("4_13vie")
+lock_on = ExtResource("8_kya15")
+max_hp = 1000.0
+metadata/_custom_type_script = "uid://btwwmhfbra0fh"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5tsac"]
+radius = 4.0
+height = 10.0
 
 [sub_resource type="Resource" id="Resource_ufs7v"]
 script = ExtResource("11_bexq8")
@@ -24,12 +54,48 @@ distance_max = 200.0
 max_hp = 1000.0
 metadata/_custom_type_script = "uid://f665pyihvlvu"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5tsac"]
-radius = 4.0
-height = 10.0
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_ufs7v"]
 radius = 100.0
+
+[sub_resource type="Skin" id="Skin_w0tne"]
+resource_name = "Skin3"
+bind_count = 12
+bind/0/name = &"Torso"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 7.450581e-09, 0, 1.1250064e-15)
+bind/1/name = &"ArmJoint.L"
+bind/1/bone = -1
+bind/1/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -1.5618534, -1.3942835, 0.4029569)
+bind/2/name = &"ArmJoint.R"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 1.5374674, -1.3942823, 0.41045755)
+bind/3/name = &"TorsoOverbooster02"
+bind/3/bone = -1
+bind/3/pose = Transform3D(-7.54979e-08, 0, -1, 0, -1, 0, -1, 0, 7.54979e-08, 2.094313, 1.2930117, -0.8827031)
+bind/4/name = &"TorsoOverbooster01"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88270295, -1.2930117, -2.094313)
+bind/5/name = &"TorsoOverbooster04"
+bind/5/bone = -1
+bind/5/pose = Transform3D(-7.54979e-08, 0, -1, 0, -1, 0, -1, 0, 7.54979e-08, 2.0983903, 1.2930108, 0.8563439)
+bind/6/name = &"TorsoOverbooster03"
+bind/6/bone = -1
+bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8563441, -1.2930108, -2.0983903)
+bind/7/name = &"Head"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.02019485, -1.5789315, 0.091585)
+bind/8/name = &"BackUnit.L"
+bind/8/bone = -1
+bind/8/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.8076442, -1.4407654, 1.887728)
+bind/9/name = &"BackUnit.R"
+bind/9/bone = -1
+bind/9/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.807644, -1.4407654, 1.8877282)
+bind/10/name = &"TorsoBooster01"
+bind/10/bone = -1
+bind/10/pose = Transform3D(1, 4.2241446e-08, 1.01979936e-07, -4.2241478e-08, -0.70710677, 0.7071068, 1.01979936e-07, -0.7071067, -0.70710677, 0.29998696, -0.80608445, 1.5926701)
+bind/11/name = &"TorsoBooster02"
+bind/11/bone = -1
+bind/11/pose = Transform3D(1, 1.961772e-07, 1.7162104e-07, 1.7363451e-08, -0.7071059, 0.70710784, 2.6007262e-07, -0.7071079, -0.7071058, -0.29998752, -0.8044819, 1.5910641)
 
 [sub_resource type="Skin" id="Skin_unnx4"]
 resource_name = "Skin"
@@ -47,38 +113,6 @@ bind/3/name = &"ArmUnit.L"
 bind/3/bone = -1
 bind/3/pose = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.8326282, 0, -0.54235786)
 
-[sub_resource type="Resource" id="Resource_bexq8"]
-script = ExtResource("16_0ciy8")
-damage_bullet = 5.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_wctin"]
-script = ExtResource("18_4eak0")
-shot_interval = 0.2
-reload_time = 3.0
-clip_size = 30
-ammo_max = 9999999999
-ammo_cost = 1
-damage_data = SubResource("Resource_bexq8")
-projectile_scene = ExtResource("17_f8ko1")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
-
-[sub_resource type="Resource" id="Resource_4eak0"]
-script = ExtResource("16_0ciy8")
-damage_explosive = 5.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
-[sub_resource type="Resource" id="Resource_sm8mv"]
-script = ExtResource("18_4eak0")
-multishot_interval = 0.1
-reload_time = 4.0
-clip_size = 6
-ammo_max = 9999999999
-ammo_cost = 1
-damage_data = SubResource("Resource_4eak0")
-projectile_scene = ExtResource("19_f8ko1")
-metadata/_custom_type_script = "uid://tu33ba2v3a1y"
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71r25"]
 radius = 0.88134766
 height = 4.085303
@@ -90,34 +124,37 @@ height = 3.5478516
 [sub_resource type="SphereShape3D" id="SphereShape3D_bexq8"]
 radius = 1.5012704
 
-[node name="EnemyRobot" type="CharacterBody3D" unique_id=650302674 node_paths=PackedStringArray("anim_tree", "lock_on_marker", "weapons")]
+[node name="EnemyRobot" type="CharacterBody3D" unique_id=650302674 node_paths=PackedStringArray("lock_on_marker", "weapons")]
 collision_layer = 4
 collision_mask = 23
 floor_constant_speed = true
 floor_snap_length = 1.0
 platform_floor_layers = 3
 script = ExtResource("9_0ciy8")
-anim_tree = NodePath("AnimationTree")
-data = SubResource("Resource_ufs7v")
+data = SubResource("Resource_0ciy8")
 mass = 100.0
-team_group = 0
+team = 0
 lock_on_marker = NodePath("Skeleton3D/Torso/LockOnMarker")
 weapons = [NodePath("Skeleton3D/ArmUnitR/Rifle"), NodePath("Skeleton3D/BackUnitL/MissileLauncher")]
 metadata/_custom_type_script = "uid://b31okcihcprx6"
 
-[node name="MoveTimer" type="Timer" parent="." unique_id=2002272148]
+[node name="Timer" type="Timer" parent="." unique_id=1432402585]
 one_shot = true
 
-[node name="AtkTimer" type="Timer" parent="." unique_id=1279694199]
+[node name="ActionTimer" type="Timer" parent="." unique_id=2002272148]
 one_shot = true
 
-[node name="BoosterController" type="Node" parent="." unique_id=590149743 node_paths=PackedStringArray("character")]
+[node name="AtkTimer" type="Timer" parent="." unique_id=1559220477]
+one_shot = true
+
+[node name="BoosterController" type="Node" parent="." unique_id=590149743 node_paths=PackedStringArray("character", "list")]
 script = ExtResource("4_sm8mv")
 character = NodePath("..")
+list = [NodePath("../Skeleton3D/TestLegReverse/LegBooster01/Booster"), NodePath("../Skeleton3D/TestLegReverse/LegBooster02/Booster"), NodePath("../Skeleton3D/TestTorso2/TorsoBooster01/TestBooster"), NodePath("../Skeleton3D/TestTorso2/TorsoBooster02/TestBooster")]
 
 [node name="Health" type="Node" parent="." unique_id=210024076]
 script = ExtResource("3_0j0i7")
-data = SubResource("Resource_ufs7v")
+data = SubResource("Resource_0ciy8")
 metadata/_custom_type_script = "uid://ch5cqu8ctoscg"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1417384013]
@@ -413,6 +450,65 @@ bones/32/position = Vector3(-0.167372, 0, 0.542358)
 bones/32/rotation = Quaternion(0, 0, 0, 1)
 bones/32/scale = Vector3(1, 1, 1)
 
+[node name="TestHead2" parent="Skeleton3D" unique_id=362690449 instance=ExtResource("10_bexq8")]
+layers = 4
+skeleton = NodePath("..")
+
+[node name="TestArms2" parent="Skeleton3D" unique_id=1464074938 instance=ExtResource("11_ufs7v")]
+layers = 4
+skeleton = NodePath("..")
+
+[node name="TestTorso2" type="MeshInstance3D" parent="Skeleton3D" unique_id=97769468]
+layers = 4
+mesh = ExtResource("12_bexq8")
+skin = SubResource("Skin_w0tne")
+skeleton = NodePath("..")
+script = ExtResource("13_ufs7v")
+
+[node name="TorsoBooster01" type="BoneAttachment3D" parent="Skeleton3D/TestTorso2" unique_id=1189350131]
+transform = Transform3D(0.9999999, 1.2634591e-07, -6.660751e-08, 4.2241457e-08, -0.7071067, -0.7071068, -1.3643862e-07, 0.70710677, -0.7071069, -0.30315927, 7.917175, 1.6860598)
+bone_name = "TorsoBooster01"
+bone_idx = 12
+use_external_skeleton = true
+external_skeleton = NodePath("../..")
+
+[node name="TestBooster" parent="Skeleton3D/TestTorso2/TorsoBooster01" unique_id=2008024911 instance=ExtResource("14_ufs7v")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+
+[node name="TorsoBooster02" type="BoneAttachment3D" parent="Skeleton3D/TestTorso2" unique_id=1118320775]
+transform = Transform3D(1.0000002, 1.8595105e-07, 9.148542e-08, 1.9617713e-07, -0.70710593, -0.7071077, -6.679761e-08, 0.7071077, -0.7071058, 0.296815, 7.917175, 1.6837898)
+bone_name = "TorsoBooster02"
+bone_idx = 13
+use_external_skeleton = true
+external_skeleton = NodePath("../..")
+
+[node name="TestBooster" parent="Skeleton3D/TestTorso2/TorsoBooster02" unique_id=1787991865 instance=ExtResource("14_ufs7v")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+
+[node name="TestLegReverse" parent="Skeleton3D" unique_id=1659379382 instance=ExtResource("13_f8ko1")]
+layers = 4
+skeleton = NodePath("..")
+
+[node name="LegBooster01" parent="Skeleton3D/TestLegReverse" index="0" unique_id=324620551]
+transform = Transform3D(1.0000137, -8.120667e-06, 7.5609423e-06, 1.9953586e-07, -0.49364647, -0.86966336, 1.2105331e-05, 0.8696704, -0.4936517, -0.8978625, 4.0071197, 1.2590499)
+bone_name = "LegBooster01"
+bone_idx = 23
+use_external_skeleton = true
+external_skeleton = NodePath("../..")
+
+[node name="Booster" parent="Skeleton3D/TestLegReverse/LegBooster01" index="0" unique_id=1640679861]
+transform = Transform3D(0.7, 0, 0, 0, -1, 6.119594e-08, 0, -8.742278e-08, -0.7, 0, 0, 0)
+
+[node name="LegBooster02" parent="Skeleton3D/TestLegReverse" index="1" unique_id=1362066982]
+transform = Transform3D(1.0000136, 8.329982e-06, -7.706229e-06, -2.081506e-07, -0.49364382, -0.86966443, -1.2300909e-05, 0.86967194, -0.49364954, 0.8978624, 4.0071187, 1.2590476)
+bone_name = "LegBooster02"
+bone_idx = 24
+use_external_skeleton = true
+external_skeleton = NodePath("../..")
+
+[node name="Booster" parent="Skeleton3D/TestLegReverse/LegBooster02" index="0" unique_id=1184860317]
+transform = Transform3D(0.7, 0, 0, 0, -1, 6.119594e-08, 0, -8.742278e-08, -0.7, 0, 0, 0)
+
 [node name="Hands" type="MeshInstance3D" parent="Skeleton3D" unique_id=515080002]
 unique_name_in_owner = true
 mesh = ExtResource("15_f8ko1")
@@ -426,7 +522,7 @@ bone_name = "ArmUnit.R"
 bone_idx = 31
 
 [node name="Rifle" parent="Skeleton3D/ArmUnitR" unique_id=1868911248 instance=ExtResource("6_venrh")]
-data = SubResource("Resource_wctin")
+infinite_clip = true
 
 [node name="ArmUnitL" type="BoneAttachment3D" parent="Skeleton3D" unique_id=1538433526]
 unique_name_in_owner = true
@@ -448,7 +544,7 @@ bone_idx = 8
 
 [node name="MissileLauncher" parent="Skeleton3D/BackUnitL" unique_id=155415789 instance=ExtResource("4_jhhky")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-data = SubResource("Resource_sm8mv")
+infinite_clip = true
 left_side = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Skeleton3D" unique_id=417218941]
@@ -601,27 +697,27 @@ script = ExtResource("15_0j0i7")
 metadata/_custom_type_script = "uid://802cykxrtjmf"
 
 [node name="ThighL" type="CollisionShape3D" parent="Hitbox" unique_id=1082211702]
-transform = Transform3D(1.0000032, 0.00043252466, -0.000607188, -0.00010380786, 0.8858578, 0.46395355, 0.0007398499, -0.46395963, 0.88585985, -0.9197719, 5.1264124, 0.13801806)
+transform = Transform3D(1.0000032, 0.0004325241, -0.00060718774, -0.00010380786, 0.8858567, 0.4639534, 0.0007398499, -0.46395904, 0.88585955, -0.9197719, 5.1264124, 0.13801806)
 shape = SubResource("CapsuleShape3D_71r25")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [node name="ShinL" type="CollisionShape3D" parent="Hitbox" unique_id=202206474]
-transform = Transform3D(0.9999802, 6.895974e-06, 0.005466462, -0.0022845815, -0.9081465, 0.41864645, 0.004968433, -0.41865727, -0.9081407, -0.8954839, 2.1047854, 0.76981425)
+transform = Transform3D(0.99992996, 6.89597e-06, 0.0054664635, -0.0022844668, -0.90814596, 0.41864657, 0.0049681836, -0.418657, -0.90814096, -0.8954839, 2.1047854, 0.76981425)
 shape = SubResource("CapsuleShape3D_wctin")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [node name="ThighR" type="CollisionShape3D" parent="Hitbox" unique_id=1509431728]
-transform = Transform3D(1.0000037, 4.835414e-06, -9.179091e-06, 8.7916004e-07, 0.8856441, 0.4643601, 1.1421629e-05, -0.4643657, 0.88565093, 0.91954213, 5.126448, 0.13835847)
+transform = Transform3D(1.0000037, 4.8354104e-06, -9.179085e-06, 8.7916004e-07, 0.8856434, 0.46435982, 1.1421629e-05, -0.46436533, 0.88565046, 0.91954213, 5.126448, 0.13835847)
 shape = SubResource("CapsuleShape3D_71r25")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [node name="ShinR" type="CollisionShape3D" parent="Hitbox" unique_id=1879652047]
-transform = Transform3D(0.9999862, -7.0333454e-06, -0.005466662, 0.00228457, -0.9081463, 0.41864598, -0.004968646, -0.41865748, -0.90814036, 0.89547056, 2.1047869, 0.76981425)
+transform = Transform3D(0.9999862, -7.033348e-06, -0.0054666637, 0.00228457, -0.9081467, 0.41864613, -0.004968646, -0.41865763, -0.90814066, 0.89547056, 2.1047869, 0.76981425)
 shape = SubResource("CapsuleShape3D_wctin")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [node name="Torso" type="CollisionShape3D" parent="Hitbox" unique_id=1832373208]
-transform = Transform3D(-1, 2.812519e-16, -3.8941437e-07, -4.4408985e-16, 0.9999996, 1.8626478e-09, 3.8941437e-07, 1.862647e-09, -1, -0.0031725094, 8.169352, -0.010115995)
+transform = Transform3D(-1, 2.8125165e-16, -3.8941437e-07, -4.4408985e-16, 0.99999875, 1.8626478e-09, 3.8941437e-07, 1.8626454e-09, -1, -0.0031725094, 8.169352, -0.010115995)
 shape = SubResource("SphereShape3D_bexq8")
 debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
@@ -629,3 +725,5 @@ debug_color = Color(0, 1, 0.42352942, 0.41960785)
 [connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
 [connection signal="hit" from="Hitbox" to="Health" method="take_damage"]
 [connection signal="hit" from="Hitbox" to="DetectionZone" method="set_target_from_damage"]
+
+[editable path="Skeleton3D/TestLegReverse"]

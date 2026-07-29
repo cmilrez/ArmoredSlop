@@ -23,10 +23,10 @@ func initialize():
 func take_damage(dmg_data: DamageData):
 	var source = get_node_or_null(dmg_data.source)
 	if source:
-		if not source.team_group == Global.Teams.TEAM_C:
-			if source.team_group == get_parent().team_group:
-				return
-	var damage = dmg_data.damage_bullet * data.defense_bullet
-	damage += dmg_data.damage_energy * data.defense_energy
-	damage += dmg_data.damage_explosive * data.defense_explosive
+		assert(source is Character)
+		if get_parent().is_same_team(source.team):
+			return
+	var damage = dmg_data.bullet_damage * data.bullet_defense
+	damage += dmg_data.energy_damage * data.energy_defense
+	damage += dmg_data.explosive_damage * data.explosive_defense
 	hp -= damage

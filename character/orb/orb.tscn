@@ -13,12 +13,11 @@
 [sub_resource type="Resource" id="Resource_bq8tf"]
 script = ExtResource("2_u6wqr")
 distance_max = 150.0
-max_hp = 15.0
+max_hp = 50.0
 metadata/_custom_type_script = "uid://f665pyihvlvu"
 
 [sub_resource type="Resource" id="Resource_vq2wp"]
 script = ExtResource("6_o6hn8")
-damage_energy = 5.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="Animation" id="Animation_4g13y"]

@@ -41,7 +41,7 @@ func _search_target() -> Node3D:
 	for target: Node3D in target_list:
 		if not is_instance_valid(target):
 			continue
-		if target.team_group == player.team_group:
+		if player.is_same_team(target.team):
 			continue
 		var target_position = target.get_lock_position()
 		var distance := global_position.distance_to(target_position)
@@ -65,7 +65,7 @@ func _process(delta):
 	spring_arm.rotation.x += input_direction.y * delta * invert_y
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, min_angle_x, max_angle_x)
 	spring_arm.rotation.y += input_direction.x * delta * invert_x
-	input_direction *= 0
+	input_direction = Vector2.ZERO
 
 func _physics_process(delta):
 	if not camera.current:
@@ -77,10 +77,11 @@ func _physics_process(delta):
 	position.y = lerpf(position.y, player.position.y + height, lerp_weight2)
 	
 	eye_ray.global_position = camera.global_position
-	var target = null
-	if not manual_aim:
-		target = _search_target()
-	targeting.target = target
+	var target: Character = null
+	if not targeting.lock_target:
+		if not manual_aim:
+			target = _search_target()
+		targeting.target = target
 	if not target:
 		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_FLOAT
 		var point = to_global(eye_ray.target_position)

@@ -11,6 +11,7 @@ signal ammo_changed(loaded: int, left: int)
 @onready var timer: Timer = $Timer
 
 @export var spawners: Node3D = null
+@export var infinite_clip := false
 @export var param: ProjectileWeaponParam = null
 var ammo_total := 0
 var ammo_loaded := 0:
@@ -27,29 +28,27 @@ var ammo_left := 0:
 		check_ammo()
 var ammo_empty := false
 
-func check_ammo():
+func check_ammo() -> void:
 	ammo_total = ammo_loaded + ammo_left
 	if ammo_total <= 0 and not ammo_empty:
 		ammo_empty = true
-		_anim_shutdown()
+		_state_shutdown()
 	if ammo_total > 0 and ammo_empty:
 		ammo_empty = false
-		_anim_start()
+		_state_start()
 		reload(true)
 
 func _ready():
 	timer.timeout.connect(func (): if reloading: reload())
-	initialize.call_deferred()
-	_anim_start()
-
-func initialize():
+	param = param.duplicate()
 	ammo_loaded = param.clip_size
 	ammo_left = param.ammo_max
+	_state_start()
 
-func activate(targeting: Targeting):
+func activate(targeting: Targeting) -> void:
 	if not can_use:
 		return
-	_anim_shoot()
+	_state_shoot()
 	var spawn_count := spawners.get_child_count()
 	for spawn: Node3D in spawners.get_children():
 		if ammo_loaded <= 0:
@@ -68,60 +67,67 @@ func activate(targeting: Targeting):
 			await timer.timeout
 	if ammo_loaded <= 0:
 		if ammo_left > 0 and not reloading:
-			_anim_reload()
+			_state_reload()
 		return
 	if param.shot_interval > 0.0:
 		timer.start(param.shot_interval)
 		await timer.timeout
 	can_use = true
 
-func reload(manual_reload := false):
+func set_dmg_source(path: NodePath) -> void:
+	if param.damage_data:
+		param.damage_data.source = path
+
+func reload(manual_reload := false) -> void:
 	if ammo_left <= 0:
 		reloading = false
 		return
 	var difference = param.clip_size - ammo_loaded
-	if difference <= 0:
-		return # clip full
+	if difference <= 0: # clip full
+		return
 	if manual_reload:
 		if not reloading:
-			_anim_reload()
+			_state_reload()
 		return
-	if difference < ammo_left:
+	if infinite_clip:
 		ammo_loaded = param.clip_size
-		ammo_left -= difference
 	else:
-		ammo_loaded += ammo_left
-		ammo_left = 0
+		if difference < ammo_left:
+			ammo_loaded = param.clip_size
+			ammo_left -= difference
+		else:
+			ammo_loaded += ammo_left
+			ammo_left = 0
 	reloading = false
-	_anim_ready()
+	_state_ready()
 
-func _anim_start():
+func _state_start() -> void:
 	can_use = false
 	if anim_player.has_animation(START_ANIM):
 		anim_player.play(START_ANIM)
 		await anim_player.animation_finished
 	can_use = true
 
-func _anim_ready():
+func _state_ready() -> void:
 	if anim_player.has_animation(READY_ANIM):
 		anim_player.play(READY_ANIM)
 		if anim_player.get_animation(READY_ANIM).get_loop_mode() == Animation.LOOP_NONE:
 			await anim_player.animation_finished
 	can_use = true
 
-func _anim_shoot():
+func _state_shoot() -> void:
 	can_use = false
 	if anim_player.has_animation(SHOOT_ANIM):
 		anim_player.play(SHOOT_ANIM)
 
-func _anim_reload():
+func _state_reload() -> void:
 	can_use = false
 	reloading = true
 	timer.start(param.reload_time)
 	if anim_player.has_animation(RELOAD_ANIM):
 		anim_player.queue(RELOAD_ANIM)
 
-func _anim_shutdown():
+func _state_shutdown() -> void:
 	can_use = false
 	if anim_player.has_animation(START_ANIM):
 		if anim_player.is_playing():

@@ -38,9 +38,8 @@ func search_target() -> Character:
 			continue
 		if not body.alive:
 			continue
-		if not body.team_group == Global.Teams.TEAM_C:
-			if body.team_group == parent.team_group:
-				continue
+		if parent.is_same_team(body.team):
+			continue
 		eye_ray.target_position = eye_ray.to_local(body.get_lock_position())
 		eye_ray.force_raycast_update()
 		if eye_ray.is_colliding():
@@ -60,9 +59,8 @@ func search_target() -> Character:
 func set_target_from_damage(dmg_data: DamageData):
 	var source = get_node_or_null(dmg_data.source)
 	if source:
-		if not source.team_group == Global.Teams.TEAM_C:
-			if source.team_group == get_parent().team_group:
-				return
+		if get_parent().is_same_team(source.team):
+			return
 		targeting.target = source
 
 func deactivate():

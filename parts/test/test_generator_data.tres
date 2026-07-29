@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GeneratorData" format=3 uid="uid://bed12ld81mg4b"]
+
+[ext_resource type="Script" uid="uid://twywdgep4j5s" path="res://parts/generator_data.gd" id="1_mlcbg"]
+[ext_resource type="PackedScene" uid="uid://dkgv1374auon1" path="res://parts/test/test_generator.tscn" id="1_mqu5e"]
+
+[resource]
+script = ExtResource("1_mlcbg")
+scene = ExtResource("1_mqu5e")
+metadata/_custom_type_script = "uid://twywdgep4j5s"

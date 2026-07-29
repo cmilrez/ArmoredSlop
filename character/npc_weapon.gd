@@ -7,6 +7,7 @@ extends Weapon
 
 func _ready():
 	can_use = true
+	damage_data = damage_data.duplicate()
 
 func activate(targeting: Targeting):
 	if not can_use:
@@ -20,6 +21,10 @@ func activate(targeting: Targeting):
 		if shot_interval:
 			await get_tree().create_timer(shot_interval).timeout
 	can_use = true
+
+func set_dmg_source(path: NodePath) -> void:
+	if damage_data:
+		damage_data.source = path
 
 func reload(manual_reload := false):
 	return

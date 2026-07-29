@@ -176,7 +176,7 @@ mesh = SubResource("ArrayMesh_sartp")
 [node name="Spawners" type="Node3D" parent="." unique_id=1670736646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6374287e-07, 0, 1.842374)
 
-[node name="Marker3D" type="Marker3D" parent="Spawners" unique_id=397468549]
+[node name="Marker3D1" type="Marker3D" parent="Spawners" unique_id=397468549]
 transform = Transform3D(0.9998477, -3.0460178e-05, -0.017452378, 0, 0.99999845, -0.0017453283, 0.017452406, 0.0017450625, 0.99984616, -0.155, 0.512, 0)
 gizmo_extents = 0.5
 

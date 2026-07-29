@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_bjf87"]
 script = ExtResource("1_fu6e7")
-damage_bullet = 3.0
+bullet_damage = 10.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [resource]

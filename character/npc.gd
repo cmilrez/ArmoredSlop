@@ -2,6 +2,8 @@ class_name NPC extends Character
 
 @onready var targeting = %Targeting
 
+@export var data: NPCData = null
+
 func _ready():
 	lock_on_marker.screen_entered.connect(func(): SignalBus.enemy_entered_screen.emit(self))
 	lock_on_marker.screen_exited.connect(func(): SignalBus.enemy_exited_screen.emit(self))

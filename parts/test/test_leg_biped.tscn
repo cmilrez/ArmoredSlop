@@ -2,6 +2,8 @@
 
 [ext_resource type="ArrayMesh" uid="uid://b0fhkkwt6eqb8" path="res://assets/TestParts_TestLegBiped.res" id="1_kmjor"]
 [ext_resource type="Script" uid="uid://c8w6sf47kb1bd" path="res://parts/body_part.gd" id="2_iihjx"]
+[ext_resource type="PackedScene" uid="uid://cetqckpufr7kw" path="res://effect/booster_fire.tscn" id="3_iihjx"]
+[ext_resource type="Script" uid="uid://4vyd3nx7u8jk" path="res://parts/booster.gd" id="3_rshd1"]
 
 [sub_resource type="Skin" id="Skin_kmjor"]
 resource_name = "Skin5"
@@ -44,3 +46,25 @@ bind/10/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -
 mesh = ExtResource("1_kmjor")
 skin = SubResource("Skin_kmjor")
 script = ExtResource("2_iihjx")
+
+[node name="LegBooster01" type="BoneAttachment3D" parent="." unique_id=1185686754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6, 0)
+
+[node name="Booster" type="Node3D" parent="LegBooster01" unique_id=1315797131]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
+script = ExtResource("3_rshd1")
+metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
+
+[node name="BoosterFire" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_iihjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="LegBooster02" type="BoneAttachment3D" parent="." unique_id=1433967017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, 0)
+
+[node name="Booster" type="Node3D" parent="LegBooster02" unique_id=1077201670]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
+script = ExtResource("3_rshd1")
+metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
+
+[node name="BoosterFire" parent="LegBooster02/Booster" unique_id=635007332 instance=ExtResource("3_iihjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

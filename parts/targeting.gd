@@ -1,7 +1,10 @@
 class_name Targeting extends Marker3D
 
+var lock_target := false
 var target: Character = null:
 	set(value):
+		if lock_target:
+			return
 		target = value
 
 func _ready():
