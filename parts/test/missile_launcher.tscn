@@ -219,20 +219,20 @@ bone_idx = 0
 [node name="Spawners" type="Node3D" parent="Skeleton3D/Body" unique_id=1670736646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.45, -0.67)
 
-[node name="MissileSpawn_001" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1962946772]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, -0.9997476)
+[node name="Marker3D1" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=2008045242]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, 1.0002522)
 
-[node name="MissileSpawn_002" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=2076642312]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, 0.00025236607)
-
-[node name="MissileSpawn_003" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=407795850]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, 1.0002522)
-
-[node name="MissileSpawn_004" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1472790491]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, -0.9997476)
-
-[node name="MissileSpawn_005" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=867690926]
+[node name="Marker3D2" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=867690926]
 transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, 0.00025236607)
 
-[node name="MissileSpawn_006" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=2008045242]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, 1.0002522)
+[node name="Marker3D3" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1472790491]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0.50000024, 0, -0.9997476)
+
+[node name="Marker3D4" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=407795850]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, 1.0002522)
+
+[node name="Marker3D5" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=2076642312]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, 0.00025236607)
+
+[node name="Marker3D6" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=1962946772]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.49999976, 0, -0.9997476)

@@ -8,7 +8,7 @@ signal weapons_built(nodes: Array[Weapon])
 @export_tool_button('BUILD WEAPONS', 'BuildCSharp') var build2 = _build_weapons
 @export var make_owner := false
 @export var data: RobotData = null
-@export var weapon_nodes: Array[Weapon] = []
+@export var weapon_nodes: Array[Weapon] = [null, null, null, null]
 @export var body_nodes: Array[BodyPart] = []
 @export var booster_nodes: Array[Booster] = []
 var arm_unit_r_rest := Transform3D(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0), Vector3(-0.0, 0.0, 1.0), Vector3(0.167372, 0.0, 0.542358))
@@ -20,7 +20,54 @@ func _ready():
 	_build_body()
 	_build_weapons()
 
-func clear_body() -> void:
+func set_part_scene(p_data: PartData, part_type: int) -> void:
+	var rebuild_body = false
+	var rebuild_weapons = false
+	match part_type:
+		1:
+			if not data.head == p_data:
+				rebuild_body = true
+				data.head = p_data
+		2:
+			if not data.arms == p_data:
+				rebuild_body = true
+				data.arms = p_data
+		3:
+			if not data.torso == p_data:
+				rebuild_body = true
+				data.torso = p_data
+		4:
+			if not data.legs == p_data:
+				rebuild_body = true
+				data.legs = p_data
+		5:
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				if not data.left_arm == p_data:
+					rebuild_weapons = true
+					data.left_arm = p_data
+			else:
+				if not data.right_arm == p_data:
+					rebuild_weapons = true
+					data.right_arm = p_data
+		6:
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				if not data.left_back == p_data:
+					rebuild_weapons = true
+					data.left_back = p_data
+			else:
+				if not data.right_back == p_data:
+					rebuild_weapons = true
+					data.right_back = p_data
+		7:
+			if not data.booster == p_data:
+				rebuild_body = true
+				data.booster = p_data
+	if rebuild_weapons:
+		_build_weapons.call_deferred()
+	if rebuild_body:
+		_build_body.call_deferred()
+
+func _clear_body() -> void:
 	for node in body_nodes:
 		if node:
 			node.free()
@@ -28,79 +75,33 @@ func clear_body() -> void:
 	booster_nodes.clear()
 	%Skeleton3D.clear_bones()
 	data.max_hp = 0.0
-	data.defense_bullet = 0.0
-	data.defense_energy = 0.0
-	data.defense_explosive = 0.0
+	data.bullet_defense = 0.0
+	data.energy_defense = 0.0
+	data.explosive_defense = 0.0
 
-func clear_weapons() -> void:
+func _clear_weapons() -> void:
 	for node in weapon_nodes:
 		if node:
 			node.free()
 	weapon_nodes.clear()
-
-func set_part_scene(scene: PackedScene, part_type: int) -> void:
-	var rebuild_body = false
-	var rebuild_weapons = false
-	match part_type:
-		1:
-			if not data.head_part == scene:
-				rebuild_body = true
-				data.head_part = scene
-		2:
-			if not data.arms_part == scene:
-				rebuild_body = true
-				data.arms_part = scene
-		3:
-			if not data.torso_part == scene:
-				rebuild_body = true
-				data.torso_part = scene
-		4:
-			if not data.legs_part == scene:
-				rebuild_body = true
-				data.legs_part = scene
-		5:
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				if not data.left_arm_part == scene:
-					rebuild_weapons = true
-					data.left_arm_part = scene
-			else:
-				if not data.right_arm_part == scene:
-					rebuild_weapons = true
-					data.right_arm_part = scene
-		6:
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				if not data.left_back_part == scene:
-					rebuild_weapons = true
-					data.left_back_part = scene
-			else:
-				if not data.right_back_part == scene:
-					rebuild_weapons = true
-					data.right_back_part = scene
-		7:
-			if not data.booster_part == scene:
-				rebuild_body = true
-				data.booster_part = scene
-	if rebuild_weapons:
-		_build_weapons.call_deferred()
-	if rebuild_body:
-		_build_body.call_deferred()
+	weapon_nodes.resize(4)
 
 func _build_body() -> void:
 	if not data:
-		push_warning('Missing body Data')
+		push_warning('Missing RobotData')
 		return
-	if not (data.legs_part or data.torso_part or data.arms_part or data.head_part or data.booster_part):
-		push_warning('Missing body Parts')
+	if not (data.legs and data.torso and data.arms and data.head):
+		push_warning('Missing Body Parts')
 		return
-	clear_body()
-	body_nodes.append(_setup_body_part(data.head_part))
-	body_nodes.append(_setup_body_part(data.arms_part))
-	body_nodes.append(_setup_body_part(data.torso_part))
-	body_nodes.append(_setup_body_part(data.legs_part))
+	_clear_body()
+	body_nodes.append(_setup_body_part(data.head.scene, data.head))
+	body_nodes.append(_setup_body_part(data.arms.scene, data.arms))
+	body_nodes.append(_setup_body_part(data.torso.scene, data.torso))
+	body_nodes.append(_setup_body_part(data.legs.scene, data.legs))
 	_setup_boosters()
-	data.defense_bullet /= 1000.0
-	data.defense_energy /= 1000.0
-	data.defense_explosive /= 1000.0
+	data.bullet_defense /= 1000.0
+	data.energy_defense /= 1000.0
+	data.explosive_defense /= 1000.0
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('Torso'), %Skeleton3D.find_bone('TorsoJoint'))
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('Shoulder.R'), %Skeleton3D.find_bone('ArmJoint.R'))
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('Shoulder.L'), %Skeleton3D.find_bone('ArmJoint.L'))
@@ -127,45 +128,45 @@ func _build_body() -> void:
 		var parent = get_parent()
 		for node in body_nodes:
 			node.owner = parent
-	body_built.emit(body_nodes + booster_nodes)
+	body_built.emit.call_deferred(body_nodes + booster_nodes)
 
 func _build_weapons() -> void:
-	clear_weapons()
+	_clear_weapons()
 	if not data:
-		push_warning('Missing body Data')
+		push_warning('Missing RobotData')
 		return
-	if data.right_arm_part:
-		weapon_nodes.append(data.right_arm_part.instantiate())
-		%ArmUnitR.add_child(weapon_nodes.back())
-	if data.left_arm_part:
-		weapon_nodes.append(data.left_arm_part.instantiate())
-		%ArmUnitL.add_child(weapon_nodes.back())
-		weapon_nodes.back().left_side = true
-	if data.right_back_part:
-		weapon_nodes.append(data.right_back_part.instantiate())
-		%BackUnitR.add_child(weapon_nodes.back())
-	if data.left_back_part:
-		weapon_nodes.append(data.left_back_part.instantiate())
-		%BackUnitL.add_child(weapon_nodes.back())
-		weapon_nodes.back().left_side = true
+	if data.right_arm:
+		weapon_nodes.set(0, data.right_arm.scene.instantiate())
+		%ArmUnitR.add_child(weapon_nodes[0])
+	if data.left_arm:
+		weapon_nodes.set(1, data.left_arm.scene.instantiate())
+		%ArmUnitL.add_child(weapon_nodes[1])
+		weapon_nodes[1].left_side = true
+	if data.right_back:
+		weapon_nodes.set(2, data.right_back.scene.instantiate())
+		%BackUnitR.add_child(weapon_nodes[2])
+	if data.left_back:
+		weapon_nodes.set(3, data.left_back.scene.instantiate())
+		%BackUnitL.add_child(weapon_nodes[3])
+		weapon_nodes[3].left_side = true
 	if make_owner:
 		for node in weapon_nodes:
 			node.owner = get_parent()
-	weapons_built.emit(weapon_nodes)
+	weapons_built.emit.call_deferred(weapon_nodes)
 
-func _setup_body_part(scene: PackedScene) -> Node:
-	var part = scene.instantiate()
-	data.max_hp += part.data.armor
-	data.defense_bullet += part.data.defense_bullet
-	data.defense_energy += part.data.defense_energy
-	data.defense_explosive += part.data.defense_explosive
-	if not scene == data.head_part:
-		_setup_skeleton(%Skeleton3D, part.data.bone_list)
-	%Skeleton3D.add_child(part)
-	part.skeleton = part.get_path_to(%Skeleton3D)
-	return part
+func _setup_body_part(scene: PackedScene, p_data: BodyPartData) -> BodyPart:
+	var new_part = scene.instantiate()
+	data.max_hp += p_data.armor
+	data.bullet_defense += p_data.bullet_defense
+	data.energy_defense += p_data.energy_defense
+	data.explosive_defense += p_data.explosive_defense
+	if not p_data is HeadData:
+		_setup_skeleton(%Skeleton3D, p_data.bone_list)
+	%Skeleton3D.add_child(new_part)
+	new_part.skeleton = new_part.get_path_to(%Skeleton3D)
+	return new_part
 
-func _setup_skeleton(skeleton: Skeleton3D, bone_list: Dictionary):
+func _setup_skeleton(skeleton: Skeleton3D, bone_list: Dictionary) -> void:
 	for bone: String in bone_list.keys():
 		var bone_id = skeleton.add_bone(bone)
 		skeleton.set_bone_rest(bone_id, bone_list[bone][0]) 
@@ -180,7 +181,7 @@ func _setup_boosters() -> void:
 		_setup_boost_attachments(part)
 
 func _setup_boost_attachments(body_part: BodyPart) -> void:
-	var tank_leg = body_nodes.back().data.leg_type == LegsData.Type.TANK
+	var tank_leg = data.legs.leg_type == LegsData.Type.TANK
 	for child in body_part.get_children():
 		if not child.name.containsn('Booster'):
 			continue
@@ -188,11 +189,11 @@ func _setup_boost_attachments(body_part: BodyPart) -> void:
 			child.use_external_skeleton = true
 			child.external_skeleton = child.get_path_to(%Skeleton3D)
 			child.bone_idx = %Skeleton3D.find_bone(child.name)
-			if body_part.data is TorsoData and child.name.containsn('TorsoBooster'):
+			if child.name.containsn('TorsoBooster'):
 				if tank_leg:
 					child.free()
 				else:
-					var new_booster = data.booster_part.instantiate()
+					var new_booster = data.booster.scene.instantiate()
 					child.add_child(new_booster)
 					new_booster.rotation.x = PI
 					booster_nodes.append(new_booster)

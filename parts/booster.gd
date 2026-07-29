@@ -17,10 +17,10 @@ func ignite(value: bool):
 	if value:
 		vfx.scale = Vector3.ZERO
 		vfx.show()
-		tween.tween_property(vfx, 'scale', Vector3(4.0, 1.0, 4.0), duration)
-		tween.tween_property(vfx, 'scale', Vector3(6.0, 2.0, 6.0), duration)
+		tween.tween_property(vfx, 'scale', Vector3(3.0, 2.0, 3.0), duration)
+		tween.tween_property(vfx, 'scale', Vector3(4.0, 3.0, 4.0), duration)
+		tween.tween_property(vfx, 'scale', Vector3(3.0, 4.0, 3.0), duration)
 		tween.tween_property(vfx, 'scale', Vector3(2.0, 3.0, 2.0), duration)
-		tween.tween_property(vfx, 'scale', Vector3(2.0, 2.0, 2.0), duration)
 		tween.tween_property(vfx, 'scale', default_scale, duration)
 	else:
 		tween.tween_property(vfx, 'scale', Vector3.ZERO, 0.2)

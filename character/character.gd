@@ -1,12 +1,27 @@
 @abstract class_name Character extends CharacterBody3D
 
-@export var data: CharacterData = null
+enum Teams {
+	## Player Team
+	TEAM_A,
+	## Enemy Team
+	TEAM_B,
+	## Free for All Team
+	TEAM_C}
+
 @export var mass := 80.0
-@export var team_group: Global.Teams = Global.Teams.TEAM_B
+@export var team := Teams.TEAM_B
 @export var lock_on_marker: Node3D = null
 @export var weapons: Array[Weapon] = []
 
+var move_direction := Vector3.ZERO
+var speed := 40.0
 var alive := true
+
+func is_same_team(other_team: Teams) -> bool:
+	if not other_team == Teams.TEAM_C:
+		if other_team == team:
+			return true
+	return false
 
 func get_lock_position() -> Vector3:
 	return lock_on_marker.global_position
@@ -25,15 +40,15 @@ func hor_distance(to: Vector3) -> float:
 	return Vector2(position.x, position.z).distance_to(Vector2(to.x, to.z))
 
 func do_friction(friction: float) -> void:
-	var speed = velocity.length()
-	if not speed:
+	var current_speed = velocity.length()
+	if not current_speed:
 		return
-	var drop = speed * friction * get_process_delta_time()
-	var new_speed = speed - drop
+	var drop = current_speed * friction * get_process_delta_time()
+	var new_speed = current_speed - drop
 	if new_speed <= 0.0:
 		new_speed = 0.0
 	else:
-		new_speed /= speed
+		new_speed /= current_speed
 	velocity.x *= new_speed
 	velocity.z *= new_speed
 
@@ -43,16 +58,30 @@ func accelerate_up(wish_speed: float, accel: float) -> void:
 		velocity.y += minf(diff, wish_speed * accel * get_process_delta_time())
 
 func accelerate(wish_dir: Vector3, wish_speed: float, accel: float) -> void:
-	#var h_vel = Vector3(velocity.x, 0.0, velocity.z)
-	#var vel_diff = (wish_dir * wish_speed) - h_vel
-	#var speed_diff = vel_diff.length()
-	#if is_zero_approx(speed_diff):
-		#return
-	#var acceleration = minf(speed_diff, wish_speed * accel * get_process_delta_time())
-	#velocity += acceleration * vel_diff / speed_diff
-	
 	var add_speed = wish_speed - velocity.dot(wish_dir)
 	if add_speed <= 0.0:
 		return
-	var acceleration = minf(add_speed, wish_speed * accel * get_process_delta_time())
+	var acceleration = minf(add_speed, wish_speed * accel * get_physics_process_delta_time())
 	velocity += acceleration * wish_dir
+
+func push_rigid_body_3d() -> void:
+	if not velocity:
+		return
+	const max_steps := 3
+	for i in get_slide_collision_count():
+		if i >= max_steps:
+			return
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if not collider is RigidBody3D:
+			continue
+		var mass_ratio =  mass / collider.mass
+		if mass_ratio <= 0.0:
+			continue
+		var push_direction = -collision.get_normal()
+		var velocity_diff = velocity.dot(push_direction) - collision.get_collider_velocity().dot(push_direction)
+		if velocity_diff <= 0.0:
+			continue
+		var collision_point = collision.get_position()
+		var push_force = mass * mass_ratio
+		collider.apply_impulse(push_direction * velocity_diff * push_force, collision_point - collider.global_position)

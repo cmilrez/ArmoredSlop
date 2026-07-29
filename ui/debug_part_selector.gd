@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-signal part_selected(part: PackedScene, part_type: int)
+signal part_selected(part_data: PartData, part_type: int)
 
 @onready var tabs = $TabContainer
 
@@ -15,7 +15,7 @@ func _ready():
 	tabs.hide()
 
 func _input(event):
-	if event.is_action_pressed('show_part_select'):
+	if event.is_action_pressed(&'debug_show_part_select'):
 		tabs.visible = not tabs.visible
 		if tabs.visible:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -33,7 +33,7 @@ func get_part_scene(id: String):
 		part_selected.emit(parts[part_type][int(id.erase(0))], part_type + 1)
 
 func build_ui():
-	#clear()
+	clear()
 	var base_button: TextureButton = $BaseButton
 	for i in range(parts.size()):
 		for j in range(parts[i].size()):
@@ -44,11 +44,11 @@ func build_ui():
 			new_button.owner = self
 			new_button.name = str(i) + str(j)
 			new_button.texture_normal = data.preview
-			new_button.pressed.connect(get_part_scene.bind(new_button.name))
+			new_button.pressed.connect(get_part_scene.bind(new_button.name), CONNECT_PERSIST)
 			new_button.show()
 
 func fetch_parts():
-	var path := &'res://parts/test/'
+	const path := &'res://parts/test/'
 	for file in ResourceLoader.list_directory(path):
 		if not file.ends_with('_data.tres'):
 			continue

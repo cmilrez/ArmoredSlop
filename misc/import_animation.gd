@@ -17,7 +17,7 @@ func rename_track_paths(anim_player: AnimationPlayer) -> void:
 		for i in range(count):
 			var property = String(animation.track_get_path(i))
 			animation.track_set_path(i, 'Skeleton3D:' + property.get_slice(':', 1))
-			#print(' - Before: ', property, ' - After: ', animation.track_get_path(i))
+			print(' - Before: ', property, ' - After: ', animation.track_get_path(i))
 		var anim_lib = anim_player.get_animation_library('')
 		if anim_name.contains('_Biped'):
 			anim_lib.rename_animation(anim_name, anim_name.trim_suffix('_Biped'))

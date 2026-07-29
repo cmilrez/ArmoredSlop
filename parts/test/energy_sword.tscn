@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_nymui"]
 [ext_resource type="Resource" uid="uid://b3h5pcge5dy16" path="res://parts/test/energy_sword_param.tres" id="2_16qkg"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_bgmkj"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_lcwht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjuil"]
@@ -25,14 +24,9 @@ size = Vector2(0.5, 10)
 center_offset = Vector3(0, 0, -5)
 orientation = 1
 
-[sub_resource type="Resource" id="Resource_81hid"]
-script = ExtResource("2_bgmkj")
-damage_energy = 15.0
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
-radius = 1.0
-height = 10.0
+radius = 1.5
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_climr"]
 resource_name = "Attack"
@@ -128,7 +122,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3,
 monitoring = false
 monitorable = false
 script = ExtResource("4_lcwht")
-damage_data = SubResource("Resource_81hid")
 metadata/_custom_type_script = "uid://p0vi8wansauj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1879200327]

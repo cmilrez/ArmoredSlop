@@ -8,11 +8,8 @@ var on_off := false:
 			on_off = value
 			toggle(on_off)
 
-func _ready():
-	toggle.call_deferred(on_off)
-
 func _process(delta):
-	on_off = character.boosting or not character.is_on_floor()
+	on_off = character._boosting
 
 func toggle(value: bool):
 	for node in list:
@@ -23,4 +20,4 @@ func _on_builder_body_built(nodes):
 	for part in nodes:
 		if part is Booster:
 			list.append(part)
-	toggle(on_off)
+	toggle.call_deferred(on_off)

@@ -21,12 +21,12 @@
 
 [sub_resource type="Resource" id="Resource_65gwf"]
 script = ExtResource("2_hatfo")
-max_hp = 30.0
+max_hp = 80.0
 metadata/_custom_type_script = "uid://f665pyihvlvu"
 
 [sub_resource type="Resource" id="Resource_joahv"]
 script = ExtResource("11_a1hos")
-damage_bullet = 5.0
+bullet_damage = 10.0
 metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uw78r"]
@@ -259,7 +259,7 @@ height = 2.6
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vxm3"]
 radius = 1.25
 
-[node name="Droid" type="CharacterBody3D" unique_id=1579288529 node_paths=PackedStringArray("anim_tree", "look_at_mod", "lock_on_marker", "weapons")]
+[node name="Droid" type="CharacterBody3D" unique_id=160824551 node_paths=PackedStringArray("anim_tree", "look_at_mod", "lock_on_marker", "weapons")]
 collision_layer = 16
 collision_mask = 23
 input_ray_pickable = false

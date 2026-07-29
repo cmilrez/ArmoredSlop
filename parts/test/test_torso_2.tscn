@@ -47,3 +47,7 @@ bind/11/pose = Transform3D(1, 1.961772e-07, 1.7162104e-07, 1.7363451e-08, -0.707
 mesh = ExtResource("1_w0tne")
 skin = SubResource("Skin_w0tne")
 script = ExtResource("2_y2ucp")
+
+[node name="TorsoBooster01" type="BoneAttachment3D" parent="." unique_id=1189350131]
+
+[node name="TorsoBooster02" type="BoneAttachment3D" parent="." unique_id=1118320775]

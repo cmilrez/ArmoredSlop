@@ -30,7 +30,6 @@ func _process(delta):
 		state = WANDER
 
 func _physics_process(delta):
-	var move_direction := Vector3.ZERO
 	match state:
 		WANDER:
 			look_at_mod.active = false
@@ -80,6 +79,5 @@ func _physics_process(delta):
 	velocity.z = root_motion.z
 	velocity += get_gravity() * delta * 6.0
 	
-	for i in get_slide_collision_count():
-		Global.push_rigid_body_3d(get_slide_collision(i), velocity, mass)
+	push_rigid_body_3d()
 	move_and_slide()
