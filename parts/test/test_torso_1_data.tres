@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="TorsoData" format=3 uid="uid://dot84okom8lcg"]
 
 [ext_resource type="PackedScene" uid="uid://desf1l8cfnugm" path="res://parts/test/test_torso_1.tscn" id="1_b66r8"]
-[ext_resource type="Texture2D" uid="uid://cikvyj30643w2" path="res://ui/part_preview/test_torso_1_data_preview.png" id="1_upm3r"]
-[ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/torso_data.gd" id="2_upm3r"]
+[ext_resource type="Texture2D" uid="uid://h263jg2465ap" path="res://ui/part_preview/test_torso_1_preview.png" id="1_upm3r"]
+[ext_resource type="Script" uid="uid://05nfh7x72hml" path="res://parts/resources/torso_data.gd" id="3_upm3r"]
 
 [resource]
-script = ExtResource("2_upm3r")
+script = ExtResource("3_upm3r")
 bone_list = Dictionary[StringName, Array]({
 &"ArmJoint.L": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 1.605274, 1.4963869, -0.3275712), []],
 &"ArmJoint.R": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -1.6052735, 1.4963869, -0.32757384), []],

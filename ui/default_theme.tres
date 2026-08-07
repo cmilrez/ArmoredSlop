@@ -24,6 +24,7 @@ border_width_top = 4
 border_color = Color(1, 1, 1, 0.6)
 
 [resource]
+TabContainer/constants/side_margin = 0
 TabContainer/styles/panel = SubResource("StyleBoxFlat_g0oin")
 TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_y5boi")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_y5boi")

@@ -2,10 +2,18 @@
 
 [ext_resource type="Script" uid="uid://rda1aufwokqu" path="res://ui/part_preview_maker.gd" id="1_yf0e4"]
 
-[node name="PartPreviewMaker" type="Node3D" unique_id=948707579 node_paths=PackedStringArray("viewport", "camera")]
-script = ExtResource("1_yf0e4")
-viewport = NodePath("SubViewportContainer/SubViewport")
-camera = NodePath("SubViewportContainer/SubViewport/Camera3D")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4jchw"]
+
+[sub_resource type="Sky" id="Sky_egdn1"]
+sky_material = SubResource("ProceduralSkyMaterial_4jchw")
+
+[sub_resource type="Environment" id="Environment_fe2fy"]
+sky = SubResource("Sky_egdn1")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[node name="PartPreviewMaker" type="Node3D" unique_id=2146989957]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=691004438]
 offset_right = 40.0
@@ -13,12 +21,28 @@ offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1809053448]
 transparent_bg = true
-msaa_3d = 3
+handle_input_locally = false
+msaa_3d = 1
+mesh_lod_threshold = 0.0
+positional_shadow_atlas_size = 0
+render_target_update_mode = 4
+script = ExtResource("1_yf0e4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=558565654]
+environment = SubResource("Environment_fe2fy")
+
+[node name="Sun1" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1444404333]
+transform = Transform3D(0.70710677, 0.40860704, -0.5770964, 0, 0.8161376, 0.5778576, 0.70710677, -0.40860704, 0.5770964, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Sun2" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=2135712273]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+light_color = Color(0.85430586, 0.85430586, 0.85430586, 1)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=796245524]
-transform = Transform3D(-0.7071067, -0.13758877, 0.69359154, 0, 0.9808867, 0.19457987, -0.7071067, 0.13758877, -0.69359154, 4.6340036, 2.4012585, -3.9813347)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1444404333]
-transform = Transform3D(-0.70710677, 0.18301268, -0.6830126, 0, 0.96592575, 0.258819, 0.70710677, 0.18301268, -0.6830126, -10, 0, 0)
-shadow_enabled = true
-directional_shadow_max_distance = 50.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+projection = 1
+current = true
+fov = 1.8
+near = 0.01
+far = 1000.0

@@ -21,10 +21,13 @@ func _ready():
 	get(&'parameters/playback').state_finished.connect(_on_state_finished)
 
 func _process(delta):
+	#var playback: AnimationNodeStateMachinePlayback = get(&'parameters/playback')
+	#print(playback.get_current_node())
+	
 	var weight = 1.0 - pow(0.5, delta * 16.0)
 	var move_dir_2d = Vector2(robot.move_direction.x, robot.move_direction.z)
 	
-	blend = blend.lerp(move_dir_2d.rotated(robot.rotation.y).snappedf(1.0), weight)
+	blend = blend.lerp(move_dir_2d.rotated(robot.rotation.y).round(), weight)
 	set('parameters/Airborne/Biped/blend_position', blend)
 	set('parameters/Airborne/Quad/blend_position', blend)
 	set('parameters/Boost/Biped/blend_position', blend)
@@ -52,21 +55,17 @@ func _on_state_finished(state: StringName):
 			melee_finished.emit()
 
 func _on_builder_body_built(nodes):
-	var leg_type = get_parent().data.legs.leg_type
+	var leg_type = robot.data.legs.leg_type
+	var request = ''
 	match leg_type:
 		LegsData.Type.BIPED:
-			set('parameters/Boost/LegType/transition_request', 'Biped')
-			set('parameters/Ground/LegType/transition_request', 'Biped')
-			set('parameters/Airborne/LegType/transition_request', 'Biped')
+			request = 'Biped'
 		LegsData.Type.REVERSE:
-			set('parameters/Boost/LegType/transition_request', 'Reverse')
-			set('parameters/Ground/LegType/transition_request', 'Reverse')
-			set('parameters/Airborne/LegType/transition_request', 'Reverse')
+			request = 'Reverse'
 		LegsData.Type.QUAD:
-			set('parameters/Boost/LegType/transition_request', 'Quad')
-			set('parameters/Ground/LegType/transition_request', 'Quad')
-			set('parameters/Airborne/LegType/transition_request', 'Quad')
+			request = 'Quad'
 		LegsData.Type.TANK:
-			set('parameters/Boost/LegType/transition_request', 'Tank')
-			set('parameters/Ground/LegType/transition_request', 'Tank')
-			set('parameters/Airborne/LegType/transition_request', 'Tank')
+			request = 'Tank'
+	set('parameters/Boost/LegType/transition_request', request)
+	set('parameters/Ground/LegType/transition_request', request)
+	set('parameters/Airborne/LegType/transition_request', request)

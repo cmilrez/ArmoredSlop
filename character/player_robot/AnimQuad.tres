@@ -1,0 +1,34 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://bpq6hwddh0v4c"]
+
+[ext_resource type="Animation" uid="uid://ck8fgqxq4yyut" path="res://assets/AnimQuad/Airborne_Back.res" id="1_q0rgi"]
+[ext_resource type="Animation" uid="uid://culrytpl2wso4" path="res://assets/AnimQuad/Airborne_Idle.res" id="2_quwgk"]
+[ext_resource type="Animation" uid="uid://ds8htn2os4usa" path="res://assets/AnimQuad/Airborne_Left.res" id="3_5shvk"]
+[ext_resource type="Animation" uid="uid://dty1pohbk6br5" path="res://assets/AnimQuad/Airborne_Right.res" id="4_ro67t"]
+[ext_resource type="Animation" uid="uid://c6ep5a0tiqc0i" path="res://assets/AnimQuad/Ground_Idle.res" id="5_uvrg7"]
+[ext_resource type="Animation" uid="uid://bbte6xktg3g3h" path="res://assets/AnimQuad/RESET.res" id="6_d8rgx"]
+[ext_resource type="Animation" uid="uid://bh54w60qpl14q" path="res://assets/AnimQuad/Slide_Back.res" id="7_w8uuh"]
+[ext_resource type="Animation" uid="uid://btfuqcfouajyq" path="res://assets/AnimQuad/Slide_Idle.res" id="8_kvsft"]
+[ext_resource type="Animation" uid="uid://bm1qxoicv1jil" path="res://assets/AnimQuad/Slide_Left.res" id="9_lu1s7"]
+[ext_resource type="Animation" uid="uid://ccvh5ffue0kik" path="res://assets/AnimQuad/Slide_Right.res" id="10_13ltg"]
+[ext_resource type="Animation" uid="uid://ck00ahf3ducoo" path="res://assets/AnimQuad/Walk_Back.res" id="11_ktlgt"]
+[ext_resource type="Animation" uid="uid://b44c5ql865dnd" path="res://assets/AnimQuad/Walk_Forward.res" id="12_tlkfp"]
+[ext_resource type="Animation" uid="uid://c4iib4sg431tk" path="res://assets/AnimQuad/Walk_Left.res" id="13_rqa7t"]
+[ext_resource type="Animation" uid="uid://ddchmw8inmuk0" path="res://assets/AnimQuad/Walk_Right.res" id="14_bvxdm"]
+
+[resource]
+_data = {
+&"Airborne_Back": ExtResource("1_q0rgi"),
+&"Airborne_Idle": ExtResource("2_quwgk"),
+&"Airborne_Left": ExtResource("3_5shvk"),
+&"Airborne_Right": ExtResource("4_ro67t"),
+&"Ground_Idle": ExtResource("5_uvrg7"),
+&"RESET": ExtResource("6_d8rgx"),
+&"Slide_Back": ExtResource("7_w8uuh"),
+&"Slide_Idle": ExtResource("8_kvsft"),
+&"Slide_Left": ExtResource("9_lu1s7"),
+&"Slide_Right": ExtResource("10_13ltg"),
+&"Walk_Back": ExtResource("11_ktlgt"),
+&"Walk_Forward": ExtResource("12_tlkfp"),
+&"Walk_Left": ExtResource("13_rqa7t"),
+&"Walk_Right": ExtResource("14_bvxdm")
+}

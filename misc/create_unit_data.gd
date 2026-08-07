@@ -19,4 +19,4 @@ func _run():
 		part_data.scene = scene
 		var error = ResourceSaver.save(part_data, data_path)
 		if error:
-			push_warning(error_string(error), ' ', data_path)
+			push_warning('OOPS: ',  error_string(error), ' ', data_path)

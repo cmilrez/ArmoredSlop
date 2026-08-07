@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_3lgcg"]
 [ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_65uri"]
-[ext_resource type="ArrayMesh" uid="uid://dbojpk327s0w8" path="res://assets/TestWeapons02_ShoulderCannon.res" id="3_l7aj2"]
+[ext_resource type="ArrayMesh" uid="uid://fsar3aax0sej" path="res://assets/TestWeapons_ShoulderCannon.res" id="3_l7aj2"]
 [ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="4_65uri"]
 
 [sub_resource type="Animation" id="Animation_wllxb"]
@@ -350,7 +350,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25764912, 1.5345082, 7.619
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732715, 1.5620031, -0.78043973)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Skeleton3D/Body/AmmoMagSpawn" unique_id=1804900725]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 visible = false
 collision_layer = 0
 collision_mask = 3

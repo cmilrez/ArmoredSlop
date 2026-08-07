@@ -1,3 +1,4 @@
+@tool
 class_name DetectionZone extends Area3D
 
 @onready var eye_ray = $EyeRay
@@ -6,19 +7,39 @@ class_name DetectionZone extends Area3D
 
 @export var data: NPCData = null
 @export var skeleton: Skeleton3D = null
-@export var head_bone := 'Head'
+@export var head_bone := 'Head':
+	set(value):
+		head_bone = value
+		if skeleton:
+			bone_id = skeleton.find_bone(head_bone)
+var character: Character = null
+var bone_id := -1
+
+func _validate_property(property: Dictionary):
+	if property.name == 'head_bone':
+		if skeleton:
+			property.hint = PROPERTY_HINT_ENUM_SUGGESTION
+			property.hint_string = skeleton.get_concatenated_bone_names()
+		else:
+			property.hint = PROPERTY_HINT_NONE
+			property.hint_string = ''
 
 func _ready():
 	collision_layer = 0
 	collision_mask = 20 # layer 3, 5
 	$CollisionShape3D.shape.radius = data.distance_max
+	if Engine.is_editor_hint():
+		return
+	character = get_parent()
+	head_bone = head_bone
 	timer.timeout.connect(_on_timer_timout)
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
 	if is_instance_valid(targeting.target):
-		var target_position: Vector3 = targeting.target.get_lock_position()
-		var parent = get_parent()
-		if (data.distance_max * data.distance_max) < target_position.distance_squared_to(parent.get_lock_position()):
+		var target_position = targeting.position
+		if (data.distance_max * data.distance_max) < target_position.distance_squared_to(character.get_lock_position()):
 			targeting.target = null
 			return
 		eye_ray.target_position = eye_ray.to_local(target_position)
@@ -32,26 +53,25 @@ func _process(delta):
 		targeting.target = search_target()
 
 func search_target() -> Character:
-	var parent = get_parent()
 	for body in get_overlapping_bodies():
-		if body == parent:
+		if character.is_same_team(body.team):
 			continue
+		#if body == parent: # same team does it
+			#continue
 		if not body.alive:
-			continue
-		if parent.is_same_team(body.team):
 			continue
 		eye_ray.target_position = eye_ray.to_local(body.get_lock_position())
 		eye_ray.force_raycast_update()
 		if eye_ray.is_colliding():
 			continue
-		var direction_to_body = body.global_position - global_position
-		var facing_direction = Vector3.FORWARD
+		var target_direction = body.global_position - global_position
+		var facing_direction: Vector3
 		if skeleton:
-			var head_global_pose = skeleton.get_bone_global_pose(skeleton.find_bone(head_bone)) * skeleton.global_transform
+			var head_global_pose = skeleton.get_bone_global_pose(bone_id) * skeleton.get_global_transform_interpolated() 
 			facing_direction = head_global_pose.basis.z
 		else:
 			facing_direction = global_basis.z
-		if facing_direction.angle_to(direction_to_body) > data.fov:
+		if facing_direction.angle_to(target_direction) > data.fov:
 			continue
 		return body
 	return null
@@ -64,8 +84,8 @@ func set_target_from_damage(dmg_data: DamageData):
 		targeting.target = source
 
 func deactivate():
-	targeting.target = null
 	process_mode = Node.PROCESS_MODE_DISABLED
+	targeting.target = null
 
 func _on_timer_timout():
 	targeting.target = null

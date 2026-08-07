@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://o6ouq6h1545w"]
 
 [ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="1_yrejw"]
-[ext_resource type="Texture2D" uid="uid://gcyeetccafr8" path="res://ui/part_preview/shoulder_cannon_data_preview.png" id="2_5xsw2"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/unit_data.gd" id="2_q4pmm"]
+[ext_resource type="Texture2D" uid="uid://duuv8yg5ksx56" path="res://ui/part_preview/shoulder_cannon_preview.png" id="2_5xsw2"]
 [ext_resource type="PackedScene" uid="uid://cb8tx40201w3a" path="res://parts/test/shoulder_cannon.tscn" id="2_tru2m"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources/unit_data.gd" id="4_tru2m"]
 
 [resource]
-script = ExtResource("2_q4pmm")
+script = ExtResource("4_tru2m")
 parameters = ExtResource("1_yrejw")
 preview = ExtResource("2_5xsw2")
 scene = ExtResource("2_tru2m")

@@ -9,20 +9,21 @@ func _ready():
 	if not vfx:
 		vfx = self
 	default_scale = vfx.scale
+	show()
 
 func ignite(value: bool):
 	if tween:
 		tween.kill()
 	tween = create_tween()
+	const prop = ^'scale'
 	if value:
 		vfx.scale = Vector3.ZERO
 		vfx.show()
-		tween.tween_property(vfx, 'scale', Vector3(3.0, 2.0, 3.0), duration)
-		tween.tween_property(vfx, 'scale', Vector3(4.0, 3.0, 4.0), duration)
-		tween.tween_property(vfx, 'scale', Vector3(3.0, 4.0, 3.0), duration)
-		tween.tween_property(vfx, 'scale', Vector3(2.0, 3.0, 2.0), duration)
-		tween.tween_property(vfx, 'scale', default_scale, duration)
+		tween.tween_property(vfx, prop, Vector3(3.0, 2.0, 3.0), duration)
+		tween.tween_property(vfx, prop, Vector3(4.0, 3.0, 4.0), duration)
+		tween.tween_property(vfx, prop, Vector3(3.0, 4.0, 3.0), duration)
+		tween.tween_property(vfx, prop, Vector3(2.0, 3.0, 2.0), duration)
+		tween.tween_property(vfx, prop, default_scale, duration)
 	else:
-		tween.tween_property(vfx, 'scale', Vector3.ZERO, 0.2)
-		await tween.finished
-		vfx.hide()
+		tween.tween_property(vfx, prop, Vector3.ZERO, 0.2)
+		tween.tween_callback(vfx.hide)

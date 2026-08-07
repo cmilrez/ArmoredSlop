@@ -20,15 +20,11 @@ func _ready():
 	set_deferred(&'home_position', global_position)
 
 func _process(delta):
-	if not alive:
-		return
-	if targeting.target:
-		action = COMBAT
-	else:
-		action = WANDER
-	%LookAtLegBase.active = not is_on_floor()
+	#if not alive: # disabled with health death signal
+		#return
 	match action:
 		WANDER:
+			enable_look_at = false
 			if hor_distance(home_position) > 100.0:
 				change_direction(hor_direction(home_position))
 			elif action_timer.is_stopped():
@@ -38,7 +34,10 @@ func _process(delta):
 			var hor_vel = Vector2(velocity.z, velocity.x)
 			if hor_vel:
 				angle_y = hor_vel.angle() + PI
+			if targeting.target:
+				action = COMBAT
 		COMBAT:
+			enable_look_at = true
 			var distance = hor_distance(targeting.position)
 			var direction = hor_direction(targeting.position)
 			if distance < 30.0:
@@ -52,6 +51,8 @@ func _process(delta):
 				move_direction = direction
 			angle_y = Vector2(direction.z, direction.x).angle() + PI
 			if atk_timer.is_stopped():
-				weapons[0].activate(targeting)
-				weapons[1].activate(targeting)
+				activate_unit(0)
+				activate_unit(3)
 				atk_timer.start(maxf(0.3, 1.0 * randf()))
+			if not targeting.target:
+				action = WANDER

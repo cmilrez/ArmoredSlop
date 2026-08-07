@@ -7,5 +7,7 @@ class_name ProjectileWeaponParam extends Resource
 @export_range(0, 100, 1, 'or_greater') var ammo_max := 0
 @export_range(0, 100, 1, 'or_greater') var ammo_cost := 0
 #@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var recoil := 0.0
-@export var damage_data: DamageData = null
+@export_range(0.0, 100.0, 1.0, 'or_greater', 'hide_control') var bullet_damage := 0.0
+@export_range(0.0, 100.0, 1.0, 'or_greater', 'hide_control') var energy_damage := 0.0
+@export_range(0.0, 100.0, 1.0, 'or_greater', 'hide_control') var explosive_damage := 0.0
 @export var projectile_scene: PackedScene = null

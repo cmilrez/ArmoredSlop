@@ -1,16 +1,17 @@
 [gd_resource type="Resource" script_class="ArmsData" format=3 uid="uid://ca6k5q53hfmpd"]
 
-[ext_resource type="Texture2D" uid="uid://cpqxgdc6shui7" path="res://ui/part_preview/test_arms_1_data_preview.png" id="1_oaw73"]
+[ext_resource type="Texture2D" uid="uid://byj7o5wtfmiad" path="res://ui/part_preview/test_arms_1_preview.png" id="1_oaw73"]
 [ext_resource type="PackedScene" uid="uid://cfh4uryu7b5yt" path="res://parts/test/test_arms_1.tscn" id="1_vy7mn"]
-[ext_resource type="Script" uid="uid://dj77y8eacejc8" path="res://parts/arms_data.gd" id="2_oaw73"]
+[ext_resource type="Script" uid="uid://dj77y8eacejc8" path="res://parts/resources/arms_data.gd" id="3_oaw73"]
 
 [resource]
-script = ExtResource("2_oaw73")
+script = ExtResource("3_oaw73")
 bone_list = Dictionary[StringName, Array]({
-&"Forearm.L": [Transform3D(0.9417657, 8.585313e-08, -0.3362697, -0.3362686, 0.0025754531, -0.94176257, 0.0008659661, 0.9999966, 0.0024255023, 6.002183e-08, 1.738264, -2.910383e-10), [&"Hand.L"]],
+&"Forearm.L": [Transform3D(0.9417657, 8.585313e-08, -0.3362697, -0.3362686, 0.0025754531, -0.94176257, 0.0008659661, 0.9999966, 0.0024255023, 6.002183e-08, 1.738264, -2.910383e-10), [&"Hand.L", &"MeleeUnit"]],
 &"Forearm.R": [Transform3D(0.9417658, 1.8479847e-07, 0.3362699, 0.33626875, 0.0025752268, -0.94176275, -0.000866145, 0.99999696, 0.0024251977, 5.2454485e-10, 1.7382641, 4.0745363e-10), [&"Hand.R"]],
 &"Hand.L": [Transform3D(-1, -1.4901175e-08, -1.6589698e-07, -1.6589698e-07, 0, 1, -1.4901175e-08, 1, 0, -0.07423362, 2.0070548, -0.39043117), []],
 &"Hand.R": [Transform3D(-1, -2.5331974e-07, -1.0232394e-07, -1.0232402e-07, 3.5762787e-07, 0.99999994, -2.5331968e-07, 0.99999994, -3.5762787e-07, 0.074234046, 2.0070543, -0.3904308), []],
+&"MeleeUnit": [Transform3D(-1, -1.4210855e-14, -1.5099582e-07, -1.5099582e-07, 0, 1, -1.4210855e-14, 1, 0, -0.52693456, 1.2386492, -0.39043114), []],
 &"Shoulder.L": [Transform3D(-0.94176567, 0.3362687, -0.00086586474, -0.3362698, -0.94176257, 0.0024254436, 1.6169791e-07, 0.0025753642, 0.9999966, 0, 0, 0), [&"Forearm.L"]],
 &"Shoulder.R": [Transform3D(-0.9417658, -0.33626848, 0.0008662333, 0.33626962, -0.9417626, 0.0024253835, 2.0611037e-07, 0.0025754308, 0.9999967, 0, 0, 0), [&"Forearm.R"]]
 })

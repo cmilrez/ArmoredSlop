@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="LockOnData" format=3 uid="uid://dsleum4ja8lju"]
 
 [ext_resource type="PackedScene" uid="uid://du7tuyewda1tg" path="res://parts/test/test_lock_on.tscn" id="1_lx5fu"]
-[ext_resource type="Script" uid="uid://i5j483nhen6p" path="res://parts/lock_on_data.gd" id="1_w6dbm"]
+[ext_resource type="Texture2D" uid="uid://ksaxo7bdisiq" path="res://ui/part_preview/test_lock_on_preview.png" id="1_nw23v"]
+[ext_resource type="Script" uid="uid://i5j483nhen6p" path="res://parts/resources/lock_on_data.gd" id="3_nw23v"]
 
 [resource]
-script = ExtResource("1_w6dbm")
+script = ExtResource("3_nw23v")
+preview = ExtResource("1_nw23v")
 scene = ExtResource("1_lx5fu")
 metadata/_custom_type_script = "uid://i5j483nhen6p"

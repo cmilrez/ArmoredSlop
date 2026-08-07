@@ -16,4 +16,4 @@ func _run():
 			continue
 		var error = ResourceSaver.save(data, data_path)
 		if error:
-			prints(file, error_string(error))
+			push_warning('OOPS: ', error_string(error), ' ', file)

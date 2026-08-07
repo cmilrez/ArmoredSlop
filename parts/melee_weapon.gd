@@ -1,6 +1,5 @@
 class_name MeleeWeapon extends Weapon
 
-const START_ANIM = &'Start'
 const READY_ANIM = &'Ready'
 const PREPARE_ANIM = &'Prepare'
 const ATTACK_ANIM = &'Attack'
@@ -15,18 +14,21 @@ const COOLDOWN_ANIM = &'Cooldown'
 func _ready():
 	recoil = true
 	timer.timeout.connect(_state_ready)
-	param = param.duplicate()
-	hurtbox.damage_data = param.damage_data
+	var dmg_data = DamageData.new()
+	dmg_data.bullet_damage = param.bullet_damage
+	dmg_data.energy_damage = param.energy_damage
+	dmg_data.explosive_damage = param.explosive_damage
+	hurtbox.damage_data = dmg_data
 	toggle_hurtbox(false)
-	_state_start()
+	_state_ready()
 
 func activate(targeting: Targeting) -> void:
 	if can_use:
 		_state_prepare()
 
 func set_dmg_source(path: NodePath) -> void:
-	if param.damage_data:
-		param.damage_data.source = path
+	if hurtbox.damage_data:
+		hurtbox.damage_data.source = path
 
 func reload(manual_reload := false) -> void:
 	return
@@ -41,20 +43,13 @@ func toggle_hurtbox(enabled: bool) -> void:
 	hurtbox.monitoring = enabled
 	hurtbox.monitorable = enabled
 
-func _state_start() -> void:
-	can_use = false
-	if anim_player.has_animation(START_ANIM):
-		anim_player.play(START_ANIM)
-		await anim_player.animation_finished
-	_state_ready()
-
 func _state_ready() -> void:
 	if anim_player.has_animation(READY_ANIM):
 		anim_player.play(READY_ANIM)
 		if anim_player.get_animation(READY_ANIM).get_loop_mode() == Animation.LOOP_NONE:
 			await anim_player.animation_finished
 	can_use = true
-	cooling = false
+	reloading = false
 
 func _state_prepare() -> void:
 	can_use = false
@@ -67,7 +62,7 @@ func _state_attack() -> void:
 
 func _state_cooldown() -> void:
 	can_use = false
-	cooling = true
+	reloading = true
 	timer.start(param.reload_time)
 	if anim_player.has_animation(COOLDOWN_ANIM):
 		anim_player.play(COOLDOWN_ANIM)
