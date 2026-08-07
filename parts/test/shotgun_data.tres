@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://cliuj263qmab4"]
 
 [ext_resource type="Resource" uid="uid://closvskqvpgns" path="res://parts/test/shotgun_param.tres" id="1_0btyx"]
-[ext_resource type="Texture2D" uid="uid://bp755mn6xr8kc" path="res://ui/part_preview/shotgun_data_preview.png" id="2_0uqav"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/unit_data.gd" id="2_ent1s"]
+[ext_resource type="Texture2D" uid="uid://bql3lobanpx6n" path="res://ui/part_preview/shotgun_preview.png" id="2_0uqav"]
 [ext_resource type="PackedScene" uid="uid://bdpuotsh72atu" path="res://parts/test/shotgun.tscn" id="2_lbse6"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources/unit_data.gd" id="4_lbse6"]
 
 [resource]
-script = ExtResource("2_ent1s")
+script = ExtResource("4_lbse6")
 parameters = ExtResource("1_0btyx")
 preview = ExtResource("2_0uqav")
 scene = ExtResource("2_lbse6")

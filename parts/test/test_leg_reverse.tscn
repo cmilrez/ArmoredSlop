@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://4vyd3nx7u8jk" path="res://parts/booster.gd" id="3_e74r3"]
 [ext_resource type="PackedScene" uid="uid://cetqckpufr7kw" path="res://effect/booster_fire.tscn" id="3_rqacf"]
 
-[sub_resource type="Skin" id="Skin_l07ry"]
+[sub_resource type="Skin" id="Skin_e74r3"]
 resource_name = "Skin"
 bind_count = 13
 bind/0/name = &"Root"
@@ -48,29 +48,66 @@ bind/12/name = &"LegBooster02"
 bind/12/bone = -1
 bind/12/pose = Transform3D(0.9999888, 4.611113e-08, 2.7244399e-08, 1.9641418e-05, -0.49364442, 0.8696536, -1.3049511e-05, -0.8696635, -0.49363694, -0.89784425, 0.88313717, 4.1063714)
 
+[sub_resource type="Gradient" id="Gradient_k0uj2"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ew0eu"]
+gradient = SubResource("Gradient_k0uj2")
+width = 8
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = SubResource("GradientTexture2D_ew0eu")
+uv1_scale = Vector3(1, 1.98, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+top_radius = 0.25
+bottom_radius = 0.8
+height = 1.0
+radial_segments = 16
+rings = 0
+cap_top = false
+cap_bottom = false
+
 [node name="TestLegReverse" type="MeshInstance3D" unique_id=1659379382]
 mesh = ExtResource("1_l07ry")
-skin = SubResource("Skin_l07ry")
+skin = SubResource("Skin_e74r3")
 script = ExtResource("2_rqacf")
 
 [node name="LegBooster01" type="BoneAttachment3D" parent="." unique_id=324620551]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6, 0)
 
 [node name="Booster" type="Node3D" parent="LegBooster01" unique_id=1640679861]
 transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
+visible = false
 script = ExtResource("3_e74r3")
 metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
 
-[node name="BoosterFire" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_rqacf")]
+[node name="BoosterFire" type="MeshInstance3D" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_rqacf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 16
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("CylinderMesh_vq2wp")
 
 [node name="LegBooster02" type="BoneAttachment3D" parent="." unique_id=1362066982]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, 0)
 
 [node name="Booster" type="Node3D" parent="LegBooster02" unique_id=1184860317]
 transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
+visible = false
 script = ExtResource("3_e74r3")
 metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
 
-[node name="BoosterFire" parent="LegBooster02/Booster" unique_id=840649358 instance=ExtResource("3_rqacf")]
+[node name="BoosterFire" type="MeshInstance3D" parent="LegBooster02/Booster" unique_id=840649358 instance=ExtResource("3_rqacf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 16
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("CylinderMesh_vq2wp")

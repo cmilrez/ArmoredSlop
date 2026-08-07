@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="LegsData" format=3 uid="uid://651u4k6na56j"]
 
-[ext_resource type="Texture2D" uid="uid://hct5a7ycp0pl" path="res://ui/part_preview/test_leg_reverse_data_preview.png" id="1_6ebs1"]
+[ext_resource type="Texture2D" uid="uid://bano2hnei80lo" path="res://ui/part_preview/test_leg_reverse_preview.png" id="1_6ebs1"]
 [ext_resource type="PackedScene" uid="uid://cxa6o0chdas68" path="res://parts/test/test_leg_reverse.tscn" id="1_q6gqk"]
-[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/legs_data.gd" id="2_6ebs1"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/resources/legs_data.gd" id="3_6ebs1"]
 
 [resource]
-script = ExtResource("2_6ebs1")
+script = ExtResource("3_6ebs1")
 leg_type = 1
 bone_list = Dictionary[StringName, Array]({
 &"Feet.L": [Transform3D(0.9999826, -0.004956355, 0.003169442, 0.0049533485, 0.41865182, -0.90813327, 0.0031741378, 0.9081333, 0.4186691, -2.6659109e-08, 1.6284801, 4.33065e-08), []],

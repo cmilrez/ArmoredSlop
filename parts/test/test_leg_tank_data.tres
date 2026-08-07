@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="LegsData" format=3 uid="uid://c8qytwvb54lgy"]
 
-[ext_resource type="Texture2D" uid="uid://dmh8nd43juodr" path="res://ui/part_preview/test_leg_tank_data_preview.png" id="1_cu80h"]
+[ext_resource type="Texture2D" uid="uid://bn0lve0dvqe0s" path="res://ui/part_preview/test_leg_tank_preview.png" id="1_cu80h"]
 [ext_resource type="PackedScene" uid="uid://djyd0egukgwnm" path="res://parts/test/test_leg_tank.tscn" id="1_ul767"]
-[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/legs_data.gd" id="2_cu80h"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/resources/legs_data.gd" id="3_cu80h"]
 
 [resource]
-script = ExtResource("2_cu80h")
+script = ExtResource("3_cu80h")
 leg_type = 3
 bone_list = Dictionary[StringName, Array]({
 &"LegBase": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 0.0066175475, 3.705306, -0.009921848), [&"TankBody", &"LegBooster01", &"LegBooster02", &"LegBooster03", &"LegBooster04", &"Track.L", &"Track.R"]],

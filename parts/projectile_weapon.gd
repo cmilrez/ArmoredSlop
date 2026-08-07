@@ -11,8 +11,9 @@ signal ammo_changed(loaded: int, left: int)
 @onready var timer: Timer = $Timer
 
 @export var spawners: Node3D = null
-@export var infinite_clip := false
+@export var infinite_ammo := false
 @export var param: ProjectileWeaponParam = null
+var damage_data: DamageData = null
 var ammo_total := 0
 var ammo_loaded := 0:
 	set(value):
@@ -40,9 +41,13 @@ func check_ammo() -> void:
 
 func _ready():
 	timer.timeout.connect(func (): if reloading: reload())
-	param = param.duplicate()
+	damage_data = DamageData.new()
+	damage_data.bullet_damage = param.bullet_damage
+	damage_data.energy_damage = param.energy_damage
+	damage_data.explosive_damage = param.explosive_damage
 	ammo_loaded = param.clip_size
 	ammo_left = param.ammo_max
+	ammo_changed.emit.call_deferred(ammo_loaded, ammo_left)
 	_state_start()
 
 func activate(targeting: Targeting) -> void:
@@ -58,9 +63,9 @@ func activate(targeting: Targeting) -> void:
 		var target_position = targeting.get_targeting_position(new_projectile.data.speed, spawn.global_position)
 		get_tree().current_scene.add_child(new_projectile)
 		if new_projectile is Bullet:
-			new_projectile.set_up(spawn, param.damage_data, target_position)
+			new_projectile.set_up(spawn, damage_data, target_position)
 		elif new_projectile is Missile:
-			new_projectile.set_up(spawn, param.damage_data, target_position, targeting.target)
+			new_projectile.set_up(spawn, damage_data, target_position, targeting.target)
 		ammo_loaded -= param.ammo_cost
 		if param.multishot_interval > 0.0 and spawn_count > 0:
 			timer.start(param.multishot_interval)
@@ -75,8 +80,8 @@ func activate(targeting: Targeting) -> void:
 	can_use = true
 
 func set_dmg_source(path: NodePath) -> void:
-	if param.damage_data:
-		param.damage_data.source = path
+	if damage_data:
+		damage_data.source = path
 
 func reload(manual_reload := false) -> void:
 	if ammo_left <= 0:
@@ -89,7 +94,7 @@ func reload(manual_reload := false) -> void:
 		if not reloading:
 			_state_reload()
 		return
-	if infinite_clip:
+	if infinite_ammo:
 		ammo_loaded = param.clip_size
 	else:
 		if difference < ammo_left:

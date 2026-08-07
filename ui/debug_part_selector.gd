@@ -30,7 +30,11 @@ func clear():
 func get_part_scene(id: String):
 	if tabs.visible:
 		var part_type = int(id.left(1))
-		part_selected.emit(parts[part_type][int(id.erase(0))], part_type + 1)
+		if id.length() > 1:
+			var part_number = int(id.erase(0))
+			part_selected.emit(parts[part_type][part_number], part_type)
+		else:
+			part_selected.emit(null, part_type)
 
 func build_ui():
 	clear()
@@ -46,6 +50,8 @@ func build_ui():
 			new_button.texture_normal = data.preview
 			new_button.pressed.connect(get_part_scene.bind(new_button.name), CONNECT_PERSIST)
 			new_button.show()
+			if i in [4, 5]:
+				new_button.button_mask = MOUSE_BUTTON_MASK_LEFT or MOUSE_BUTTON_MASK_RIGHT
 
 func fetch_parts():
 	const path := &'res://parts/test/'
@@ -54,16 +60,13 @@ func fetch_parts():
 			continue
 		var data = ResourceLoader.load(path + file)
 		var i = -1
-		if data is HeadData:
-			i = 0
-		elif data is ArmsData:
-			i = 1
-		elif data is TorsoData:
-			i = 2
-		elif data is LegsData:
-			i = 3
-		elif data is BoosterData:
-			i = 6
+		if   data is HeadData:      i = 0
+		elif data is ArmsData:      i = 1
+		elif data is TorsoData:     i = 2
+		elif data is LegsData:      i = 3
+		elif data is BoosterData:   i = 6
+		elif data is GeneratorData: i = 7
+		elif data is LockOnData:    i = 8
 		if i < 0:
 			continue
 		parts[i].append(data)

@@ -20,15 +20,17 @@ func _process(delta):
 func get_targeting_position(bullet_speed: float, bullet_position: Vector3) -> Vector3:
 	if not is_instance_valid(target):
 		return position
-	var target_velocity := target.get_real_velocity()
-	if not target_velocity:
+	var target_velocity = target.get_real_velocity()
+	var target_velocity_length_squared = target_velocity.length_squared()
+	if not target_velocity_length_squared:
 		return position
-	var target_position := position
+	var target_position = position
 	var time := 0.0
-	if bullet_speed > target_velocity.length(): # if false = too slow, will never hit
-		var to_target := target_position - bullet_position
+	# will never hit if slower
+	if bullet_speed * bullet_speed > target_velocity_length_squared:
+		var to_target = target_position - bullet_position
 		if to_target:
-			var a = bullet_speed * bullet_speed - target_velocity.length_squared()
+			var a = bullet_speed * bullet_speed - target_velocity_length_squared
 			var b = 2.0 * target_velocity.dot(to_target)
 			var c = to_target.length_squared()
 			time = (b + sqrt(b * b + 4.0 * a * c)) / (2.0 * a)

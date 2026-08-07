@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_lrm1f"]
 [ext_resource type="Resource" uid="uid://bnoxbmrnonice" path="res://parts/test/energy_spear_param.tres" id="2_bjf87"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="2_r74yd"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_037vq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umeg2"]
@@ -19,10 +18,6 @@ albedo_color = Color(0, 0, 1.353256, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_umeg2"]
 material = SubResource("StandardMaterial3D_8obv2")
 size = Vector3(1.5, 8, 1.5)
-
-[sub_resource type="Resource" id="Resource_2worp"]
-script = ExtResource("2_r74yd")
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jupd"]
 radius = 1.0
@@ -170,7 +165,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4.75)
 monitoring = false
 monitorable = false
 script = ExtResource("4_037vq")
-damage_data = SubResource("Resource_2worp")
 metadata/_custom_type_script = "uid://p0vi8wansauj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1512502667]

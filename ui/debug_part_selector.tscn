@@ -13,28 +13,48 @@
 [ext_resource type="Resource" uid="uid://c8qytwvb54lgy" path="res://parts/test/test_leg_tank_data.tres" id="11_js5ln"]
 [ext_resource type="Resource" uid="uid://c6i343ptt0fgt" path="res://parts/test/rifle_data.tres" id="12_gd5ib"]
 [ext_resource type="Resource" uid="uid://cliuj263qmab4" path="res://parts/test/shotgun_data.tres" id="13_yep0p"]
+[ext_resource type="Resource" uid="uid://cfjmky0u3osq0" path="res://parts/test/energy_sword_data.tres" id="14_aqod8"]
 [ext_resource type="Resource" uid="uid://bwnsv51a2xcl2" path="res://parts/test/heavy_launcher_data.tres" id="14_y0ory"]
 [ext_resource type="Resource" uid="uid://cowfkhskd3huo" path="res://parts/test/missile_launcher_data.tres" id="15_yaoia"]
 [ext_resource type="Resource" uid="uid://o6ouq6h1545w" path="res://parts/test/shoulder_cannon_data.tres" id="16_bw7fo"]
 [ext_resource type="Resource" uid="uid://dvtqslao5q51c" path="res://parts/test/split_launcher_data.tres" id="17_gv25o"]
 [ext_resource type="Resource" uid="uid://yxu43b60ukm1" path="res://parts/test/test_booster_data.tres" id="18_fve5j"]
-[ext_resource type="Texture2D" uid="uid://capapkhntqifk" path="res://ui/part_preview/test_head_1_data_preview.png" id="19_eef5a"]
-[ext_resource type="Texture2D" uid="uid://c67fho7rptxno" path="res://ui/part_preview/test_head_2_data_preview.png" id="20_nc6ss"]
-[ext_resource type="Texture2D" uid="uid://cpqxgdc6shui7" path="res://ui/part_preview/test_arms_1_data_preview.png" id="21_krc3n"]
-[ext_resource type="Texture2D" uid="uid://crf7vsvr7grqx" path="res://ui/part_preview/test_arms_2_data_preview.png" id="22_g0oin"]
-[ext_resource type="Texture2D" uid="uid://cikvyj30643w2" path="res://ui/part_preview/test_torso_1_data_preview.png" id="23_hdygv"]
-[ext_resource type="Texture2D" uid="uid://7mgeccaarorl" path="res://ui/part_preview/test_torso_2_data_preview.png" id="24_g5ywc"]
-[ext_resource type="Texture2D" uid="uid://cciaknk4iou1b" path="res://ui/part_preview/test_leg_biped_data_preview.png" id="25_tghud"]
-[ext_resource type="Texture2D" uid="uid://dpnhsap550f3d" path="res://ui/part_preview/test_leg_quad_data_preview.png" id="26_m4gyw"]
-[ext_resource type="Texture2D" uid="uid://hct5a7ycp0pl" path="res://ui/part_preview/test_leg_reverse_data_preview.png" id="27_87oc8"]
-[ext_resource type="Texture2D" uid="uid://dmh8nd43juodr" path="res://ui/part_preview/test_leg_tank_data_preview.png" id="28_d1dyq"]
-[ext_resource type="Texture2D" uid="uid://coiua4y3nfgnp" path="res://ui/part_preview/rifle_data_preview.png" id="29_wfi4s"]
-[ext_resource type="Texture2D" uid="uid://bp755mn6xr8kc" path="res://ui/part_preview/shotgun_data_preview.png" id="30_5edor"]
-[ext_resource type="Texture2D" uid="uid://c0kxtmx0w6oql" path="res://ui/part_preview/heavy_launcher_data_preview.png" id="31_n62nf"]
-[ext_resource type="Texture2D" uid="uid://c6e8h5jq5hpox" path="res://ui/part_preview/missile_launcher_data_preview.png" id="32_d68et"]
-[ext_resource type="Texture2D" uid="uid://gcyeetccafr8" path="res://ui/part_preview/shoulder_cannon_data_preview.png" id="33_2rjjg"]
-[ext_resource type="Texture2D" uid="uid://cs1276lo7dcmm" path="res://ui/part_preview/split_launcher_data_preview.png" id="34_uqpew"]
-[ext_resource type="Texture2D" uid="uid://ssmnq6hif6m8" path="res://ui/part_preview/test_booster_data_preview.png" id="35_mleyw"]
+[ext_resource type="Texture2D" uid="uid://c62nr4wt8d76" path="res://ui/part_preview/test_head_1_preview.png" id="19_eef5a"]
+[ext_resource type="Resource" uid="uid://bed12ld81mg4b" path="res://parts/test/test_generator_data.tres" id="19_lt0lj"]
+[ext_resource type="Resource" uid="uid://dsleum4ja8lju" path="res://parts/test/test_lock_on_data.tres" id="20_5swwb"]
+[ext_resource type="Texture2D" uid="uid://cmnbmgy78j0xk" path="res://ui/part_preview/test_head_2_preview.png" id="20_nc6ss"]
+[ext_resource type="Texture2D" uid="uid://byj7o5wtfmiad" path="res://ui/part_preview/test_arms_1_preview.png" id="21_krc3n"]
+[ext_resource type="Texture2D" uid="uid://dpj0flcpmgox1" path="res://ui/part_preview/test_arms_2_preview.png" id="22_g0oin"]
+[ext_resource type="Texture2D" uid="uid://h263jg2465ap" path="res://ui/part_preview/test_torso_1_preview.png" id="23_hdygv"]
+[ext_resource type="Texture2D" uid="uid://cjt34d6wj0oh4" path="res://ui/part_preview/test_torso_2_preview.png" id="24_g5ywc"]
+[ext_resource type="Texture2D" uid="uid://1bad3m06y46d" path="res://ui/part_preview/test_leg_biped_preview.png" id="25_tghud"]
+[ext_resource type="Texture2D" uid="uid://tnmerjqq8uga" path="res://ui/part_preview/test_leg_quad_preview.png" id="26_m4gyw"]
+[ext_resource type="Texture2D" uid="uid://bano2hnei80lo" path="res://ui/part_preview/test_leg_reverse_preview.png" id="27_87oc8"]
+[ext_resource type="Texture2D" uid="uid://bn0lve0dvqe0s" path="res://ui/part_preview/test_leg_tank_preview.png" id="28_d1dyq"]
+[ext_resource type="Texture2D" uid="uid://gaj8tbogkq4y" path="res://ui/part_preview/rifle_preview.png" id="29_wfi4s"]
+[ext_resource type="Texture2D" uid="uid://bql3lobanpx6n" path="res://ui/part_preview/shotgun_preview.png" id="30_5edor"]
+[ext_resource type="Texture2D" uid="uid://ctgmcodt18hko" path="res://ui/part_preview/heavy_launcher_preview.png" id="31_n62nf"]
+[ext_resource type="Texture2D" uid="uid://c3fqbqjjg65ce" path="res://ui/part_preview/missile_launcher_preview.png" id="32_d68et"]
+[ext_resource type="Texture2D" uid="uid://duuv8yg5ksx56" path="res://ui/part_preview/shoulder_cannon_preview.png" id="33_2rjjg"]
+[ext_resource type="Texture2D" uid="uid://bs153fw3app7u" path="res://ui/part_preview/energy_sword_preview.png" id="34_h3653"]
+[ext_resource type="Texture2D" uid="uid://b0oo3dy2w1ac2" path="res://ui/part_preview/split_launcher_preview.png" id="34_uqpew"]
+[ext_resource type="Texture2D" uid="uid://c6ixtvptbopug" path="res://ui/part_preview/test_booster_preview.png" id="35_mleyw"]
+[ext_resource type="Texture2D" uid="uid://crspkdnyq3x6o" path="res://ui/part_preview/test_generator_preview.png" id="38_bvatt"]
+[ext_resource type="Texture2D" uid="uid://ksaxo7bdisiq" path="res://ui/part_preview/test_lock_on_preview.png" id="39_aqod8"]
+
+[sub_resource type="Gradient" id="Gradient_bvatt"]
+offsets = PackedFloat32Array(0.4, 0.5, 0.6, 0.7)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vq2wp"]
+gradient = SubResource("Gradient_bvatt")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.1)
+metadata/_snap_enabled = true
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q763u"]
 size = Vector2(4, 4)
@@ -49,14 +69,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_tl0pb")
-parts = Array[Array]([[ExtResource("3_hciek"), ExtResource("3_gmg8c")], [ExtResource("4_eef5a"), ExtResource("5_jtsib")], [ExtResource("6_d3ic8"), ExtResource("7_a22cb")], [ExtResource("8_l82xc"), ExtResource("9_y18g2"), ExtResource("10_uqpsl"), ExtResource("11_js5ln")], [ExtResource("12_gd5ib"), ExtResource("13_yep0p")], [ExtResource("14_y0ory"), ExtResource("15_yaoia"), ExtResource("16_bw7fo"), ExtResource("17_gv25o")], [ExtResource("18_fve5j")]])
+parts = Array[Array]([[ExtResource("3_hciek"), ExtResource("3_gmg8c")], [ExtResource("4_eef5a"), ExtResource("5_jtsib")], [ExtResource("6_d3ic8"), ExtResource("7_a22cb")], [ExtResource("8_l82xc"), ExtResource("9_y18g2"), ExtResource("10_uqpsl"), ExtResource("11_js5ln")], [ExtResource("12_gd5ib"), ExtResource("13_yep0p"), ExtResource("14_aqod8")], [ExtResource("14_y0ory"), ExtResource("15_yaoia"), ExtResource("16_bw7fo"), ExtResource("17_gv25o")], [ExtResource("18_fve5j")], [ExtResource("19_lt0lj")], [ExtResource("20_5swwb")]])
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1327484749]
 layout_mode = 0
 offset_top = 110.0
-offset_right = 626.0
+offset_right = 720.0
 offset_bottom = 530.0
 current_tab = 0
+clip_tabs = false
 
 [node name="Head" type="HBoxContainer" parent="TabContainer" unique_id=1660434152]
 layout_mode = 2
@@ -182,6 +203,17 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
+[node name="4" type="TextureButton" parent="TabContainer/ArmUnit" unique_id=1538105143]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 3
+texture_normal = SubResource("GradientTexture2D_vq2wp")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="40" type="TextureButton" parent="TabContainer/ArmUnit" unique_id=819536655]
 custom_minimum_size = Vector2(100, 100)
 custom_maximum_size = Vector2(100, 100)
@@ -204,10 +236,32 @@ texture_normal = ExtResource("30_5edor")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="42" type="TextureButton" parent="TabContainer/ArmUnit" unique_id=267710164]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 3
+texture_normal = ExtResource("34_h3653")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="BackUnit" type="HBoxContainer" parent="TabContainer" unique_id=1582162854]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 5
+
+[node name="5" type="TextureButton" parent="TabContainer/BackUnit" unique_id=1254245290]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 3
+texture_normal = SubResource("GradientTexture2D_vq2wp")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="50" type="TextureButton" parent="TabContainer/BackUnit" unique_id=365710968]
 custom_minimum_size = Vector2(100, 100)
@@ -268,6 +322,36 @@ texture_normal = ExtResource("35_mleyw")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Generator" type="HBoxContainer" parent="TabContainer" unique_id=1579175791]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 7
+
+[node name="70" type="TextureButton" parent="TabContainer/Generator" unique_id=256057401]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+texture_normal = ExtResource("38_bvatt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="LockOnChip" type="HBoxContainer" parent="TabContainer" unique_id=229616740]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 8
+
+[node name="80" type="TextureButton" parent="TabContainer/LockOnChip" unique_id=383286728]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+texture_normal = ExtResource("39_aqod8")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="BaseButton" type="TextureButton" parent="." unique_id=1935607823]
 visible = false
 custom_minimum_size = Vector2(100, 100)
@@ -289,10 +373,15 @@ stretch_mode = 0
 [connection signal="pressed" from="TabContainer/Legs/31" to="." method="get_part_scene" binds= [&"31"]]
 [connection signal="pressed" from="TabContainer/Legs/32" to="." method="get_part_scene" binds= [&"32"]]
 [connection signal="pressed" from="TabContainer/Legs/33" to="." method="get_part_scene" binds= [&"33"]]
+[connection signal="pressed" from="TabContainer/ArmUnit/4" to="." method="get_part_scene" binds= ["4"]]
 [connection signal="pressed" from="TabContainer/ArmUnit/40" to="." method="get_part_scene" binds= [&"40"]]
 [connection signal="pressed" from="TabContainer/ArmUnit/41" to="." method="get_part_scene" binds= [&"41"]]
+[connection signal="pressed" from="TabContainer/ArmUnit/42" to="." method="get_part_scene" binds= [&"42"]]
+[connection signal="pressed" from="TabContainer/BackUnit/5" to="." method="get_part_scene" binds= ["5"]]
 [connection signal="pressed" from="TabContainer/BackUnit/50" to="." method="get_part_scene" binds= [&"50"]]
 [connection signal="pressed" from="TabContainer/BackUnit/51" to="." method="get_part_scene" binds= [&"51"]]
 [connection signal="pressed" from="TabContainer/BackUnit/52" to="." method="get_part_scene" binds= [&"52"]]
 [connection signal="pressed" from="TabContainer/BackUnit/53" to="." method="get_part_scene" binds= [&"53"]]
 [connection signal="pressed" from="TabContainer/Booster/60" to="." method="get_part_scene" binds= [&"60"]]
+[connection signal="pressed" from="TabContainer/Generator/70" to="." method="get_part_scene" binds= [&"70"]]
+[connection signal="pressed" from="TabContainer/LockOnChip/80" to="." method="get_part_scene" binds= [&"80"]]

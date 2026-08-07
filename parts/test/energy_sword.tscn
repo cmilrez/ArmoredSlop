@@ -2,31 +2,94 @@
 
 [ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_nymui"]
 [ext_resource type="Resource" uid="uid://b3h5pcge5dy16" path="res://parts/test/energy_sword_param.tres" id="2_16qkg"]
+[ext_resource type="ArrayMesh" uid="uid://bsmycqn2yh0ke" path="res://assets/TestWeapons_EnergySword.res" id="3_7w8g1"]
+[ext_resource type="Shader" uid="uid://roqo0mnm8o1q" path="res://effect/particle_trail.gdshader" id="3_16qkg"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_lcwht"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjuil"]
-albedo_color = Color(1, 0.2509804, 1, 1)
-metallic = 1.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw6u4"]
+shading_mode = 0
+albedo_color = Color(0, 0.93040377, 1.8247963, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_g5dng"]
-material = SubResource("StandardMaterial3D_tjuil")
-size = Vector3(0.6, 0.4, 1)
+[sub_resource type="CylinderMesh" id="CylinderMesh_81hid"]
+material = SubResource("StandardMaterial3D_pw6u4")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 18.0
+radial_segments = 16
+rings = 0
+cap_bottom = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tf1n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16qkg"]
+shader = ExtResource("3_16qkg")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_16qkg"]
+offsets = PackedFloat32Array(0.1, 0.3, 0.8, 0.9)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.49803922, 1, 1, 0, 0.49803922, 1, 1, 0.49803922, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_16qkg"]
+gradient = SubResource("Gradient_16qkg")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fje11"]
+blend_mode = 1
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(1.8247963, 0.93739134, 0, 1)
-disable_receive_shadows = true
+albedo_texture = SubResource("GradientTexture2D_16qkg")
+uv1_scale = Vector3(0.9, 0.9, 0.9)
+use_particle_trails = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_tjuil"]
-material = SubResource("StandardMaterial3D_7tf1n")
-size = Vector2(0.5, 10)
-center_offset = Vector3(0, 0, -5)
-orientation = 1
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_fje11")
+shape = 0
+size = 18.0
+sections = 18
+section_length = 1.0
+section_segments = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
 radius = 1.5
-height = 12.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_climr"]
 resource_name = "Attack"
@@ -34,46 +97,103 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/path = NodePath("GPUParticles3D:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 0.4), Vector3(1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blade")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 0.2, 0.1, 1, 1, 1, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Blade:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hi6a3"]
 resource_name = "Cooldown"
-length = 0.2
-tracks/0/type = "value"
+length = 0.4
+tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/path = NodePath("Blade")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.4, 1, 1, 1, 0.05)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blade:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1, 0.1)]
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ymj4f"]
 resource_name = "Ready"
-length = 0.2
-tracks/0/type = "value"
+length = 0.3
+tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/path = NodePath("Blade")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 0.1), Vector3(1, 1, 0.4)]
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 0.05, 0.3, 1, 1, 1, 0.2)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blade:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_g5dng"]
@@ -81,14 +201,61 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D/Blade:scale")
+tracks/0/path = NodePath("GPUParticles3D:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blade")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 0.05)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Blade:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_16qkg"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 0.1)]
+"values": [0.0, 6.283]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_climr"]
@@ -96,35 +263,50 @@ _data = {
 &"Attack": SubResource("Animation_climr"),
 &"Cooldown": SubResource("Animation_hi6a3"),
 &"Prepare": SubResource("Animation_ymj4f"),
-&"RESET": SubResource("Animation_g5dng")
+&"RESET": SubResource("Animation_g5dng"),
+&"new_animation": SubResource("Animation_16qkg")
 }
 
 [node name="EnergySword" type="Node3D" unique_id=1950415004]
+transform = Transform3D(1, 0, -0.00018531481, 0, 1, 0, 0.00018531481, 0, 1, 0, 0, 0)
 script = ExtResource("1_nymui")
 param = ExtResource("2_16qkg")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=677172602]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+[node name="EnergySword" type="MeshInstance3D" parent="." unique_id=1097493431]
 layers = 4
-gi_mode = 0
-mesh = SubResource("BoxMesh_g5dng")
+mesh = ExtResource("3_7w8g1")
 
-[node name="Blade" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1698943514]
-transform = Transform3D(-1, 0, -1.509958e-08, 0, 1, 0, 1.509958e-07, 0, -0.1, 0, 0, -0.5)
-layers = 4
+[node name="Blade" type="Node3D" parent="." unique_id=4925397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.556, -0.007, 1.196)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Blade" unique_id=1706157521]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 9)
+layers = 16
 cast_shadow = 0
-gi_mode = 0
-mesh = SubResource("QuadMesh_tjuil")
+mesh = SubResource("CylinderMesh_81hid")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1495954061]
+transform = Transform3D(-4.3713953e-08, -4.3711392e-08, 1, -3.5527137e-15, 1, 4.3711392e-08, -1, 0, -4.3713953e-08, -1.2369332, -0.00700003, 10.196)
+layers = 32
+emitting = false
+amount = 1
+lifetime = 0.5
+trail_enabled = true
+trail_lifetime = 0.5
+process_material = SubResource("ShaderMaterial_16qkg")
+draw_pass_1 = SubResource("RibbonTrailMesh_vq2wp")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1436141130]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3, 0, 5)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 monitoring = false
 monitorable = false
 script = ExtResource("4_lcwht")
 metadata/_custom_type_script = "uid://p0vi8wansauj"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1879200327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 10, -4.371139e-07)
 shape = SubResource("CapsuleShape3D_g5dng")
 debug_color = Color(1, 0, 0, 0.41960785)
 
