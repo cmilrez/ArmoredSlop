@@ -17,4 +17,7 @@ func show_effects():
 
 func set_up(spawn_point: Vector3, normal: Vector3):
 	global_position = spawn_point
-	global_basis = Basis.looking_at(normal, normal.cross(basis.x).normalized(), true)
+	var up_vector = normal.cross(basis.x).normalized()
+	if not up_vector:
+		up_vector = Vector3.UP
+	global_basis = Basis.looking_at(normal, up_vector, true)

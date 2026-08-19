@@ -1,4 +1,5 @@
-class_name ProjectileWeapon extends Weapon
+@icon('res://addons/at-icons/node3d/gun.svg')
+class_name ProjectileWeapon3D extends Weapon3D
 
 const START_ANIM = &'Start'
 const READY_ANIM = &'Ready'
@@ -40,9 +41,10 @@ func check_ammo() -> void:
 		reload(true)
 
 func _ready():
+	timer.one_shot = true
 	timer.timeout.connect(func (): if reloading: reload())
 	damage_data = DamageData.new()
-	damage_data.bullet_damage = param.bullet_damage
+	damage_data.kinetic_damage = param.kinetic_damage
 	damage_data.energy_damage = param.energy_damage
 	damage_data.explosive_damage = param.explosive_damage
 	ammo_loaded = param.clip_size
@@ -50,23 +52,23 @@ func _ready():
 	ammo_changed.emit.call_deferred(ammo_loaded, ammo_left)
 	_state_start()
 
-func activate(targeting: Targeting) -> void:
+func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void:
 	if not can_use:
 		return
 	_state_shoot()
-	var spawn_count := spawners.get_child_count()
+	var spawn_count = spawners.get_child_count()
+	var target_count = targets.size()
+	var i = spawn_count
 	for spawn: Node3D in spawners.get_children():
 		if ammo_loaded <= 0:
 			break
-		spawn_count -= 1
 		var new_projectile = param.projectile_scene.instantiate()
-		var target_position = targeting.get_targeting_position(new_projectile.data.speed, spawn.global_position)
 		get_tree().current_scene.add_child(new_projectile)
-		if new_projectile is Bullet:
-			new_projectile.set_up(spawn, damage_data, target_position)
-		elif new_projectile is Missile:
-			new_projectile.set_up(spawn, damage_data, target_position, targeting.target)
+		var target = targets[(spawn_count - i) % target_count]
+		var target_position = target.get_lock_position() if target else aim_position
+		new_projectile.set_up(spawn, damage_data, target_position, target)
 		ammo_loaded -= param.ammo_cost
+		i -= 1
 		if param.multishot_interval > 0.0 and spawn_count > 0:
 			timer.start(param.multishot_interval)
 			await timer.timeout

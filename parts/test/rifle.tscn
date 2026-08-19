@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfubxg0n07rgo"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_1l6sn"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_1l6sn"]
 [ext_resource type="Resource" uid="uid://vgqeyrrw638b" path="res://parts/test/rifle_weapon_param.tres" id="2_85e7n"]
 [ext_resource type="PackedScene" uid="uid://bwhgh5imnqmnl" path="res://parts/test/test_ammo_mag.tscn" id="3_85e7n"]
 [ext_resource type="ArrayMesh" uid="uid://d2u23yt6mb23q" path="res://assets/KenneyWeapons_BlasterD.res" id="3_nbys5"]

@@ -1,4 +1,4 @@
-@abstract class_name Weapon extends Node3D
+@abstract class_name Weapon3D extends Node3D
 
 signal started_reloading
 
@@ -15,6 +15,6 @@ var reloading := false:
 		if emit:
 			started_reloading.emit()
 
-@abstract func activate(targeting: Targeting) -> void
+@abstract func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void
 @abstract func set_dmg_source(path: NodePath) -> void
 @abstract func reload(manual_reload := false) -> void

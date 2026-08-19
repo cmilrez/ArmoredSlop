@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://dfjb6oyx7ivop"]
 
-[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_cxkk6"]
-[ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_gofbb"]
-[ext_resource type="PackedScene" uid="uid://dj5ue86henduo" path="res://effect/explosion_s24.tscn" id="3_gofbb"]
+[ext_resource type="Shape3D" uid="uid://dj4ida2kyl3rl" path="res://projectile/col_sphere_0_5.tres" id="1_k04gs"]
+[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="2_kdnij"]
+[ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="3_bg35o"]
+[ext_resource type="PackedScene" uid="uid://dj5ue86henduo" path="res://effect/explosion_s24.tscn" id="4_id3er"]
 
 [sub_resource type="Resource" id="Resource_cxkk6"]
-script = ExtResource("2_gofbb")
+script = ExtResource("3_bg35o")
 metadata/_custom_type_script = "uid://bfbhdd2s003h1"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxkk6"]
@@ -18,11 +19,14 @@ height = 1.25
 radial_segments = 16
 rings = 8
 
-[node name="Bullet" type="Node3D" unique_id=1299266127]
+[node name="Bullet" type="ShapeCast3D" unique_id=1233504107]
 top_level = true
-script = ExtResource("1_cxkk6")
+shape = ExtResource("1_k04gs")
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+script = ExtResource("2_kdnij")
 data = SubResource("Resource_cxkk6")
-hitspawn_scene = ExtResource("3_gofbb")
+hitspawn_scene = ExtResource("4_id3er")
 metadata/_custom_type_script = "uid://dktp0dq6ay20q"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1890110915]

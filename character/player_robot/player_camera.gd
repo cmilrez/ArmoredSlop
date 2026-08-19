@@ -3,8 +3,8 @@ class_name PlayerCamera extends Node3D
 @onready var spring_arm = $SpringArm3D
 @onready var camera = $SpringArm3D/Camera3D
 @onready var eye_ray = $EyeRay
-@onready var player: Character = get_parent()
-var targeting: Targeting = null
+@onready var player: Robot = get_parent()
+@onready var tracker: Tracker = %Tracker
 
 @export var mouse_sensitivity := 0.02
 @export var invert_y := -1
@@ -13,51 +13,80 @@ var targeting: Targeting = null
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -PI / 2
 @export var arm_length := 10.0
 @export var height := 10.0
-@export var lock_on_data: LockOnData = null
+#@export var lock_on_data: LockOnData = null
 
-var target_list: Array[Node3D] = []
+var target_list: Array[Character] = []
+var multi_target_list: Array[Character] = []
 var input_direction := Vector2.ZERO
 var manual_aim := false
+var multi_target_count := 0:
+	set(value):
+		multi_target_count = maxi(value, 0)
+		if not multi_target_count:
+			multi_target_list.clear()
+
+func _append_target(node: Character) -> void:
+	target_list.append(node)
+
+func _erase_target(node: Character) -> void:
+	target_list.erase(node)
+
+func _ready():
+	SignalBus.enemy_entered_screen.connect(_append_target)
+	SignalBus.enemy_exited_screen.connect(_erase_target)
+	spring_arm.spring_length = arm_length
+	top_level = true
+
+func get_unprojected(world_pos: Vector3) -> Vector2:
+	return camera.unproject_position(world_pos)
 
 func get_arm_rotation() -> float:
 	return spring_arm.rotation.y
 
-func _ready():
-	targeting = player.find_child('Targeting', false)
-	SignalBus.enemy_entered_screen.connect(_append_target)
-	SignalBus.enemy_exited_screen.connect(_erase_target)
-	spring_arm.spring_length = arm_length
-	set_as_top_level(true)
+func is_target_invalid(node: Character, unprojected_pos: Vector2) -> bool:
+	if not is_instance_valid(node):
+		return true
+	if player.is_same_team(node.team):
+		return true
+	var node_position = node.get_lock_position()
+	var distance = global_position.distance_to(node_position)
+	if distance > player.data.lock_on.distance:
+		return true
+	eye_ray.target_position = eye_ray.to_local(node_position)
+	eye_ray.force_raycast_update()
+	if eye_ray.is_colliding():
+		return true
+	if not player.data.lock_on.region.has_point(unprojected_pos):
+		return true
+	return false
 
-func _append_target(node: Node3D):
-	target_list.append(node)
-
-func _erase_target(node: Node3D):
-	target_list.erase(node)
-
-func _search_target() -> Node3D:
-	var closest_target: Node3D = null
-	var closest_distance_2d := Global.LARGE_FLOAT
-	for target: Node3D in target_list:
-		if not is_instance_valid(target):
+func _search_single_target() -> Character:
+	var closest_target: Character = null
+	var closest_distance_2d = Global.LARGE_FLOAT
+	for target in target_list:
+		var pos_2d = camera.unproject_position(target.get_lock_position())
+		if is_target_invalid(target, pos_2d):
 			continue
-		if player.is_same_team(target.team):
-			continue
-		var target_position = target.get_lock_position()
-		var distance := global_position.distance_to(target_position)
-		if distance > lock_on_data.distance:
-			continue
-		eye_ray.target_position = eye_ray.to_local(target_position)
-		eye_ray.force_raycast_update()
-		if eye_ray.is_colliding():
-			continue
-		var pos_2d = camera.unproject_position(target_position)
-		if lock_on_data.region.has_point(pos_2d):
-			var target_distance_2d = pos_2d.distance_to(lock_on_data.region.get_center())
-			if target_distance_2d < closest_distance_2d:
-				closest_target = target
-				closest_distance_2d = target_distance_2d
+		var target_distance_2d = pos_2d.distance_to(player.data.lock_on.region.get_center())
+		if target_distance_2d < closest_distance_2d:
+			closest_target = target
+			closest_distance_2d = target_distance_2d
 	return closest_target
+
+func _search_multi_targets() -> Array[Character]:
+	var list: Array[Character] = []
+	var i = 1
+	for target in target_list:
+		if i > multi_target_count:
+			break
+		if target == tracker.target:
+			continue
+		var pos_2d = camera.unproject_position(target.get_lock_position())
+		if is_target_invalid(target, pos_2d):
+			continue
+		list.append(target)
+		i += 1
+	return list
 
 func _process(delta):
 	if not camera.current:
@@ -70,25 +99,27 @@ func _process(delta):
 func _physics_process(delta):
 	if not camera.current:
 		return
-	var lerp_weight := 1.0 - pow(0.5, delta * 16.0)
-	var new_pos = Vector3(player.position.x, position.y, player.position.z)
-	position = position.lerp(new_pos, lerp_weight)
-	var lerp_weight2 := 1.0 - pow(0.5, delta * 8.0)
-	position.y = lerpf(position.y, player.position.y + height, lerp_weight2)
+	var lerp_weight = exp(-8.0 * delta)
+	position.x = lerpf(player.position.x, position.x, lerp_weight)
+	position.z = lerpf(player.position.z, position.z, lerp_weight)
+	var lerp_weight2 = exp(-4.0 * delta)
+	position.y = lerpf(player.position.y + height, position.y, lerp_weight2)
 	
 	eye_ray.global_position = camera.global_position
 	var target: Character = null
-	if not targeting.lock_target:
+	if not tracker.lock_target:
 		if not manual_aim:
-			target = _search_target()
-		targeting.target = target
+			target = _search_single_target()
+			if multi_target_count:
+				multi_target_list = _search_multi_targets()
+		tracker.target = target
 	if not target:
 		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_FLOAT
 		var point = to_global(eye_ray.target_position)
 		eye_ray.force_raycast_update()
 		if eye_ray.is_colliding():
 			point = eye_ray.get_collision_point()
-		targeting.position = point
+		tracker.position = point
 
 func _unhandled_input(event):
 	if not camera.current:

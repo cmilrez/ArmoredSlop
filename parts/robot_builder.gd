@@ -2,13 +2,13 @@
 class_name RobotBuilder extends Node
 
 signal body_built(nodes: Array[BodyPart])
-signal weapons_built(nodes: Array[Weapon])
+signal weapons_built(nodes: Array[Weapon3D])
 
 @export_tool_button('BUILD BODY', 'BuildCSharp') var build1 = _build_body
 @export_tool_button('BUILD WEAPONS', 'BuildCSharp') var build2 = _build_weapons
 @export var make_owner := false
 @export var data: RobotData = null
-@export var weapon_nodes: Array[Weapon] = [null, null, null, null]
+@export var weapon_nodes: Array[Weapon3D] = [null, null, null, null]
 @export var body_nodes: Array[BodyPart] = []
 @export var booster_nodes: Array[Booster] = []
 var hand_unit_r_rest := Transform3D(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0), Vector3(-0.0, 0.0, 1.0), Vector3(0.167372, 0.0, 0.542358))

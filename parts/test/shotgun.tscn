@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdpuotsh72atu"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_j4cgr"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_j4cgr"]
 [ext_resource type="Resource" uid="uid://closvskqvpgns" path="res://parts/test/shotgun_param.tres" id="2_nn1c1"]
 [ext_resource type="ArrayMesh" uid="uid://g5o4kjki7jk8" path="res://assets/KenneyWeapons_BlasterO.res" id="3_68hnq"]
 

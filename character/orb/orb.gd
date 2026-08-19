@@ -30,7 +30,7 @@ func _process(delta):
 	if not alive:
 		state = DEATH
 		return
-	if targeting.target:
+	if tracker.is_target_valid():
 		state = CHASE
 	else:
 		state = WANDER
@@ -61,7 +61,7 @@ func _physics_process(delta):
 				rotation.y = lerp_angle(rotation.y, hor_vel.angle(), accel * delta)
 		CHASE:
 			accel = 10.0
-			var target_pos = targeting.global_position
+			var target_pos = tracker.global_position
 			var dir = hor_direction(target_pos)
 			rotation.y = Vector2(dir.z, dir.x).angle()
 			if timer.is_stopped():
@@ -76,8 +76,8 @@ func _physics_process(delta):
 						velocity.y = 0.0
 					timer.start(0.3)
 					await timer.timeout
-					if targeting.target:
-						weapons[0].activate(targeting)
+					if tracker.is_target_valid():
+						weapons[0].activate([tracker.target])
 						move_direction = Vector3.ZERO
 						velocity = Vector3.ZERO
 						timer.start(maxf(1.0, 2.0 * randf()))

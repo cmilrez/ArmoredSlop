@@ -13,4 +13,4 @@ func _draw():
 	var half_size = lock_on_data.region.size / 2.0
 	lock_on_data.region.position = center - half_size
 	lock_on_data.region.position.y += y_offset
-	draw_rect(lock_on_data.region, Color.LIME_GREEN, false, 4.0)
+	draw_rect(lock_on_data.region, Color.LIME, false, 4.0)

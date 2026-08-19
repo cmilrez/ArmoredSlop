@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://ploodofqd5nq"]
+
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="1_5am0m"]
+[ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/missile_basic.tscn" id="1_d5ypp"]
+
+[resource]
+script = ExtResource("1_5am0m")
+multishot_interval = 0.2
+reload_time = 3.7
+clip_size = 3
+ammo_max = 60
+ammo_cost = 1
+lock_count = 3
+multi_lock_duration = 2.0
+explosive_damage = 10.0
+projectile_scene = ExtResource("1_d5ypp")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"

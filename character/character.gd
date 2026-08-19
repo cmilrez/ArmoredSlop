@@ -11,17 +11,14 @@ enum Teams {
 @export var mass := 80.0
 @export var team := Teams.TEAM_B
 @export var lock_on_marker: Node3D = null
-@export var weapons: Array[Weapon] = []
+@export var weapons: Array[Weapon3D] = []
 
 var move_direction := Vector3.ZERO
 var speed := 40.0
 var alive := true
 
 func is_same_team(other_team: Teams) -> bool:
-	if not other_team == Teams.TEAM_C:
-		if other_team == team:
-			return true
-	return false
+	return other_team == team and not other_team == Teams.TEAM_C
 
 func get_lock_position() -> Vector3:
 	return lock_on_marker.global_position
@@ -39,11 +36,17 @@ func hor_direction(to: Vector3) -> Vector3:
 func hor_distance(to: Vector3) -> float:
 	return Vector2(position.x, position.z).distance_to(Vector2(to.x, to.z))
 
+func hor_angle(to: Vector3) -> float:
+	var to_2d = Vector2(to.z, to.x)
+	if to_2d.is_zero_approx():
+		return 0.0
+	return Vector2(basis.z.z, basis.z.x).angle_to(to_2d)
+
 func do_friction(friction: float) -> void:
 	var current_speed = velocity.length()
 	if not current_speed:
 		return
-	var drop = current_speed * friction * get_process_delta_time()
+	var drop = current_speed * friction * get_physics_process_delta_time()
 	var new_speed = current_speed - drop
 	if new_speed <= 0.0:
 		new_speed = 0.0
@@ -55,7 +58,7 @@ func do_friction(friction: float) -> void:
 func accelerate_up(wish_speed: float, accel: float) -> void:
 	var diff = wish_speed - velocity.y
 	if diff > 0.0:
-		velocity.y += minf(diff, wish_speed * accel * get_process_delta_time())
+		velocity.y += minf(diff, wish_speed * accel * get_physics_process_delta_time())
 
 func accelerate(wish_dir: Vector3, wish_speed: float, accel: float) -> void:
 	var add_speed = wish_speed - velocity.dot(wish_dir)
@@ -63,6 +66,14 @@ func accelerate(wish_dir: Vector3, wish_speed: float, accel: float) -> void:
 		return
 	var acceleration = minf(add_speed, wish_speed * accel * get_physics_process_delta_time())
 	velocity += acceleration * wish_dir
+	
+	# linear, boring
+	#var vel_diff = (wish_dir * wish_speed) - velocity
+	#var speed_diff = vel_diff.length()
+	#if not speed_diff:
+		#return
+	#var acceleration = minf(speed_diff, wish_speed * accel * get_physics_process_delta_time())
+	#velocity += acceleration * vel_diff / speed_diff
 
 func push_rigid_body_3d() -> void:
 	if not velocity:

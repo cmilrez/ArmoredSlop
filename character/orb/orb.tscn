@@ -3,22 +3,18 @@
 [ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc_data.gd" id="2_u6wqr"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="3_5l4bd"]
 [ext_resource type="Script" uid="uid://btfrl44ml1u3e" path="res://character/orb/orb.gd" id="3_61c0t"]
-[ext_resource type="Script" uid="uid://d27tsvudythye" path="res://character/npc_weapon.gd" id="4_5l4bd"]
-[ext_resource type="PackedScene" uid="uid://4k6kuq8h8g7i" path="res://projectile/template_laser.tscn" id="5_61c0t"]
+[ext_resource type="Script" uid="uid://d27tsvudythye" path="res://character/npc_weapon_3d.gd" id="4_5l4bd"]
+[ext_resource type="PackedScene" uid="uid://4k6kuq8h8g7i" path="res://projectile/bullet_laser.tscn" id="5_61c0t"]
 [ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="6_4g13y"]
 [ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="6_o6hn8"]
 [ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="8_fc5v5"]
-[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/targeting.gd" id="9_t4aug"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker.gd" id="9_t4aug"]
 
 [sub_resource type="Resource" id="Resource_bq8tf"]
 script = ExtResource("2_u6wqr")
 distance_max = 150.0
 max_hp = 50.0
 metadata/_custom_type_script = "uid://f665pyihvlvu"
-
-[sub_resource type="Resource" id="Resource_vq2wp"]
-script = ExtResource("6_o6hn8")
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="Animation" id="Animation_4g13y"]
 resource_name = "Death"
@@ -356,12 +352,16 @@ _data = {
 &"StartChase": SubResource("Animation_fuevr")
 }
 
+[sub_resource type="Resource" id="Resource_vq2wp"]
+script = ExtResource("6_o6hn8")
+metadata/_custom_type_script = "uid://cehq41vdpsxpp"
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u6wqr"]
-radius = 2.1
-height = 6.2
+radius = 2.0
+height = 6.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ugwlr"]
-radius = 100.0
+radius = 150.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
 albedo_color = Color(0, 0.78431374, 0.47843137, 1)
@@ -392,6 +392,9 @@ albedo_color = Color(0, 0.75, 1, 1)
 material = SubResource("StandardMaterial3D_ipfcj")
 size = Vector3(0.6, 0.8, 3)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_vq2wp"]
+radius = 2.0
+
 [node name="Orb" type="CharacterBody3D" unique_id=1778749596 node_paths=PackedStringArray("anim_player", "lock_on_marker", "weapons")]
 collision_layer = 16
 collision_mask = 23
@@ -410,17 +413,22 @@ script = ExtResource("3_5l4bd")
 data = SubResource("Resource_bq8tf")
 metadata/_custom_type_script = "uid://ch5cqu8ctoscg"
 
-[node name="NPCWeapon" type="Node3D" parent="." unique_id=1427920058 node_paths=PackedStringArray("spawners")]
-unique_name_in_owner = true
-script = ExtResource("4_5l4bd")
-spawners = NodePath("../Model/Pivot")
-projectile_scene = ExtResource("5_61c0t")
-damage_data = SubResource("Resource_vq2wp")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=738103764]
 libraries/ = SubResource("AnimationLibrary_4g13y")
 autoplay = &"Idle"
 playback_default_blend_time = 0.1
+
+[node name="NPCWeapon" type="Node3D" parent="." unique_id=1427920058 node_paths=PackedStringArray("spawners")]
+unique_name_in_owner = true
+script = ExtResource("4_5l4bd")
+spawners = NodePath("../Model/Pivot/Cannon")
+projectile_scene = ExtResource("5_61c0t")
+damage_data = SubResource("Resource_vq2wp")
+
+[node name="Tracker" type="Marker3D" parent="." unique_id=848639494]
+unique_name_in_owner = true
+script = ExtResource("9_t4aug")
+metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=578458695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -467,30 +475,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 layers = 4
 mesh = SubResource("BoxMesh_fje11")
 
+[node name="Marker3D" type="Marker3D" parent="Model/Pivot/Cannon" unique_id=1468301754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
 [node name="Bottom" type="MeshInstance3D" parent="Model" unique_id=1388654570]
 transform = Transform3D(-1, -1.509958e-07, 0, 1.509958e-07, -1, 0, 0, 0, 1, 0, -1, 0)
 layers = 4
 mesh = SubResource("SphereMesh_vq2wp")
 
 [node name="Hitbox" type="Area3D" parent="Model" unique_id=1131652989]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 collision_layer = 8
 collision_mask = 32
 script = ExtResource("8_fc5v5")
 metadata/_custom_type_script = "uid://802cykxrtjmf"
 
 [node name="Body" type="CollisionShape3D" parent="Model/Hitbox" unique_id=2022865918]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0000005, 0)
-shape = SubResource("CapsuleShape3D_u6wqr")
+shape = SubResource("SphereShape3D_vq2wp")
+debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [node name="LockOnMarker" type="VisibleOnScreenNotifier3D" parent="Model" unique_id=1199716181]
 layers = 4
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
-
-[node name="Targeting" type="Marker3D" parent="." unique_id=848639494]
-unique_name_in_owner = true
-script = ExtResource("9_t4aug")
-metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
 
 [connection signal="death" from="Health" to="DetectionZone" method="deactivate" flags=3]
 [connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
