@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b80xvpw8k545s"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_prh4x"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_prh4x"]
 [ext_resource type="Resource" uid="uid://bwpsbh7fpv5no" path="res://parts/test/split_launcher_param.tres" id="2_prh4x"]
 
 [sub_resource type="Animation" id="Animation_hkpe4"]

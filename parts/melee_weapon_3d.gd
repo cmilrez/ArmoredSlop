@@ -1,4 +1,4 @@
-class_name MeleeWeapon extends Weapon
+class_name MeleeWeapon extends Weapon3D
 
 const READY_ANIM = &'Ready'
 const PREPARE_ANIM = &'Prepare'
@@ -15,14 +15,14 @@ func _ready():
 	recoil = true
 	timer.timeout.connect(_state_ready)
 	var dmg_data = DamageData.new()
-	dmg_data.bullet_damage = param.bullet_damage
+	dmg_data.kinetic_damage = param.kinetic_damage
 	dmg_data.energy_damage = param.energy_damage
 	dmg_data.explosive_damage = param.explosive_damage
 	hurtbox.damage_data = dmg_data
 	toggle_hurtbox(false)
 	_state_ready()
 
-func activate(targeting: Targeting) -> void:
+func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void:
 	if can_use:
 		_state_prepare()
 

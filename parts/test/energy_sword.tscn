@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cxr16p8i8u6qh"]
 
-[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_nymui"]
+[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon_3d.gd" id="1_nymui"]
 [ext_resource type="Resource" uid="uid://b3h5pcge5dy16" path="res://parts/test/energy_sword_param.tres" id="2_16qkg"]
-[ext_resource type="ArrayMesh" uid="uid://bsmycqn2yh0ke" path="res://assets/TestWeapons_EnergySword.res" id="3_7w8g1"]
+[ext_resource type="ArrayMesh" uid="uid://caw2uxjytapel" path="res://assets/TestWeapons_EnergySword.res" id="3_7w8g1"]
 [ext_resource type="Shader" uid="uid://roqo0mnm8o1q" path="res://effect/particle_trail.gdshader" id="3_16qkg"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_lcwht"]
 

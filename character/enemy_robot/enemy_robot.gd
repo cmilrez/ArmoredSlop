@@ -34,12 +34,12 @@ func _process(delta):
 			var hor_vel = Vector2(velocity.z, velocity.x)
 			if hor_vel:
 				angle_y = hor_vel.angle() + PI
-			if targeting.target:
+			if tracker.is_target_valid():
 				action = COMBAT
 		COMBAT:
 			enable_look_at = true
-			var distance = hor_distance(targeting.position)
-			var direction = hor_direction(targeting.position)
+			var distance = hor_distance(tracker.position)
+			var direction = hor_direction(tracker.position)
 			if distance < 30.0:
 				move_direction = -direction
 			elif distance < 120.0:
@@ -54,5 +54,5 @@ func _process(delta):
 				activate_unit(0)
 				activate_unit(3)
 				atk_timer.start(maxf(0.3, 1.0 * randf()))
-			if not targeting.target:
+			if not tracker.is_target_valid():
 				action = WANDER

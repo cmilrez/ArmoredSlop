@@ -26,7 +26,7 @@ func take_damage(dmg_data: DamageData):
 		assert(source is Character)
 		if get_parent().is_same_team(source.team):
 			return
-	var damage = dmg_data.bullet_damage * data.bullet_defense
+	var damage = dmg_data.kinetic_damage * data.bullet_defense
 	damage += dmg_data.energy_damage * data.energy_defense
 	damage += dmg_data.explosive_damage * data.explosive_defense
 	hp -= damage

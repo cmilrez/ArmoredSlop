@@ -1,6 +1,6 @@
 class_name NPC extends Character
 
-@onready var targeting = %Targeting
+@onready var tracker: Tracker = %Tracker
 
 @export var data: NPCData = null
 

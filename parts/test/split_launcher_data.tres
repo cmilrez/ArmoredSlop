@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://bwpsbh7fpv5no" path="res://parts/test/split_launcher_param.tres" id="1_t4vkx"]
 [ext_resource type="PackedScene" uid="uid://b80xvpw8k545s" path="res://parts/test/split_launcher.tscn" id="2_m0vu5"]
 [ext_resource type="Texture2D" uid="uid://b0oo3dy2w1ac2" path="res://ui/part_preview/split_launcher_preview.png" id="2_v3ssd"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources/unit_data.gd" id="4_m0vu5"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="4_m0vu5"]
 
 [resource]
 script = ExtResource("4_m0vu5")

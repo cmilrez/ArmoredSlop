@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgm2xvvhj65dd"]
 
-[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon.gd" id="1_lrm1f"]
+[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon_3d.gd" id="1_lrm1f"]
 [ext_resource type="Resource" uid="uid://bnoxbmrnonice" path="res://parts/test/energy_spear_param.tres" id="2_bjf87"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_037vq"]
 

@@ -24,10 +24,10 @@ func _process(delta):
 	#var playback: AnimationNodeStateMachinePlayback = get(&'parameters/playback')
 	#print(playback.get_current_node())
 	
-	var weight = 1.0 - pow(0.5, delta * 16.0)
+	var weight = exp(-8 * delta)
 	var move_dir_2d = Vector2(robot.move_direction.x, robot.move_direction.z)
 	
-	blend = blend.lerp(move_dir_2d.rotated(robot.rotation.y).round(), weight)
+	blend = move_dir_2d.rotated(robot.rotation.y).round().lerp(blend, weight)
 	set('parameters/Airborne/Biped/blend_position', blend)
 	set('parameters/Airborne/Quad/blend_position', blend)
 	set('parameters/Boost/Biped/blend_position', blend)
@@ -40,10 +40,10 @@ func _process(delta):
 	if move_dir_2d:
 		move_dir_2d = Vector2(move_dir_2d.y, move_dir_2d.x)
 		var angle_diff = robot.rotation.y - move_dir_2d.angle() + PI
-		blend2 = blend2.lerp(Vector2.UP.rotated(angle_diff), weight)
+		blend2 = Vector2.UP.rotated(angle_diff).lerp(blend2, weight)
 		set('parameters/Ground/Tank/blend_position', blend2)
 	else:
-		set('parameters/Ground/Tank/blend_position', blend2.lerp(Vector2.ZERO, weight))
+		set('parameters/Ground/Tank/blend_position', Vector2.ZERO.lerp(blend2, weight))
 
 func start_melee_attack():
 	set(start_combo, true)

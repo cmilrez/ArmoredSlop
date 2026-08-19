@@ -1,56 +1,46 @@
-class_name Missile extends Node3D
+@icon('res://addons/at-icons/node3d/missile.svg')
+class_name Missile extends Projectile3D
 
 signal started_homing
 
-@onready var ray_cast = $RayCast3D
-@onready var targeting = $Targeting
-@onready var timer = $Timer
+@onready var tracker: Tracker = $Tracker
 
-@export var hitspawn_scene: PackedScene = null
 @export var data: MissileData = null
-var damage_data: DamageData = null
 var speed_curve_offset := 0.0
 var homing := true:
 	set(value):
-		if not homing and value:
-			started_homing.emit()
+		var emit = not homing and value
 		homing = value
+		if emit:
+			started_homing.emit()
 
 func _ready():
 	if data.speed_curve_duration > 0.0:
-		create_tween().tween_property(self, 'speed_curve_offset', 1.0, data.speed_curve_duration)
+		create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).tween_property(self, 'speed_curve_offset', 1.0, data.speed_curve_duration)
 	if data.homing_delay > 0.0:
 		homing = false
-		create_tween().tween_property(self, 'homing', true, data.homing_delay)
-	top_level = true
-	ray_cast.enabled = false
-	timer.one_shot = true
-	timer.timeout.connect(destroy)
-	timer.start(data.life_time)
+		create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).tween_property(self, 'homing', true, data.homing_delay)
+	super._ready()
 
-func move_and_collide() -> bool:
-	var speed = data.speed
+func move_and_collide(speed: float) -> bool:
 	if data.speed_curve and speed_curve_offset < 1.0:
 		speed *= data.speed_curve.sample(speed_curve_offset)
-	var delta_speed = speed * get_process_delta_time()
-	position += basis.z * delta_speed
-	ray_cast.target_position.z = delta_speed
-	ray_cast.force_raycast_update()
-	return ray_cast.is_colliding()
+	return super.move_and_collide(speed)
 
-func rotate_to_target(ahead := true):
+func rotate_to_target(predict := false) -> void:
 	if homing:
-		var target_position = targeting.get_targeting_position(data.speed, position) if ahead else targeting.position
-		var direction: Vector3 = -position.direction_to(target_position)
+		var target_pos: Vector3
+		if predict and tracker.is_target_valid():
+			target_pos = get_prediction(data.speed, tracker.target)
+		else:
+			target_pos = tracker.position
+		var direction = -position.direction_to(target_pos)
 		var cross = direction.cross(basis.z).normalized()
 		var angle = direction.signed_angle_to(basis.z, cross)
-		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * get_process_delta_time()))
+		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * get_physics_process_delta_time()))
 
-func set_up(spawn: Node3D, _damage_data: DamageData, target_position: Vector3, target: Character = null):
+func set_up(spawn: Node3D, dmg_data: DamageData, target_pos: Vector3, _target: Character = null) -> void:
 	global_transform = spawn.global_transform
-	damage_data = _damage_data
-	targeting.global_position = target_position
-	targeting.target = target
-
-func destroy():
-	queue_free()
+	damage_data = dmg_data
+	tracker.position = target_pos
+	tracker.target = _target

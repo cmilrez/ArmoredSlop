@@ -1,0 +1,301 @@
+[gd_scene format=3 uid="uid://0mn5ocp4f4c7"]
+
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_gxlnn"]
+[ext_resource type="ArrayMesh" uid="uid://6pxcoq71u613" path="res://assets/TestWeapons_MissileLauncher3.res" id="2_nw12k"]
+[ext_resource type="Resource" uid="uid://ploodofqd5nq" path="res://parts/test/missile_launcher_3_param.tres" id="2_qu0yv"]
+
+[sub_resource type="Animation" id="Animation_i8k1u"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:BigArm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:SmallArm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 0, -4.371139e-08, 0)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:Body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 0, -7.54979e-08, 0)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:Barrel.001")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.86072296, 0.77705836, -0.95238495)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:Barrel.002")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.86072296, -0.123842, -0.95238495)
+tracks/5/type = "position_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:Barrel.003")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.86072296, -1.0247421, -0.95238495)
+
+[sub_resource type="Animation" id="Animation_qu0yv"]
+resource_name = "Ready"
+length = 0.7
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:BigArm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.819152, 0, 0, 0.57357645, 0.2, 1, -0.5372995, 0, 0, 0.8433915)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:SmallArm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.79335326, 2.6609813e-08, -3.4678585e-08, 0.6087614, 0.4, 1, 0.70710677, 3.0908623e-08, -3.0908623e-08, 0.70710677)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:Body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.20000005, 1, -0.6755903, 5.5662895e-08, 5.1005667e-08, 0.73727727, 0.4, 1, -0.2588191, 7.2925396e-08, 1.9540305e-08, 0.9659258)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:Barrel.001")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.5, 1, -0.861, 0.777, -1.952, 0.7, 1, -0.86072296, 0.77705836, -0.95238495)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:Barrel.002")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.36666667, 1, -0.861, -0.124, -1.952, 0.5666667, 1, -0.86072296, -0.123842, -0.95238495)
+tracks/5/type = "position_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:Barrel.003")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0.23333333, 1, -0.861, -1.025, -1.952, 0.4333333, 1, -0.86072296, -1.0247421, -0.95238495)
+
+[sub_resource type="Animation" id="Animation_pifgk"]
+resource_name = "Reload"
+length = 0.7
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:BigArm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.5372995, 0, 0, 0.8433915, 0.4, 1, -0.819152, 0, 0, 0.57357645)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:SmallArm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.2, 1, 0.70710677, 3.0908623e-08, -3.0908623e-08, 0.70710677, 0.6, 1, 0.79335326, 2.6609813e-08, -3.4678585e-08, 0.6087614)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:Body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.30000007, 1, -0.2588191, 7.2925396e-08, 1.9540305e-08, 0.9659258, 0.70000005, 1, -0.6755903, 5.5662895e-08, 5.1005667e-08, 0.73727727)
+
+[sub_resource type="Animation" id="Animation_eytl5"]
+resource_name = "Shoot"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Barrel.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.86072296, 0.77705836, -0.95238495, 0.1, 1, -0.861, 0.777, -1.952)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:Barrel.002")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.2, 1, -0.86072296, -0.123842, -0.95238495, 0.3, 1, -0.861, -0.124, -1.952)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:Barrel.003")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.4, 1, -0.86072296, -1.0247421, -0.95238495, 0.5, 1, -0.861, -1.025, -1.952)
+
+[sub_resource type="Animation" id="Animation_wpt6v"]
+resource_name = "Start"
+length = 1.7
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:BigArm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.70710677, 0, 0, 0.70710677, 0.8, 1, -0.3007058, 0, 0, 0.953717, 1.7, 1, -0.5372995, 0, 0, 0.8433915)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:SmallArm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.2, 1, 1, 0, -4.371139e-08, 0, 0.8, 1, -0.34202006, 4.107528e-08, 1.4950174e-08, 0.9396927, 1.4, 1, 0.70710677, 3.0908623e-08, -3.0908623e-08, 0.70710677)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:Body")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.8, 1, 1, 0, -7.54979e-08, 0, 1.7, 1, -0.2588191, 7.2925396e-08, 1.9540305e-08, 0.9659258)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:Barrel.001")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.86072296, 0.77705836, -0.95238495)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:Barrel.002")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.86072296, -0.123842, -0.95238495)
+tracks/5/type = "position_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:Barrel.003")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.86072296, -1.0247421, -0.95238495)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8k1u"]
+_data = {
+&"RESET": SubResource("Animation_i8k1u"),
+&"Ready": SubResource("Animation_qu0yv"),
+&"Reload": SubResource("Animation_pifgk"),
+&"Shoot": SubResource("Animation_eytl5"),
+&"Start": SubResource("Animation_wpt6v")
+}
+
+[sub_resource type="Skin" id="Skin_8r4mx"]
+resource_name = "Skin8"
+bind_count = 6
+bind/0/name = &"BigArm"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bind/1/name = &"SmallArm"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, -8.742278e-08, 0, -1, 0, -8.742278e-08, 0, -1, 0.1949999, 1.9710981, -1.7047434e-08)
+bind/2/name = &"Body"
+bind/2/bone = -1
+bind/2/pose = Transform3D(1, 0, 6.3573026e-08, 0, 1, 0, -6.3573026e-08, 0, 1, 0.2924999, -0.6710979, -9.6081145e-08)
+bind/3/name = &"Barrel.001"
+bind/3/bone = -1
+bind/3/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.1532228, -0.95238495, -1.4481564)
+bind/4/name = &"Barrel.002"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.1532228, -0.95238495, -0.547256)
+bind/5/name = &"Barrel.003"
+bind/5/bone = -1
+bind/5/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.1532228, -0.95238495, 0.35364425)
+
+[node name="MissileLauncher3" type="Node3D" unique_id=223974079 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_gxlnn")
+spawners = NodePath("Skeleton3D/Body")
+param = ExtResource("2_qu0yv")
+metadata/_custom_type_script = "uid://brdkpe831f6pw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1504515765]
+libraries/ = SubResource("AnimationLibrary_i8k1u")
+
+[node name="Timer" type="Timer" parent="." unique_id=1232555913]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=43069447]
+bones/0/name = "BigArm"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/1/name = "SmallArm"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, -8.742278e-08, 0, -1, 0, -8.742278e-08, 0, -1, -0.1949999, 1.9710981, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(-0.1949999, 1.9710981, 0)
+bones/1/rotation = Quaternion(1, 0, -4.371139e-08, 0)
+bones/1/scale = Vector3(1, 1.0000006, 1.0000006)
+bones/2/name = "Body"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, 0, -1.509958e-07, 0, -1, 0, -1.509958e-07, 0, -1, -0.0975, 1.3000002, -6.896232e-08)
+bones/2/enabled = true
+bones/2/position = Vector3(-0.0975, 1.3000002, -6.896232e-08)
+bones/2/rotation = Quaternion(1, 0, -7.54979e-08, 0)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "Barrel.001"
+bones/3/parent = 2
+bones/3/rest = Transform3D(1, -5.960464e-08, 0, 0, 0, 1, -5.960464e-08, -1, 0, -0.86072296, 0.77705836, -0.95238495)
+bones/3/enabled = true
+bones/3/position = Vector3(-0.86072296, 0.77705836, -0.95238495)
+bones/3/rotation = Quaternion(-0.70710677, 2.1073424e-08, 2.1073424e-08, 0.70710677)
+bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/4/name = "Barrel.002"
+bones/4/parent = 2
+bones/4/rest = Transform3D(1, -5.960464e-08, 0, 0, 0, 1, -5.960464e-08, -1, 0, -0.86072296, -0.123842, -0.95238495)
+bones/4/enabled = true
+bones/4/position = Vector3(-0.86072296, -0.123842, -0.95238495)
+bones/4/rotation = Quaternion(-0.70710677, 2.1073424e-08, 2.1073424e-08, 0.70710677)
+bones/4/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/5/name = "Barrel.003"
+bones/5/parent = 2
+bones/5/rest = Transform3D(1, -5.960464e-08, 0, 0, 0, 1, -5.960464e-08, -1, 0, -0.86072296, -1.0247421, -0.95238495)
+bones/5/enabled = true
+bones/5/position = Vector3(-0.86072296, -1.0247421, -0.95238495)
+bones/5/rotation = Quaternion(-0.70710677, 2.1073422e-08, 2.1073422e-08, 0.70710677)
+bones/5/scale = Vector3(1, 1, 1)
+
+[node name="MissileLauncher3" type="MeshInstance3D" parent="Skeleton3D" unique_id=1529483129]
+layers = 4
+mesh = ExtResource("2_nw12k")
+skin = SubResource("Skin_8r4mx")
+skeleton = NodePath("..")
+
+[node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=995434317]
+transform = Transform3D(1, 0, -6.3572976e-08, 0, 1.0000005, 0, 6.3573104e-08, 0, 1.0000005, -0.2924999, 0.67109716, 7.748608e-08)
+bone_name = "Body"
+bone_idx = 2
+
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/Body" unique_id=167372377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8607222, 0.7770587, 0.8226153)
+gizmo_extents = 1.0
+
+[node name="Marker3D2" type="Marker3D" parent="Skeleton3D/Body" unique_id=950665820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8607222, -0.12384164, 0.8226153)
+gizmo_extents = 1.0
+
+[node name="Marker3D3" type="Marker3D" parent="Skeleton3D/Body" unique_id=817771991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8607222, -1.0247421, 0.82261527)
+gizmo_extents = 1.0

@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://cliuj263qmab4" path="res://parts/test/shotgun_data.tres" id="13_yep0p"]
 [ext_resource type="Resource" uid="uid://cfjmky0u3osq0" path="res://parts/test/energy_sword_data.tres" id="14_aqod8"]
 [ext_resource type="Resource" uid="uid://bwnsv51a2xcl2" path="res://parts/test/heavy_launcher_data.tres" id="14_y0ory"]
-[ext_resource type="Resource" uid="uid://cowfkhskd3huo" path="res://parts/test/missile_launcher_data.tres" id="15_yaoia"]
+[ext_resource type="Resource" uid="uid://cowfkhskd3huo" path="res://parts/test/missile_launcher_6_data.tres" id="15_yaoia"]
 [ext_resource type="Resource" uid="uid://o6ouq6h1545w" path="res://parts/test/shoulder_cannon_data.tres" id="16_bw7fo"]
 [ext_resource type="Resource" uid="uid://dvtqslao5q51c" path="res://parts/test/split_launcher_data.tres" id="17_gv25o"]
 [ext_resource type="Resource" uid="uid://yxu43b60ukm1" path="res://parts/test/test_booster_data.tres" id="18_fve5j"]

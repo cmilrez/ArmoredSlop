@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://qs1aigkqwumj"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_ej6wy"]
-[ext_resource type="Resource" uid="uid://bsfp38yuyt1q" path="res://parts/test/missile_launcher_param.tres" id="2_hfhwc"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_ej6wy"]
+[ext_resource type="Resource" uid="uid://bsfp38yuyt1q" path="res://parts/test/missile_launcher_6_param.tres" id="2_hfhwc"]
 [ext_resource type="Script" uid="uid://bmwkw0gcjr4vm" path="res://parts/hatch_opener.gd" id="3_0vhiq"]
-[ext_resource type="ArrayMesh" uid="uid://cwgcqkerxhtr" path="res://assets/TestWeapons_MissileLauncher6.res" id="3_hfhwc"]
+[ext_resource type="ArrayMesh" uid="uid://cufeghvhcr55m" path="res://assets/TestWeapons_MissileLauncher6.res" id="3_hfhwc"]
 
 [sub_resource type="Animation" id="Animation_hkpe4"]
 length = 0.001
@@ -122,7 +122,7 @@ _data = {
 &"Start": SubResource("Animation_hfhwc")
 }
 
-[node name="MissileLauncher" type="Node3D" unique_id=155415789 node_paths=PackedStringArray("spawners")]
+[node name="MissileLauncher6" type="Node3D" unique_id=155415789 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_ej6wy")
 spawners = NodePath("Skeleton3D/Body/Spawners")
 param = ExtResource("2_hfhwc")

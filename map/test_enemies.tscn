@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://gfdfjpjdbgtf"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://c2rqx5ejqesqw" path="res://misc/f1 pmtl.tres" id="1_2ty7v"]
+[ext_resource type="PackedScene" uid="uid://cpl2hwfaru3rt" path="res://character/droid/droid.tscn" id="2_7itfe"]
+[ext_resource type="Script" uid="uid://8inmej5bhml1" path="res://map/world_bottom.gd" id="2_tgwwm"]
+[ext_resource type="PackedScene" uid="uid://h6h87woh5jtt" path="res://character/player_robot/player_robot.tscn" id="3_mmn70"]
+[ext_resource type="PackedScene" uid="uid://cfaqalhv2d35p" path="res://character/orb/orb.tscn" id="5_c71kc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mmn70"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tgwwm"]
+sky_material = SubResource("ProceduralSkyMaterial_mmn70")
+
+[sub_resource type="Environment" id="Environment_c71kc"]
+background_mode = 2
+sky = SubResource("Sky_tgwwm")
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_vuwfg"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75)
+colors = PackedColorArray(1, 0.19607843, 0.19607843, 1, 0.19607843, 0.78431374, 0.19607843, 1, 0.98039216, 0.98039216, 0, 1, 0.19607843, 0.78431374, 0.98039216, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ty7v"]
+gradient = SubResource("Gradient_vuwfg")
+width = 8
+height = 8
+fill = 3
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vuwfg"]
+albedo_texture = SubResource("GradientTexture2D_2ty7v")
+metallic = 1.0
+uv1_scale = Vector3(0.02, 0.02, 0.02)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_vuwfg")
+size = Vector3(500, 2, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vuwfg"]
+size = Vector3(500, 2, 500)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_c71kc"]
+
+[node name="TestEnemies" type="Node3D" unique_id=1173036083]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=281442185]
+environment = SubResource("Environment_c71kc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1134987694]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=494286924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+physics_material_override = ExtResource("1_2ty7v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1323689166]
+mesh = SubResource("BoxMesh_vq2wp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1509543942]
+shape = SubResource("BoxShape3D_vuwfg")
+
+[node name="WorldBottom" type="Area3D" parent="." unique_id=2088891968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+collision_layer = 0
+collision_mask = 22
+script = ExtResource("2_tgwwm")
+safe_position = Vector3(0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBottom" unique_id=1885760945]
+shape = SubResource("WorldBoundaryShape3D_c71kc")
+
+[node name="PlayerRobot" parent="." unique_id=1597961581 instance=ExtResource("3_mmn70")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3933086, 0)
+
+[node name="Droid" parent="." unique_id=160824551 instance=ExtResource("2_7itfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.418373, 0, -51.76527)
+team = 0
+
+[node name="Droid2" parent="." unique_id=1248842637 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.751984, -3.8146973e-06, -79.87207)
+
+[node name="Droid3" parent="." unique_id=672516123 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.12395, -3.8146973e-06, -79.87207)
+
+[node name="Droid4" parent="." unique_id=465039684 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.40014, -3.8146973e-06, -79.87207)
+
+[node name="Droid5" parent="." unique_id=264059091 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.4092, -3.8146973e-06, -79.87207)
+
+[node name="Droid6" parent="." unique_id=232648201 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.37993, -3.8146973e-06, -79.87207)
+
+[node name="Droid7" parent="." unique_id=745992407 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.64432, -3.8146973e-06, -79.87207)
+
+[node name="Droid8" parent="." unique_id=1201451159 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.64432, -3.8146973e-06, -86.80259)
+
+[node name="Droid9" parent="." unique_id=1704177089 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.51604, -3.8146973e-06, -86.80259)
+
+[node name="Droid10" parent="." unique_id=1694367703 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.68526, -3.8146973e-06, -86.80259)
+
+[node name="Droid11" parent="." unique_id=1911072365 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.03818, -3.8146973e-06, -86.80259)
+
+[node name="Droid12" parent="." unique_id=338486561 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.99644, -3.8146973e-06, -86.80259)
+
+[node name="Droid13" parent="." unique_id=263688963 instance=ExtResource("2_7itfe")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.70314, -3.8146973e-06, -86.80259)
+
+[node name="Orb" parent="." unique_id=1778749596 instance=ExtResource("5_c71kc")]
+transform = Transform3D(0.61780226, 0, 0.7863335, 0, 1, 0, -0.7863335, 0, 0.61780226, -84.181625, 12.17005, 138.64195)
+team = 0
+
+[node name="Orb2" parent="." unique_id=1230325252 instance=ExtResource("5_c71kc")]
+transform = Transform3D(0.053415332, 0, 0.9985724, 0, 1, 0, -0.9985724, 0, 0.053415332, -47.82035, 10.005545, 154.18994)
+team = 0
+
+[node name="Orb3" parent="." unique_id=647627229 instance=ExtResource("5_c71kc")]
+transform = Transform3D(-0.6945075, 0, -0.71948546, 0, 1, 0, 0.71948546, 0, -0.6945075, -52.639603, 21.883713, 110.29894)
+team = 0
+
+[node name="Orb4" parent="." unique_id=1851668468 instance=ExtResource("5_c71kc")]
+transform = Transform3D(-0.9927489, 0, -0.12020647, 0, 1, 0, 0.12020647, 0, -0.9927489, -92.033615, 4.1911087, 173.975)
+team = 0
+
+[node name="Orb5" parent="." unique_id=803928045 instance=ExtResource("5_c71kc")]
+transform = Transform3D(0.66014427, 0, 0.7511388, 0, 1, 0, -0.7511388, 0, 0.66014427, -116.74268, 2.9174576, 106.85906)
+team = 0
+
+[node name="Orb6" parent="." unique_id=90405045 instance=ExtResource("5_c71kc")]
+transform = Transform3D(-0.8321605, 0, 0.5545349, 0, 1, 0, -0.5545349, 0, -0.8321605, -133.98495, 16.900671, 162.13756)
+team = 0

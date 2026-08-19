@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4k6kuq8h8g7i"]
 
 [ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_2hve0"]
+[ext_resource type="Shape3D" uid="uid://dj4ida2kyl3rl" path="res://projectile/col_sphere_0_5.tres" id="1_hotgm"]
 [ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_hotgm"]
 [ext_resource type="PackedScene" uid="uid://b3nhbo8ief3mx" path="res://effect/laser_sparks.tscn" id="3_2hve0"]
 
@@ -19,8 +20,11 @@ material = SubResource("StandardMaterial3D_xb38e")
 size = Vector2(5, 0.6)
 orientation = 0
 
-[node name="Bullet" type="Node3D" unique_id=1299266127]
+[node name="Bullet" type="ShapeCast3D" unique_id=1979171860]
 top_level = true
+shape = ExtResource("1_hotgm")
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
 script = ExtResource("1_2hve0")
 data = SubResource("Resource_2hve0")
 hitspawn_scene = ExtResource("3_2hve0")
@@ -52,14 +56,6 @@ layers = 8
 cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("QuadMesh_0uh68")
-
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=400149118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
-target_position = Vector3(0, 0, 1)
-collision_mask = 11
-collide_with_areas = true
-debug_shape_custom_color = Color(1, 0.11764706, 0, 1)
-debug_shape_thickness = 5
 
 [node name="Timer" type="Timer" parent="." unique_id=1695841239]
 one_shot = true

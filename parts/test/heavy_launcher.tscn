@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c0o4shmbjai5a"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_27rau"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_27rau"]
 [ext_resource type="Resource" uid="uid://b0skxpdgf74d" path="res://parts/test/heavy_launcher_param.tres" id="2_27rau"]
-[ext_resource type="ArrayMesh" uid="uid://cihun1qn8wup" path="res://assets/TestWeapons_HeavyMissileLauncher.res" id="3_kknjx"]
+[ext_resource type="ArrayMesh" uid="uid://ceg37bc4vl2ff" path="res://assets/TestWeapons_HeavyMissileLauncher.res" id="3_kknjx"]
 
 [sub_resource type="Animation" id="Animation_hkpe4"]
 length = 0.001

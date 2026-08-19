@@ -1,25 +1,21 @@
 extends Missile
 
-@onready var spawners = $Spawners
+@onready var spawners: Node3D = $Spawners
 
-@export_range(0.0, 100.0, 0.001, 'or_greater', 'suffix:m') var detonation_distance := 20.0
+@export_range(0.0, 100.0, 0.001, 'or_greater', 'suffix:m') var split_distance := 20.0
+@export var missile_scene: PackedScene = null
 
-func _process(delta):
-	if position.distance_squared_to(targeting.position) < detonation_distance * detonation_distance:
-		if hitspawn_scene:
+func _physics_process(delta):
+	var distance_sqr = position.distance_squared_to(tracker.position)
+	if distance_sqr < split_distance * split_distance:
+		if missile_scene:
 			for spawn in spawners.get_children():
-				var node: Missile = hitspawn_scene.instantiate()
+				var node: Missile = missile_scene.instantiate()
 				get_tree().current_scene.add_child(node)
-				node.set_up(spawn, damage_data, targeting.position, targeting.target)
-		else:
-			var collider = ray_cast.get_collider()
-			if collider is Hitbox:
-				collider.hit.emit(damage_data)
-		timer.stop()
+				node.set_up(spawn, damage_data, tracker.position, tracker.target)
 		destroy()
-		return
-	if move_and_collide():
-		timer.stop()
+	elif move_and_collide(data.speed):
+		hitspawn_and_damage()
 		destroy()
-		return
-	rotate_to_target(false)
+	else:
+		rotate_to_target(false)

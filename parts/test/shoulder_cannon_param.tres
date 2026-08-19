@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://bft6b5d30e2su"]
 
-[ext_resource type="PackedScene" uid="uid://dfjb6oyx7ivop" path="res://projectile/template_bomb.tscn" id="2_tru2m"]
+[ext_resource type="PackedScene" uid="uid://dfjb6oyx7ivop" path="res://projectile/bullet_bomb.tscn" id="2_tru2m"]
 [ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="3_5xsw2"]
 
 [resource]

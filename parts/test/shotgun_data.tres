@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://closvskqvpgns" path="res://parts/test/shotgun_param.tres" id="1_0btyx"]
 [ext_resource type="Texture2D" uid="uid://bql3lobanpx6n" path="res://ui/part_preview/shotgun_preview.png" id="2_0uqav"]
 [ext_resource type="PackedScene" uid="uid://bdpuotsh72atu" path="res://parts/test/shotgun.tscn" id="2_lbse6"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources/unit_data.gd" id="4_lbse6"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="4_lbse6"]
 
 [resource]
 script = ExtResource("4_lbse6")

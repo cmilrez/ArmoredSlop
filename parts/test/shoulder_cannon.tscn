@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cb8tx40201w3a"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon.gd" id="1_3lgcg"]
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_3lgcg"]
 [ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_65uri"]
-[ext_resource type="ArrayMesh" uid="uid://fsar3aax0sej" path="res://assets/TestWeapons_ShoulderCannon.res" id="3_l7aj2"]
+[ext_resource type="ArrayMesh" uid="uid://cguc6r0qa33v1" path="res://assets/TestWeapons_ShoulderCannon.res" id="3_l7aj2"]
 [ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="4_65uri"]
 
 [sub_resource type="Animation" id="Animation_wllxb"]

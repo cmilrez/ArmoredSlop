@@ -1,9 +1,9 @@
 @tool
 class_name DetectionZone extends Area3D
 
-@onready var eye_ray = $EyeRay
-@onready var timer = $Timer
-@onready var targeting = %Targeting
+@onready var eye_ray: RayCast3D = $EyeRay
+@onready var timer: Timer = $Timer
+@onready var tracker: Tracker = %Tracker
 
 @export var data: NPCData = null
 @export var skeleton: Skeleton3D = null
@@ -37,10 +37,10 @@ func _ready():
 func _process(delta):
 	if Engine.is_editor_hint():
 		return
-	if is_instance_valid(targeting.target):
-		var target_position = targeting.position
+	if tracker.is_target_valid():
+		var target_position = tracker.position
 		if (data.distance_max * data.distance_max) < target_position.distance_squared_to(character.get_lock_position()):
-			targeting.target = null
+			tracker.target = null
 			return
 		eye_ray.target_position = eye_ray.to_local(target_position)
 		eye_ray.force_raycast_update()
@@ -50,7 +50,7 @@ func _process(delta):
 		else:
 			timer.stop()
 	else:
-		targeting.target = search_target()
+		tracker.target = search_target()
 
 func search_target() -> Character:
 	for body in get_overlapping_bodies():
@@ -81,11 +81,11 @@ func set_target_from_damage(dmg_data: DamageData):
 	if source:
 		if get_parent().is_same_team(source.team):
 			return
-		targeting.target = source
+		tracker.target = source
 
 func deactivate():
 	process_mode = Node.PROCESS_MODE_DISABLED
-	targeting.target = null
+	tracker.target = null
 
 func _on_timer_timout():
-	targeting.target = null
+	tracker.target = null
