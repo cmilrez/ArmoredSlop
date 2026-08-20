@@ -4,7 +4,11 @@ signal death
 signal changed(value: float)
 
 @export var data: CharacterData = null
-var max_hp := 1.0
+var max_hp := 1.0:
+	set(value):
+		max_hp = value
+		if hp > max_hp:
+			hp = max_hp
 var hp := 1.0:
 	set(value):
 		if hp > 0.0 and value <= 0.0:

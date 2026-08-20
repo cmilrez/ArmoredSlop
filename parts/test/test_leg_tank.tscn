@@ -5,14 +5,17 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc1yl"]
 resource_name = "GreenDark"
 albedo_color = Color(0, 0.4999954, 0, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iihjx"]
 resource_name = "Blue"
 albedo_color = Color(0, 0.3491902, 0.9063318, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sk6qe"]
 resource_name = "Red"
 albedo_color = Color(0.9063318, 0, 0, 1)
+roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_q1tr4"]
 resource_name = "TestParts_TestTank"

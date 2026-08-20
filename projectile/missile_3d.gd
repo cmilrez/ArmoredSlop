@@ -1,5 +1,5 @@
 @icon('res://addons/at-icons/node3d/missile.svg')
-class_name Missile extends Projectile3D
+class_name Missile3D extends Projectile3D
 
 signal started_homing
 
@@ -27,13 +27,9 @@ func move_and_collide(speed: float) -> bool:
 		speed *= data.speed_curve.sample(speed_curve_offset)
 	return super.move_and_collide(speed)
 
-func rotate_to_target(predict := false) -> void:
+func rotate_to_target() -> void:
 	if homing:
-		var target_pos: Vector3
-		if predict and tracker.is_target_valid():
-			target_pos = get_prediction(data.speed, tracker.target)
-		else:
-			target_pos = tracker.position
+		var target_pos = tracker.position
 		var direction = -position.direction_to(target_pos)
 		var cross = direction.cross(basis.z).normalized()
 		var angle = direction.signed_angle_to(basis.z, cross)

@@ -7,6 +7,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iihjx"]
 resource_name = "Blue"
 albedo_color = Color(0, 0.3491902, 0.9063318, 1)
+roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rshd1"]
 resource_name = "TestParts_TestLegBiped"
@@ -106,11 +107,8 @@ visible = false
 script = ExtResource("3_rshd1")
 metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
 
-[node name="BoosterFire" type="MeshInstance3D" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_iihjx")]
+[node name="BoosterFire" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_iihjx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-layers = 16
-cast_shadow = 0
-gi_mode = 0
 mesh = SubResource("CylinderMesh_vq2wp")
 
 [node name="LegBooster02" type="BoneAttachment3D" parent="." unique_id=1433967017]
@@ -121,9 +119,6 @@ visible = false
 script = ExtResource("3_rshd1")
 metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
 
-[node name="BoosterFire" type="MeshInstance3D" parent="LegBooster02/Booster" unique_id=635007332 instance=ExtResource("3_iihjx")]
+[node name="BoosterFire" parent="LegBooster02/Booster" unique_id=635007332 instance=ExtResource("3_iihjx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-layers = 16
-cast_shadow = 0
-gi_mode = 0
 mesh = SubResource("CylinderMesh_vq2wp")

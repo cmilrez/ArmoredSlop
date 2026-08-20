@@ -268,7 +268,6 @@ _data = {
 }
 
 [node name="EnergySword" type="Node3D" unique_id=1950415004]
-transform = Transform3D(1, 0, -0.00018531481, 0, 1, 0, 0.00018531481, 0, 1, 0, 0, 0)
 script = ExtResource("1_nymui")
 param = ExtResource("2_16qkg")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"

@@ -52,7 +52,7 @@ func _ready():
 	ammo_changed.emit.call_deferred(ammo_loaded, ammo_left)
 	_state_start()
 
-func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void:
+func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> void:
 	if not can_use:
 		return
 	_state_shoot()
@@ -64,7 +64,7 @@ func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void:
 			break
 		var new_projectile = param.projectile_scene.instantiate()
 		get_tree().current_scene.add_child(new_projectile)
-		var target = targets[(spawn_count - i) % target_count]
+		var target = targets[(spawn_count - i) % target_count] if target_count else null
 		var target_position = target.get_lock_position() if target else aim_position
 		new_projectile.set_up(spawn, damage_data, target_position, target)
 		ammo_loaded -= param.ammo_cost

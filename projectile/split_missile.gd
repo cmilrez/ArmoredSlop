@@ -1,4 +1,4 @@
-extends Missile
+extends Missile3D
 
 @onready var spawners: Node3D = $Spawners
 
@@ -10,7 +10,7 @@ func _physics_process(delta):
 	if distance_sqr < split_distance * split_distance:
 		if missile_scene:
 			for spawn in spawners.get_children():
-				var node: Missile = missile_scene.instantiate()
+				var node: Missile3D = missile_scene.instantiate()
 				get_tree().current_scene.add_child(node)
 				node.set_up(spawn, damage_data, tracker.position, tracker.target)
 		destroy()
@@ -18,4 +18,4 @@ func _physics_process(delta):
 		hitspawn_and_damage()
 		destroy()
 	else:
-		rotate_to_target(false)
+		rotate_to_target()

@@ -13,6 +13,7 @@ const COOLDOWN_ANIM = &'Cooldown'
 
 func _ready():
 	recoil = true
+	timer.one_shot = true
 	timer.timeout.connect(_state_ready)
 	var dmg_data = DamageData.new()
 	dmg_data.kinetic_damage = param.kinetic_damage
@@ -22,7 +23,7 @@ func _ready():
 	toggle_hurtbox(false)
 	_state_ready()
 
-func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void:
+func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> void:
 	if can_use:
 		_state_prepare()
 
@@ -66,10 +67,3 @@ func _state_cooldown() -> void:
 	timer.start(param.reload_time)
 	if anim_player.has_animation(COOLDOWN_ANIM):
 		anim_player.play(COOLDOWN_ANIM)
-
-#func _state_shutdown() -> void: # unused
-	#can_use = false
-	#if anim_player.has_animation(READY_ANIM) and anim_player.has_animation(START_ANIM):
-		#anim_player.play_backwards(READY_ANIM)
-		#await anim_player.animation_finished
-		#anim_player.play_backwards(START_ANIM)

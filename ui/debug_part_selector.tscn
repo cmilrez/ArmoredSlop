@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://o6ouq6h1545w" path="res://parts/test/shoulder_cannon_data.tres" id="16_bw7fo"]
 [ext_resource type="Resource" uid="uid://dvtqslao5q51c" path="res://parts/test/split_launcher_data.tres" id="17_gv25o"]
 [ext_resource type="Resource" uid="uid://yxu43b60ukm1" path="res://parts/test/test_booster_data.tres" id="18_fve5j"]
+[ext_resource type="Resource" uid="uid://na3pq2d3ikpd" path="res://parts/test/missile_launcher_3_data.tres" id="19_aifsy"]
 [ext_resource type="Texture2D" uid="uid://c62nr4wt8d76" path="res://ui/part_preview/test_head_1_preview.png" id="19_eef5a"]
 [ext_resource type="Resource" uid="uid://bed12ld81mg4b" path="res://parts/test/test_generator_data.tres" id="19_lt0lj"]
 [ext_resource type="Resource" uid="uid://dsleum4ja8lju" path="res://parts/test/test_lock_on_data.tres" id="20_5swwb"]
@@ -41,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ixtvptbopug" path="res://ui/part_preview/test_booster_preview.png" id="35_mleyw"]
 [ext_resource type="Texture2D" uid="uid://crspkdnyq3x6o" path="res://ui/part_preview/test_generator_preview.png" id="38_bvatt"]
 [ext_resource type="Texture2D" uid="uid://ksaxo7bdisiq" path="res://ui/part_preview/test_lock_on_preview.png" id="39_aqod8"]
+[ext_resource type="Texture2D" uid="uid://bj4wpsjudkh5r" path="res://ui/part_preview/missile_launcher_3_preview.png" id="40_fvpcs"]
 
 [sub_resource type="Gradient" id="Gradient_bvatt"]
 offsets = PackedFloat32Array(0.4, 0.5, 0.6, 0.7)
@@ -69,7 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_tl0pb")
-parts = Array[Array]([[ExtResource("3_hciek"), ExtResource("3_gmg8c")], [ExtResource("4_eef5a"), ExtResource("5_jtsib")], [ExtResource("6_d3ic8"), ExtResource("7_a22cb")], [ExtResource("8_l82xc"), ExtResource("9_y18g2"), ExtResource("10_uqpsl"), ExtResource("11_js5ln")], [ExtResource("12_gd5ib"), ExtResource("13_yep0p"), ExtResource("14_aqod8")], [ExtResource("14_y0ory"), ExtResource("15_yaoia"), ExtResource("16_bw7fo"), ExtResource("17_gv25o")], [ExtResource("18_fve5j")], [ExtResource("19_lt0lj")], [ExtResource("20_5swwb")]])
+parts = Array[Array]([[ExtResource("3_hciek"), ExtResource("3_gmg8c")], [ExtResource("4_eef5a"), ExtResource("5_jtsib")], [ExtResource("6_d3ic8"), ExtResource("7_a22cb")], [ExtResource("8_l82xc"), ExtResource("9_y18g2"), ExtResource("10_uqpsl"), ExtResource("11_js5ln")], [ExtResource("12_gd5ib"), ExtResource("13_yep0p"), ExtResource("14_aqod8")], [ExtResource("14_y0ory"), ExtResource("15_yaoia"), ExtResource("16_bw7fo"), ExtResource("17_gv25o"), ExtResource("19_aifsy")], [ExtResource("18_fve5j")], [ExtResource("19_lt0lj")], [ExtResource("20_5swwb")]])
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1327484749]
 layout_mode = 0
@@ -307,6 +309,17 @@ texture_normal = ExtResource("34_uqpew")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="54" type="TextureButton" parent="TabContainer/BackUnit" unique_id=1186168019]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 3
+texture_normal = ExtResource("40_fvpcs")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="Booster" type="HBoxContainer" parent="TabContainer" unique_id=1843055175]
 visible = false
 layout_mode = 2
@@ -382,6 +395,7 @@ stretch_mode = 0
 [connection signal="pressed" from="TabContainer/BackUnit/51" to="." method="get_part_scene" binds= [&"51"]]
 [connection signal="pressed" from="TabContainer/BackUnit/52" to="." method="get_part_scene" binds= [&"52"]]
 [connection signal="pressed" from="TabContainer/BackUnit/53" to="." method="get_part_scene" binds= [&"53"]]
+[connection signal="pressed" from="TabContainer/BackUnit/54" to="." method="get_part_scene" binds= [&"54"]]
 [connection signal="pressed" from="TabContainer/Booster/60" to="." method="get_part_scene" binds= [&"60"]]
 [connection signal="pressed" from="TabContainer/Generator/70" to="." method="get_part_scene" binds= [&"70"]]
 [connection signal="pressed" from="TabContainer/LockOnChip/80" to="." method="get_part_scene" binds= [&"80"]]

@@ -1,4 +1,4 @@
-extends Missile
+extends Missile3D
 
 func _physics_process(delta):
 	if move_and_collide(data.speed):

@@ -9,9 +9,8 @@
 [ext_resource type="Resource" uid="uid://dnxm1fgyfmrr7" path="res://parts/test/test_leg_biped_data.tres" id="4_po813"]
 [ext_resource type="Resource" uid="uid://dot84okom8lcg" path="res://parts/test/test_torso_1_data.tres" id="6_7qhri"]
 [ext_resource type="Resource" uid="uid://dsleum4ja8lju" path="res://parts/test/test_lock_on_data.tres" id="6_tdw7n"]
-[ext_resource type="Resource" uid="uid://cowfkhskd3huo" path="res://parts/test/missile_launcher_6_data.tres" id="6_ub7kw"]
+[ext_resource type="Resource" uid="uid://na3pq2d3ikpd" path="res://parts/test/missile_launcher_3_data.tres" id="6_ub7kw"]
 [ext_resource type="Resource" uid="uid://c6i343ptt0fgt" path="res://parts/test/rifle_data.tres" id="9_0aexc"]
-[ext_resource type="Resource" uid="uid://na3pq2d3ikpd" path="res://parts/test/missile_launcher_3_data.tres" id="10_0aexc"]
 [ext_resource type="Script" uid="uid://drfjnpmbdy7gg" path="res://parts/robot_builder.gd" id="12_i7v7b"]
 [ext_resource type="Script" uid="uid://c2tribd38lidp" path="res://parts/booster_controller.gd" id="14_vkh4f"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="15_u4jiq"]
@@ -24,7 +23,6 @@
 [ext_resource type="Script" uid="uid://d1fq0xbo8v0ic" path="res://character/player_robot/player_camera.gd" id="22_5033q"]
 [ext_resource type="Script" uid="uid://dx3r7rc0pv7nc" path="res://character/player_robot/arm_look_at.gd" id="23_0bit8"]
 [ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker.gd" id="24_1oi2e"]
-[ext_resource type="Script" uid="uid://cd8xenxvl4wb5" path="res://ui/lock_on_region.gd" id="25_n1u7i"]
 [ext_resource type="Script" uid="uid://c6h8b3lcjijqs" path="res://ui/debug_show_input.gd" id="26_fnwv7"]
 [ext_resource type="PackedScene" uid="uid://glsq4kjcteso" path="res://ui/robot_hud.tscn" id="27_qyn47"]
 [ext_resource type="PackedScene" uid="uid://dan6auh5w6jpp" path="res://ui/debug_part_selector.tscn" id="28_lkna1"]
@@ -36,7 +34,6 @@ arms = ExtResource("2_qhjbi")
 torso = ExtResource("6_7qhri")
 legs = ExtResource("4_po813")
 right_arm = ExtResource("9_0aexc")
-right_back = ExtResource("10_0aexc")
 left_back = ExtResource("6_ub7kw")
 booster = ExtResource("3_ub7kw")
 generator = ExtResource("4_0aexc")
@@ -67,18 +64,6 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_paxjy"]
 radius = 4.0
 height = 10.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knorp"]
-shading_mode = 0
-albedo_color = Color(1.353256, 0, 0, 1)
-disable_receive_shadows = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_anxaj"]
-material = SubResource("StandardMaterial3D_knorp")
-radius = 1.0
-height = 2.0
-radial_segments = 16
-rings = 8
 
 [sub_resource type="Skin" id="Skin_6k86l"]
 resource_name = "Skin"
@@ -115,12 +100,9 @@ team = 0
 lock_on_marker = NodePath("Skeleton3D/Torso/LockOnMarker")
 metadata/_custom_type_script = "uid://b31okcihcprx6"
 
-[node name="BUILDER" type="Node" parent="." unique_id=266228657 node_paths=PackedStringArray("weapon_nodes", "body_nodes", "booster_nodes")]
+[node name="BUILDER" type="Node" parent="." unique_id=266228657]
 script = ExtResource("12_i7v7b")
 data = SubResource("Resource_c5gkk")
-weapon_nodes = [null, null, null, null]
-body_nodes = [null, null, null, null]
-booster_nodes = [null, null, null, null]
 metadata/_custom_type_script = "uid://drfjnpmbdy7gg"
 
 [node name="Timer" type="Timer" parent="." unique_id=1516407593]
@@ -175,15 +157,6 @@ shape = SubResource("CapsuleShape3D_paxjy")
 unique_name_in_owner = true
 script = ExtResource("24_1oi2e")
 metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
-
-[node name="TARGET_BALL" type="MeshInstance3D" parent="Tracker" unique_id=1629682133]
-visible = false
-layers = 4
-cast_shadow = 0
-gi_mode = 0
-visibility_range_end = 500.0
-mesh = SubResource("SphereMesh_anxaj")
-metadata/_edit_lock_ = true
 
 [node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=435639541]
 unique_name_in_owner = true
@@ -454,7 +427,7 @@ use_secondary_rotation = false
 relative = true
 use_angle_limitation = true
 symmetry_limitation = true
-primary_limit_angle = 1.0471976
+primary_limit_angle = 1.7453293
 primary_damp_threshold = 1.0
 
 [node name="LookAtTorso" type="LookAtModifier3D" parent="Skeleton3D" unique_id=1123159923]
@@ -467,7 +440,7 @@ use_secondary_rotation = false
 relative = true
 use_angle_limitation = true
 symmetry_limitation = true
-primary_limit_angle = 3.1415927
+primary_limit_angle = 1.5707964
 primary_damp_threshold = 1.0
 
 [node name="LookAtArmR" type="SkeletonModifier3D" parent="Skeleton3D" unique_id=969360959 node_paths=PackedStringArray("target")]
@@ -539,17 +512,6 @@ current = true
 enabled = false
 collision_mask = 3
 
-[node name="LockOnRegion" type="Control" parent="." unique_id=2074285348]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("25_n1u7i")
-lock_on_data = ExtResource("6_tdw7n")
-
 [node name="RobotHud" parent="." unique_id=2067285992 instance=ExtResource("27_qyn47")]
 mouse_filter = 2
 
@@ -568,6 +530,7 @@ script = ExtResource("26_fnwv7")
 [connection signal="weapons_built" from="BUILDER" to="." method="set_weapons"]
 [connection signal="weapons_built" from="BUILDER" to="RobotHud" method="_on_builder_weapons_built"]
 [connection signal="changed" from="Health" to="RobotHud" method="_update_armor_display"]
-[connection signal="melee_finished" from="AnimationTree" to="." method="_clear_state_weapon_id"]
-[connection signal="toggled_melee_hurtbox" from="AnimationTree" to="." method="_on_animation_tree_toggled_melee_hurtbox"]
+[connection signal="melee_finished" from="AnimationTree" to="." method="_on_melee_finished"]
+[connection signal="toggled_melee_hurtbox" from="AnimationTree" to="." method="_on_animation_toggled_melee_hurtbox"]
+[connection signal="target_changed" from="Tracker" to="." method="_on_tracker_target_changed"]
 [connection signal="part_selected" from="DebugPartSelector" to="BUILDER" method="set_part_scene"]

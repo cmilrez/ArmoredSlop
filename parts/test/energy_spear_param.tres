@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("2_vc76s")
-reload_time = 2.6
+reload_time = 3.1
 energy_damage = 400.0
 metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"

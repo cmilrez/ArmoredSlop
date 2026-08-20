@@ -1,18 +1,18 @@
 class_name PlayerCamera extends Node3D
 
-@onready var spring_arm = $SpringArm3D
-@onready var camera = $SpringArm3D/Camera3D
-@onready var eye_ray = $EyeRay
-@onready var player: Robot = get_parent()
+@onready var spring_arm: SpringArm3D = $SpringArm3D
+@onready var camera: Camera3D = $SpringArm3D/Camera3D
+@onready var eye_ray: RayCast3D = $EyeRay
 @onready var tracker: Tracker = %Tracker
+@onready var player: Robot = get_parent()
 
-@export var mouse_sensitivity := 0.02
-@export var invert_y := -1
-@export var invert_x := -1
+@export_range(0.01, 1.0, 0.01, 'or_greater', 'hide_control') var mouse_sensitivity := 0.02
+@export_range(-1, 1, 2) var invert_y := -1
+@export_range(-1, 1, 2) var invert_x := -1
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var max_angle_x := PI / 2
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -PI / 2
-@export var arm_length := 10.0
-@export var height := 10.0
+@export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var arm_length := 12.0
+@export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var height := 11.0
 #@export var lock_on_data: LockOnData = null
 
 var target_list: Array[Character] = []
@@ -106,20 +106,20 @@ func _physics_process(delta):
 	position.y = lerpf(player.position.y + height, position.y, lerp_weight2)
 	
 	eye_ray.global_position = camera.global_position
-	var target: Character = null
+	var new_target: Character = null
 	if not tracker.lock_target:
 		if not manual_aim:
-			target = _search_single_target()
+			new_target = _search_single_target()
 			if multi_target_count:
 				multi_target_list = _search_multi_targets()
-		tracker.target = target
-	if not target:
-		eye_ray.target_position = -camera.global_basis.z * Global.LARGE_FLOAT
-		var point = to_global(eye_ray.target_position)
-		eye_ray.force_raycast_update()
-		if eye_ray.is_colliding():
-			point = eye_ray.get_collision_point()
-		tracker.position = point
+		tracker.target = new_target
+		if not new_target:
+			eye_ray.target_position = -camera.global_basis.z * Global.LARGE_FLOAT
+			var point = to_global(eye_ray.target_position)
+			eye_ray.force_raycast_update()
+			if eye_ray.is_colliding():
+				point = eye_ray.get_collision_point()
+			tracker.position = point
 
 func _unhandled_input(event):
 	if not camera.current:

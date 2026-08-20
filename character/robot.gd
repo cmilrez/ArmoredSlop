@@ -6,40 +6,30 @@ enum {GROUNDED, AIRBORNE, BOOST, DASH, LANDING, MELEE, SHOOT_STANCE, SUPERBOOST,
 @onready var timer: Timer = $Timer
 
 @export var data: RobotData = null
-var state_weapon_id := -1:
-	set(value):
-		state_weapon_id = value
-		if state_weapon_id < 0:
-			return
-		if weapons[state_weapon_id] is MeleeWeapon:
-			state = MELEE
-		else:
-			state = SHOOT_STANCE
-
+var single_lock_time := 0.0
 var state: int = GROUNDED:
 	set(value):
 		if not state == value:
 			state = value
 			#_debug_print_state()
 			_state_start()
+var tank_legs := false:
+	set(value):
+		tank_legs = value
+		%LookAtTorso.use_angle_limitation = not tank_legs
 
-# intent values
+# values controlled by the user
 var enable_look_at := true
 var move_up := false
 var superboost := false
 var boost := false
 var angle_y := 0.0
 
-# state values
+# values controlled by the state
 var _update_direction := true
 var _enable_units := false
 var _add_gravity := true
 var _boosting := false
-
-var tank_legs := false:
-	set(value):
-		tank_legs = value
-		%LookAtTorso.use_angle_limitation = not tank_legs
 
 func _debug_print_state():
 	var state_str = ''
@@ -54,6 +44,9 @@ func _debug_print_state():
 		SUPERBOOST:   state_str = 'SUPERBOOST'
 		DEATH:        state_str = 'DEATH'
 	prints(Time.get_time_string_from_system(), state_str)
+
+func _process(delta):
+	single_lock_time += delta
 
 func _physics_process(delta):
 	if move_direction and speed:
@@ -79,14 +72,28 @@ func reload_unit(id: int) -> void:
 			unit.reload(true)
 
 func activate_unit(id: int, targets: Array[Character] = []) -> void:
-	if _enable_units:
-		var unit = weapons.get(id)
+	var unit = weapons.get(id)
+	if state == SHOOT_STANCE:
+		if id > 1:
+			if unit.recoil and unit.can_use:
+				timer.start(1.0) # timeout
+				get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
+	elif _enable_units:
 		if unit:
 			if unit.recoil and unit.can_use:
-				state_weapon_id = id
+				if unit is MeleeWeapon:
+					state = MELEE
+				else:
+					state = SHOOT_STANCE
+					_toggle_arm_look_at(id == 0, id == 1)
+					get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
 				return
-			if targets.is_empty():
-				targets.append(tracker.target)
+			if unit is ProjectileWeapon3D:
+				if single_lock_time > unit.param.single_lock_duration - data.lock_on.single_duration:
+					if targets.is_empty():
+						targets.append(tracker.target)
+				else:
+					targets.clear()
 			unit.activate(targets, tracker.position)
 
 func set_weapons(nodes: Array[Weapon3D]) -> void:
@@ -109,21 +116,18 @@ func _state_start() -> void:
 			else:
 				timer.start(0.5) # timeout
 			tracker.lock_target = true
-			var tar: Array[Character] = [tracker.target]
-			weapons[state_weapon_id].activate(tar, tracker.position)
+			if weapons[1] is MeleeWeapon:
+				weapons[1].activate()
 		DASH:
 			timer.start(data.booster.dash_duration)
-			if not move_direction:
-				move_direction = basis.z
 		SHOOT_STANCE:
-			_toggle_arm_look_at(false)
 			timer.start(1.0) # timeout
 			tracker.lock_target = true
 		_:
 			tracker.lock_target = false
 
 func _state_process(delta: float) -> void:
-	var rot_weight = exp(-10.0 * delta)
+	var rot_weight = exp(-5.0 * delta) if tank_legs else exp(-10.0 * delta)
 	match state:
 		GROUNDED:
 			_update_direction = true
@@ -136,7 +140,7 @@ func _state_process(delta: float) -> void:
 			if tank_legs:
 				if move_direction:
 					var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
-					rotation.y = lerp_angle(move_angle, rotation.y, rot_weight / 4.0)
+					rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
 			else:
 				rotation.y = lerp_angle(angle_y, rotation.y, rot_weight)
 			if superboost:
@@ -148,7 +152,8 @@ func _state_process(delta: float) -> void:
 					velocity.y = data.legs.jump_height
 					return
 				if boost and timer.is_stopped():
-					state = DASH
+					if move_direction:
+						state = DASH
 			else:
 				state = AIRBORNE
 		AIRBORNE:
@@ -183,7 +188,7 @@ func _state_process(delta: float) -> void:
 			if tank_legs:
 				if move_direction:
 					var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
-					rotation.y = lerp_angle(move_angle, rotation.y, rot_weight / 4.0)
+					rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
 			else:
 				rotation.y = lerp_angle(angle_y, rotation.y, rot_weight)
 			if superboost:
@@ -240,7 +245,11 @@ func _state_process(delta: float) -> void:
 			_enable_units = false
 			_add_gravity = false
 			_boosting = true
-			speed = data.legs.speed + data.booster.power
+			if timer.is_stopped():
+				%AnimationTree.start_melee_attack()
+				speed = data.booster.power
+			else:
+				speed = data.legs.speed + data.booster.power
 			%LookAtLegBase.active = true
 			%LookAtTorso.active = false
 			if tracker.is_target_valid():
@@ -254,9 +263,6 @@ func _state_process(delta: float) -> void:
 			else:
 				move_direction = -global_basis.z
 				velocity.y = lerpf(0.0, velocity.y, exp(-delta))
-			if timer.is_stopped():
-				%AnimationTree.start_melee_attack()
-				speed = data.booster.power
 		SHOOT_STANCE:
 			_enable_units = false
 			_add_gravity = false
@@ -264,12 +270,13 @@ func _state_process(delta: float) -> void:
 			_toggle_look_at(true)
 			if tank_legs:
 				_update_direction = true
-				speed = data.legs.speed
-				velocity += get_gravity() * delta * 3.0
+				velocity.y = lerpf(0.0, velocity.y, rot_weight)
 				if is_on_floor():
+					speed = data.legs.speed
 					var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
-					rotation.y = lerp_angle(move_angle, rotation.y, rot_weight / 4.0)
+					rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
 				else:
+					speed = data.legs.speed * 0.5
 					var dir = tracker.position - position
 					var angle = Vector2(dir.z, dir.x).angle() + PI
 					rotation.y = lerp_angle(angle, rotation.y, rot_weight)
@@ -281,11 +288,11 @@ func _state_process(delta: float) -> void:
 				var dir = tracker.position - position
 				var angle = Vector2(dir.z, dir.x).angle() + PI
 				rotation.y = lerp_angle(angle, rotation.y, rot_weight)
-			if timer.time_left < 0.5:
-				var tar: Array[Character] = [tracker.target]
-				weapons[state_weapon_id].activate(tar, tracker.position)
 			if timer.is_stopped():
-				_clear_state_weapon_id()
+				if is_on_floor():
+					state = GROUNDED
+				else:
+					state = AIRBORNE
 		SUPERBOOST:
 			_update_direction = false
 			_enable_units = true
@@ -318,32 +325,43 @@ func _toggle_look_at(toggle: bool) -> void:
 	%LookAtLegBase.active = not is_on_floor() and enable_look_at
 	%LookAtTorso.active = toggle and enable_look_at
 
-func _toggle_arm_look_at(toggle := true) -> void:
-	toggle = toggle and enable_look_at
+func _toggle_arm_look_at(right_arm := true, left_arm := true) -> void:
+	right_arm = right_arm and enable_look_at
+	left_arm = left_arm and enable_look_at
 	var wp = weapons.get(0)
-	var value = toggle and not wp.reloading and wp is not MeleeWeapon if wp else false
+	var value = right_arm and not wp.reloading and wp is not MeleeWeapon if wp else false
 	%LookAtArmR.toggle(value)
 	wp = weapons.get(1)
-	value = toggle and not wp.reloading and wp is not MeleeWeapon if wp else false
+	value = left_arm and not wp.reloading and wp is not MeleeWeapon if wp else false
 	%LookAtArmL.toggle(value)
 
-func _activate_melee_weapon() -> void:
-	var wp = weapons[state_weapon_id]
+func _activate_state_weapon(id := 1) -> void: # default to left arm unit
+	if state == DEATH:
+		return
+	var wp = weapons[id]
 	if wp is MeleeWeapon:
-		weapons[state_weapon_id].attack()
+		wp.attack()
+	else:
+		var tar: Array[Character] = []
+		if wp is ProjectileWeapon3D:
+			if single_lock_time > wp.param.single_lock_duration - data.lock_on.single_duration:
+				tar.append(tracker.target)
+		wp.activate(tar, tracker.position)
 
-func _clear_state_weapon_id() -> void:
-	if weapons.get(state_weapon_id) is MeleeWeapon:
-		weapons[state_weapon_id].cooldown()
-	state_weapon_id = -1
+func _on_melee_finished() -> void:
+	if weapons[1] is MeleeWeapon:
+		weapons[1].cooldown()
 	if is_on_floor():
 		state = GROUNDED
 	else:
 		state = AIRBORNE
 
-func _on_animation_tree_toggled_melee_hurtbox(value: bool) -> void:
-	if weapons[state_weapon_id] is MeleeWeapon:
-		weapons[state_weapon_id].toggle_hurtbox(value)
+func _on_animation_toggled_melee_hurtbox(value: bool) -> void:
+	if weapons[1] is MeleeWeapon:
+		weapons[1].toggle_hurtbox(value)
 
-func _on_builder_body_built(nodes):
+func _on_builder_body_built(nodes) -> void:
 	tank_legs = data.legs.leg_type == LegsData.Type.TANK
+
+func _on_tracker_target_changed() -> void:
+	single_lock_time = 0.0
