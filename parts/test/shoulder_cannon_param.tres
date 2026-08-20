@@ -9,6 +9,7 @@ reload_time = 6.0
 clip_size = 1
 ammo_max = 40
 ammo_cost = 1
+single_lock_duration = 2.0
 explosive_damage = 300.0
 projectile_scene = ExtResource("2_tru2m")
 metadata/_custom_type_script = "uid://tu33ba2v3a1y"

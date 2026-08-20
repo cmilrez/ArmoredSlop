@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4k6kuq8h8g7i"]
 
-[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="1_2hve0"]
+[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet_3d.gd" id="1_2hve0"]
 [ext_resource type="Shape3D" uid="uid://dj4ida2kyl3rl" path="res://projectile/col_sphere_0_5.tres" id="1_hotgm"]
 [ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="2_hotgm"]
 [ext_resource type="PackedScene" uid="uid://b3nhbo8ief3mx" path="res://effect/laser_sparks.tscn" id="3_2hve0"]

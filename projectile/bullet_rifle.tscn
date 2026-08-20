@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c56lrnpn713nc"]
 
 [ext_resource type="Shape3D" uid="uid://dj4ida2kyl3rl" path="res://projectile/col_sphere_0_5.tres" id="1_57lxh"]
-[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet.gd" id="2_ecnwv"]
+[ext_resource type="Script" uid="uid://dktp0dq6ay20q" path="res://projectile/bullet_3d.gd" id="2_ecnwv"]
 [ext_resource type="Script" uid="uid://bfbhdd2s003h1" path="res://projectile/bullet_data.gd" id="3_2tx56"]
 [ext_resource type="PackedScene" uid="uid://cr8ff3217u0ji" path="res://effect/sparks.tscn" id="4_yeefa"]
 

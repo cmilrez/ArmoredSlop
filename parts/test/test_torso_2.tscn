@@ -5,6 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3c0i"]
 resource_name = "GreenYellow"
 albedo_color = Color(0.65000045, 1, 0, 1)
+roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w0tne"]
 resource_name = "TestParts_TestTorso2"

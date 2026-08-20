@@ -5,6 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4g72k"]
 resource_name = "LightBlue"
 albedo_color = Color(0, 0.90650964, 0.9063318, 1)
+roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_od6c5"]
 resource_name = "TestParts_TestArms2"

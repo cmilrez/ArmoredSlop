@@ -20,8 +20,7 @@ func _ready():
 	set_deferred(&'home_position', global_position)
 
 func _process(delta):
-	#if not alive: # disabled with health death signal
-		#return
+	super._process(delta)
 	match action:
 		WANDER:
 			enable_look_at = false

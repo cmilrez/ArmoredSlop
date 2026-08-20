@@ -781,6 +781,7 @@ debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [connection signal="death" from="Health" to="DetectionZone" method="deactivate"]
 [connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
+[connection signal="target_changed" from="Tracker" to="." method="_on_tracker_target_changed"]
 [connection signal="hit" from="Hitbox" to="Health" method="take_damage"]
 [connection signal="hit" from="Hitbox" to="DetectionZone" method="set_target_from_damage"]
 

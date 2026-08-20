@@ -200,28 +200,6 @@ _data = {
 &"Start": SubResource("Animation_wpt6v")
 }
 
-[sub_resource type="Skin" id="Skin_8r4mx"]
-resource_name = "Skin8"
-bind_count = 6
-bind/0/name = &"BigArm"
-bind/0/bone = -1
-bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-bind/1/name = &"SmallArm"
-bind/1/bone = -1
-bind/1/pose = Transform3D(1, 0, -8.742278e-08, 0, -1, 0, -8.742278e-08, 0, -1, 0.1949999, 1.9710981, -1.7047434e-08)
-bind/2/name = &"Body"
-bind/2/bone = -1
-bind/2/pose = Transform3D(1, 0, 6.3573026e-08, 0, 1, 0, -6.3573026e-08, 0, 1, 0.2924999, -0.6710979, -9.6081145e-08)
-bind/3/name = &"Barrel.001"
-bind/3/bone = -1
-bind/3/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.1532228, -0.95238495, -1.4481564)
-bind/4/name = &"Barrel.002"
-bind/4/bone = -1
-bind/4/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.1532228, -0.95238495, -0.547256)
-bind/5/name = &"Barrel.003"
-bind/5/bone = -1
-bind/5/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.1532228, -0.95238495, 0.35364425)
-
 [node name="MissileLauncher3" type="Node3D" unique_id=223974079 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_gxlnn")
 spawners = NodePath("Skeleton3D/Body")
@@ -280,7 +258,6 @@ bones/5/scale = Vector3(1, 1, 1)
 [node name="MissileLauncher3" type="MeshInstance3D" parent="Skeleton3D" unique_id=1529483129]
 layers = 4
 mesh = ExtResource("2_nw12k")
-skin = SubResource("Skin_8r4mx")
 skeleton = NodePath("..")
 
 [node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=995434317]

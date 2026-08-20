@@ -1,5 +1,5 @@
 @icon('res://addons/at-icons/node3d/bullet.svg')
-class_name Bullet extends Projectile3D
+class_name Bullet3D extends Projectile3D
 
 @export var data: BulletData = null
 

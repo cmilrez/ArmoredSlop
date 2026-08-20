@@ -15,6 +15,6 @@ var reloading := false:
 		if emit:
 			started_reloading.emit()
 
-@abstract func activate(targets: Array[Character], aim_position := Vector3.ZERO) -> void
+@abstract func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> void
 @abstract func set_dmg_source(path: NodePath) -> void
 @abstract func reload(manual_reload := false) -> void

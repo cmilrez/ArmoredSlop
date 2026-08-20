@@ -5,6 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgfnu"]
 resource_name = "Purple"
 albedo_color = Color(0.6651851, 0, 0.9063318, 1)
+roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2ljgc"]
 resource_name = "TestParts_TestHead2"

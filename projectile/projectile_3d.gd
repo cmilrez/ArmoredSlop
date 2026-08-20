@@ -41,7 +41,7 @@ func destroy() -> void:
 	queue_free()
 
 func move_and_collide(speed: float) -> bool:
-	var delta_speed = speed * get_process_delta_time()
+	var delta_speed = speed * get_physics_process_delta_time()
 	target_position.z = delta_speed
 	force_shapecast_update()
 	position += basis.z * delta_speed
