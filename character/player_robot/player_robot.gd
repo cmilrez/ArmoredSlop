@@ -1,14 +1,12 @@
 extends Robot
 
-enum {IDLE, ACTIVE, CHARGING}
 const unit_actions = [&'arm_unit_right', &'arm_unit_left', &'back_unit_right', &'back_unit_left']
+const min_multi_lock_time = 0.5 # seconds
 
 @export var camera: PlayerCamera = null
-var unit_input_state: Array[int] = [IDLE, IDLE, IDLE, IDLE]
-var action_hold_duration := [0.0, 0.0, 0.0, 0.0]
+var multi_lock_hold_time := [0.0, 0.0, 0.0, 0.0]
 
 func _process(delta):
-	super._process(delta)
 	var input = Input.get_vector('move_left', 'move_right', 'move_forward', 'move_backward')
 	change_direction(Vector3(input.x, 0.0, input.y).rotated(Vector3.UP, camera.get_arm_rotation()))
 	move_up = Input.is_action_pressed('move_up')
@@ -16,37 +14,47 @@ func _process(delta):
 	angle_y = camera.get_arm_rotation()
 	
 	var reload = Input.is_action_pressed('reload')
-	var max_lock_count = 0
+	var max_multi_lock_count = 0
 	for i in range(unit_actions.size()):
 		var unit = weapons[i]
-		match unit_input_state[i]:
+		if unit and unit.reloading:
+			unit_lock_time[i] = 0.0
+		else:
+			unit_lock_time[i] += delta
+		match unit_action_state[i]:
 			IDLE:
 				continue
-			ACTIVE:
+			NORMAL:
+				var can_multi_lock = unit is ProjectileWeapon3D and unit.param.lock_count > 1
 				if Input.is_action_pressed(unit_actions[i]):
+					if can_multi_lock:
+						multi_lock_hold_time[i] += delta
+						if multi_lock_hold_time[i] > min_multi_lock_time:
+							multi_lock_hold_time[i] = 0.0
+							unit_lock_time[i] = 0.0
+							unit_action_state[i] = MULTI_LOCK
+						continue
 					if reload:
 						reload_unit(i)
-						unit_input_state[i] = IDLE
+						unit_action_state[i] = IDLE
 					else:
 						activate_unit(i)
 				else:
-					unit_input_state[i] = IDLE
+					if can_multi_lock:
+						activate_unit(i)
+					unit_action_state[i] = IDLE
 				continue
-			CHARGING:
+			MULTI_LOCK:
 				if reload:
-					unit_input_state[i] = IDLE
-					action_hold_duration[i] = 0.0
+					unit_lock_time[i] = 0.0
+					unit_action_state[i] = IDLE
 					continue
-				var lock_finished = action_hold_duration[i] > unit.param.multi_lock_duration - data.lock_on.multi_duration
-				if Input.is_action_pressed(unit_actions[i]):
-					action_hold_duration[i] += delta
-					if lock_finished:
-						if unit.param.lock_count > max_lock_count:
-							max_lock_count = unit.param.lock_count - 1
-				elif Input.is_action_just_released(unit_actions[i]):
-					unit_input_state[i] = IDLE
-					action_hold_duration[i] = 0.0
-					if lock_finished:
+				var multi_lock_finished = unit_lock_time[i] >= get_unit_lock_duration(i)
+				if multi_lock_finished:
+					if unit.param.lock_count > max_multi_lock_count:
+						max_multi_lock_count = unit.param.lock_count - 1
+				if not Input.is_action_pressed(unit_actions[i]):
+					if multi_lock_finished:
 						var targets: Array[Character] = [tracker.target]
 						targets.append_array(camera.multi_target_list)
 						if targets.size() > unit.param.lock_count:
@@ -54,15 +62,15 @@ func _process(delta):
 						activate_unit(i, targets)
 					else:
 						activate_unit(i)
+					unit_lock_time[i] = 0.0
+					unit_action_state[i] = IDLE
 				continue
-	camera.multi_target_count = max_lock_count
+			CHARGED:
+				continue
+	camera.multi_target_count = max_multi_lock_count
 
 func _unhandled_input(event):
 	for i in range(unit_actions.size()):
 		if event.is_action_pressed(unit_actions[i]):
-			var unit = weapons[i]
-			if unit is ProjectileWeapon3D and unit.param.lock_count > 1:
-				unit_input_state[i] = CHARGING
-			else:
-				unit_input_state[i] = ACTIVE
+			unit_action_state[i] = NORMAL
 			return

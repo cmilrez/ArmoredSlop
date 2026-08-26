@@ -28,7 +28,7 @@
 [ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="15_0j0i7"]
 [ext_resource type="ArrayMesh" uid="uid://cmtrt70icob7v" path="res://assets/Hands_Hands.res" id="15_f8ko1"]
 [ext_resource type="PackedScene" uid="uid://t6gmjg35gaww" path="res://parts/test/test_torso_2.tscn" id="22_dx0bn"]
-[ext_resource type="Script" uid="uid://dx3r7rc0pv7nc" path="res://character/player_robot/arm_look_at.gd" id="28_u4a80"]
+[ext_resource type="Script" uid="uid://dx3r7rc0pv7nc" path="res://character/player_robot/arm_look_at_3d.gd" id="28_u4a80"]
 
 [sub_resource type="Resource" id="Resource_0ciy8"]
 script = ExtResource("10_scifp")
@@ -781,7 +781,7 @@ debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [connection signal="death" from="Health" to="DetectionZone" method="deactivate"]
 [connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
-[connection signal="target_changed" from="Tracker" to="." method="_on_tracker_target_changed"]
+[connection signal="target_changed" from="Tracker" to="." method="_reset_lock_time"]
 [connection signal="hit" from="Hitbox" to="Health" method="take_damage"]
 [connection signal="hit" from="Hitbox" to="DetectionZone" method="set_target_from_damage"]
 

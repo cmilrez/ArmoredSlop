@@ -20,7 +20,8 @@ func _ready():
 	set_deferred(&'home_position', global_position)
 
 func _process(delta):
-	super._process(delta)
+	for i in range(unit_lock_time.size()):
+		unit_lock_time[i] += delta
 	match action:
 		WANDER:
 			enable_look_at = false

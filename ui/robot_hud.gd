@@ -46,20 +46,24 @@ func _update_aim_rects() -> void:
 
 func _update_lock_progression() -> void:
 	for i in range(lock_on_bars.get_child_count()):
-		var unit = player.weapons[i]
-		if unit:
-			if unit is ProjectileWeapon3D:
-				var bar: TextureProgressBar = lock_on_bars.get_child(i)
-				if tracker.is_target_valid():
-					var total_duration = unit.param.single_lock_duration - player.data.lock_on.single_duration
-					var value: float
-					if total_duration > 0.0:
-						value = player.single_lock_time / total_duration
-					else:
-						value = 1.0
-					bar.value = value * 100.0
+		var wp = player.weapons[i]
+		if not wp:
+			continue
+		var bar = lock_on_bars.get_child(i)
+		if wp.reloading:
+			bar.value = 0.0
+			continue
+		if wp is ProjectileWeapon3D:
+			if tracker.is_target_valid():
+				var value: float
+				var duration = player.get_unit_lock_duration(i)
+				if duration > 0.0:
+					value = player.unit_lock_time[i] / duration
 				else:
-					bar.value = 0.0
+					value = 1.0
+				bar.value = value * 100.0
+			else:
+				bar.value = 0.0
 
 func _update_armor_display(value: float) -> void:
 	value = ceilf(value)
