@@ -6,6 +6,7 @@ const READY_ANIM = &'Ready'
 const SHOOT_ANIM = &'Shoot'
 const RELOAD_ANIM = &'Reload'
 
+signal shot_fired
 signal ammo_changed(loaded: int, left: int)
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -124,6 +125,7 @@ func _state_ready() -> void:
 
 func _state_shoot() -> void:
 	can_use = false
+	shot_fired.emit()
 	if anim_player.has_animation(SHOOT_ANIM):
 		anim_player.play(SHOOT_ANIM)
 

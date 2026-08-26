@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://na3pq2d3ikpd"]
 
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="1_tq8ke"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="1_tq8ke"]
 [ext_resource type="Resource" uid="uid://ploodofqd5nq" path="res://parts/test/missile_launcher_3_param.tres" id="1_uwpa0"]
 [ext_resource type="PackedScene" uid="uid://0mn5ocp4f4c7" path="res://parts/test/missile_launcher_3.tscn" id="2_pjiag"]
 [ext_resource type="Texture2D" uid="uid://bj4wpsjudkh5r" path="res://ui/part_preview/missile_launcher_3_preview.png" id="2_rj54j"]

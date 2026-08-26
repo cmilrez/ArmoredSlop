@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bnoxbmrnonice" path="res://parts/test/energy_spear_param.tres" id="1_a715l"]
 [ext_resource type="Texture2D" uid="uid://cvelw11taa30h" path="res://ui/part_preview/energy_spear_preview.png" id="2_s1xay"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="2_vc76s"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_vc76s"]
 [ext_resource type="PackedScene" uid="uid://dgm2xvvhj65dd" path="res://parts/test/energy_spear.tscn" id="2_xcfil"]
 
 [resource]

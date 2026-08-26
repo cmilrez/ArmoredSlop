@@ -7,12 +7,11 @@
 script = ExtResource("3_qbq4q")
 multishot_interval = 0.5
 reload_time = 5.0
+lock_duration = 3.7
+lock_count = 2
 clip_size = 2
 ammo_max = 50
 ammo_cost = 1
-lock_count = 2
-single_lock_duration = 3.0
-multi_lock_duration = 4.5
 explosive_damage = 50.0
 projectile_scene = ExtResource("2_dh08t")
 metadata/_custom_type_script = "uid://tu33ba2v3a1y"

@@ -1,12 +1,14 @@
 class_name Robot extends Character
 
 enum {GROUNDED, AIRBORNE, BOOST, DASH, LANDING, MELEE, SHOOT_STANCE, SUPERBOOST, DEATH}
+enum {IDLE, NORMAL, MULTI_LOCK, CHARGED}
 
 @onready var tracker: Tracker = %Tracker
 @onready var timer: Timer = $Timer
 
 @export var data: RobotData = null
-var single_lock_time := 0.0
+var unit_lock_time := [0.0, 0.0, 0.0, 0.0]
+var unit_action_state: Array[int] = [IDLE, IDLE, IDLE, IDLE]
 var state: int = GROUNDED:
 	set(value):
 		if not state == value:
@@ -45,9 +47,6 @@ func _debug_print_state():
 		DEATH:        state_str = 'DEATH'
 	prints(Time.get_time_string_from_system(), state_str)
 
-func _process(delta):
-	single_lock_time += delta
-
 func _physics_process(delta):
 	if move_direction and speed:
 		accelerate(move_direction, speed, 10.0)
@@ -65,7 +64,7 @@ func change_direction(new_dir: Vector3) -> void:
 
 func reload_unit(id: int) -> void:
 	if _enable_units:
-		if id > 1:
+		if id > 1: # only reload arm units
 			return
 		var unit = weapons.get(id)
 		if unit:
@@ -73,28 +72,39 @@ func reload_unit(id: int) -> void:
 
 func activate_unit(id: int, targets: Array[Character] = []) -> void:
 	var unit = weapons.get(id)
+	if not unit:
+		return
+	if _enable_units:
+		if unit.recoil and unit.can_use:
+			if unit is MeleeWeapon:
+				state = MELEE
+			else:
+				state = SHOOT_STANCE
+				_toggle_arm_look_at(id == 0, id == 1)
+				get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
+			return
+		if unit is ProjectileWeapon3D:
+			if unit_lock_time[id] >= get_unit_lock_duration(id):
+				if targets.is_empty():
+					targets.append(tracker.target)
+			else:
+				targets.clear()
+		unit.activate(targets, tracker.position)
+		return
 	if state == SHOOT_STANCE:
-		if id > 1:
+		if id > 1: # use two shoulder units at the same time
 			if unit.recoil and unit.can_use:
 				timer.start(1.0) # timeout
 				get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
-	elif _enable_units:
-		if unit:
-			if unit.recoil and unit.can_use:
-				if unit is MeleeWeapon:
-					state = MELEE
-				else:
-					state = SHOOT_STANCE
-					_toggle_arm_look_at(id == 0, id == 1)
-					get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
-				return
-			if unit is ProjectileWeapon3D:
-				if single_lock_time > unit.param.single_lock_duration - data.lock_on.single_duration:
-					if targets.is_empty():
-						targets.append(tracker.target)
-				else:
-					targets.clear()
-			unit.activate(targets, tracker.position)
+
+func get_unit_lock_duration(id: int) -> float:
+	var unit = weapons.get(id)
+	var duration = 0.0
+	if unit.param.lock_count > 1:
+		duration = unit.param.lock_duration - data.lock_on.multi_lock_reduction
+	else:
+		duration = unit.param.lock_duration - data.lock_on.single_lock_reduction
+	return duration
 
 func set_weapons(nodes: Array[Weapon3D]) -> void:
 	weapons.clear()
@@ -341,10 +351,10 @@ func _activate_state_weapon(id := 1) -> void: # default to left arm unit
 	var wp = weapons[id]
 	if wp is MeleeWeapon:
 		wp.attack()
-	else:
+	elif wp:
 		var tar: Array[Character] = []
 		if wp is ProjectileWeapon3D:
-			if single_lock_time > wp.param.single_lock_duration - data.lock_on.single_duration:
+			if unit_lock_time[id] >= get_unit_lock_duration(id):
 				tar.append(tracker.target)
 		wp.activate(tar, tracker.position)
 
@@ -356,12 +366,15 @@ func _on_melee_finished() -> void:
 	else:
 		state = AIRBORNE
 
+func _reset_lock_time() -> void:
+	for i in range(unit_lock_time.size()):
+		if unit_action_state[i] == MULTI_LOCK:
+			continue
+		unit_lock_time[i] = 0.0
+
 func _on_animation_toggled_melee_hurtbox(value: bool) -> void:
 	if weapons[1] is MeleeWeapon:
 		weapons[1].toggle_hurtbox(value)
 
 func _on_builder_body_built(nodes) -> void:
 	tank_legs = data.legs.leg_type == LegsData.Type.TANK
-
-func _on_tracker_target_changed() -> void:
-	single_lock_time = 0.0

@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://b0skxpdgf74d" path="res://parts/test/heavy_launcher_param.tres" id="1_53thu"]
 [ext_resource type="PackedScene" uid="uid://c0o4shmbjai5a" path="res://parts/test/heavy_launcher.tscn" id="2_dh08t"]
 [ext_resource type="Texture2D" uid="uid://ctgmcodt18hko" path="res://ui/part_preview/heavy_launcher_preview.png" id="2_qbq4q"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="4_dh08t"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="4_dh08t"]
 
 [resource]
 script = ExtResource("4_dh08t")

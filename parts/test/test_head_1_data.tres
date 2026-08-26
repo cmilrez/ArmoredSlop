@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bupcpm45htcrq" path="res://parts/test/test_head_1.tscn" id="1_fcdxb"]
 [ext_resource type="Texture2D" uid="uid://c62nr4wt8d76" path="res://ui/part_preview/test_head_1_preview.png" id="1_xgwf0"]
-[ext_resource type="Script" uid="uid://csj01mag55j6l" path="res://parts/resources_scripts/head_data.gd" id="3_xgwf0"]
+[ext_resource type="Script" uid="uid://csj01mag55j6l" path="res://parts/data_scripts/head_data.gd" id="3_xgwf0"]
 
 [resource]
 script = ExtResource("3_xgwf0")

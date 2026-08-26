@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://bsfp38yuyt1q" path="res://parts/test/missile_launcher_6_param.tres" id="1_0jfk0"]
 [ext_resource type="Texture2D" uid="uid://c3fqbqjjg65ce" path="res://ui/part_preview/missile_launcher_preview.png" id="2_gaggr"]
 [ext_resource type="PackedScene" uid="uid://qs1aigkqwumj" path="res://parts/test/missile_launcher_6.tscn" id="3_wpsou"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="4_gdw5i"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="4_gdw5i"]
 
 [resource]
 script = ExtResource("4_gdw5i")

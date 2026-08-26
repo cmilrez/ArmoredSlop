@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://b3h5pcge5dy16" path="res://parts/test/energy_sword_param.tres" id="1_yq7b3"]
 [ext_resource type="PackedScene" uid="uid://cxr16p8i8u6qh" path="res://parts/test/energy_sword.tscn" id="2_03ke5"]
 [ext_resource type="Texture2D" uid="uid://bs153fw3app7u" path="res://ui/part_preview/energy_sword_preview.png" id="2_l2hds"]
-[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/resources_scripts/unit_data.gd" id="2_ltqck"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_ltqck"]
 
 [resource]
 script = ExtResource("2_ltqck")

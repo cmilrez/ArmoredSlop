@@ -55,6 +55,7 @@ func _on_state_finished(state: StringName):
 			melee_finished.emit()
 
 func _on_builder_body_built(nodes):
+	clear_caches()
 	var leg_type = robot.data.legs.leg_type
 	var request = ''
 	match leg_type:
