@@ -1,7 +1,7 @@
-extends NPC
+extends NPC3D
 
 enum {IDLE, WANDER, SEARCHING, CHASE, DEATH}
-const param_move_blend = &'parameters/Wander/blend_position'
+const PARAM_MOVE_BLEND = &'parameters/Wander/blend_position'
 
 @onready var timer = $Timer
 
@@ -59,9 +59,9 @@ func _state_process(delta: float) -> void:
 		IDLE:
 			move_direction = Vector3.ZERO
 			var weight = exp(-8.0 * delta)
-			var blend = anim_tree.get(param_move_blend)
+			var blend = anim_tree.get(PARAM_MOVE_BLEND)
 			blend = Vector2.ZERO.lerp(blend, weight)
-			anim_tree.set(param_move_blend, blend)
+			anim_tree.set(PARAM_MOVE_BLEND, blend)
 		WANDER:
 			if hor_distance(home_position) > 100.0:
 				var direction_to_home = hor_direction(home_position)
@@ -77,14 +77,14 @@ func _state_process(delta: float) -> void:
 				timer.start(maxf(5.0, 15.0 * randf()))
 			var weight = exp(-8.0 * delta)
 			var angle = hor_angle(move_direction)
-			var blend = anim_tree.get(param_move_blend)
+			var blend = anim_tree.get(PARAM_MOVE_BLEND)
 			if angle > Global.QUARTER_PI:
 				blend = Vector2.LEFT.lerp(blend, weight)
 			elif angle < -Global.QUARTER_PI:
 				blend = Vector2.RIGHT.lerp(blend, weight)
 			else:
 				blend = Vector2.UP.lerp(blend, weight)
-			anim_tree.set(param_move_blend, blend)
+			anim_tree.set(PARAM_MOVE_BLEND, blend)
 			if angle:
 				rotate_y(signf(angle) * minf(absf(angle), delta))
 			if tracker.is_target_valid():

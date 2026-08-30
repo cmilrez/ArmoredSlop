@@ -1,7 +1,7 @@
 @tool
 class_name LookAtArm3D extends SkeletonModifier3D
 
-const duration = 0.2 # sec
+const DURATION = 0.2 # sec
 
 @export var target: Node3D = null
 @export var shoulder_name := '':
@@ -29,11 +29,11 @@ func toggle(value: bool) -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	const property = ^'influence'
+	const PROPERTY = ^'influence'
 	if value:
-		tween.tween_property(self, property, 1.0, duration)
+		tween.tween_property(self, PROPERTY, 1.0, DURATION)
 	else:
-		tween.tween_property(self, property, 0.0, duration).set_delay(duration)
+		tween.tween_property(self, PROPERTY, 0.0, DURATION).set_delay(DURATION)
 
 func _update_bone(property: StringName, bone_name: String) -> void:
 	var skel = get_skeleton()

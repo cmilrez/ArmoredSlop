@@ -113,8 +113,11 @@ visible = false
 script = ExtResource("3_e74r3")
 metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
 
-[node name="BoosterFire" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_rqacf")]
+[node name="BoosterFire" type="MeshInstance3D" parent="LegBooster01/Booster" unique_id=1699389257 instance=ExtResource("3_rqacf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 16
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("CylinderMesh_vq2wp")
 
 [node name="LegBooster02" type="BoneAttachment3D" parent="." unique_id=1362066982]
@@ -125,6 +128,9 @@ visible = false
 script = ExtResource("3_e74r3")
 metadata/_custom_type_script = "uid://4vyd3nx7u8jk"
 
-[node name="BoosterFire" parent="LegBooster02/Booster" unique_id=840649358 instance=ExtResource("3_rqacf")]
+[node name="BoosterFire" type="MeshInstance3D" parent="LegBooster02/Booster" unique_id=840649358 instance=ExtResource("3_rqacf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+layers = 16
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("CylinderMesh_vq2wp")

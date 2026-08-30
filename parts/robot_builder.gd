@@ -14,40 +14,8 @@ signal weapons_built(nodes: Array[Weapon3D])
 var hand_unit_r_rest := Transform3D(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0), Vector3(-0.0, 0.0, 1.0), Vector3(0.167372, 0.0, 0.542358))
 var hand_unit_l_rest := Transform3D(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0), Vector3(-0.0, 0.0, 1.0), Vector3(-0.167372, 0.0, 0.542358))
 
-func _get_configuration_warnings():
-	var warns = PackedStringArray()
-	if data:
-		var missing_parts = get_missing_parts()
-		if missing_parts:
-			warns.append('Missing Parts: ' + missing_parts)
-	else:
-		warns.append('Missing RobotData')
-	if get_node_or_null(^'../Skeleton3D'):
-		if not get_node(^'../Skeleton3D').unique_name_in_owner:
-			warns.append('Skeleton must have unique name: %Skeleton3D')
-	else:
-		warns.append('Cannont find Skeleton3D node')
-	return warns
-
-func get_missing_parts() -> String:
-	var missing = ''
-	if not data.head:      missing += 'Head, '
-	if not data.arms:      missing += 'Arms, '
-	if not data.torso:     missing += 'Torso, '
-	if not data.legs:      missing += 'Legs, '
-	if not data.booster:   missing += 'Booster, '
-	if not data.generator: missing += 'Generator, '
-	if not data.lock_on:   missing += 'Lock On, '
-	# weapons are optional
-	#if not data.right_arm:  missing += 'Right Arm\n'
-	#if not data.left_arm:   missing += 'Left Arm\n'
-	#if not data.right_back: missing += 'Right Back\n'
-	#if not data.left_back:  missing += 'Left Back\n'
-	return missing.trim_suffix(', ')
-
 func _ready():
 	if Engine.is_editor_hint():
-		get_tree().tree_changed.connect(update_configuration_warnings)
 		return
 	_build_body()
 	_build_weapons()
@@ -147,7 +115,8 @@ func _build_body() -> void:
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('HandUnit.L'), %Skeleton3D.find_bone('Hand.L'))
 	%Skeleton3D.reset_bone_poses()
 	%Hands.skeleton = %Hands.get_path_to(%Skeleton3D)
-	%ArmUnitL.bone_idx = %Skeleton3D.find_bone('MeleeUnit')
+	%ArmUnitR.bone_idx = %Skeleton3D.find_bone('ArmUnit.R')
+	%ArmUnitL.bone_idx = %Skeleton3D.find_bone('ArmUnit.L')
 	%HandUnitR.bone_idx = %Skeleton3D.find_bone('HandUnit.R')
 	%HandUnitL.bone_idx = %Skeleton3D.find_bone('HandUnit.L')
 	%BackUnitR.bone_idx = %Skeleton3D.find_bone('BackUnit.R')
@@ -155,10 +124,18 @@ func _build_body() -> void:
 	%Torso.bone_idx = %Skeleton3D.find_bone('Torso')
 	%LookAtLegBase.bone = %Skeleton3D.find_bone('LegBase')
 	%LookAtTorso.bone = %Torso.bone_idx
-	%LookAtArmR.shoulder_bone = %Skeleton3D.find_bone('Shoulder.R')
-	%LookAtArmR.arm_bone = %Skeleton3D.find_bone('Forearm.R')
-	%LookAtArmL.shoulder_bone = %Skeleton3D.find_bone('Shoulder.L')
-	%LookAtArmL.arm_bone = %Skeleton3D.find_bone('Forearm.L')
+	#%LookAtArmR.shoulder_bone = %Skeleton3D.find_bone('Shoulder.R')
+	#%LookAtArmR.arm_bone = %Skeleton3D.find_bone('Forearm.R')
+	#%LookAtArmL.shoulder_bone = %Skeleton3D.find_bone('Shoulder.L')
+	#%LookAtArmL.arm_bone = %Skeleton3D.find_bone('Forearm.L')
+	%LookAtArmR.shoulder_name = 'Shoulder.R'
+	%LookAtArmR.arm_name = 'Forearm.R'
+	%LookAtArmL.shoulder_name = 'Shoulder.L'
+	%LookAtArmL.arm_name = 'Forearm.L'
+	%ArmRecoilR.shoulder_name = 'Shoulder.R'
+	%ArmRecoilR.arm_name = 'Forearm.R'
+	%ArmRecoilL.shoulder_name = 'Shoulder.L'
+	%ArmRecoilL.arm_name = 'Forearm.L'
 	if make_owner:
 		var parent = get_parent()
 		for node in body_nodes:
@@ -172,10 +149,13 @@ func _build_weapons() -> void:
 	_clear_weapons()
 	if data.right_arm:
 		weapon_nodes.set(0, data.right_arm.scene.instantiate())
-		%HandUnitR.add_child(weapon_nodes[0])
+		if data.right_arm.arm_slot == UnitData.ArmSlot.ARM_UNIT:
+			%ArmUnitR.add_child(weapon_nodes[0])
+		else:
+			%HandUnitR.add_child(weapon_nodes[0])
 	if data.left_arm:
 		weapon_nodes.set(1, data.left_arm.scene.instantiate())
-		if weapon_nodes[1] is MeleeWeapon:
+		if data.left_arm.arm_slot == UnitData.ArmSlot.ARM_UNIT:
 			%ArmUnitL.add_child(weapon_nodes[1])
 		else:
 			%HandUnitL.add_child(weapon_nodes[1])

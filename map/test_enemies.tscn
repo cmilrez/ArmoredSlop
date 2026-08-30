@@ -2,7 +2,7 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://c2rqx5ejqesqw" path="res://misc/f1 pmtl.tres" id="1_2ty7v"]
 [ext_resource type="PackedScene" uid="uid://cpl2hwfaru3rt" path="res://character/droid/droid.tscn" id="2_7itfe"]
-[ext_resource type="Script" uid="uid://8inmej5bhml1" path="res://map/world_bottom.gd" id="2_tgwwm"]
+[ext_resource type="Script" uid="uid://8inmej5bhml1" path="res://map/world_bottom_3d.gd" id="2_tgwwm"]
 [ext_resource type="PackedScene" uid="uid://h6h87woh5jtt" path="res://character/player_robot/player_robot.tscn" id="3_mmn70"]
 [ext_resource type="PackedScene" uid="uid://cfaqalhv2d35p" path="res://character/orb/orb.tscn" id="5_c71kc"]
 

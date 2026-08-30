@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LegsData" format=3 uid="uid://ci0k35bhc6rca"]
+
+[ext_resource type="Texture2D" uid="uid://cofh7av8daasl" path="res://ui/part_preview/test_leg_biped_2_preview.png" id="1_k2do2"]
+[ext_resource type="PackedScene" uid="uid://byuycbloji77q" path="res://parts/test/test_leg_biped_2.tscn" id="2_h60u2"]
+[ext_resource type="Script" uid="uid://dto5awhd66xwa" path="res://parts/data_scripts/legs_data.gd" id="2_k2do2"]
+
+[resource]
+script = ExtResource("2_k2do2")
+bone_list = Dictionary[StringName, Array]({
+&"Feet.L": [Transform3D(1, -1.0295366e-08, -5.996864e-07, -5.997719e-07, -0.01406014, -0.99990124, 1.862702e-09, 0.99990124, -0.01406014, 5.287015e-08, 3.6035414, -1.217046e-09), []],
+&"Feet.R": [Transform3D(1, 1.2147893e-08, 5.9896183e-07, 5.990734e-07, -0.01406014, -0.99990124, -3.7252335e-09, 0.99990124, -0.01406014, -1.729351e-07, 3.6035419, -6.9556165e-09), []],
+&"LegBase": [Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, 2.5949664e-08, 6.299453, -0.17185685), [&"Thigh.L", &"Thigh.R", &"TorsoJoint"]],
+&"Root": [Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0), [&"LegBase"]],
+&"Shin.L": [Transform3D(0.9360699, 0.35177916, 0.0049465536, -0.35117167, 0.93341935, 0.073530115, 0.021249155, -0.0705664, 0.9972808, -1.1941877e-07, 1.9143203, -7.450581e-09), [&"Feet.L"]],
+&"Shin.R": [Transform3D(0.93606997, -0.3517792, -0.00494654, 0.35117164, 0.9334194, 0.07353006, -0.021249149, -0.07056637, 0.9972807, 1.1879031e-07, 1.9143203, 9.313226e-09), [&"Feet.R"]],
+&"Thigh.L": [Transform3D(-0.936069, 0.3511721, -0.021249427, -0.35181406, -0.93436086, 0.05653755, -2.2351722e-07, 0.06039895, 0.99817425, 0.40000534, 0, 3.4969577e-08), [&"Shin.L"]],
+&"Thigh.R": [Transform3D(-0.93606895, -0.35117206, 0.021249272, 0.35181406, -0.9343608, 0.05653753, 8.3818954e-08, 0.060398873, 0.9981743, -0.40000534, 0, -3.4969577e-08), [&"Shin.R"]],
+&"TorsoJoint": [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4299115e-09, 1.0445929, 0.050672293), []]
+})
+preview = ExtResource("1_k2do2")
+scene = ExtResource("2_h60u2")

@@ -101,8 +101,13 @@ func center_object_to_camera(node: Node) -> void:
 func find_aabb(node: Node) -> AABB:
 	var aabb = AABB()
 	if node is MeshInstance3D:
-		if node.visible and node.get_parent().visible:
-			aabb = node.transform * node.get_aabb()
+		if node.visible:
+			var parent = node.get_parent()
+			if parent is Node3D:
+				if parent.visible:
+					aabb = node.transform * node.get_aabb()
+			else:
+				aabb = node.transform * node.get_aabb()
 	for child in node.get_children():
 		var child_aabb = find_aabb(child)
 		aabb = aabb.merge(child_aabb)

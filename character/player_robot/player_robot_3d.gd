@@ -1,9 +1,9 @@
-extends Robot
+extends Robot3D
 
-const unit_actions = [&'arm_unit_right', &'arm_unit_left', &'back_unit_right', &'back_unit_left']
-const min_multi_lock_time = 0.5 # seconds
+const UNIT_ACTIONS = [&'arm_unit_right', &'arm_unit_left', &'back_unit_right', &'back_unit_left']
+const MIN_MULTI_LOCK_TIME = 0.5 # seconds
 
-@export var camera: PlayerCamera = null
+@export var camera: PlayerCamera3D = null
 var multi_lock_hold_time := [0.0, 0.0, 0.0, 0.0]
 
 func _process(delta):
@@ -15,7 +15,7 @@ func _process(delta):
 	
 	var reload = Input.is_action_pressed('reload')
 	var max_multi_lock_count = 0
-	for i in range(unit_actions.size()):
+	for i in range(UNIT_ACTIONS.size()):
 		var unit = weapons[i]
 		if unit and unit.reloading:
 			unit_lock_time[i] = 0.0
@@ -25,11 +25,11 @@ func _process(delta):
 			IDLE:
 				continue
 			NORMAL:
-				var can_multi_lock = unit is ProjectileWeapon3D and unit.param.lock_count > 1
-				if Input.is_action_pressed(unit_actions[i]):
-					if can_multi_lock:
+				var is_multi_lock = unit is ProjectileWeapon3D and unit.param.lock_count > 1
+				if Input.is_action_pressed(UNIT_ACTIONS[i]):
+					if is_multi_lock:
 						multi_lock_hold_time[i] += delta
-						if multi_lock_hold_time[i] > min_multi_lock_time:
+						if multi_lock_hold_time[i] > MIN_MULTI_LOCK_TIME:
 							multi_lock_hold_time[i] = 0.0
 							unit_lock_time[i] = 0.0
 							unit_action_state[i] = MULTI_LOCK
@@ -40,7 +40,7 @@ func _process(delta):
 					else:
 						activate_unit(i)
 				else:
-					if can_multi_lock:
+					if is_multi_lock:
 						activate_unit(i)
 					unit_action_state[i] = IDLE
 				continue
@@ -53,9 +53,9 @@ func _process(delta):
 				if multi_lock_finished:
 					if unit.param.lock_count > max_multi_lock_count:
 						max_multi_lock_count = unit.param.lock_count - 1
-				if not Input.is_action_pressed(unit_actions[i]):
+				if not Input.is_action_pressed(UNIT_ACTIONS[i]):
 					if multi_lock_finished:
-						var targets: Array[Character] = [tracker.target]
+						var targets: Array[Character3D] = [tracker.target]
 						targets.append_array(camera.multi_target_list)
 						if targets.size() > unit.param.lock_count:
 							targets.resize(unit.param.lock_count)
@@ -70,7 +70,7 @@ func _process(delta):
 	camera.multi_target_count = max_multi_lock_count
 
 func _unhandled_input(event):
-	for i in range(unit_actions.size()):
-		if event.is_action_pressed(unit_actions[i]):
+	for i in range(UNIT_ACTIONS.size()):
+		if event.is_action_pressed(UNIT_ACTIONS[i]):
 			unit_action_state[i] = NORMAL
 			return

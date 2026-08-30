@@ -1,4 +1,4 @@
-class_name Hurtbox extends Area3D
+class_name Hurtbox3D extends Area3D
 
 @export var damage_data: DamageData = null
 

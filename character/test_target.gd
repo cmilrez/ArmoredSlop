@@ -1,4 +1,4 @@
-extends Character
+extends Character3D
 
 @export var follow: PathFollow3D = null:
 	set(value):

@@ -22,10 +22,10 @@
 [ext_resource type="Resource" uid="uid://cysrhxhwsvfeh" path="res://parts/test/test_torso_2_data.tres" id="11_lclvh"]
 [ext_resource type="PackedScene" uid="uid://dr8253iwug65h" path="res://parts/test/test_arms_2.tscn" id="11_ufs7v"]
 [ext_resource type="PackedScene" uid="uid://cxa6o0chdas68" path="res://parts/test/test_leg_reverse.tscn" id="13_f8ko1"]
-[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker.gd" id="13_na68p"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker_3d.gd" id="13_na68p"]
 [ext_resource type="AnimationLibrary" uid="uid://bsjiiau4va7dj" path="res://character/player_robot/AnimBiped.res" id="14_dx0bn"]
 [ext_resource type="PackedScene" uid="uid://bgktynat53xno" path="res://parts/test/test_booster.tscn" id="14_ufs7v"]
-[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="15_0j0i7"]
+[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox_3d.gd" id="15_0j0i7"]
 [ext_resource type="ArrayMesh" uid="uid://cmtrt70icob7v" path="res://assets/Hands_Hands.res" id="15_f8ko1"]
 [ext_resource type="PackedScene" uid="uid://t6gmjg35gaww" path="res://parts/test/test_torso_2.tscn" id="22_dx0bn"]
 [ext_resource type="Script" uid="uid://dx3r7rc0pv7nc" path="res://character/player_robot/arm_look_at_3d.gd" id="28_u4a80"]
@@ -280,7 +280,7 @@ collision_mask = 3
 [node name="Timer" type="Timer" parent="DetectionZone" unique_id=528889681]
 one_shot = true
 
-[node name="Tracker" type="Marker3D" parent="." unique_id=375537163]
+[node name="Tracker3D" type="Marker3D" parent="." unique_id=375537163]
 unique_name_in_owner = true
 script = ExtResource("13_na68p")
 metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
@@ -675,7 +675,7 @@ update_scale = false
 [node name="LookAtLegBase" type="LookAtModifier3D" parent="Skeleton3D" unique_id=1573848904]
 unique_name_in_owner = true
 active = false
-target_node = NodePath("../../Tracker")
+target_node = NodePath("../../Tracker3D")
 bone_name = "LegBase"
 bone = 22
 primary_rotation_axis = 0
@@ -688,7 +688,7 @@ primary_damp_threshold = 1.0
 [node name="LookAtTorso" type="LookAtModifier3D" parent="Skeleton3D" unique_id=1609095478]
 unique_name_in_owner = true
 active = false
-target_node = NodePath("../../Tracker")
+target_node = NodePath("../../Tracker3D")
 bone_name = "Torso"
 bone = 11
 use_secondary_rotation = false
@@ -715,7 +715,7 @@ visibility_parent = NodePath("")
 active = false
 influence = 1.0
 script = ExtResource("28_u4a80")
-target = NodePath("../../Tracker")
+target = NodePath("../../Tracker3D")
 shoulder_name = "Shoulder.R"
 arm_name = "Forearm.R"
 shoulder_angle = 0.5235987755982988
@@ -740,7 +740,7 @@ visibility_parent = NodePath("")
 active = false
 influence = 1.0
 script = ExtResource("28_u4a80")
-target = NodePath("../../Tracker")
+target = NodePath("../../Tracker3D")
 shoulder_name = "Shoulder.L"
 arm_name = "Forearm.L"
 shoulder_angle = 0.5235987755982988
@@ -781,7 +781,7 @@ debug_color = Color(0, 1, 0.42352942, 0.41960785)
 
 [connection signal="death" from="Health" to="DetectionZone" method="deactivate"]
 [connection signal="death" from="Health" to="." method="set" binds= [&"alive", false]]
-[connection signal="target_changed" from="Tracker" to="." method="_reset_lock_time"]
+[connection signal="target_changed" from="Tracker3D" to="." method="_reset_lock_time"]
 [connection signal="hit" from="Hitbox" to="Health" method="take_damage"]
 [connection signal="hit" from="Hitbox" to="DetectionZone" method="set_target_from_damage"]
 

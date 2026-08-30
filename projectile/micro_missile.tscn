@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dorht4bwny6qy" path="res://effect/explosion_s2.tscn" id="2_lw83i"]
 [ext_resource type="Script" uid="uid://dqk5j2vf60io2" path="res://projectile/missile_data.gd" id="3_nau1q"]
 [ext_resource type="PackedScene" uid="uid://d2q7xl4v55pgt" path="res://effect/rocket_fire.tscn" id="4_lw83i"]
-[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker.gd" id="5_nau1q"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker_3d.gd" id="5_nau1q"]
 
 [sub_resource type="Curve" id="Curve_hpthg"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -40,7 +40,7 @@ data = SubResource("Resource_ehnpc")
 hitspawn_scene = ExtResource("2_lw83i")
 metadata/_custom_type_script = "uid://4yx46onl8y8g"
 
-[node name="Tracker" type="Marker3D" parent="." unique_id=1802300376]
+[node name="Tracker3D" type="Marker3D" parent="." unique_id=1802300376]
 script = ExtResource("5_nau1q")
 metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
 

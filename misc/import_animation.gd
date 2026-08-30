@@ -1,7 +1,7 @@
 @tool
 extends EditorScenePostImport
 
-const path = 'res://assets/'
+const BASE_PATH = 'res://assets/'
 
 func _post_import(scene):
 	for child in scene.get_children():
@@ -10,7 +10,7 @@ func _post_import(scene):
 	return scene
 
 func import_animations(anim_player: AnimationPlayer) -> void:
-	var save_path = path + anim_player.get_parent().name + '/'
+	var save_path = BASE_PATH + anim_player.get_parent().name + '/'
 	var anim_lib = anim_player.get_animation_library('')
 	for anim_name in anim_player.get_animation_list():
 		var new_name = anim_name

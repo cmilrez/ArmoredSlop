@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_ej6wy"]
 [ext_resource type="Resource" uid="uid://bsfp38yuyt1q" path="res://parts/test/missile_launcher_6_param.tres" id="2_hfhwc"]
-[ext_resource type="Script" uid="uid://bmwkw0gcjr4vm" path="res://parts/hatch_opener.gd" id="3_0vhiq"]
+[ext_resource type="Script" uid="uid://bmwkw0gcjr4vm" path="res://parts/hatch_opener_3d.gd" id="3_0vhiq"]
 [ext_resource type="ArrayMesh" uid="uid://cufeghvhcr55m" path="res://assets/TestWeapons_MissileLauncher6.res" id="3_hfhwc"]
 
 [sub_resource type="Animation" id="Animation_hkpe4"]

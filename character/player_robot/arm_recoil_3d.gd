@@ -2,7 +2,7 @@
 class_name ArmRecoil3D extends SkeletonModifier3D
 
 enum Arm {RIGHT_ARM, LEFT_ARM}
-const duration = 0.2 # sec
+const DURATION = 0.2 # sec
 
 @export var side: Arm = Arm.RIGHT_ARM
 @export var shoulder_name := '':
@@ -13,7 +13,7 @@ const duration = 0.2 # sec
 	set(value):
 		arm_name = value
 		_update_bone(&'arm_bone', arm_name)
-@export_tool_button('test') var button1 = activate
+@export_tool_button('Test', 'MainPlay') var button1 = activate
 var shoulder_bone := -1
 var arm_bone := -1
 var rand_angle := 0.0
@@ -25,7 +25,7 @@ func activate() -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(self, 'influence', 0.0, duration).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, 'influence', 0.0, DURATION).set_ease(Tween.EASE_IN)
 
 func _update_bone(property: StringName, bone_name: String) -> void:
 	var skel = get_skeleton()
@@ -64,7 +64,7 @@ func _process_modification_with_delta(delta):
 	skel.set_bone_pose(shoulder_bone, shoulder_pose)
 	
 	var arm_pose = skel.get_bone_pose(arm_bone)
-	arm_pose = arm_pose.rotated_local(Vector3.RIGHT, 2.0 * rand_angle)
+	arm_pose = arm_pose.rotated_local(Vector3.RIGHT, 1.5 * rand_angle)
 	skel.set_bone_pose(arm_bone, arm_pose)
 
 func _on_builder_weapons_built(nodes):

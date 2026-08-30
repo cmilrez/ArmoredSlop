@@ -9,7 +9,7 @@ func _ready():
 	can_use = true
 	damage_data = damage_data.duplicate()
 
-func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> void:
+func activate(targets: Array[Character3D] = [], aim_position := Vector3.ZERO) -> void:
 	if not can_use:
 		return
 	can_use = false

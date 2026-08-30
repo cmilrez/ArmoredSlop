@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://vgqeyrrw638b"]
+
+[ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/bullet_rifle.tscn" id="1_jcs2o"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="2_hhlti"]
+
+[resource]
+script = ExtResource("2_hhlti")
+shot_interval = 0.2
+reload_time = 3.3
+lock_duration = 0.8
+clip_size = 30
+ammo_max = 300
+ammo_cost = 1
+kinetic_damage = 10.0
+projectile_scene = ExtResource("1_jcs2o")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"
