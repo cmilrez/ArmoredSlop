@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon_3d.gd" id="1_lrm1f"]
 [ext_resource type="Resource" uid="uid://bnoxbmrnonice" path="res://parts/test/energy_spear_param.tres" id="2_bjf87"]
-[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox.gd" id="4_037vq"]
+[ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox_3d.gd" id="4_037vq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umeg2"]
 albedo_color = Color(0, 1, 0.49803922, 1)

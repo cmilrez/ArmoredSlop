@@ -3,7 +3,7 @@ class_name DetectionZone extends Area3D
 
 @onready var eye_ray: RayCast3D = $EyeRay
 @onready var timer: Timer = $Timer
-@onready var tracker: Tracker = %Tracker
+@onready var tracker: Tracker3D = %Tracker3D
 
 @export var data: NPCData = null
 @export var skeleton: Skeleton3D = null
@@ -12,7 +12,7 @@ class_name DetectionZone extends Area3D
 		head_bone = value
 		if skeleton:
 			bone_id = skeleton.find_bone(head_bone)
-var character: Character = null
+var character: Character3D = null
 var bone_id := -1
 
 func _validate_property(property: Dictionary):
@@ -52,7 +52,7 @@ func _process(delta):
 	else:
 		tracker.target = search_target()
 
-func search_target() -> Character:
+func search_target() -> Character3D:
 	for body in get_overlapping_bodies():
 		if character.is_same_team(body.team):
 			continue

@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://4k6kuq8h8g7i" path="res://projectile/bullet_laser.tscn" id="5_61c0t"]
 [ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="6_4g13y"]
 [ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="6_o6hn8"]
-[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="8_fc5v5"]
-[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker.gd" id="9_t4aug"]
+[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox_3d.gd" id="8_fc5v5"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker_3d.gd" id="9_t4aug"]
 
 [sub_resource type="Resource" id="Resource_bq8tf"]
 script = ExtResource("2_u6wqr")
@@ -425,7 +425,7 @@ spawners = NodePath("../Model/Pivot/Cannon")
 projectile_scene = ExtResource("5_61c0t")
 damage_data = SubResource("Resource_vq2wp")
 
-[node name="Tracker" type="Marker3D" parent="." unique_id=848639494]
+[node name="Tracker3D" type="Marker3D" parent="." unique_id=848639494]
 unique_name_in_owner = true
 script = ExtResource("9_t4aug")
 metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"

@@ -285,7 +285,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.23333333, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(2, 2, 5), Vector3(6, 6, 6), Vector3(5, 5, 3), Vector3(1, 1, 1)]
+"values": [Vector3(1, 1, 1), Vector3(2, 2, 6), Vector3(8, 8, 8), Vector3(5, 5, 3), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_l7aj2"]
@@ -423,7 +423,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.258, 1.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732715, 1.5620031, -0.78043973)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Skeleton3D/Body/AmmoMagSpawn" unique_id=1804900725]
-transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1.0000008, 0, 0, 0, 1.0000008, 0, 0, 0)
 visible = false
 collision_layer = 0
 collision_mask = 3

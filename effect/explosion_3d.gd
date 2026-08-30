@@ -1,6 +1,6 @@
-class_name Explosion extends Node3D
+class_name Explosion3D extends Node3D
 
-@onready var hurtbox = $Hurtbox
+@onready var hurtbox = $Hurtbox3D
 @export var max_scale = 10.0
 @export var start_scale = 1.0
 

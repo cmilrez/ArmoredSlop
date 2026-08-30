@@ -28,7 +28,7 @@ blend_shape_mode = 0
 
 [sub_resource type="Skin" id="Skin_ofii1"]
 resource_name = "Skin6"
-bind_count = 7
+bind_count = 8
 bind/0/name = &"Shoulder.L"
 bind/0/bone = -1
 bind/0/pose = Transform3D(0.94176567, -0.3362698, -9.319047e-08, -0.33626863, -0.94176257, -0.0025753842, 0.00086596864, 0.0024254424, -0.9999967, 0, 0, 0)
@@ -38,7 +38,7 @@ bind/1/pose = Transform3D(1, -1.4176295e-08, 3.3006763e-18, 3.271271e-08, -7.054
 bind/2/name = &"Hand.L"
 bind/2/bone = -1
 bind/2/pose = Transform3D(-1, -7.2486545e-10, 1.6589698e-07, -2.9014025e-08, 1.0000001, 2.118758e-08, -1.3318426e-07, -2.32845e-10, -1.0000001, -0.65875703, 2.0274632, -2.0115316)
-bind/3/name = &"MeleeUnit"
+bind/3/name = &"ArmUnit.L"
 bind/3/bone = -1
 bind/3/pose = Transform3D(-1, 1.4176297e-08, 1.5099582e-07, -1.4112866e-08, 1.0000001, -2.328449e-10, -1.182831e-07, -1.09430545e-08, -1.0000001, -1.1114581, 2.0274632, -1.243126)
 bind/4/name = &"Shoulder.R"
@@ -50,6 +50,9 @@ bind/5/pose = Transform3D(0.9999999, -2.5381172e-07, 0, -1.7461965e-09, 1.697335
 bind/6/name = &"Hand.R"
 bind/6/bone = -1
 bind/6/pose = Transform3D(-0.9999999, 4.9195126e-10, 1.02323966e-07, -5.9928176e-08, 0.9999999, -2.1979223e-07, -1.04070146e-07, 2.3281643e-10, -0.9999999, 0.6587574, 2.0274622, -2.011531)
+bind/7/name = &"ArmUnit.R"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-0.9999999, -4.4211493e-08, -9.13911e-08, -1.046317e-07, 0.9999999, -1.1920942e-07, 8.964492e-08, -9.080446e-09, -0.9999999, 1.111458, 2.0274625, -1.2431259)
 
 [node name="TestArms1" type="MeshInstance3D" unique_id=136409501]
 mesh = SubResource("ArrayMesh_g6xxo")

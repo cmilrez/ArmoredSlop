@@ -1,4 +1,4 @@
-class_name VFXContainer extends Node3D
+class_name VFXContainer3D extends Node3D
 
 @onready var timer = $Timer
 @export var life_time = 1.0

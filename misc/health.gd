@@ -31,7 +31,7 @@ func refresh_values() -> void:
 func take_damage(dmg_data: DamageData) -> void:
 	var source = get_node_or_null(dmg_data.source)
 	if source:
-		assert(source is Character)
+		assert(source is Character3D)
 		if get_parent().is_same_team(source.team):
 			return
 	var damage = dmg_data.kinetic_damage * data.bullet_defense

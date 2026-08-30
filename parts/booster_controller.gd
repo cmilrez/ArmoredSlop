@@ -1,6 +1,6 @@
 extends Node
 
-@export var character: Character = null
+@export var character: Character3D = null
 @export var list: Array[Booster] = []
 var on_off := false:
 	set(value):

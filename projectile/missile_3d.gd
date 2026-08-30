@@ -3,7 +3,7 @@ class_name Missile3D extends Projectile3D
 
 signal started_homing
 
-@onready var tracker: Tracker = $Tracker
+@onready var tracker: Tracker3D = $Tracker3D
 
 @export var data: MissileData = null
 var speed_curve_offset := 0.0
@@ -35,7 +35,7 @@ func rotate_to_target() -> void:
 		var angle = direction.signed_angle_to(basis.z, cross)
 		global_rotate(cross, signf(angle) * minf(absf(angle), data.turning_speed * get_physics_process_delta_time()))
 
-func set_up(spawn: Node3D, dmg_data: DamageData, target_pos: Vector3, _target: Character = null) -> void:
+func set_up(spawn: Node3D, dmg_data: DamageData, target_pos: Vector3, _target: Character3D = null) -> void:
 	global_transform = spawn.global_transform
 	damage_data = dmg_data
 	tracker.position = target_pos

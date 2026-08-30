@@ -38,7 +38,7 @@ func check_ammo() -> void:
 		_state_shutdown()
 	if ammo_total > 0 and ammo_empty:
 		ammo_empty = false
-		_state_start()
+		await _state_start()
 		reload(true)
 
 func _ready():
@@ -53,7 +53,7 @@ func _ready():
 	ammo_changed.emit.call_deferred(ammo_loaded, ammo_left)
 	_state_start()
 
-func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> void:
+func activate(targets: Array[Character3D] = [], aim_position := Vector3.ZERO) -> void:
 	if not can_use:
 		return
 	_state_shoot()
@@ -70,9 +70,11 @@ func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> v
 		new_projectile.set_up(spawn, damage_data, target_position, target)
 		ammo_loaded -= param.ammo_cost
 		i -= 1
-		if param.multishot_interval > 0.0 and spawn_count > 0:
+		if param.multishot_interval > 0.0 and i > 0:
+			shot_fired.emit()
 			timer.start(param.multishot_interval)
 			await timer.timeout
+	shot_fired.emit()
 	if ammo_loaded <= 0:
 		if ammo_left > 0 and not reloading:
 			_state_reload()
@@ -94,7 +96,7 @@ func reload(manual_reload := false) -> void:
 	if difference <= 0: # clip full
 		return
 	if manual_reload:
-		if not reloading:
+		if not reloading and can_use:
 			_state_reload()
 		return
 	if infinite_ammo:
@@ -125,7 +127,7 @@ func _state_ready() -> void:
 
 func _state_shoot() -> void:
 	can_use = false
-	shot_fired.emit()
+	#shot_fired.emit()
 	if anim_player.has_animation(SHOOT_ANIM):
 		anim_player.play(SHOOT_ANIM)
 

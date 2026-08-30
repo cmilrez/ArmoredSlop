@@ -1,4 +1,4 @@
-class_name MeleeWeapon extends Weapon3D
+class_name MeleeWeapon3D extends Weapon3D
 
 const READY_ANIM = &'Ready'
 const PREPARE_ANIM = &'Prepare'
@@ -23,7 +23,7 @@ func _ready():
 	toggle_hurtbox(false)
 	_state_ready()
 
-func activate(targets: Array[Character] = [], aim_position := Vector3.ZERO) -> void:
+func activate(targets: Array[Character3D] = [], aim_position := Vector3.ZERO) -> void:
 	if can_use:
 		_state_prepare()
 

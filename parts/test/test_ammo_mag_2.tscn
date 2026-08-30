@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bbaakg2n7jy2h"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="1_ndkc1"]
+[ext_resource type="ArrayMesh" uid="uid://cwofdrbqdusu6" path="res://assets/TestWeapons_SMGAmmo.res" id="2_u1skx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j26cr"]
+size = Vector3(0.35000023, 1.5889454, 0.7990043)
+
+[node name="AmmoMagBody" type="RigidBody3D" unique_id=2004031557]
+collision_layer = 0
+collision_mask = 3
+input_ray_pickable = false
+mass = 10.0
+physics_material_override = ExtResource("1_ndkc1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1431202354]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0.11502758, -0.01998851)
+shape = SubResource("BoxShape3D_j26cr")
+
+[node name="AmmoMag" type="MeshInstance3D" parent="." unique_id=466971911]
+layers = 2
+gi_mode = 0
+mesh = ExtResource("2_u1skx")

@@ -1,4 +1,4 @@
-extends Robot
+extends Robot3D
 
 enum {WANDER, COMBAT}
 

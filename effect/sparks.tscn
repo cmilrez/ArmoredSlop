@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cr8ff3217u0ji"]
 
-[ext_resource type="Script" uid="uid://bc8wm70ut14q5" path="res://effect/vfx_container.gd" id="1_vtot2"]
+[ext_resource type="Script" uid="uid://bc8wm70ut14q5" path="res://effect/vfx_container_3d.gd" id="1_vtot2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4yeu"]
 lifetime_randomness = 0.5

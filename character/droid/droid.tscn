@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://f665pyihvlvu" path="res://character/npc_data.gd" id="2_hatfo"]
 [ext_resource type="Script" uid="uid://b8r75t4pr7lpd" path="res://character/detection_zone.gd" id="3_3ks3v"]
 [ext_resource type="Script" uid="uid://2rwqxea1asix" path="res://character/droid/droid.gd" id="3_ksu8n"]
-[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker.gd" id="3_ndre0"]
-[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox.gd" id="4_0w2uu"]
+[ext_resource type="Script" uid="uid://bdm7gjqpj0ksu" path="res://parts/tracker_3d.gd" id="3_ndre0"]
+[ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox_3d.gd" id="4_0w2uu"]
 [ext_resource type="Animation" uid="uid://bqyr744843q2f" path="res://assets/AnimDroid/Death.res" id="4_2rpsw"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="5_1ufyl"]
 [ext_resource type="Animation" uid="uid://m2q1k1haeqw4" path="res://assets/AnimDroid/Grounded_Idle.res" id="5_65gwf"]
@@ -339,7 +339,7 @@ shot_interval = 0.2
 projectile_scene = ExtResource("10_uw78r")
 damage_data = SubResource("Resource_6utk1")
 
-[node name="Tracker" type="Marker3D" parent="." unique_id=1262945735]
+[node name="Tracker3D" type="Marker3D" parent="." unique_id=1262945735]
 unique_name_in_owner = true
 script = ExtResource("3_ndre0")
 metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
@@ -485,7 +485,7 @@ skeleton = NodePath("..")
 [node name="LookAtMod" type="LookAtModifier3D" parent="Droid/Skeleton3D" unique_id=112567765]
 unique_name_in_owner = true
 active = false
-target_node = NodePath("../../../Tracker")
+target_node = NodePath("../../../Tracker3D")
 bone_name = "Head_2"
 bone = 5
 use_secondary_rotation = false

@@ -1,4 +1,4 @@
-@abstract class_name Character extends CharacterBody3D
+@abstract class_name Character3D extends CharacterBody3D
 
 enum Teams {
 	## Player Team
@@ -78,9 +78,9 @@ func accelerate(wish_dir: Vector3, wish_speed: float, accel: float) -> void:
 func push_rigid_body_3d() -> void:
 	if not velocity:
 		return
-	const max_steps := 3
+	const MAX_STEPS := 3
 	for i in get_slide_collision_count():
-		if i >= max_steps:
+		if i >= MAX_STEPS:
 			return
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()

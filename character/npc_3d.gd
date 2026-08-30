@@ -1,6 +1,6 @@
-class_name NPC extends Character
+class_name NPC3D extends Character3D
 
-@onready var tracker: Tracker = %Tracker
+@onready var tracker: Tracker3D = %Tracker3D
 
 @export var data: NPCData = null
 

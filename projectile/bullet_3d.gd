@@ -8,7 +8,7 @@ func _physics_process(delta):
 		hitspawn_and_damage()
 		destroy()
 
-func set_up(spawn: Node3D, dmg_data: DamageData, target_pos: Vector3, _target: Character = null) -> void:
+func set_up(spawn: Node3D, dmg_data: DamageData, target_pos: Vector3, _target: Character3D = null) -> void:
 	global_position = spawn.global_position
 	if _target:
 		target_pos = get_prediction(data.speed, _target)

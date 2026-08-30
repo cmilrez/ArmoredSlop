@@ -1,11 +1,11 @@
 extends Control
 
-const rect_offset = Vector2(24.0, 24.0)
-const lock_region_y_offset := -50.0
+const RECT_OFFSET = Vector2(24.0, 24.0)
+const LOCK_REGION_Y_OFFSET := -50.0
 
-@onready var player: Robot = get_parent()
-@onready var camera: PlayerCamera = %PlayerCamera
-@onready var tracker: Tracker = %Tracker
+@onready var player: Robot3D = get_parent()
+@onready var camera: PlayerCamera3D = %PlayerCamera3D
+@onready var tracker: Tracker3D = %Tracker3D
 @onready var ammo_labels: HBoxContainer = $AmmoLabels
 @onready var lock_on_bars: Control = $AimRect1/LockOnBars
 @onready var armor_label: Label = $Armor
@@ -26,7 +26,7 @@ func _draw():
 	var center = get_viewport().get_visible_rect().size / 2.0
 	var half_size = lock_data.region.size / 2.0
 	lock_data.region.position = center - half_size
-	lock_data.region.position.y += lock_region_y_offset
+	lock_data.region.position.y += LOCK_REGION_Y_OFFSET
 	draw_rect(lock_data.region, Color.GREEN, false, 4.0)
 
 func _update_velocimeter() -> void:
@@ -34,7 +34,7 @@ func _update_velocimeter() -> void:
 	$Velocity.text = '%.0f Km/h' % [vel * 3.6]
 
 func _update_aim_rects() -> void:
-	aim_rects[0].position = camera.get_unprojected(tracker.position) - rect_offset
+	aim_rects[0].position = camera.get_unprojected(tracker.position) - RECT_OFFSET
 	var list_size = camera.multi_target_list.size()
 	for i in range(1, aim_rects.size()):
 		if i > list_size:
@@ -42,7 +42,7 @@ func _update_aim_rects() -> void:
 			continue
 		var target_pos = camera.multi_target_list[i - 1].get_lock_position()
 		aim_rects[i].visible = true
-		aim_rects[i].position = camera.get_unprojected(target_pos) - rect_offset
+		aim_rects[i].position = camera.get_unprojected(target_pos) - RECT_OFFSET
 
 func _update_lock_progression() -> void:
 	for i in range(lock_on_bars.get_child_count()):
@@ -89,7 +89,7 @@ func _on_builder_weapons_built(nodes: Array[Weapon3D]):
 				node.started_reloading.connect(_on_weapon_started_reloading.bind(i))
 				_update_ammo_display(node.ammo_loaded, node.ammo_left, i)
 				lock_on_bars.get_child(i).show()
-			elif node is MeleeWeapon:
+			elif node is MeleeWeapon3D:
 				ammo_labels.get_child(i).text = 'MELEE'
 				lock_on_bars.get_child(i).hide()
 		else:

@@ -1,11 +1,11 @@
-extends AnimationTree
+class_name RobotAnimator extends AnimationTree
 
 signal toggled_melee_hurtbox(enabled: bool)
 signal melee_finished
 
-const start_combo = &'parameters/Melee/conditions/start_combo'
+const START_COMBO = &'parameters/Melee/conditions/start_combo'
 
-@onready var robot: Robot = get_parent()
+@onready var robot: Robot3D = get_parent()
 
 @export var anim_cancel := false
 @export var melee_hurtbox := false:
@@ -46,12 +46,12 @@ func _process(delta):
 		set('parameters/Ground/Tank/blend_position', Vector2.ZERO.lerp(blend2, weight))
 
 func start_melee_attack():
-	set(start_combo, true)
+	set(START_COMBO, true)
 
 func _on_state_finished(state: StringName):
 	match state:
 		&'Melee':
-			set(start_combo, false)
+			set(START_COMBO, false)
 			melee_finished.emit()
 
 func _on_builder_body_built(nodes):

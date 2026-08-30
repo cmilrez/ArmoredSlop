@@ -1,9 +1,9 @@
-class_name Tracker extends Marker3D
+class_name Tracker3D extends Marker3D
 
 signal target_changed
 
 var lock_target := false
-var target: Character = null:
+var target: Character3D = null:
 	set(value):
 		if not lock_target:
 			var _emit_signal = not target == value
