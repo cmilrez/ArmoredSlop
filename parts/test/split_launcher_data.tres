@@ -8,5 +8,6 @@
 [resource]
 script = ExtResource("4_m0vu5")
 parameters = ExtResource("1_t4vkx")
+slot = 2
 preview = ExtResource("2_v3ssd")
 scene = ExtResource("2_m0vu5")

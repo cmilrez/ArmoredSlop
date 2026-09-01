@@ -6,91 +6,6 @@
 [ext_resource type="Shader" uid="uid://roqo0mnm8o1q" path="res://effect/particle_trail.gdshader" id="3_16qkg"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox_3d.gd" id="4_lcwht"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw6u4"]
-shading_mode = 0
-albedo_color = Color(0, 0.93040377, 1.8247963, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_81hid"]
-material = SubResource("StandardMaterial3D_pw6u4")
-top_radius = 0.15
-bottom_radius = 0.15
-height = 18.0
-radial_segments = 16
-rings = 0
-cap_bottom = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_16qkg"]
-shader = ExtResource("3_16qkg")
-shader_parameter/direction = Vector3(0, 0, 0)
-shader_parameter/spread = 0.0
-shader_parameter/flatness = 0.0
-shader_parameter/inherit_emitter_velocity_ratio = 0.0
-shader_parameter/initial_linear_velocity_min = 0.0
-shader_parameter/initial_linear_velocity_max = 0.0
-shader_parameter/directional_velocity_min = 0.0
-shader_parameter/directional_velocity_max = 0.0
-shader_parameter/angular_velocity_min = 0.0
-shader_parameter/angular_velocity_max = 0.0
-shader_parameter/orbit_velocity_min = 0.0
-shader_parameter/orbit_velocity_max = 0.0
-shader_parameter/radial_velocity_min = 0.0
-shader_parameter/radial_velocity_max = 0.0
-shader_parameter/linear_accel_min = 0.0
-shader_parameter/linear_accel_max = 0.0
-shader_parameter/radial_accel_min = 0.0
-shader_parameter/radial_accel_max = 0.0
-shader_parameter/tangent_accel_min = 0.0
-shader_parameter/tangent_accel_max = 0.0
-shader_parameter/damping_min = 0.0
-shader_parameter/damping_max = 0.0
-shader_parameter/initial_angle_min = 0.0
-shader_parameter/initial_angle_max = 0.0
-shader_parameter/scale_min = 1.0
-shader_parameter/scale_max = 1.0
-shader_parameter/hue_variation_min = 0.0
-shader_parameter/hue_variation_max = 0.0
-shader_parameter/anim_speed_min = 0.0
-shader_parameter/anim_speed_max = 0.0
-shader_parameter/anim_offset_min = 0.0
-shader_parameter/anim_offset_max = 0.0
-shader_parameter/lifetime_randomness = 0.0
-shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
-shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
-shader_parameter/velocity_pivot = Vector3(0, 0, 0)
-shader_parameter/color_value = Color(1, 1, 1, 1)
-shader_parameter/gravity = Vector3(0, 0, 0)
-
-[sub_resource type="Gradient" id="Gradient_16qkg"]
-offsets = PackedFloat32Array(0.1, 0.3, 0.8, 0.9)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0.49803922, 1, 1, 0, 0.49803922, 1, 1, 0.49803922, 1, 1, 1)
-metadata/_snap_enabled = true
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_16qkg"]
-gradient = SubResource("Gradient_16qkg")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 0)
-metadata/_snap_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fje11"]
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-albedo_texture = SubResource("GradientTexture2D_16qkg")
-uv1_scale = Vector3(0.9, 0.9, 0.9)
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_vq2wp"]
-material = SubResource("StandardMaterial3D_fje11")
-shape = 0
-size = 18.0
-sections = 18
-section_length = 1.0
-section_segments = 1
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
-radius = 1.5
-height = 20.0
-
 [sub_resource type="Animation" id="Animation_climr"]
 resource_name = "Attack"
 length = 0.1
@@ -267,10 +182,100 @@ _data = {
 &"new_animation": SubResource("Animation_16qkg")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw6u4"]
+shading_mode = 0
+albedo_color = Color(0, 0.93040377, 1.8247963, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_81hid"]
+material = SubResource("StandardMaterial3D_pw6u4")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 18.0
+radial_segments = 16
+rings = 0
+cap_bottom = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16qkg"]
+shader = ExtResource("3_16qkg")
+shader_parameter/direction = Vector3(0, 0, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/radial_velocity_min = 0.0
+shader_parameter/radial_velocity_max = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_16qkg"]
+offsets = PackedFloat32Array(0.1, 0.3, 0.8, 0.9)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.49803922, 1, 1, 0, 0.49803922, 1, 1, 0.49803922, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_16qkg"]
+gradient = SubResource("Gradient_16qkg")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fje11"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_16qkg")
+uv1_scale = Vector3(0.9, 0.9, 0.9)
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_fje11")
+shape = 0
+size = 18.0
+sections = 18
+section_length = 1.0
+section_segments = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g5dng"]
+radius = 1.5
+height = 20.0
+
 [node name="EnergySword" type="Node3D" unique_id=1950415004]
 script = ExtResource("1_nymui")
 param = ExtResource("2_16qkg")
 metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1228015449]
+libraries/ = SubResource("AnimationLibrary_climr")
+
+[node name="Timer" type="Timer" parent="." unique_id=1677993991]
 
 [node name="EnergySword" type="MeshInstance3D" parent="." unique_id=1097493431]
 layers = 4
@@ -308,8 +313,3 @@ metadata/_custom_type_script = "uid://p0vi8wansauj"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 10, -4.371139e-07)
 shape = SubResource("CapsuleShape3D_g5dng")
 debug_color = Color(1, 0, 0, 0.41960785)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1228015449]
-libraries/ = SubResource("AnimationLibrary_climr")
-
-[node name="Timer" type="Timer" parent="." unique_id=1677993991]

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("3_5xsw2")
 reload_time = 6.0
-lock_duration = 1.5
+lock_duration = 1.7
 clip_size = 1
 ammo_max = 40
 ammo_cost = 1

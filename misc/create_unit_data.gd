@@ -12,7 +12,7 @@ func _run():
 			continue
 		var scene = ResourceLoader.load(path + file)
 		var part = scene.instantiate()
-		if not part is Weapon:
+		if not part is Weapon3D:
 			continue
 		var part_data = UnitData.new()
 		part_data.parameters = part.param

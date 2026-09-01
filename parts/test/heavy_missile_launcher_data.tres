@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://bwnsv51a2xcl2"]
+
+[ext_resource type="Resource" uid="uid://b0skxpdgf74d" path="res://parts/test/heavy_missile_launcher_param.tres" id="1_nxht4"]
+[ext_resource type="Texture2D" uid="uid://ctgmcodt18hko" path="res://ui/part_preview/heavy_launcher_preview.png" id="2_3d6at"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_nxht4"]
+[ext_resource type="PackedScene" uid="uid://c0o4shmbjai5a" path="res://parts/test/heavy_missile_launcher.tscn" id="2_x60mv"]
+
+[resource]
+script = ExtResource("2_nxht4")
+parameters = ExtResource("1_nxht4")
+slot = 2
+preview = ExtResource("2_3d6at")
+scene = ExtResource("2_x60mv")

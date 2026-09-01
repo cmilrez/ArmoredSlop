@@ -1,3 +1,4 @@
+@icon('res://addons/at-icons/node3d/sword.svg')
 class_name MeleeWeapon3D extends Weapon3D
 
 const READY_ANIM = &'Ready'

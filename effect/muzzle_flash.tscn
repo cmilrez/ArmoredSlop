@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cqv5n131o7bmq"]
+
+[sub_resource type="Gradient" id="Gradient_8tt4q"]
+offsets = PackedFloat32Array(0.2, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xshul"]
+gradient = SubResource("Gradient_8tt4q")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = SubResource("GradientTexture2D_xshul")
+uv1_scale = Vector3(0.95, 0.95, 0.95)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+radius = 1.0
+radial_segments = 8
+rings = 4
+is_hemisphere = true
+
+[node name="MuzzleFlash" type="MeshInstance3D" unique_id=141418337]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 16
+cast_shadow = 0
+mesh = SubResource("SphereMesh_vq2wp")
