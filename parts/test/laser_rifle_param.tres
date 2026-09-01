@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://dxa5jcpi7toit"]
+
+[ext_resource type="PackedScene" uid="uid://4k6kuq8h8g7i" path="res://projectile/bullet_laser.tscn" id="1_nkmfj"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="1_y4g11"]
+
+[resource]
+script = ExtResource("1_y4g11")
+shot_interval = 0.8
+clip_size = 3500
+ammo_max = 3500
+ammo_cost = 35
+energy_damage = 30.0
+projectile_scene = ExtResource("1_nkmfj")

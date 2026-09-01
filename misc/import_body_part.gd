@@ -17,13 +17,12 @@ func iterate(node: Node) -> void:
 		var data_path = path + name + '_data.tres'
 		var part_scene = load_part_scene(scene_path)
 		var part_data = load_part_data(data_path, int(node.get_parent().get_parent().name.trim_prefix('BP').left(1)))
-		var new_part = MeshInstance3D.new()
+		var new_part: MeshInstance3D
 		if part_scene:
 			new_part = part_scene.instantiate()
 		else:
 			part_scene = PackedScene.new()
-			if part_data is BodyPartData:
-				new_part = BodyPart.new()
+			new_part = BodyPart.new()
 		new_part.name = node.name
 		new_part.mesh = node.mesh
 		new_part.skin = node.skin
@@ -44,12 +43,12 @@ func iterate(node: Node) -> void:
 	for child in node.get_children():
 		iterate(child)
 
-func load_part_scene(scene_path: StringName) -> PackedScene:
+func load_part_scene(scene_path: String) -> PackedScene:
 	if ResourceLoader.exists(scene_path):
 		return ResourceLoader.load(scene_path)
 	return null
 
-func load_part_data(data_path: StringName, part_type: int) -> PartData:
+func load_part_data(data_path: String, part_type: int) -> PartData:
 	var data: PartData = null
 	if ResourceLoader.exists(data_path):
 		data = ResourceLoader.load(data_path)
@@ -57,14 +56,10 @@ func load_part_data(data_path: StringName, part_type: int) -> PartData:
 			data.bone_list.clear()
 	else:
 		match part_type:
-			1:
-				data = HeadData.new()
-			2:
-				data = ArmsData.new()
-			3:
-				data = TorsoData.new()
-			4:
-				data = LegsData.new()
+			1: data = HeadData.new()
+			2: data = ArmsData.new()
+			3: data = TorsoData.new()
+			4: data = LegsData.new()
 	return data
 
 func iterate_skeleton(skeleton: Skeleton3D, bone_id: int, data: BodyPartData) -> void:
@@ -74,7 +69,7 @@ func iterate_skeleton(skeleton: Skeleton3D, bone_id: int, data: BodyPartData) ->
 	var children_names = []
 	for child: int in children:
 		children_names.append(StringName(skeleton.get_bone_name(child)))
-	if regex.search(name):
+	if regex.search(name): # flip shoulders and torso for some reason
 		pose = pose.rotated(Vector3.UP, PI)
 	data.bone_list.get_or_add(name, [pose, children_names])
 	for bone: int in children:

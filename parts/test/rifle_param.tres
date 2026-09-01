@@ -7,7 +7,6 @@
 script = ExtResource("2_hhlti")
 shot_interval = 0.2
 reload_time = 3.3
-lock_duration = 0.8
 clip_size = 30
 ammo_max = 300
 ammo_cost = 1

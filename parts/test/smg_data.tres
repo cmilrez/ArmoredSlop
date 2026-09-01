@@ -1,17 +1,13 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://cj4xuodqbebt"]
 
-[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_param.gd" id="1_dpvnt"]
 [ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="1_u7kc1"]
+[ext_resource type="Resource" uid="uid://bexjj32v62a7e" path="res://parts/test/smg_param.tres" id="1_w0lfh"]
 [ext_resource type="Texture2D" uid="uid://tegigqytxgpb" path="res://ui/part_preview/smg_preview.png" id="2_413l0"]
 [ext_resource type="PackedScene" uid="uid://dm2rrfv3e4pdg" path="res://parts/test/smg.tscn" id="2_w0lfh"]
 
-[sub_resource type="Resource" id="Resource_h2jik"]
-script = ExtResource("1_dpvnt")
-metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
-
 [resource]
 script = ExtResource("1_u7kc1")
-parameters = SubResource("Resource_h2jik")
+parameters = ExtResource("1_w0lfh")
 preview = ExtResource("2_413l0")
 scene = ExtResource("2_w0lfh")
 metadata/_custom_type_script = "uid://ckmmdc53mv2qa"

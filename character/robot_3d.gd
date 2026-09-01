@@ -299,7 +299,10 @@ func _state_process(delta: float) -> void:
 				rotation.y = lerp_angle(angle, rotation.y, rot_weight)
 			if timer.is_stopped():
 				if is_on_floor():
-					state = GROUNDED
+					if boost:
+						state = BOOST
+					else:
+						state = GROUNDED
 				else:
 					state = AIRBORNE
 		SUPERBOOST:

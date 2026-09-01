@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://b4om30qb0ifsf"]
+
+[ext_resource type="Resource" uid="uid://8p56itgq0fjv" path="res://parts/test/grenade_cannon_param.tres" id="1_abfc2"]
+[ext_resource type="Texture2D" uid="uid://dgjre6gvp0ko" path="res://ui/part_preview/grenade_cannon_preview.png" id="2_8owr8"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_abfc2"]
+[ext_resource type="PackedScene" uid="uid://buwi21u7ww7an" path="res://parts/test/grenade_cannon.tscn" id="2_auwmj"]
+
+[resource]
+script = ExtResource("2_abfc2")
+parameters = ExtResource("1_abfc2")
+slot = 2
+preview = ExtResource("2_8owr8")
+scene = ExtResource("2_auwmj")

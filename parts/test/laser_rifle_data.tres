@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://ubin0k0l6o0u"]
+
+[ext_resource type="Resource" uid="uid://dxa5jcpi7toit" path="res://parts/test/laser_rifle_param.tres" id="1_uount"]
+[ext_resource type="PackedScene" uid="uid://dp8cyfxnawvug" path="res://parts/test/laser_rifle.tscn" id="2_abbhk"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_uount"]
+
+[resource]
+script = ExtResource("2_uount")
+parameters = ExtResource("1_uount")
+scene = ExtResource("2_abbhk")

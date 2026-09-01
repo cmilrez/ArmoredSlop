@@ -149,13 +149,13 @@ func _build_weapons() -> void:
 	_clear_weapons()
 	if data.right_arm:
 		weapon_nodes.set(0, data.right_arm.scene.instantiate())
-		if data.right_arm.arm_slot == UnitData.ArmSlot.ARM_UNIT:
+		if data.right_arm.slot == UnitData.Slot.ARM:
 			%ArmUnitR.add_child(weapon_nodes[0])
 		else:
 			%HandUnitR.add_child(weapon_nodes[0])
 	if data.left_arm:
 		weapon_nodes.set(1, data.left_arm.scene.instantiate())
-		if data.left_arm.arm_slot == UnitData.ArmSlot.ARM_UNIT:
+		if data.left_arm.slot == UnitData.Slot.ARM:
 			%ArmUnitL.add_child(weapon_nodes[1])
 		else:
 			%HandUnitL.add_child(weapon_nodes[1])

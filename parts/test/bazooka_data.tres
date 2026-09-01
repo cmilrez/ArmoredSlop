@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://bauqvinm0fdje"]
+
+[ext_resource type="Resource" uid="uid://b3qv74u05f5x7" path="res://parts/test/bazooka_param.tres" id="1_tkl1x"]
+[ext_resource type="PackedScene" uid="uid://bb71b67a2qb41" path="res://parts/test/bazooka.tscn" id="2_0q650"]
+[ext_resource type="Texture2D" uid="uid://kv8i5w1gvlpi" path="res://ui/part_preview/bazooka_preview.png" id="2_mnxb3"]
+[ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_tkl1x"]
+
+[resource]
+script = ExtResource("2_tkl1x")
+parameters = ExtResource("1_tkl1x")
+preview = ExtResource("2_mnxb3")
+scene = ExtResource("2_0q650")

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dp8cyfxnawvug"]
+
+[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_c2qr6"]
+[ext_resource type="ArrayMesh" uid="uid://83mdn4dm8p3v" path="res://assets/TestWeapons_LaserRifle.res" id="1_t67y8"]
+[ext_resource type="Resource" uid="uid://dxa5jcpi7toit" path="res://parts/test/laser_rifle_param.tres" id="2_rxscm"]
+
+[sub_resource type="Skin" id="Skin_5b7k3"]
+resource_name = "Skin6"
+bind_count = 2
+bind/0/name = &"Body"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bind/1/name = &"Speen"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 7.8966905e-10, -7.8966894e-10, -7.896689e-10, 1, 2.384186e-07, 7.8966905e-10, -2.384186e-07, 1, 7.7100566e-07, -0.2799513, -2.4181817)
+
+[node name="LaserRifle" type="Node3D" unique_id=2077396001 node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_c2qr6")
+spawners = NodePath("Skeleton3D/Body")
+param = ExtResource("2_rxscm")
+metadata/_custom_type_script = "uid://brdkpe831f6pw"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=846125057]
+
+[node name="Timer" type="Timer" parent="." unique_id=1591007521]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=1724812887]
+bones/0/name = "Body"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Speen"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, -7.896689e-10, 7.896691e-10, 7.896691e-10, 1, -2.384186e-07, -7.896689e-10, 2.384186e-07, 1, -7.693172e-07, 0.27995074, 2.4181817)
+bones/1/enabled = true
+bones/1/position = Vector3(-7.693172e-07, 0.27995074, 2.4181817)
+bones/1/rotation = Quaternion(1.192093e-07, 3.948345e-10, 3.948345e-10, 1)
+bones/1/scale = Vector3(1, 1, 1)
+
+[node name="LaserRifle" type="MeshInstance3D" parent="Skeleton3D" unique_id=405038261]
+mesh = ExtResource("1_t67y8")
+skin = SubResource("Skin_5b7k3")
+skeleton = NodePath("..")
+
+[node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=1325563635]
+bone_name = "Body"
+bone_idx = 0
+
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/Body" unique_id=685969172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27995074, 5.118181)
