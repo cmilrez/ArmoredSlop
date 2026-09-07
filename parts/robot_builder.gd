@@ -128,10 +128,10 @@ func _build_body() -> void:
 	#%LookAtArmR.arm_bone = %Skeleton3D.find_bone('Forearm.R')
 	#%LookAtArmL.shoulder_bone = %Skeleton3D.find_bone('Shoulder.L')
 	#%LookAtArmL.arm_bone = %Skeleton3D.find_bone('Forearm.L')
-	%LookAtArmR.shoulder_name = 'Shoulder.R'
-	%LookAtArmR.arm_name = 'Forearm.R'
-	%LookAtArmL.shoulder_name = 'Shoulder.L'
-	%LookAtArmL.arm_name = 'Forearm.L'
+	%ArmLookAtR.shoulder_name = 'Shoulder.R'
+	%ArmLookAtR.arm_name = 'Forearm.R'
+	%ArmLookAtL.shoulder_name = 'Shoulder.L'
+	%ArmLookAtL.arm_name = 'Forearm.L'
 	%ArmRecoilR.shoulder_name = 'Shoulder.R'
 	%ArmRecoilR.arm_name = 'Forearm.R'
 	%ArmRecoilL.shoulder_name = 'Shoulder.L'

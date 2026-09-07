@@ -107,7 +107,7 @@ func _physics_process(delta):
 	
 	eye_ray.global_position = camera.global_position
 	var new_target: Character3D = null
-	if not tracker.lock_target:
+	if not (tracker.lock_target and tracker.target):
 		if not manual_aim:
 			new_target = _search_single_target()
 			if multi_target_count:

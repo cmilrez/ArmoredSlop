@@ -70,6 +70,9 @@ func _process(delta):
 	camera.multi_target_count = max_multi_lock_count
 
 func _unhandled_input(event):
+	if event.is_action_pressed('superboost'):
+		superboost = not superboost
+		return
 	for i in range(UNIT_ACTIONS.size()):
 		if event.is_action_pressed(UNIT_ACTIONS[i]):
 			unit_action_state[i] = NORMAL

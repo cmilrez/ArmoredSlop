@@ -14,7 +14,7 @@ metadata/_snap_enabled = true
 shading_mode = 0
 albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
 albedo_texture = SubResource("GradientTexture2D_xshul")
-uv1_scale = Vector3(0.95, 0.95, 0.95)
+uv1_offset = Vector3(0, 0.01, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
 material = SubResource("StandardMaterial3D_sb0tl")

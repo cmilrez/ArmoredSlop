@@ -44,8 +44,6 @@ func import_animations(anim_player: AnimationPlayer) -> void:
 		var error = ResourceSaver.save(imported_anim, anim_save_path)
 		if error:
 			push_warning('OOPS: ', error_string(error), ', Path: ', anim_save_path)
-		#else:
-		#	print('Saved: ', anim_save_path)
 
 func get_custom_tracks(anim: Animation) -> Array[int]:
 	var tracks: Array[int] = []

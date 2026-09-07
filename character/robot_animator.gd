@@ -1,7 +1,7 @@
 class_name RobotAnimator extends AnimationTree
 
 signal toggled_melee_hurtbox(enabled: bool)
-signal melee_finished
+signal state_finished(state_name: StringName)
 
 const START_COMBO = &'parameters/Melee/conditions/start_combo'
 
@@ -13,16 +13,17 @@ const START_COMBO = &'parameters/Melee/conditions/start_combo'
 		if not melee_hurtbox == value:
 			toggled_melee_hurtbox.emit(value)
 		melee_hurtbox = value
+var playback: AnimationNodeStateMachinePlayback
 var blend := Vector2.ZERO
 var move_angle := 0.0
 
 func _ready():
+	playback = get(&'parameters/playback')
+	playback.state_finished.connect(_on_playback_state_finished)
 	active = true
-	get(&'parameters/playback').state_finished.connect(_on_state_finished)
 
 func _process(delta):
-	#var playback: AnimationNodeStateMachinePlayback = get(&'parameters/playback')
-	#print(playback.get_current_node())
+	#print(playback.get_travel_path())
 	
 	var weight = exp(-8 * delta)
 	var move_dir_2d = Vector2(robot.move_direction.x, robot.move_direction.z)
@@ -45,28 +46,32 @@ func _process(delta):
 	else:
 		set('parameters/Ground/Tank/blend_position', Vector2.ZERO.lerp(blend2, weight))
 
-func start_melee_attack():
+func set_arm_recoil(right_arm: bool) -> void:
+	set(&'parameters/ArmRecoil/conditions/right_arm', right_arm)
+	set(&'parameters/ArmRecoil/conditions/left_arm', not right_arm)
+
+func start_melee_attack() -> void:
 	set(START_COMBO, true)
 
-func _on_state_finished(state: StringName):
+func _on_playback_state_finished(state: StringName):
 	match state:
 		&'Melee':
 			set(START_COMBO, false)
-			melee_finished.emit()
+			state_finished.emit(state)
+		&'ArmRecoil':
+			set(&'parameters/ArmRecoil/conditions/right_arm', false)
+			set(&'parameters/ArmRecoil/conditions/left_arm', false)
+			state_finished.emit(state)
 
 func _on_builder_body_built(nodes):
 	clear_caches()
 	var leg_type = robot.data.legs.leg_type
 	var request = ''
 	match leg_type:
-		LegsData.Type.BIPED:
-			request = 'Biped'
-		LegsData.Type.REVERSE:
-			request = 'Reverse'
-		LegsData.Type.QUAD:
-			request = 'Quad'
-		LegsData.Type.TANK:
-			request = 'Tank'
+		LegsData.Type.BIPED:   request = 'Biped'
+		LegsData.Type.REVERSE: request = 'Reverse'
+		LegsData.Type.QUAD:    request = 'Quad'
+		LegsData.Type.TANK:    request = 'Tank'
 	set('parameters/Boost/LegType/transition_request', request)
 	set('parameters/Ground/LegType/transition_request', request)
 	set('parameters/Airborne/LegType/transition_request', request)

@@ -1,5 +1,5 @@
 @tool
-class_name LookAtArm3D extends SkeletonModifier3D
+class_name ArmLookAt3D extends SkeletonModifier3D
 
 const DURATION = 0.2 # sec
 

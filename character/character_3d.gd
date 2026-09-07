@@ -54,6 +54,7 @@ func do_friction(friction: float) -> void:
 		new_speed /= current_speed
 	velocity.x *= new_speed
 	velocity.z *= new_speed
+	#velocity *= new_speed
 
 func accelerate_up(wish_speed: float, accel: float) -> void:
 	var diff = wish_speed - velocity.y

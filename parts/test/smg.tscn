@@ -92,6 +92,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MuzzleLight:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_tg8lo"]
 resource_name = "Ready"
@@ -204,7 +216,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("MuzzleFlash:visible")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666667, 0.20000002, 0.26666668),
@@ -219,10 +231,22 @@ tracks/1/path = NodePath("MuzzleFlash:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666669, 0.20000002, 0.2666667),
+"times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666667, 0.20000002, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(3, 5, 3), Vector3(1, 1, 1), Vector3(3, 5, 3), Vector3(1, 1, 1), Vector3(3, 5, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleLight:visible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666669, 0.20000002, 0.2666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tg8lo"]
@@ -285,3 +309,14 @@ freeze = true
 [node name="MuzzleFlash" parent="." unique_id=1435270467 instance=ExtResource("5_1tc31")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -9.536743e-07, 0.71450627, 2.9182513)
 visible = false
+
+[node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=876710684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715, 5)
+visible = false
+layers = 16
+light_color = Color(1, 0.7372549, 0, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 30.0
+light_specular = 1.0
+distance_fade_enabled = true
+omni_range = 15.0

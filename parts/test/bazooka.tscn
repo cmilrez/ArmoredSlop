@@ -58,7 +58,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_3ibfs"]
 resource_name = "Shoot"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,7 +66,7 @@ tracks/0/path = NodePath("MuzzleFlash:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -78,7 +78,7 @@ tracks/1/path = NodePath("MuzzleFlash:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 3, 1), Vector3(4, 8, 4), Vector3(5, 9, 5), Vector3(1, 2, 1)]
@@ -90,7 +90,7 @@ tracks/2/path = NodePath("MuzzleLight:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -102,7 +102,7 @@ tracks/3/path = NodePath("MuzzleLight:omni_range")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.26666668),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [10.0, 20.0]
@@ -130,14 +130,14 @@ libraries/ = SubResource("AnimationLibrary_nubwc")
 mesh = ExtResource("1_y7ywn")
 
 [node name="Marker3D" type="Marker3D" parent="Bazooka" unique_id=380638302]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9145621, 3.0462685)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.858, 3.208)
 
 [node name="MuzzleFlash" parent="." unique_id=141418337 instance=ExtResource("4_hplfe")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.9145621, 3.0462685)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.858, 3.208)
 visible = false
 
 [node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=2125985387]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.915, 4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.858, 5)
 visible = false
 layers = 16
 light_color = Color(1, 0.735357, 0, 1)
