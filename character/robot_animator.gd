@@ -15,7 +15,6 @@ const START_COMBO = &'parameters/Melee/conditions/start_combo'
 		melee_hurtbox = value
 var playback: AnimationNodeStateMachinePlayback
 var blend := Vector2.ZERO
-var move_angle := 0.0
 
 func _ready():
 	playback = get(&'parameters/playback')
@@ -23,8 +22,6 @@ func _ready():
 	active = true
 
 func _process(delta):
-	#print(playback.get_travel_path())
-	
 	var weight = exp(-8 * delta)
 	var move_dir_2d = Vector2(robot.move_direction.x, robot.move_direction.z)
 	

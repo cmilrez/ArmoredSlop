@@ -77,7 +77,7 @@ func _physics_process(delta):
 					timer.start(0.3)
 					await timer.timeout
 					if tracker.is_target_valid():
-						weapons[0].activate([tracker.target])
+						weapons[0].activate(tracker, [tracker.target])
 						move_direction = Vector3.ZERO
 						velocity = Vector3.ZERO
 						timer.start(maxf(1.0, 2.0 * randf()))

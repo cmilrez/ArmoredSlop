@@ -111,7 +111,7 @@ func _state_process(delta: float) -> void:
 			else:
 				move_direction = direction
 			if timer.is_stopped():
-				weapons[0].activate([tracker.target])
+				weapons[0].activate(tracker, [tracker.target])
 				timer.start(maxf(2.0, 5.0 * randf()))
 			var angle = hor_angle(move_direction)
 			if angle:

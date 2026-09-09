@@ -1,7 +1,6 @@
-extends Control
+class_name RobotHUD extends Control
 
-const RECT_OFFSET = Vector2(24.0, 24.0)
-const LOCK_REGION_Y_OFFSET := -50.0
+const REGION_Y_OFFSET := -50.0
 
 @onready var player: Robot3D = get_parent()
 @onready var camera: PlayerCamera3D = %PlayerCamera3D
@@ -11,7 +10,11 @@ const LOCK_REGION_Y_OFFSET := -50.0
 @onready var armor_label: Label = $Armor
 @onready var aim_rects: Array[TextureRect] = [$AimRect1, $AimRect2, $AimRect3, $AimRect4, $AimRect5, $AimRect6, $AimRect7, $AimRect8]
 
+var aim_rect_offset := Vector2(24.0, 24.0)
+var lock_on_rect := Rect2()
+
 func _ready():
+	aim_rect_offset = aim_rects[0].size / 2.0
 	player.data.lock_on.changed.connect(queue_redraw)
 
 func _process(delta):
@@ -20,29 +23,27 @@ func _process(delta):
 	_update_lock_progression()
 
 func _draw():
-	var lock_data = player.data.lock_on
-	if not lock_data:
+	if not player.data.lock_on:
 		return
-	var center = get_viewport().get_visible_rect().size / 2.0
-	var half_size = lock_data.region.size / 2.0
-	lock_data.region.position = center - half_size
-	lock_data.region.position.y += LOCK_REGION_Y_OFFSET
-	draw_rect(lock_data.region, Color.GREEN, false, 4.0)
+	var region_size = player.data.lock_on.region_size
+	var view_center = get_viewport().get_visible_rect().size / 2.0
+	var pos: Vector2 = view_center - (region_size * 0.5)
+	pos.y += REGION_Y_OFFSET
+	lock_on_rect = Rect2(pos, region_size)
+	draw_rect(lock_on_rect, Color(Color.GREEN, 0.7), false, 4.0)
 
 func _update_velocimeter() -> void:
 	var vel = Vector2(player.velocity.x, player.velocity.z).length()
 	$Velocity.text = '%.0f Km/h' % [vel * 3.6]
 
 func _update_aim_rects() -> void:
-	aim_rects[0].position = camera.get_unprojected(tracker.position) - RECT_OFFSET
+	aim_rects[0].position = camera.get_unprojected(tracker.position) - aim_rect_offset
 	var list_size = camera.multi_target_list.size()
 	for i in range(1, aim_rects.size()):
-		if i > list_size:
-			aim_rects[i].visible = false
-			continue
-		var target_pos = camera.multi_target_list[i - 1].get_lock_position()
-		aim_rects[i].visible = true
-		aim_rects[i].position = camera.get_unprojected(target_pos) - RECT_OFFSET
+		aim_rects[i].visible = i <= list_size
+		if aim_rects[i].visible:
+			var pos_3d = camera.multi_target_list[i - 1].get_lock_position()
+			aim_rects[i].position = camera.get_unprojected(pos_3d) - aim_rect_offset
 
 func _update_lock_progression() -> void:
 	for i in range(lock_on_bars.get_child_count()):

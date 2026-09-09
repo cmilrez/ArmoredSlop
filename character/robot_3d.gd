@@ -1,6 +1,6 @@
 class_name Robot3D extends Character3D
 
-enum {GROUNDED, AIRBORNE, BOOST, DASH, LANDING, MELEE, SHOULDER_RECOIL, 
+enum {GROUNDED, AIRBORNE, BOOST, DASH, LANDING, MELEE, BACK_RECOIL, 
 	ARM_RECOIL, SUPERBOOST, DEATH}
 enum {IDLE, NORMAL, MULTI_LOCK, CHARGED}
 
@@ -44,7 +44,7 @@ func _debug_print_state():
 		DASH:            state_str = 'DASH'
 		LANDING:         state_str = 'LANDING'
 		MELEE:           state_str = 'MELEE'
-		SHOULDER_RECOIL: state_str = 'SHOULDER_RECOIL'
+		BACK_RECOIL: state_str = 'BACK_RECOIL'
 		ARM_RECOIL:      state_str = 'ARM_RECOIL'
 		SUPERBOOST:      state_str = 'SUPERBOOST'
 		DEATH:           state_str = 'DEATH'
@@ -83,12 +83,13 @@ func activate_unit(id: int, targets: Array[Character3D] = []) -> void:
 				state = MELEE
 			else:
 				if id > 1:
-					state = SHOULDER_RECOIL
+					state = BACK_RECOIL
 					get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
 					_toggle_arm_look_at(id == 0, id == 1)
 				else:
 					state = ARM_RECOIL
 					_toggle_arm_look_at(false, false)
+					#_toggle_arm_look_at(id == 0, id == 1)
 					anim_tree.set_arm_recoil(id == 0)
 			return
 		if unit is ProjectileWeapon3D:
@@ -97,8 +98,8 @@ func activate_unit(id: int, targets: Array[Character3D] = []) -> void:
 					targets.append(tracker.target)
 			else:
 				targets.clear()
-		unit.activate(targets, tracker.position)
-	elif state == SHOULDER_RECOIL:
+		unit.activate(tracker, targets)
+	elif state == BACK_RECOIL:
 		if id > 1: # use two shoulder units at the same time
 			if unit.recoil and unit.can_use:
 				get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
@@ -135,10 +136,10 @@ func _state_start() -> void:
 			timer.timeout.connect(anim_tree.start_melee_attack, CONNECT_ONE_SHOT)
 			tracker.lock_target = true
 			if weapons[1] is MeleeWeapon3D:
-				weapons[1].activate()
+				weapons[1].activate(tracker)
 		DASH:
 			timer.start(data.booster.dash_duration)
-		SHOULDER_RECOIL:
+		BACK_RECOIL:
 			timer.start(1.0) # timeout
 			tracker.lock_target = true
 		ARM_RECOIL:
@@ -170,8 +171,7 @@ func _state_process(delta: float) -> void:
 				if move_up:
 					state = AIRBORNE # TODO maybe state = JUMP ?
 					velocity.y = data.legs.jump_height
-					return
-				if boost and timer.is_stopped():
+				elif boost and timer.is_stopped():
 					if move_direction:
 						state = DASH
 			else:
@@ -193,8 +193,6 @@ func _state_process(delta: float) -> void:
 					state = BOOST
 				else:
 					state = GROUNDED
-					_boosting = false
-				return
 			if move_up:
 				accelerate_up(30.0, data.booster.upward_power)
 		BOOST:
@@ -230,7 +228,7 @@ func _state_process(delta: float) -> void:
 		DASH:
 			_update_direction = false
 			_enable_units = true
-			_add_gravity = true
+			_add_gravity = false
 			_boosting = true
 			speed = data.legs.speed + data.booster.dash_power
 			_toggle_look_at(true)
@@ -265,43 +263,46 @@ func _state_process(delta: float) -> void:
 			_enable_units = false
 			_add_gravity = false
 			_boosting = true
+			#_toggle_look_at(false)
+			%LookAtTorso.active = false
+			%LookAtLegBase.active = true
 			if timer.is_stopped():
 				speed = data.booster.power
 			else:
 				speed = data.legs.speed + data.booster.power
-			%LookAtLegBase.active = true
-			%LookAtTorso.active = false
-			if tracker.is_target_valid():
-				var target_pos = tracker.position
-				var distance = lock_distance_to(target_pos)
-				if distance < 16.0 and not timer.is_stopped():
-					timer.stop()
-					timer.timeout.emit()
-				move_direction = lock_direction_to(target_pos)
-				var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
-				rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
-			else:
-				move_direction = -global_basis.z
-				velocity.y = lerpf(0.0, velocity.y, exp(-delta))
-		SHOULDER_RECOIL:
+			var target_pos = tracker.position
+			var distance = lock_distance_to(target_pos)
+			if distance < 16.0 and not timer.is_stopped():
+				timer.stop()
+				timer.timeout.emit()
+			move_direction = lock_direction_to(target_pos)
+			var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
+			rot_weight = exp(-15.0 * delta)
+			rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
+		BACK_RECOIL: 
 			_update_direction = true
 			_enable_units = false
 			_add_gravity = true
 			_boosting = not is_on_floor()
-			speed = data.legs.speed
 			_toggle_look_at(true)
 			if move_up:
 				accelerate_up(30.0, data.booster.upward_power)
 			if tank_legs:
 				if is_on_floor():
+					speed = data.legs.speed
 					if move_direction:
 						var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
 						rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
 				else:
+					speed = data.legs.speed + (data.booster.power * 0.5)
 					var dir = tracker.position - position
 					var angle = Vector2(dir.z, dir.x).angle() + PI
 					rotation.y = lerp_angle(angle, rotation.y, rot_weight)
 			else:
+				if is_on_floor():
+					speed = data.legs.speed * 0.5
+				else:
+					speed = (data.legs.speed * 0.5) + data.booster.power
 				var dir = tracker.position - position
 				var angle = Vector2(dir.z, dir.x).angle() + PI
 				rotation.y = lerp_angle(angle, rotation.y, rot_weight)
@@ -315,8 +316,8 @@ func _state_process(delta: float) -> void:
 				_update_direction = true
 				_toggle_look_at(true)
 				if is_on_floor():
+					speed = data.legs.speed
 					if move_direction:
-						speed = data.legs.speed
 						var move_angle = Vector2(move_direction.z, move_direction.x).angle() + PI
 						rotation.y = lerp_angle(move_angle, rotation.y, rot_weight)
 				else:
@@ -328,7 +329,8 @@ func _state_process(delta: float) -> void:
 				_update_direction = false
 				_toggle_look_at(false)
 				speed = 0.0
-				velocity.y = lerpf(velocity.y, 0.0, rot_weight)
+				move_direction = Vector3.ZERO
+				velocity.y = lerpf(velocity.y, 0.0, exp(-100.0 * delta))
 				var dir = tracker.position - position
 				var angle = Vector2(dir.z, dir.x).angle() + PI
 				rotation.y = lerp_angle(angle, rotation.y, rot_weight)
@@ -383,12 +385,13 @@ func _activate_state_weapon(id := 1) -> void: # default to left arm unit
 	if wp is MeleeWeapon3D:
 		wp.attack()
 	elif wp:
-		var knockback = 8.0 if id > 1 else 5.0
-		velocity += global_basis.z * knockback
+		if not tank_legs:
+			var knockback = 8.0 if id > 1 else 5.0
+			velocity += global_basis.z * knockback
 		var tar: Array[Character3D] = []
 		if unit_lock_time[id] >= get_unit_lock_duration(id):
 			tar.append(tracker.target)
-		wp.activate(tar, tracker.position)
+		wp.activate(tracker, tar)
 
 func _on_animation_tree_state_finished(state_name: StringName) -> void:
 	match state_name:

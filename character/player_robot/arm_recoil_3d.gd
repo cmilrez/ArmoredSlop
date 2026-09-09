@@ -25,7 +25,7 @@ func activate() -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(self, 'influence', 0.0, DURATION).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, ^'influence', 0.0, DURATION).set_ease(Tween.EASE_IN)
 
 func _update_bone(property: StringName, bone_name: String) -> void:
 	var skel = get_skeleton()

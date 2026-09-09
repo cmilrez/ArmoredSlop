@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_j4cgr"]
 [ext_resource type="Resource" uid="uid://closvskqvpgns" path="res://parts/test/shotgun_param.tres" id="2_nn1c1"]
 [ext_resource type="ArrayMesh" uid="uid://g5o4kjki7jk8" path="res://assets/KenneyWeapons_BlasterO.res" id="3_68hnq"]
+[ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="4_dkopk"]
 
 [sub_resource type="Animation" id="Animation_nn1c1"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ThingsYellow:visible")
+tracks/0/path = NodePath("MuzzleFlash:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,10 +22,34 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ThingsYellow:scale")
+tracks/1/path = NodePath("MuzzleLight:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleLight:omni_range")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MuzzleFlash:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -37,9 +62,9 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ThingsYellow:visible")
+tracks/0/path = NodePath("MuzzleFlash:visible")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
@@ -49,14 +74,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ThingsYellow:scale")
+tracks/1/path = NodePath("MuzzleLight:visible")
 tracks/1/interp = 1
-tracks/1/loop_wrap = false
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.1, 0.16666667),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleLight:omni_range")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 20.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MuzzleFlash:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(7, 6, 7), Vector3(8, 8, 8), Vector3(4, 9, 4)]
+"values": [Vector3(1, 2, 1), Vector3(2, 3, 2), Vector3(3, 4, 3), Vector3(1, 2, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dkopk"]
@@ -64,18 +113,6 @@ _data = {
 &"RESET": SubResource("Animation_nn1c1"),
 &"Shoot": SubResource("Animation_68hnq")
 }
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqsre"]
-shading_mode = 0
-albedo_color = Color(1.8247963, 1.3217006, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_nn1c1"]
-material = SubResource("StandardMaterial3D_uqsre")
-radius = 0.2
-height = 0.5
-radial_segments = 4
-rings = 1
-is_hemisphere = true
 
 [node name="Shotgun" type="Node3D" unique_id=1369157447 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_j4cgr")
@@ -91,6 +128,7 @@ one_shot = true
 
 [node name="BlasterO" type="MeshInstance3D" parent="." unique_id=1301153009]
 layers = 4
+lod_bias = 0.3
 mesh = ExtResource("3_68hnq")
 
 [node name="Spawners" type="Node3D" parent="." unique_id=1670736646]
@@ -114,24 +152,17 @@ transform = Transform3D(0.9998477, -0.00030458646, -0.017449748, 0, 0.9998477, -
 [node name="Marker3D6" type="Marker3D" parent="Spawners" unique_id=581956673]
 transform = Transform3D(0.9998477, 0.00045685074, 0.017446425, 0, 0.99965733, -0.02617695, -0.017452406, 0.026172964, 0.9995051, 0.16, -0.054, 0)
 
-[node name="ThingsYellow" type="Node3D" parent="." unique_id=409277456]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24503529, 1.8918238)
+[node name="MuzzleFlash" parent="." unique_id=141418337 instance=ExtResource("4_dkopk")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.226, 1.85)
 visible = false
 
-[node name="ThingYellow1" type="MeshInstance3D" parent="ThingsYellow" unique_id=1470377329]
-transform = Transform3D(0.9533331, 0, -0.30192065, 0, 1, 0, 0.30192065, 0, 0.9533331, 0.009171724, 1.603643e-09, -0.10588232)
+[node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=530930666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226, 3.85)
+visible = false
 layers = 16
-cast_shadow = 0
-mesh = SubResource("SphereMesh_nn1c1")
-
-[node name="ThingYellow2" type="MeshInstance3D" parent="ThingsYellow" unique_id=2021648600]
-transform = Transform3D(0.05348628, 0, 0.9985686, 0, 1, 0, -0.9985686, 0, 0.05348628, 0, 0, 0)
-layers = 16
-cast_shadow = 0
-mesh = SubResource("SphereMesh_nn1c1")
-
-[node name="ThingYellow3" type="MeshInstance3D" parent="ThingsYellow" unique_id=1004942382]
-transform = Transform3D(0.8742217, 0, 0.48552695, 0, 1, 0, -0.48552695, 0, 0.8742217, 0, -1.1626416e-08, 0.09432033)
-layers = 16
-cast_shadow = 0
-mesh = SubResource("SphereMesh_nn1c1")
+light_color = Color(1, 0.7372549, 0, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 30.0
+light_specular = 1.0
+distance_fade_enabled = true
+omni_range = 10.0

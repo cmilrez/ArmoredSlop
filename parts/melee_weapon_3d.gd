@@ -24,7 +24,7 @@ func _ready():
 	toggle_hurtbox(false)
 	_state_ready()
 
-func activate(targets: Array[Character3D] = [], aim_position := Vector3.ZERO) -> void:
+func activate(tracker: Tracker3D, targets: Array[Character3D] = []) -> void:
 	if can_use:
 		_state_prepare()
 

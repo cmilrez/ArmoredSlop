@@ -5,7 +5,7 @@
 [sub_resource type="Gradient" id="Gradient_oflfl"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.8, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0)
+colors = PackedColorArray(0, 0, 0, 0, 0, 1, 0, 0.70000005, 0, 0, 0, 0)
 metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vq2wp"]
@@ -18,7 +18,7 @@ metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_yt6op"]
 offsets = PackedFloat32Array(0.5, 0.55, 0.6, 0.65)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.70000005, 0, 0, 0, 0.70000005, 0, 0, 0, 0)
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
@@ -33,7 +33,7 @@ metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_3iytn"]
 offsets = PackedFloat32Array(0.5, 0.55, 0.6, 0.65)
-colors = PackedColorArray(0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0)
+colors = PackedColorArray(0, 1, 0, 0, 0, 1, 0, 0.70000005, 0, 1, 0, 0.70000005, 0, 1, 0, 0)
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
@@ -57,6 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_oflfl")
 
 [node name="AimRect1" type="TextureRect" parent="." unique_id=805935636]

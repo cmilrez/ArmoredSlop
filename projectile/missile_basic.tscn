@@ -35,6 +35,7 @@ metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
 
 [node name="MissileSmall" type="MeshInstance3D" parent="." unique_id=44427633]
 layers = 8
+lod_bias = 0.3
 mesh = ExtResource("4_rsc3g")
 
 [node name="RocketFire" parent="." unique_id=1683127872 instance=ExtResource("5_j77b0")]
