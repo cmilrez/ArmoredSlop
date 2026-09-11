@@ -1,18 +1,8 @@
 [gd_scene format=3 uid="uid://dp8cyfxnawvug"]
 
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_c2qr6"]
-[ext_resource type="ArrayMesh" uid="uid://83mdn4dm8p3v" path="res://assets/TestWeapons_LaserRifle.res" id="1_t67y8"]
+[ext_resource type="ArrayMesh" uid="uid://cotairvpxnf7" path="res://assets/TestWeapons_LaserRifle.res" id="1_t67y8"]
 [ext_resource type="Resource" uid="uid://dxa5jcpi7toit" path="res://parts/test/laser_rifle_param.tres" id="2_rxscm"]
-
-[sub_resource type="Skin" id="Skin_5b7k3"]
-resource_name = "Skin6"
-bind_count = 2
-bind/0/name = &"Body"
-bind/0/bone = -1
-bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-bind/1/name = &"Speen"
-bind/1/bone = -1
-bind/1/pose = Transform3D(1, 7.8966905e-10, -7.8966894e-10, -7.896689e-10, 1, 2.384186e-07, 7.8966905e-10, -2.384186e-07, 1, 7.7100566e-07, -0.2799513, -2.4181817)
 
 [node name="LaserRifle" type="Node3D" unique_id=2077396001 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_c2qr6")
@@ -42,7 +32,6 @@ bones/1/scale = Vector3(1, 1, 1)
 
 [node name="LaserRifle" type="MeshInstance3D" parent="Skeleton3D" unique_id=405038261]
 mesh = ExtResource("1_t67y8")
-skin = SubResource("Skin_5b7k3")
 skeleton = NodePath("..")
 
 [node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=1325563635]

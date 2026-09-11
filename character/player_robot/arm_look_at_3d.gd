@@ -35,6 +35,10 @@ func toggle(value: bool) -> void:
 	else:
 		tween.tween_property(self, PROPERTY, 0.0, DURATION).set_delay(DURATION)
 
+func initialize() -> void:
+	_update_bone(&'shoulder_bone', shoulder_name)
+	_update_bone(&'arm_bone', arm_name)
+
 func _update_bone(property: StringName, bone_name: String) -> void:
 	var skel = get_skeleton()
 	if skel:
@@ -61,8 +65,7 @@ func _set(property, value):
 	return false
 
 func _ready():
-	shoulder_name = shoulder_name
-	arm_name = arm_name
+	initialize()
 
 func _process_modification_with_delta(delta):
 	var skeleton = get_skeleton()

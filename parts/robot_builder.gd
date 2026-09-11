@@ -121,21 +121,15 @@ func _build_body() -> void:
 	%HandUnitL.bone_idx = %Skeleton3D.find_bone('HandUnit.L')
 	%BackUnitR.bone_idx = %Skeleton3D.find_bone('BackUnit.R')
 	%BackUnitL.bone_idx = %Skeleton3D.find_bone('BackUnit.L')
+	%ShinR.bone_idx = %Skeleton3D.find_bone('Shin.R')
+	%ShinL.bone_idx = %Skeleton3D.find_bone('Shin.L')
 	%Torso.bone_idx = %Skeleton3D.find_bone('Torso')
 	%LookAtLegBase.bone = %Skeleton3D.find_bone('LegBase')
 	%LookAtTorso.bone = %Torso.bone_idx
-	#%LookAtArmR.shoulder_bone = %Skeleton3D.find_bone('Shoulder.R')
-	#%LookAtArmR.arm_bone = %Skeleton3D.find_bone('Forearm.R')
-	#%LookAtArmL.shoulder_bone = %Skeleton3D.find_bone('Shoulder.L')
-	#%LookAtArmL.arm_bone = %Skeleton3D.find_bone('Forearm.L')
-	%ArmLookAtR.shoulder_name = 'Shoulder.R'
-	%ArmLookAtR.arm_name = 'Forearm.R'
-	%ArmLookAtL.shoulder_name = 'Shoulder.L'
-	%ArmLookAtL.arm_name = 'Forearm.L'
-	%ArmRecoilR.shoulder_name = 'Shoulder.R'
-	%ArmRecoilR.arm_name = 'Forearm.R'
-	%ArmRecoilL.shoulder_name = 'Shoulder.L'
-	%ArmRecoilL.arm_name = 'Forearm.L'
+	%ArmLookAtR.initialize()
+	%ArmLookAtL.initialize()
+	%ArmRecoilR.initialize()
+	%ArmRecoilL.initialize()
 	if make_owner:
 		var parent = get_parent()
 		for node in body_nodes:

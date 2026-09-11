@@ -1,0 +1,21 @@
+[gd_resource type="BoneMap" format=3 uid="uid://dm5nlwchspnjv"]
+
+[ext_resource type="SkeletonProfile" uid="uid://d2mbi6rktahlx" path="res://misc/biped_robot_skeleton_profile.tres" id="1_gxedp"]
+
+[resource]
+profile = ExtResource("1_gxedp")
+bonemap = null
+bone_map/Root = &"Root"
+bone_map/LegBase = &"LegBase"
+bone_map/Thigh.L = &"Thigh.L"
+bone_map/Shin.L = &"Shin.L"
+bone_map/Feet.L = &"Feet.L"
+bone_map/Thigh.R = &"Thigh.R"
+bone_map/Shin.R = &"Shin.R"
+bone_map/Feet.R = &"Feet.R"
+bone_map/Torso = &"Torso"
+bone_map/Head = &"Head"
+bone_map/Shoulder.L = &"Shoulder.L"
+bone_map/Forearm.L = &"Forearm.L"
+bone_map/Shoulder.R = &"Shoulder.R"
+bone_map/Forearm.R = &"Forearm.R"

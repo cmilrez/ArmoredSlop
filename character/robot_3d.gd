@@ -138,6 +138,8 @@ func _state_start() -> void:
 			if weapons[1] is MeleeWeapon3D:
 				weapons[1].activate(tracker)
 		DASH:
+			if not move_direction:
+				move_direction = -basis.z
 			timer.start(data.booster.dash_duration)
 		BACK_RECOIL:
 			timer.start(1.0) # timeout
@@ -233,8 +235,6 @@ func _state_process(delta: float) -> void:
 			speed = data.legs.speed + data.booster.dash_power
 			_toggle_look_at(true)
 			_toggle_arm_look_at()
-			if not move_direction:
-				move_direction = -basis.z
 			if timer.is_stopped():
 				if is_on_floor():
 					if move_up:

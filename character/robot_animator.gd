@@ -66,7 +66,7 @@ func _on_builder_body_built(nodes):
 	var request = ''
 	match leg_type:
 		LegsData.Type.BIPED:   request = 'Biped'
-		LegsData.Type.REVERSE: request = 'Reverse'
+		LegsData.Type.REVERSE: request = 'Biped'#'Reverse'
 		LegsData.Type.QUAD:    request = 'Quad'
 		LegsData.Type.TANK:    request = 'Tank'
 	set('parameters/Boost/LegType/transition_request', request)
