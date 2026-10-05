@@ -329,6 +329,29 @@ bind/1/name = &"Bolt"
 bind/1/bone = -1
 bind/1/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35599983, -0.6399999, -1.4751319)
 
+[sub_resource type="Gradient" id="Gradient_8tt4q"]
+offsets = PackedFloat32Array(0.2, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xshul"]
+gradient = SubResource("Gradient_8tt4q")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = SubResource("GradientTexture2D_xshul")
+uv1_offset = Vector3(0, 0.01, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+radius = 1.0
+radial_segments = 8
+rings = 4
+is_hemisphere = true
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_85e7n"]
 direction = Vector3(-1, 0, 0)
 spread = 15.0
@@ -369,10 +392,10 @@ bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Bolt"
 bones/1/parent = 0
-bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35599983, 0.6399999, 1.4751319)
+bones/1/rest = Transform3D(1, -2.9802322e-08, 2.9802322e-08, 2.9802322e-08, 1, 8.881784e-16, -2.9802322e-08, 0, 1, -0.37437642, 0.9137181, 1.1340961)
 bones/1/enabled = true
 bones/1/position = Vector3(-0.35599983, 0.6399999, 1.4751319)
-bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(-2.220446e-16, 1.4901161e-08, 1.4901161e-08, 1)
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="BlasterD" type="MeshInstance3D" parent="Skeleton3D" unique_id=1644317895]
@@ -393,6 +416,7 @@ freeze = true
 [node name="MuzzleFlash" parent="." unique_id=141418337 instance=ExtResource("5_uqsre")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.58, 3.7)
 visible = false
+mesh = SubResource("SphereMesh_vq2wp")
 
 [node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=44290861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58, 6)
@@ -407,7 +431,6 @@ omni_range = 10.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1348647706]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.19703484, 0.63332665, 1.6888716)
-visible = false
 layers = 32
 gi_mode = 0
 emitting = false

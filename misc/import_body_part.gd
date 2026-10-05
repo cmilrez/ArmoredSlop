@@ -30,16 +30,12 @@ func iterate(node: Node) -> void:
 		if skeleton is Skeleton3D:
 			for bone in skeleton.get_parentless_bones():
 				iterate_skeleton(skeleton, bone, part_data)
-		var error = part_scene.pack(new_part)
-		if error:
-			push_warning('OOPS: ',  error_string(error), ' ', new_part.name)
-		error = ResourceSaver.save(part_scene, scene_path)
-		if error:
-			push_warning('OOPS: ',  error_string(error), ' ', scene_path)
+		
+		part_scene.pack(new_part)
+		ResourceSaver.save(part_scene, scene_path)
+		
 		part_data.scene = part_scene
-		error = ResourceSaver.save(part_data, data_path)
-		if error:
-			push_warning('OOPS: ',  error_string(error), ' ', data_path)
+		ResourceSaver.save(part_data, data_path)
 	for child in node.get_children():
 		iterate(child)
 

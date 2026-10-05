@@ -127,7 +127,6 @@ func _state_ready() -> void:
 
 func _state_shoot() -> void:
 	can_use = false
-	#shot_fired.emit()
 	if anim_player.has_animation(SHOOT_ANIM):
 		anim_player.play(SHOOT_ANIM)
 

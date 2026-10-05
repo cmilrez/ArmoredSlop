@@ -49,10 +49,7 @@ func _validate_property(property: Dictionary):
 func _set(property, value):
 	if property == &'influence':
 		influence = value
-		if is_zero_approx(influence):
-			active = false
-		else:
-			active = true
+		active = not is_zero_approx(influence)
 		return true
 	return false
 

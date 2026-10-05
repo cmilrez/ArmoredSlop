@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_gxlnn"]
 [ext_resource type="ArrayMesh" uid="uid://6pxcoq71u613" path="res://assets/TestWeapons_MissileLauncher3.res" id="2_nw12k"]
 [ext_resource type="Resource" uid="uid://ploodofqd5nq" path="res://parts/test/missile_launcher_3_param.tres" id="2_qu0yv"]
+[ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="4_pifgk"]
 
 [sub_resource type="Animation" id="Animation_i8k1u"]
 resource_name = "RESET"
@@ -34,21 +35,93 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Skeleton3D:Barrel.001")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -0.86072296, 0.77705836, -0.95238495)
+tracks/3/keys = PackedFloat32Array(0, 1, -0.6885785, 0.62164676, -0.761908)
 tracks/4/type = "position_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Skeleton3D:Barrel.002")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.86072296, -0.123842, -0.95238495)
+tracks/4/keys = PackedFloat32Array(0, 1, -0.6885785, -0.09907353, -0.761908)
 tracks/5/type = "position_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Skeleton3D:Barrel.003")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, -0.86072296, -1.0247421, -0.95238495)
+tracks/5/keys = PackedFloat32Array(0, 1, -0.6885785, -0.8197937, -0.761908)
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlash:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton3D/Body/MuzzleFlash3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Skeleton3D/Body/MuzzleFlash:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4, 1, 0.4)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Skeleton3D/Body/MuzzleFlash2:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4, 1, 0.4)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Skeleton3D/Body/MuzzleFlash3:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.4, 1, 0.4)]
+}
 
 [sub_resource type="Animation" id="Animation_qu0yv"]
 resource_name = "Ready"
@@ -80,21 +153,21 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Skeleton3D:Barrel.001")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0.5, 1, -0.861, 0.777, -1.952, 0.7, 1, -0.86072296, 0.77705836, -0.95238495)
+tracks/3/keys = PackedFloat32Array(0.5, 1, -0.689, 0.622, -1.562, 0.7, 1, -0.6885785, 0.62164676, -0.761908)
 tracks/4/type = "position_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Skeleton3D:Barrel.002")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0.36666667, 1, -0.861, -0.124, -1.952, 0.5666667, 1, -0.86072296, -0.123842, -0.95238495)
+tracks/4/keys = PackedFloat32Array(0.36666667, 1, -0.689, -0.099, -1.562, 0.56666666, 1, -0.6885785, -0.09907353, -0.761908)
 tracks/5/type = "position_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Skeleton3D:Barrel.003")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0.23333333, 1, -0.861, -1.025, -1.952, 0.4333333, 1, -0.86072296, -1.0247421, -0.95238495)
+tracks/5/keys = PackedFloat32Array(0.23333335, 1, -0.689, -0.82, -1.562, 0.43333334, 1, -0.6885785, -0.8197937, -0.761908)
 
 [sub_resource type="Animation" id="Animation_pifgk"]
 resource_name = "Reload"
@@ -129,21 +202,93 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Skeleton3D:Barrel.001")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.86072296, 0.77705836, -0.95238495, 0.1, 1, -0.861, 0.777, -1.952)
+tracks/0/keys = PackedFloat32Array(0.4, 1, -0.6885785, 0.62164676, -0.761908, 0.5, 1, -0.689, 0.622, -1.562)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Skeleton3D:Barrel.002")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0.2, 1, -0.86072296, -0.123842, -0.95238495, 0.3, 1, -0.861, -0.124, -1.952)
+tracks/1/keys = PackedFloat32Array(0.2, 1, -0.6885785, -0.09907353, -0.761908, 0.3, 1, -0.689, -0.099, -1.562)
 tracks/2/type = "position_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Skeleton3D:Barrel.003")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0.4, 1, -0.86072296, -1.0247421, -0.95238495, 0.5, 1, -0.861, -1.025, -1.952)
+tracks/2/keys = PackedFloat32Array(0, 1, -0.6885785, -0.8197937, -0.761908, 0.099999994, 1, -0.689, -0.82, -1.562)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlash:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlash3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlash:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4, 1, 0.4), Vector3(1, 2, 1), Vector3(0.5, 1, 0.5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton3D/Body/MuzzleFlash2:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.20000002, 0.26666668, 0.33333337),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4, 1, 0.4), Vector3(1, 2, 1), Vector3(0.5, 1, 0.5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton3D/Body/MuzzleFlash3:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.40000004, 0.4666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4, 1, 0.4), Vector3(1, 2, 1), Vector3(0.5, 1, 0.5)]
+}
 
 [sub_resource type="Animation" id="Animation_wpt6v"]
 resource_name = "Start"
@@ -175,21 +320,21 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Skeleton3D:Barrel.001")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -0.86072296, 0.77705836, -0.95238495)
+tracks/3/keys = PackedFloat32Array(0, 1, -0.6885785, 0.62164676, -0.761908)
 tracks/4/type = "position_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Skeleton3D:Barrel.002")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.86072296, -0.123842, -0.95238495)
+tracks/4/keys = PackedFloat32Array(0, 1, -0.6885785, -0.09907353, -0.761908)
 tracks/5/type = "position_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Skeleton3D:Barrel.003")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, -0.86072296, -1.0247421, -0.95238495)
+tracks/5/keys = PackedFloat32Array(0, 1, -0.6885785, -0.8197937, -0.761908)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i8k1u"]
 _data = {
@@ -218,41 +363,41 @@ bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
-bones/0/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "SmallArm"
 bones/1/parent = 0
-bones/1/rest = Transform3D(1, 0, -8.742278e-08, 0, -1, 0, -8.742278e-08, 0, -1, -0.1949999, 1.9710981, 0)
+bones/1/rest = Transform3D(1, 0, -8.742278e-08, 0, -1, 0, -8.742278e-08, 0, -1, -0.15599993, 1.5768784, 0)
 bones/1/enabled = true
-bones/1/position = Vector3(-0.1949999, 1.9710981, 0)
+bones/1/position = Vector3(-0.15599993, 1.5768784, 0)
 bones/1/rotation = Quaternion(1, 0, -4.371139e-08, 0)
-bones/1/scale = Vector3(1, 1.0000006, 1.0000006)
+bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Body"
 bones/2/parent = 1
-bones/2/rest = Transform3D(1, 0, -1.509958e-07, 0, -1, 0, -1.509958e-07, 0, -1, -0.0975, 1.3000002, -6.896232e-08)
+bones/2/rest = Transform3D(1, 0, -1.509958e-07, 0, -1, 0, -1.509958e-07, 0, -1, -0.077999994, 1.0400001, -5.516986e-08)
 bones/2/enabled = true
-bones/2/position = Vector3(-0.0975, 1.3000002, -6.896232e-08)
+bones/2/position = Vector3(-0.077999994, 1.0400001, -5.516986e-08)
 bones/2/rotation = Quaternion(1, 0, -7.54979e-08, 0)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Barrel.001"
 bones/3/parent = 2
-bones/3/rest = Transform3D(1, -5.960464e-08, 0, 0, 0, 1, -5.960464e-08, -1, 0, -0.86072296, 0.77705836, -0.95238495)
+bones/3/rest = Transform3D(1, -5.9604634e-08, 0, 0, 0, 1, -5.9604634e-08, -1, 0, -0.6885785, 0.62164676, -0.761908)
 bones/3/enabled = true
-bones/3/position = Vector3(-0.86072296, 0.77705836, -0.95238495)
-bones/3/rotation = Quaternion(-0.70710677, 2.1073424e-08, 2.1073424e-08, 0.70710677)
-bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/3/position = Vector3(-0.6885785, 0.62164676, -0.761908)
+bones/3/rotation = Quaternion(-0.70710677, 2.107342e-08, 2.107342e-08, 0.70710677)
+bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Barrel.002"
 bones/4/parent = 2
-bones/4/rest = Transform3D(1, -5.960464e-08, 0, 0, 0, 1, -5.960464e-08, -1, 0, -0.86072296, -0.123842, -0.95238495)
+bones/4/rest = Transform3D(1, -5.9604634e-08, 0, 0, 0, 1, -5.9604634e-08, -1, 0, -0.6885785, -0.09907353, -0.761908)
 bones/4/enabled = true
-bones/4/position = Vector3(-0.86072296, -0.123842, -0.95238495)
-bones/4/rotation = Quaternion(-0.70710677, 2.1073424e-08, 2.1073424e-08, 0.70710677)
-bones/4/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/4/position = Vector3(-0.6885785, -0.09907353, -0.761908)
+bones/4/rotation = Quaternion(-0.70710677, 2.107342e-08, 2.107342e-08, 0.70710677)
+bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Barrel.003"
 bones/5/parent = 2
-bones/5/rest = Transform3D(1, -5.960464e-08, 0, 0, 0, 1, -5.960464e-08, -1, 0, -0.86072296, -1.0247421, -0.95238495)
+bones/5/rest = Transform3D(1, -5.9604634e-08, 0, 0, 0, 1, -5.9604634e-08, -1, 0, -0.6885785, -0.8197937, -0.761908)
 bones/5/enabled = true
-bones/5/position = Vector3(-0.86072296, -1.0247421, -0.95238495)
-bones/5/rotation = Quaternion(-0.70710677, 2.1073422e-08, 2.1073422e-08, 0.70710677)
+bones/5/position = Vector3(-0.6885785, -0.8197937, -0.761908)
+bones/5/rotation = Quaternion(-0.70710677, 2.107342e-08, 2.107342e-08, 0.70710677)
 bones/5/scale = Vector3(1, 1, 1)
 
 [node name="MissileLauncher3" type="MeshInstance3D" parent="Skeleton3D" unique_id=1529483129]
@@ -261,18 +406,30 @@ mesh = ExtResource("2_nw12k")
 skeleton = NodePath("..")
 
 [node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=995434317]
-transform = Transform3D(1, 0, -6.3572976e-08, 0, 1.0000005, 0, 6.3573104e-08, 0, 1.0000005, -0.2924999, 0.67109716, 7.748608e-08)
+transform = Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.23399992, 0.53687835, 6.1988835e-08)
 bone_name = "Body"
 bone_idx = 2
 
 [node name="Marker3D" type="Marker3D" parent="Skeleton3D/Body" unique_id=167372377]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8607222, 0.7770587, 0.8226153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6886, -0.8197783, 0.6961)
 gizmo_extents = 1.0
 
 [node name="Marker3D2" type="Marker3D" parent="Skeleton3D/Body" unique_id=950665820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8607222, -0.12384164, 0.8226153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6886, -0.09907836, 0.6961)
 gizmo_extents = 1.0
 
 [node name="Marker3D3" type="Marker3D" parent="Skeleton3D/Body" unique_id=817771991]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8607222, -1.0247421, 0.82261527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6886, 0.6216216, 0.6961)
 gizmo_extents = 1.0
+
+[node name="MuzzleFlash" parent="Skeleton3D/Body" unique_id=141418337 instance=ExtResource("4_pifgk")]
+transform = Transform3D(0.4, 0, 0, 0, -4.371139e-08, -0.4, 0, 1, -1.7484556e-08, -0.68860006, -0.81977844, 0.89610004)
+visible = false
+
+[node name="MuzzleFlash2" parent="Skeleton3D/Body" unique_id=334727628 instance=ExtResource("4_pifgk")]
+transform = Transform3D(0.4, 0, 0, 0, -4.371139e-08, -0.4, 0, 1, -1.7484556e-08, -0.68860006, -0.09907836, 0.89610004)
+visible = false
+
+[node name="MuzzleFlash3" parent="Skeleton3D/Body" unique_id=1326251128 instance=ExtResource("4_pifgk")]
+transform = Transform3D(0.4, 0, 0, 0, -4.371139e-08, -0.4, 0, 1, -1.7484556e-08, -0.68860006, 0.6216216, 0.89610004)
+visible = false

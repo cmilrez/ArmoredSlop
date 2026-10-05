@@ -1,4 +1,4 @@
-extends TextureRect
+extends ColorRect
 
 const MAX_COUNT = 5
 var labels: Array[Label] = []

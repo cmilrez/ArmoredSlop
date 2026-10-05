@@ -5,6 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d3144n31gpe46" path="res://assets/TestWeapons_SMG.res" id="4_1tc31"]
 [ext_resource type="PackedScene" uid="uid://bbaakg2n7jy2h" path="res://parts/test/test_ammo_mag_2.tscn" id="4_8tt4q"]
 [ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="5_1tc31"]
+[ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="5_tg8lo"]
 
 [sub_resource type="Animation" id="Animation_8tt4q"]
 length = 0.001
@@ -257,6 +258,29 @@ _data = {
 &"Shoot": SubResource("Animation_1tc31")
 }
 
+[sub_resource type="Gradient" id="Gradient_8tt4q"]
+offsets = PackedFloat32Array(0.2, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xshul"]
+gradient = SubResource("Gradient_8tt4q")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = SubResource("GradientTexture2D_xshul")
+uv1_offset = Vector3(0, 0.01, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+radius = 1.0
+radial_segments = 8
+rings = 4
+is_hemisphere = true
+
 [node name="SMG" type="Node3D" unique_id=301609697 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_8tt4q")
 spawners = NodePath("Skeleton3D/Body")
@@ -302,13 +326,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 0.71450627, 2.
 [node name="Marker3D3" type="Marker3D" parent="Skeleton3D/Body" unique_id=1984577220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 0.71450627, 2.9182513)
 
-[node name="AmmoMagBody" parent="." unique_id=2004031557 instance=ExtResource("4_8tt4q")]
+[node name="AmmoMagBody" type="RigidBody3D" parent="." unique_id=2004031557 instance=ExtResource("4_8tt4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4186256, 1.4236169)
+collision_layer = 0
+collision_mask = 3
+input_ray_pickable = false
+mass = 10.0
+physics_material_override = ExtResource("5_tg8lo")
 freeze = true
 
-[node name="MuzzleFlash" parent="." unique_id=1435270467 instance=ExtResource("5_1tc31")]
+[node name="MuzzleFlash" type="MeshInstance3D" parent="." unique_id=1435270467 instance=ExtResource("5_1tc31")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -9.536743e-07, 0.71450627, 2.9182513)
 visible = false
+layers = 16
+cast_shadow = 0
+mesh = SubResource("SphereMesh_vq2wp")
 
 [node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=876710684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715, 5)

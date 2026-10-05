@@ -12,7 +12,7 @@ const START_COMBO = &'parameters/Melee/conditions/start_combo'
 	set(value):
 		if not melee_hurtbox == value:
 			toggled_melee_hurtbox.emit(value)
-		melee_hurtbox = value
+			melee_hurtbox = value
 var playback: AnimationNodeStateMachinePlayback
 var blend := Vector2.ZERO
 

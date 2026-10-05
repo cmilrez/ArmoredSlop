@@ -10,8 +10,8 @@ extends SubViewport
 @export_dir var parts_path := 'res://parts/test/':
 	set(value):
 		parts_path = validate_path(value)
-@export_tool_button('Test Camera', 'Camera') var button2 = test
-@export var test_node: Node = null
+@export_tool_button('Test Camera', 'Camera3D') var button2 = test_camera
+@export var test_node: Node3D = null
 @export_tool_button('Generate One', 'BuildCSharp') var button3 = create_one_miniature
 @export var one: PartData = null
 
@@ -20,34 +20,35 @@ func validate_path(value: String) -> String:
 		value += '/'
 	return value
 
-func test() -> void:
-	if test_node:
+func test_camera() -> void:
+	if test_node and camera:
 		center_object_to_camera(test_node)
+
+func save_preview(path: String) -> PortableCompressedTexture2D:
+	var pctex = PortableCompressedTexture2D.new()
+	pctex.create_from_image(get_texture().get_image(), PortableCompressedTexture2D.COMPRESSION_MODE_S3TC)
+	var error = ResourceSaver.save(pctex, path)
+	if error:
+		return null
+	return pctex
 
 func create_one_miniature() -> void:
 	if not (Engine.is_editor_hint() and camera):
 		return
 	if not one:
 		return
-	var part = one.scene.instantiate()
 	
+	var part = one.scene.instantiate()
 	add_child(part)
 	center_object_to_camera(part)
 	
 	await RenderingServer.frame_post_draw
 	part.free()
 	
-	var path = one.resource_path
-	var preview_path = save_path + path.get_file().get_slice('.', 0).replace('data', 'preview.png')
-	var error = get_texture().get_image().save_png(preview_path)
-	if error:
-		push_warning('OOPS: ', error_string(error), ' ', preview_path)
-		return
-	
-	one.preview = ResourceLoader.load(preview_path)
-	error = ResourceSaver.save(one, path)
-	if error:
-		push_warning('OOPS: ', error_string(error), ' ', path)
+	var one_path = one.resource_path
+	var preview_path = save_path + one_path.get_file().get_slice('.', 0).replace('data', 'preview.res')
+	one.preview = save_preview(preview_path)
+	ResourceSaver.save(one, one_path)
 
 func create_miniatures() -> void:
 	if not (Engine.is_editor_hint() and camera):
@@ -57,26 +58,19 @@ func create_miniatures() -> void:
 			continue
 		var data_path = parts_path + file
 		var part_data: PartData = ResourceLoader.load(data_path)
-		var part = part_data.scene.instantiate()
 		
+		var part = part_data.scene.instantiate()
 		add_child(part)
 		center_object_to_camera(part)
 		
 		await RenderingServer.frame_post_draw
 		part.free()
 		
-		var preview_path = save_path + file.get_slice('.', 0).replace('data', 'preview.png')
-		var error = get_texture().get_image().save_png(preview_path)
-		if error:
-			push_warning('OOPS: ', error_string(error), ' ', preview_path)
-			continue
-		
-		part_data.preview = ResourceLoader.load(preview_path)
-		error = ResourceSaver.save(part_data, data_path)
-		if error:
-			push_warning('OOPS: ', error_string(error), ' ', data_path)
+		var preview_path = save_path + file.get_slice('.', 0).replace('data', 'preview.res')
+		part_data.preview = save_preview(preview_path)
+		ResourceSaver.save(part_data, data_path)
 
-func center_object_to_camera(node: Node) -> void:
+func center_object_to_camera(node: Node3D) -> void:
 	var aabb = find_aabb(node)
 	var center = aabb.get_center()
 	aabb.position -= center

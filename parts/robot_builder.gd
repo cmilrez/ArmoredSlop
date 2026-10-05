@@ -11,8 +11,8 @@ signal weapons_built(nodes: Array[Weapon3D])
 @export var weapon_nodes: Array[Weapon3D] = [null, null, null, null]
 @export var body_nodes: Array[BodyPart] = []
 @export var booster_nodes: Array[Booster] = []
-var hand_unit_r_rest := Transform3D(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0), Vector3(-0.0, 0.0, 1.0), Vector3(0.167372, 0.0, 0.542358))
-var hand_unit_l_rest := Transform3D(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0), Vector3(-0.0, 0.0, 1.0), Vector3(-0.167372, 0.0, 0.542358))
+var hand_unit_r_rest := Transform3D(Basis.IDENTITY, Vector3(0.167372, 0.0, 0.542358))
+var hand_unit_l_rest := Transform3D(Basis.IDENTITY, Vector3(-0.167372, 0.0, 0.542358))
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -114,6 +114,8 @@ func _build_body() -> void:
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('HandUnit.R'), %Skeleton3D.find_bone('Hand.R'))
 	%Skeleton3D.set_bone_parent(%Skeleton3D.find_bone('HandUnit.L'), %Skeleton3D.find_bone('Hand.L'))
 	%Skeleton3D.reset_bone_poses()
+	%RetargetModifier3D.use_global_pose = true
+	%RetargetModifier3D.use_global_pose = false
 	%Hands.skeleton = %Hands.get_path_to(%Skeleton3D)
 	%ArmUnitR.bone_idx = %Skeleton3D.find_bone('ArmUnit.R')
 	%ArmUnitL.bone_idx = %Skeleton3D.find_bone('ArmUnit.L')

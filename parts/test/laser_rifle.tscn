@@ -3,18 +3,173 @@
 [ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_c2qr6"]
 [ext_resource type="ArrayMesh" uid="uid://cotairvpxnf7" path="res://assets/TestWeapons_LaserRifle.res" id="1_t67y8"]
 [ext_resource type="Resource" uid="uid://dxa5jcpi7toit" path="res://parts/test/laser_rifle_param.tres" id="2_rxscm"]
+[ext_resource type="PackedScene" uid="uid://d35iikqq86ibh" path="res://effect/energy_sparks.tscn" id="4_rxscm"]
 
-[node name="LaserRifle" type="Node3D" unique_id=2077396001 node_paths=PackedStringArray("spawners")]
+[sub_resource type="Animation" id="Animation_k3fft"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Speen")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:ClawBottomL")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:ClawBottomR")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:ClawTopL")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:ClawTopR")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnergySparks:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_87rtx"]
+resource_name = "Ready"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Speen")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.3, 1, 0.8660254, 0, 0, 0.49999997, 0.6, 1, -0.8660253, 0, 0, 0.50000006, 0.9, 1, 5.960463e-08, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_umm2t"]
+resource_name = "Shoot"
+length = 0.7
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:ClawBottomL")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.040309627, -0.053985544, -0.0021810986, 0.9977254, 0.30000004, 1, 0.040309627, -0.053985544, -0.0021810986, 0.9977254, 0.7, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:ClawBottomR")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13333334, 1, 0.03924055, 0.063391306, -0.005227268, 0.9972033, 0.33333334, 1, 0.03924055, 0.063391306, -0.005227268, 0.9972033, 0.7, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:ClawTopL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, -0.031167232, -0.061781194, -0.001930179, 0.9976011, 0.30000004, 1, -0.031167232, -0.061781194, -0.001930179, 0.9976011, 0.7, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:ClawTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13333334, 1, -0.043941222, 0.05510482, -0.003129206, 0.9975083, 0.33333337, 1, -0.043941222, 0.05510482, -0.003129206, 0.9975083, 0.7, 1, 0, 0, 0, 1)
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnergySparks:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_rxscm"]
+resource_name = "Start"
+length = 0.8
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:ClawBottomL")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 0.0727513, -0.10864214, -0.0017144711, 0.9914138, 0.5, 1, 0.0727513, -0.10864214, -0.0017144711, 0.9914138, 0.70000005, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:ClawBottomR")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 0.07128002, 0.11576019, -0.00521722, 0.99070257, 0.5, 1, 0.07128002, 0.11576019, -0.00521722, 0.99070257, 0.70000005, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:ClawTopL")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, -0.06345636, -0.10164825, -0.0011667485, 0.9927938, 0.5, 1, -0.06345636, -0.10164825, -0.0011667485, 0.9927938, 0.70000005, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:ClawTopR")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, -0.078439765, 0.09764129, -0.0015906921, 0.99212444, 0.5, 1, -0.078439765, 0.09764129, -0.0015906921, 0.99212444, 0.70000005, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:Speen")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.36666667, 1, 1, 0, 0, -4.371139e-08, 0.70000005, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7bry"]
+_data = {
+&"RESET": SubResource("Animation_k3fft"),
+&"Ready": SubResource("Animation_87rtx"),
+&"Shoot": SubResource("Animation_umm2t"),
+&"Start": SubResource("Animation_rxscm")
+}
+
+[node name="LaserRifle" type="Node3D" unique_id=1202161091 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_c2qr6")
-spawners = NodePath("Skeleton3D/Body")
+spawners = NodePath("Skeleton3D/LaserRifle")
 param = ExtResource("2_rxscm")
 metadata/_custom_type_script = "uid://brdkpe831f6pw"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=846125057]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=651302115]
+libraries/ = SubResource("AnimationLibrary_i7bry")
 
-[node name="Timer" type="Timer" parent="." unique_id=1591007521]
+[node name="Timer" type="Timer" parent="." unique_id=2026988392]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=1724812887]
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=2038586236]
 bones/0/name = "Body"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -22,21 +177,52 @@ bones/0/enabled = true
 bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/name = "Speen"
+bones/1/name = "ClawBottomL"
 bones/1/parent = 0
-bones/1/rest = Transform3D(1, -7.896689e-10, 7.896691e-10, 7.896691e-10, 1, -2.384186e-07, -7.896689e-10, 2.384186e-07, 1, -7.693172e-07, 0.27995074, 2.4181817)
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16231684, -0.5455811, 1.9204682)
 bones/1/enabled = true
-bones/1/position = Vector3(-7.693172e-07, 0.27995074, 2.4181817)
-bones/1/rotation = Quaternion(1.192093e-07, 3.948345e-10, 3.948345e-10, 1)
-bones/1/scale = Vector3(1, 1, 1)
+bones/1/position = Vector3(-0.16231684, -0.5455811, 1.9204682)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/scale = Vector3(1, 1, 1.0000001)
+bones/2/name = "ClawBottomR"
+bones/2/parent = 0
+bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16231684, -0.5455811, 1.9204682)
+bones/2/enabled = true
+bones/2/position = Vector3(0.16231684, -0.5455811, 1.9204682)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/scale = Vector3(1, 1.0000001, 0.99999994)
+bones/3/name = "ClawTopL"
+bones/3/parent = 0
+bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16231684, 0.26441884, 1.9204682)
+bones/3/enabled = true
+bones/3/position = Vector3(-0.16231684, 0.26441884, 1.9204682)
+bones/3/rotation = Quaternion(0, 0, 0, 1)
+bones/3/scale = Vector3(1.0000001, 1.0000001, 1.0000001)
+bones/4/name = "ClawTopR"
+bones/4/parent = 0
+bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16231684, 0.26441884, 1.9204682)
+bones/4/enabled = true
+bones/4/position = Vector3(0.16231684, 0.26441884, 1.9204682)
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/4/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/5/name = "Speen"
+bones/5/parent = 0
+bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9336661e-08, -0.086505175, 1.3080417)
+bones/5/enabled = true
+bones/5/position = Vector3(2.9336661e-08, -0.086505175, 1.3080417)
+bones/5/rotation = Quaternion(0, 0, 0, 1)
+bones/5/scale = Vector3(1, 1, 1)
 
-[node name="LaserRifle" type="MeshInstance3D" parent="Skeleton3D" unique_id=405038261]
+[node name="LaserRifle" type="MeshInstance3D" parent="Skeleton3D" unique_id=632788148]
+layers = 4
 mesh = ExtResource("1_t67y8")
 skeleton = NodePath("..")
 
-[node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=1325563635]
-bone_name = "Body"
-bone_idx = 0
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/LaserRifle" unique_id=2062824921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14058116, 3.5238237)
 
-[node name="Marker3D" type="Marker3D" parent="Skeleton3D/Body" unique_id=685969172]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27995074, 5.118181)
+[node name="EnergySparks" parent="." unique_id=1337254102 instance=ExtResource("4_rxscm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14058116, 3.5238237)
+emitting = false
+amount = 20
+local_coords = true

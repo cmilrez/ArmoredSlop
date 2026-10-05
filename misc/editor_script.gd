@@ -23,9 +23,7 @@ func extract_data_from_scene():
 		var data_path = PATH1 + file.get_slice('.', 0) + '_data.tres'
 		if ResourceLoader.exists(data_path):
 			continue
-		var error = ResourceSaver.save(data, data_path)
-		if error:
-			push_warning('OOPS: ', error_string(error), ' ', file)
+		ResourceSaver.save(data, data_path)
 
 func create_unit_data():
 	for file in ResourceLoader.list_directory(PATH1):
@@ -41,9 +39,7 @@ func create_unit_data():
 		var part_data = UnitData.new()
 		part_data.parameters = part.param
 		part_data.scene = scene
-		var error = ResourceSaver.save(part_data, data_path)
-		if error:
-			push_warning('OOPS: ',  error_string(error), ' ', data_path)
+		ResourceSaver.save(part_data, data_path)
 
 func extract_skel_profile():
 	var skel: Skeleton3D = EditorInterface.get_edited_scene_root().find_child('Skeleton3D')

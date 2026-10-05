@@ -293,6 +293,29 @@ bind/2/name = &"CannonTop"
 bind/2/bone = -1
 bind/2/pose = Transform3D(1, 9.53675e-07, -9.536743e-07, -9.536748e-07, 1, 2.3841818e-07, 9.536744e-07, -2.9405328e-07, 1, 1.0976311, -2.39119, 1.4487439)
 
+[sub_resource type="Gradient" id="Gradient_8tt4q"]
+offsets = PackedFloat32Array(0.2, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xshul"]
+gradient = SubResource("Gradient_8tt4q")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = SubResource("GradientTexture2D_xshul")
+uv1_offset = Vector3(0, 0.01, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+radius = 1.0
+radial_segments = 8
+rings = 4
+is_hemisphere = true
+
 [node name="GrenadeCannon" type="Node3D" unique_id=392511085 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_bhnus")
 spawners = NodePath("Skeleton3D/Body/Spawners")
@@ -312,20 +335,20 @@ bones/0/rest = Transform3D(1, 4.7683716e-07, -4.7683704e-07, -4.7683704e-07, 1, 
 bones/0/enabled = true
 bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(-1.0530023e-07, -2.3841855e-07, -2.3841855e-07, 1)
-bones/0/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "CannonBottom"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, -1.4305111e-06, 1.430511e-06, 1.4305111e-06, 1, 2.0463626e-12, -1.430511e-06, -5.421011e-19, 1, -1.097636, 1.4211886, -1.4487419)
 bones/1/enabled = true
 bones/1/position = Vector3(-1.097636, 1.4211886, -1.4487419)
-bones/1/rotation = Quaternion(-5.080376e-13, 7.1525545e-07, 7.1525557e-07, 1)
-bones/1/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/1/rotation = Quaternion(-5.1159077e-13, 7.152555e-07, 7.1525557e-07, 1)
+bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "CannonTop"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, -1.4305117e-06, 1.4305118e-06, 1.4305124e-06, 1, -4.7683517e-07, -1.4305111e-06, 4.768372e-07, 1, -1.0976366, 2.391189, -1.4487412)
 bones/2/enabled = true
 bones/2/position = Vector3(-1.0976366, 2.391189, -1.4487412)
-bones/2/rotation = Quaternion(2.384181e-07, 7.1525574e-07, 7.1525596e-07, 1)
+bones/2/rotation = Quaternion(2.384181e-07, 7.1525574e-07, 7.15256e-07, 1)
 bones/2/scale = Vector3(1, 1, 1)
 
 [node name="GrenadeCannon" type="MeshInstance3D" parent="Skeleton3D" unique_id=913146343]
@@ -334,7 +357,7 @@ skin = SubResource("Skin_rqyeq")
 skeleton = NodePath("..")
 
 [node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=807794108]
-transform = Transform3D(1, 4.7683713e-07, -4.7683702e-07, -4.7683704e-07, 0.99999994, 2.1060056e-07, 4.7683716e-07, -2.1060033e-07, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 4.7683716e-07, -4.7683704e-07, -4.7683704e-07, 1, 2.1060058e-07, 4.7683716e-07, -2.1060035e-07, 1, 0, 0, 0)
 bone_name = "Body"
 bone_idx = 0
 
@@ -347,15 +370,17 @@ transform = Transform3D(1, -4.7683704e-07, 4.7683716e-07, 4.7683713e-07, 0.99999
 transform = Transform3D(1, -4.7683704e-07, 4.7683716e-07, 4.7683713e-07, 0.99999994, -2.1060033e-07, -4.7683704e-07, 2.1060056e-07, 0.99999994, -1.0976299, 1.4211868, 5.1740613)
 
 [node name="MuzzleFlashTop" parent="Skeleton3D/Body" unique_id=141418337 instance=ExtResource("4_2lutf")]
-transform = Transform3D(1, 2.842171e-14, -1.2423524e-21, 0, -4.371139e-08, -1, -2.842171e-14, 1, -4.371139e-08, -1.0976305, 2.391185, 5.174061)
+transform = Transform3D(1, 2.842171e-14, -1.2423524e-21, 0, -4.371139e-08, -1, -2.842171e-14, 1, -4.371139e-08, -1.098, 2.391, 4.4)
 visible = false
+mesh = SubResource("SphereMesh_vq2wp")
 
 [node name="MuzzleFlashBottom" parent="Skeleton3D/Body" unique_id=2090315604 instance=ExtResource("4_2lutf")]
-transform = Transform3D(1, 5.6843415e-14, -2.4847046e-21, 0, -4.371139e-08, -1, -5.6843415e-14, 1, -4.371139e-08, -1.0976299, 1.4211867, 5.174061)
+transform = Transform3D(1, 5.6843415e-14, -2.4847046e-21, 0, -4.371139e-08, -1, -5.6843415e-14, 1, -4.371139e-08, -1.098, 1.421, 4.4)
 visible = false
+mesh = SubResource("SphereMesh_vq2wp")
 
 [node name="MuzzleLight" type="OmniLight3D" parent="Skeleton3D/Body" unique_id=532404673]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0976305, 2.391185, 5.1740613)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.098, 1.906, 7)
 visible = false
 layers = 16
 light_color = Color(1, 0.735357, 0, 1)

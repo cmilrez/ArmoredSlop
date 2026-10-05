@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d35iikqq86ibh"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sb0tl"]
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fje11"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 1.1778815, 3.2944162, 0.2509804)
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_fje11")
+size = Vector2(0.25, 1)
+
+[node name="EnergySparks" type="GPUParticles3D" unique_id=1337254102]
+layers = 8
+cast_shadow = 0
+gi_mode = 0
+amount = 16
+lifetime = 0.5
+visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_sb0tl")
+draw_pass_1 = SubResource("QuadMesh_vq2wp")

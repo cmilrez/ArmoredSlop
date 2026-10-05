@@ -41,9 +41,7 @@ func import_animations(anim_player: AnimationPlayer) -> void:
 		for id in custom_tracks:
 			disk_animation.copy_track(id, imported_anim)
 		
-		var error = ResourceSaver.save(imported_anim, anim_save_path)
-		if error:
-			push_warning('OOPS: ', error_string(error), ', Path: ', anim_save_path)
+		ResourceSaver.save(imported_anim, anim_save_path)
 
 func get_custom_tracks(anim: Animation) -> Array[int]:
 	var tracks: Array[int] = []

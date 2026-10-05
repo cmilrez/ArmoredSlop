@@ -337,6 +337,29 @@ height = 1.5
 radial_segments = 16
 rings = 0
 
+[sub_resource type="Gradient" id="Gradient_8tt4q"]
+offsets = PackedFloat32Array(0.2, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xshul"]
+gradient = SubResource("Gradient_8tt4q")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = SubResource("GradientTexture2D_xshul")
+uv1_offset = Vector3(0, 0.01, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
+material = SubResource("StandardMaterial3D_sb0tl")
+radius = 1.0
+radial_segments = 8
+rings = 4
+is_hemisphere = true
+
 [node name="ShoulderCannon" type="Node3D" unique_id=1687019098 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_3lgcg")
 spawners = NodePath("Skeleton3D/Body/Spawners")
@@ -357,7 +380,7 @@ bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
 bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
-bones/0/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Slider"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.257649, 1.5345082, 4.1462555)
@@ -372,13 +395,6 @@ bones/2/enabled = true
 bones/2/position = Vector3(-1.1920929e-07, 0, 4.222782)
 bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/name = "neutral_bone"
-bones/3/parent = -1
-bones/3/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
-bones/3/enabled = true
-bones/3/position = Vector3(0, 0, 0)
-bones/3/rotation = Quaternion(-0.70710677, 0, 0, 0.70710677)
-bones/3/scale = Vector3(1, 1, 1)
 
 [node name="ShoulderCannon" type="MeshInstance3D" parent="Skeleton3D" unique_id=2083839722]
 layers = 4
@@ -418,6 +434,9 @@ layers = 2
 gi_mode = 0
 mesh = SubResource("CylinderMesh_65uri")
 
-[node name="MuzzleFlash" parent="Skeleton3D/Body" unique_id=1435270467 instance=ExtResource("5_bp5to")]
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Skeleton3D/Body" unique_id=1435270467 instance=ExtResource("5_bp5to")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.258, 1.535, 7.1)
 visible = false
+layers = 16
+cast_shadow = 0
+mesh = SubResource("SphereMesh_vq2wp")

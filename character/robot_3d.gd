@@ -38,17 +38,17 @@ var _boosting := false
 func _debug_print_state():
 	var state_str = ''
 	match state:
-		GROUNDED:        state_str = 'GROUNDED'
-		AIRBORNE:        state_str = 'AIRBORNE'
-		BOOST:           state_str = 'BOOST'
-		DASH:            state_str = 'DASH'
-		LANDING:         state_str = 'LANDING'
-		MELEE:           state_str = 'MELEE'
+		GROUNDED:    state_str = 'GROUNDED   '
+		AIRBORNE:    state_str = 'AIRBORNE   '
+		BOOST:       state_str = 'BOOST      '
+		DASH:        state_str = 'DASH       '
+		LANDING:     state_str = 'LANDING    '
+		MELEE:       state_str = 'MELEE      '
 		BACK_RECOIL: state_str = 'BACK_RECOIL'
-		ARM_RECOIL:      state_str = 'ARM_RECOIL'
-		SUPERBOOST:      state_str = 'SUPERBOOST'
-		DEATH:           state_str = 'DEATH'
-	prints(Time.get_time_string_from_system(), state_str)
+		ARM_RECOIL:  state_str = 'ARM_RECOIL '
+		SUPERBOOST:  state_str = 'SUPERBOOST '
+		DEATH:       state_str = 'DEATH      '
+	prints(Time.get_time_string_from_system(), state_str, Engine.get_process_frames())
 
 func _physics_process(delta):
 	do_friction(4.0)
@@ -84,7 +84,7 @@ func activate_unit(id: int, targets: Array[Character3D] = []) -> void:
 			else:
 				if id > 1:
 					state = BACK_RECOIL
-					get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
+					get_tree().create_timer(0.5, false).timeout.connect(_activate_state_weapon.bind(id))
 					_toggle_arm_look_at(id == 0, id == 1)
 				else:
 					state = ARM_RECOIL
@@ -101,8 +101,9 @@ func activate_unit(id: int, targets: Array[Character3D] = []) -> void:
 		unit.activate(tracker, targets)
 	elif state == BACK_RECOIL:
 		if id > 1: # use two shoulder units at the same time
+			#BUG unit.can_use will not be false for 0.5 sec
 			if unit.recoil and unit.can_use:
-				get_tree().create_timer(0.5).timeout.connect(_activate_state_weapon.bind(id))
+				get_tree().create_timer(0.5, false).timeout.connect(_activate_state_weapon.bind(id))
 				_state_start()
 
 func get_unit_lock_duration(id: int) -> float:
@@ -329,7 +330,6 @@ func _state_process(delta: float) -> void:
 				_update_direction = false
 				_toggle_look_at(false)
 				speed = 0.0
-				move_direction = Vector3.ZERO
 				velocity.y = lerpf(velocity.y, 0.0, exp(-100.0 * delta))
 				var dir = tracker.position - position
 				var angle = Vector2(dir.z, dir.x).angle() + PI

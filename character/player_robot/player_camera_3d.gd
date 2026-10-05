@@ -7,13 +7,13 @@ class_name PlayerCamera3D extends Node3D
 @onready var player: Robot3D = get_parent()
 @onready var robot_hud: RobotHUD = %RobotHUD
 
-@export_range(0.01, 1.0, 0.01, 'or_greater', 'hide_control') var mouse_sensitivity := 0.02
+@export_range(0.01, 1.0, 0.01, 'or_greater', 'hide_control') var mouse_sensitivity := 0.3
 @export_range(-1, 1, 2) var invert_y := -1
 @export_range(-1, 1, 2) var invert_x := -1
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var max_angle_x := PI / 2
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -PI / 2
 @export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var arm_length := 13.0
-@export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var height := 11.0
+@export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var height := 12.0
 #@export var lock_on_data: LockOnData = null
 
 var target_list: Array[Character3D] = []
@@ -92,20 +92,27 @@ func _search_multi_targets() -> Array[Character3D]:
 func _process(delta):
 	if not camera.current:
 		return
-	spring_arm.rotation.x += input_direction.y * delta * invert_y
+	spring_arm.rotation.x += input_direction.y * invert_y
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, min_angle_x, max_angle_x)
-	spring_arm.rotation.y += input_direction.x * delta * invert_x
+	spring_arm.rotation.y += input_direction.x * invert_x
 	input_direction = Vector2.ZERO
-
-#func _physics_process(delta):
-#	if not camera.current:
-#		return
 	
-	var lerp_weight = exp(-8.0 * delta)
-	position.x = lerpf(player.position.x, position.x, lerp_weight)
-	position.z = lerpf(player.position.z, position.z, lerp_weight)
-	var lerp_weight2 = exp(-4.0 * delta)
-	position.y = lerpf(player.position.y + height, position.y, lerp_weight2)
+	var player_pos = player.position
+	player_pos.y += height
+	var dir = position - player_pos
+	var limit = Vector3(10.0, height, 10.0)
+	dir = dir.clamp(-limit, limit)
+	position = player_pos + dir
+	
+	if player.state == player.ARM_RECOIL or player.state == player.BACK_RECOIL:
+		var side = signf(Vector2(dir.x, dir.z).rotated(player.rotation.y).x)
+		player_pos += player.basis.x * 4.0 * side
+		player_pos -= player.basis.z * 4.0
+	var lerp_weight = exp(-4.0 * delta)
+	position.x = lerpf(player_pos.x, position.x, lerp_weight)
+	position.z = lerpf(player_pos.z, position.z, lerp_weight)
+	var lerp_weight2 = exp(-3.0 * delta)
+	position.y = lerpf(player_pos.y, position.y, lerp_weight2)
 	
 	if not (tracker.lock_target and tracker.is_target_valid()):
 		eye_ray.global_position = camera.global_position
@@ -129,6 +136,6 @@ func _unhandled_input(event):
 	if not Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		return
 	if event is InputEventMouseMotion:
-		input_direction = event.screen_relative * mouse_sensitivity
+		input_direction = event.screen_relative * mouse_sensitivity * 0.001
 	elif event.is_action_pressed('manual_aim'):
 		manual_aim = not manual_aim
