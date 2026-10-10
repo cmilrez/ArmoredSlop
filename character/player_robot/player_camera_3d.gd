@@ -14,20 +14,15 @@ class_name PlayerCamera3D extends Node3D
 @export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -PI / 2
 @export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var arm_length := 13.0
 @export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var height := 12.0
-#@export var lock_on_data: LockOnData = null
 
+var target_ctx: TargetContext = null
 var target_list: Array[Character3D] = []
-var multi_target_list: Array[Character3D] = []
+var target_count := 1
 var input_direction := Vector2.ZERO
-var manual_aim := false
-var multi_target_count := 0:
-	set(value):
-		multi_target_count = maxi(value, 0)
-		if not multi_target_count:
-			multi_target_list.clear()
+var auto_lock := true
 
 func _append_target(node: Character3D) -> void:
-	target_list.append(node)
+	target_list.push_back(node)
 
 func _erase_target(node: Character3D) -> void:
 	target_list.erase(node)
@@ -37,6 +32,8 @@ func _ready():
 	SignalBus.enemy_exited_screen.connect(_erase_target)
 	spring_arm.spring_length = arm_length
 	top_level = true
+	target_ctx = player.target_ctx
+	target_ctx.tracker = tracker
 
 func get_unprojected(world_pos: Vector3) -> Vector2:
 	return camera.unproject_position(world_pos)
@@ -46,6 +43,8 @@ func get_arm_rotation() -> float:
 
 func is_target_invalid(node: Character3D, unprojected_pos: Vector2) -> bool:
 	if not is_instance_valid(node):
+		return true
+	if not node.alive:
 		return true
 	if player.is_same_team(node.team):
 		return true
@@ -61,9 +60,11 @@ func is_target_invalid(node: Character3D, unprojected_pos: Vector2) -> bool:
 		return true
 	return false
 
-func _search_single_target() -> Character3D:
+func _search_targets() -> void:
+	target_ctx.list.clear()
 	var closest_target: Character3D = null
 	var closest_distance_2d = Global.LARGE_FLOAT
+	var extra_count = 1
 	for target in target_list:
 		var pos_2d = camera.unproject_position(target.get_lock_position())
 		if is_target_invalid(target, pos_2d):
@@ -72,22 +73,15 @@ func _search_single_target() -> Character3D:
 		if target_distance_2d < closest_distance_2d:
 			closest_target = target
 			closest_distance_2d = target_distance_2d
-	return closest_target
-
-func _search_multi_targets() -> Array[Character3D]:
-	var list: Array[Character3D] = []
-	var i = 1
-	for target in target_list:
-		if i > multi_target_count:
-			break
-		if target == tracker.target:
-			continue
-		var pos_2d = camera.unproject_position(target.get_lock_position())
-		if is_target_invalid(target, pos_2d):
-			continue
-		list.append(target)
-		i += 1
-	return list
+		if extra_count < target_count:
+			if not target == closest_target:
+				target_ctx.list.push_back(target)
+				extra_count += 1
+	if closest_target:
+		target_ctx.list.push_back(closest_target)
+		target_ctx.index = target_ctx.list.size() - 1
+	else:
+		target_ctx.index = -1
 
 func _process(delta):
 	if not camera.current:
@@ -114,15 +108,15 @@ func _process(delta):
 	var lerp_weight2 = exp(-3.0 * delta)
 	position.y = lerpf(player_pos.y, position.y, lerp_weight2)
 	
-	if not (tracker.lock_target and tracker.is_target_valid()):
+	if not (tracker.lock_target and tracker.target):
 		eye_ray.global_position = camera.global_position
-		var new_target: Character3D = null
-		if not manual_aim:
-			new_target = _search_single_target()
-			if multi_target_count:
-				multi_target_list = _search_multi_targets()
-		tracker.target = new_target
-		if not new_target:
+		if auto_lock and target_count:
+			_search_targets()
+		if target_ctx.list.is_empty():
+			tracker.target = null
+		else:
+			tracker.target = target_ctx.list[target_ctx.index]
+		if not tracker.target:
 			eye_ray.target_position = -camera.global_basis.z * Global.LARGE_FLOAT
 			var point = to_global(eye_ray.target_position)
 			eye_ray.force_raycast_update()
@@ -138,4 +132,4 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		input_direction = event.screen_relative * mouse_sensitivity * 0.001
 	elif event.is_action_pressed('manual_aim'):
-		manual_aim = not manual_aim
+		auto_lock = not auto_lock

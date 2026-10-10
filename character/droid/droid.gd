@@ -78,26 +78,26 @@ func _state_process(delta: float) -> void:
 			var weight = exp(-8.0 * delta)
 			var angle = hor_angle(move_direction)
 			var blend = anim_tree.get(PARAM_MOVE_BLEND)
-			if angle > Global.QUARTER_PI:
+			if angle > PI / 4.0:
 				blend = Vector2.LEFT.lerp(blend, weight)
-			elif angle < -Global.QUARTER_PI:
+			elif angle < -PI / 4.0:
 				blend = Vector2.RIGHT.lerp(blend, weight)
 			else:
 				blend = Vector2.UP.lerp(blend, weight)
 			anim_tree.set(PARAM_MOVE_BLEND, blend)
 			if angle:
 				rotate_y(signf(angle) * minf(absf(angle), delta))
-			if tracker.is_target_valid():
+			if tracker.target:
 				state = CHASE
 		SEARCHING:
 			move_direction = Vector3.ZERO
-			if tracker.is_target_valid():
+			if tracker.target:
 				state = CHASE
 				return
 			if timer.is_stopped():
 				state = WANDER
 		CHASE:
-			if not tracker.is_target_valid():
+			if not tracker.target:
 				state = WANDER
 				return
 			var distance = hor_distance(tracker.position)
@@ -106,12 +106,12 @@ func _state_process(delta: float) -> void:
 				move_direction = -direction
 			elif distance < 60.0:
 				var side = -basis.x.dot(direction)
-				var dir = Vector2(direction.z, direction.x).rotated(signf(side) * Global.HALF_PI)
+				var dir = Vector2(direction.z, direction.x).rotated(signf(side) * PI / 2.0)
 				move_direction = Vector3(dir.y, 0.0, dir.x)
 			else:
 				move_direction = direction
 			if timer.is_stopped():
-				weapons[0].activate(tracker, [tracker.target])
+				weapons[0].activate(target_ctx)
 				timer.start(maxf(2.0, 5.0 * randf()))
 			var angle = hor_angle(move_direction)
 			if angle:

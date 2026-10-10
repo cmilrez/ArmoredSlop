@@ -47,5 +47,5 @@ func get_custom_tracks(anim: Animation) -> Array[int]:
 	var tracks: Array[int] = []
 	for i in range(anim.get_track_count()):
 		if not anim.track_is_imported(i):
-			tracks.append(i)
+			tracks.push_back(i)
 	return tracks

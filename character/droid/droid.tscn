@@ -15,10 +15,11 @@
 [ext_resource type="Animation" uid="uid://cggh328ioabm5" path="res://assets/AnimDroid/Turn_Left.res" id="7_ihpg5"]
 [ext_resource type="Animation" uid="uid://db063w2fdurva" path="res://assets/AnimDroid/Turn_Right.res" id="8_xw5b6"]
 [ext_resource type="Animation" uid="uid://byxev3220l3mo" path="res://assets/AnimDroid/Walk_Backward.res" id="9_0d1k6"]
-[ext_resource type="Script" uid="uid://d27tsvudythye" path="res://character/npc_weapon_3d.gd" id="9_v6vxi"]
 [ext_resource type="Animation" uid="uid://c7kpsrtmgits" path="res://assets/AnimDroid/Walk_Forward.res" id="10_m6ijh"]
 [ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/bullet_rifle.tscn" id="10_uw78r"]
-[ext_resource type="Script" uid="uid://cehq41vdpsxpp" path="res://misc/damage_data.gd" id="11_a1hos"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="16_hatfo"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/weapon_param.gd" id="18_65gwf"]
+[ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="19_65gwf"]
 
 [sub_resource type="Resource" id="Resource_65gwf"]
 script = ExtResource("2_hatfo")
@@ -123,6 +124,7 @@ advance_expression = "not alive"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7s6gq"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "state == CHASE"
 
@@ -137,10 +139,6 @@ states/Wander/node = SubResource("AnimationNodeBlendSpace2D_k5hj8")
 states/Wander/position = Vector2(408, 151)
 transitions = ["Searching", "Death", SubResource("AnimationNodeStateMachineTransition_xw5b6"), "Chase", "Death", SubResource("AnimationNodeStateMachineTransition_2rpsw"), "Wander", "Chase", SubResource("AnimationNodeStateMachineTransition_m6ijh"), "Chase", "Wander", SubResource("AnimationNodeStateMachineTransition_ie11r"), "Wander", "Searching", SubResource("AnimationNodeStateMachineTransition_65gwf"), "Searching", "Wander", SubResource("AnimationNodeStateMachineTransition_0d1k6"), "Wander", "Death", SubResource("AnimationNodeStateMachineTransition_ihpg5"), "Start", "Wander", SubResource("AnimationNodeStateMachineTransition_hatfo"), "Searching", "Chase", SubResource("AnimationNodeStateMachineTransition_7s6gq")]
 graph_offset = Vector2(-47, -40)
-
-[sub_resource type="Resource" id="Resource_6utk1"]
-script = ExtResource("11_a1hos")
-metadata/_custom_type_script = "uid://cehq41vdpsxpp"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_or5f5"]
 radius = 2.0
@@ -294,6 +292,137 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="Resource" id="Resource_vq2wp"]
+script = ExtResource("18_65gwf")
+kinetic_damage = 35.0
+projectile_scene = ExtResource("10_uw78r")
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"
+
+[sub_resource type="Animation" id="Animation_ihpg5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MuzzleFlash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MuzzleFlash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MuzzleFlash:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.4725703, 1.576304, -0.016387463)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MuzzleLight:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xw5b6"]
+resource_name = "Shoot"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"shoot_one"
+}, {
+"args": [1],
+"method": &"shoot_one"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MuzzleFlash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 1, 0.5), Vector3(2, 5, 2), Vector3(0.5, 1, 0.5), Vector3(2, 5, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MuzzleFlash:visible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MuzzleFlash:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(1.4725703, 1.576304, -0.016387463), Vector3(-1.473, 1.576, -0.016)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../MuzzleLight:visible")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.3, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0d1k6"]
+_data = {
+&"RESET": SubResource("Animation_ihpg5"),
+&"Shoot": SubResource("Animation_xw5b6")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47fdb"]
 radius = 0.4
 height = 2.6
@@ -313,7 +442,7 @@ anim_tree = NodePath("AnimationTree")
 look_at_mod = NodePath("Droid/Skeleton3D/LookAtMod")
 data = SubResource("Resource_65gwf")
 lock_on_marker = NodePath("Droid/Skeleton3D/Torso/LockOnMarker")
-weapons = [NodePath("NPCWeapon")]
+weapons = [NodePath("Droid/Skeleton3D/Weapon/Cannons")]
 metadata/_custom_type_script = "uid://cv6r5c12sbejw"
 
 [node name="Timer" type="Timer" parent="." unique_id=21913835]
@@ -331,13 +460,6 @@ libraries/ = SubResource("AnimationLibrary_ie11r")
 tree_root = SubResource("AnimationNodeStateMachine_vq2wp")
 advance_expression_base_node = NodePath("..")
 parameters/Wander/blend_position = Vector2(0, 0)
-
-[node name="NPCWeapon" type="Node3D" parent="." unique_id=665593390 node_paths=PackedStringArray("spawners")]
-script = ExtResource("9_v6vxi")
-spawners = NodePath("../Droid/Skeleton3D/Weapon")
-shot_interval = 0.2
-projectile_scene = ExtResource("10_uw78r")
-damage_data = SubResource("Resource_6utk1")
 
 [node name="Tracker3D" type="Marker3D" parent="." unique_id=1262945735]
 unique_name_in_owner = true
@@ -546,11 +668,42 @@ transform = Transform3D(-1, -3.112687e-07, 7.8145696e-08, 7.8145696e-08, 0, 1, -
 bone_name = "Weapon"
 bone_idx = 6
 
-[node name="CannonR1" type="Marker3D" parent="Droid/Skeleton3D/Weapon" unique_id=85795927]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4725704, 1.4453573, -0.016387574)
+[node name="Cannons" type="Node3D" parent="Droid/Skeleton3D/Weapon" unique_id=1949974382 node_paths=PackedStringArray("spawners")]
+transform = Transform3D(0.99999964, 2.5119236e-05, -0.00086350343, -7.5649764e-06, 0.99979347, 0.020323208, 0.0008638357, -0.020323075, 0.9997931, -1.8934486e-05, -0.06912991, 0.034810066)
+script = ExtResource("16_hatfo")
+spawners = NodePath("Spawners")
+param = SubResource("Resource_vq2wp")
+metadata/_custom_type_script = "uid://b3jwuceipevwg"
 
-[node name="CannonL1" type="Marker3D" parent="Droid/Skeleton3D/Weapon" unique_id=1409717390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.473, 1.445, -0.016)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Droid/Skeleton3D/Weapon/Cannons" unique_id=1132088982]
+root_node = NodePath("../Timer")
+libraries/ = SubResource("AnimationLibrary_0d1k6")
+
+[node name="Timer" type="Timer" parent="Droid/Skeleton3D/Weapon/Cannons" unique_id=856801740]
+
+[node name="MuzzleFlash" parent="Droid/Skeleton3D/Weapon/Cannons" unique_id=141418337 instance=ExtResource("19_65gwf")]
+transform = Transform3D(1, 0, 7.571397e-21, 0, 1, 0, -7.571397e-21, 0, 1, 1.4725703, 1.576304, -0.016387463)
+visible = false
+
+[node name="MuzzleLight" type="OmniLight3D" parent="Droid/Skeleton3D/Weapon/Cannons" unique_id=1526602984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.016)
+visible = false
+layers = 16
+light_color = Color(1, 0.735357, 0, 1)
+light_energy = 30.0
+light_volumetric_fog_energy = 30.0
+light_specular = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 300.0
+omni_range = 10.0
+
+[node name="Spawners" type="Node3D" parent="Droid/Skeleton3D/Weapon/Cannons" unique_id=734634444]
+
+[node name="CannonR1" type="Marker3D" parent="Droid/Skeleton3D/Weapon/Cannons/Spawners" unique_id=85795927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -7.571397e-21, 0, 1, 1.4725704, 1.4453573, -0.016387463)
+
+[node name="CannonL1" type="Marker3D" parent="Droid/Skeleton3D/Weapon/Cannons/Spawners" unique_id=1409717390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -7.571397e-21, 0, 1, -1.473, 1.445, -0.01600027)
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=992782929]
 collision_layer = 8

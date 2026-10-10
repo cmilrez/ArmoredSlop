@@ -98,10 +98,10 @@ func _build_body() -> void:
 	if not (data.legs and data.torso and data.arms and data.head):
 		return
 	_clear_body()
-	body_nodes.append(_setup_body_part(data.head.scene, data.head))
-	body_nodes.append(_setup_body_part(data.arms.scene, data.arms))
-	body_nodes.append(_setup_body_part(data.torso.scene, data.torso))
-	body_nodes.append(_setup_body_part(data.legs.scene, data.legs))
+	body_nodes.push_back(_setup_body_part(data.head.scene, data.head))
+	body_nodes.push_back(_setup_body_part(data.arms.scene, data.arms))
+	body_nodes.push_back(_setup_body_part(data.torso.scene, data.torso))
+	body_nodes.push_back(_setup_body_part(data.legs.scene, data.legs))
 	_setup_boosters()
 	data.bullet_defense /= 1000.0
 	data.energy_defense /= 1000.0
@@ -210,7 +210,7 @@ func _setup_boost_attachments(body_part: BodyPart) -> void:
 					var new_booster = data.booster.scene.instantiate()
 					child.add_child(new_booster)
 					new_booster.rotation.x = PI
-					booster_nodes.append(new_booster)
+					booster_nodes.push_back(new_booster)
 			else:
 				child.get_child(0).rotation.x = PI
-				booster_nodes.append(child.get_child(0))
+				booster_nodes.push_back(child.get_child(0))

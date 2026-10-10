@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://closvskqvpgns"]
+[gd_resource type="Resource" script_class="WeaponParam" format=3 uid="uid://closvskqvpgns"]
 
 [ext_resource type="PackedScene" uid="uid://c56lrnpn713nc" path="res://projectile/bullet_rifle.tscn" id="2_lbse6"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="3_0uqav"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/weapon_param.gd" id="3_0uqav"]
 
 [resource]
 script = ExtResource("3_0uqav")

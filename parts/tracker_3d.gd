@@ -10,7 +10,7 @@ var tween: Tween
 var blend := 1.0
 
 func set_target(value):
-	if lock_target and is_target_valid():
+	if lock_target and target:
 		return
 	if not target == value:
 		target = value
@@ -30,7 +30,7 @@ func _ready():
 	top_level = true
 
 func _process(delta):
-	if is_instance_valid(target):
+	if target:
 		if not target.alive:
 			target = null
 			return
@@ -38,6 +38,3 @@ func _process(delta):
 			position = position.lerp(target.get_lock_position(), blend)
 		else:
 			position = target.get_lock_position()
-
-func is_target_valid() -> bool:
-	return is_instance_valid(target)

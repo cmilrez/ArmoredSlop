@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitData" format=4 uid="uid://cfjmky0u3osq0"]
 
-[ext_resource type="Resource" uid="uid://b3h5pcge5dy16" path="res://parts/test/energy_sword_param.tres" id="1_yq7b3"]
+[ext_resource type="Resource" uid="uid://dp7eq8wvtjkld" path="res://parts/test/energy_sword_param.tres" id="1_yq7b3"]
 [ext_resource type="PackedScene" uid="uid://cxr16p8i8u6qh" path="res://parts/test/energy_sword.tscn" id="2_03ke5"]
 [ext_resource type="Script" uid="uid://ckmmdc53mv2qa" path="res://parts/data_scripts/unit_data.gd" id="2_ltqck"]
 

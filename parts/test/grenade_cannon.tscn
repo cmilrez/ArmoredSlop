@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://buwi21u7ww7an"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_bhnus"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_2lutf"]
 [ext_resource type="ArrayMesh" uid="uid://bpkms70dx0bde" path="res://assets/TestWeapons_GrenadeCannon.res" id="1_fcknw"]
-[ext_resource type="Resource" uid="uid://8p56itgq0fjv" path="res://parts/test/grenade_cannon_param.tres" id="2_2lutf"]
+[ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_oaj8m"]
 [ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="4_2lutf"]
 
 [sub_resource type="Animation" id="Animation_bhnus"]
@@ -31,7 +31,7 @@ tracks/2/keys = PackedFloat32Array(0, 1, -1.097636, 1.4211886, -1.4487419)
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlashTop:visible")
+tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlash1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -43,7 +43,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlashTop:scale")
+tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlash1:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -55,7 +55,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlashBottom:visible")
+tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -67,7 +67,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlashBottom:scale")
+tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlash2:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -176,8 +176,8 @@ tracks/2/keys = PackedFloat32Array(0, 1, -1.0976346, 1.4211884, 1.5512586, 0.3, 
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlashTop:visible")
-tracks/3/interp = 1
+tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlash1:visible")
+tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.23333333),
@@ -188,7 +188,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlashTop:scale")
+tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlash1:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -200,8 +200,8 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlashBottom:visible")
-tracks/5/interp = 1
+tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
+tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.5333333),
@@ -212,7 +212,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlashBottom:scale")
+tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlash2:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -225,7 +225,7 @@ tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("Skeleton3D/Body/MuzzleLight:visible")
-tracks/7/interp = 1
+tracks/7/interp = 0
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.20000002, 0.3, 0.5333333),
@@ -244,6 +244,23 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [15.0, 30.0, 15.0, 30.0]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0],
+"method": &"shoot_one"
+}, {
+"args": [1],
+"method": &"shoot_one"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wb2w2"]
@@ -317,11 +334,9 @@ rings = 4
 is_hemisphere = true
 
 [node name="GrenadeCannon" type="Node3D" unique_id=392511085 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_bhnus")
+script = ExtResource("1_2lutf")
 spawners = NodePath("Skeleton3D/Body/Spawners")
-param = ExtResource("2_2lutf")
-recoil = true
-metadata/_custom_type_script = "uid://brdkpe831f6pw"
+param = ExtResource("2_oaj8m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1517335675]
 libraries/ = SubResource("AnimationLibrary_00mfj")
@@ -369,13 +384,13 @@ transform = Transform3D(1, -4.7683704e-07, 4.7683716e-07, 4.7683713e-07, 0.99999
 [node name="Marker3D2" type="Marker3D" parent="Skeleton3D/Body/Spawners" unique_id=951846536]
 transform = Transform3D(1, -4.7683704e-07, 4.7683716e-07, 4.7683713e-07, 0.99999994, -2.1060033e-07, -4.7683704e-07, 2.1060056e-07, 0.99999994, -1.0976299, 1.4211868, 5.1740613)
 
-[node name="MuzzleFlashTop" parent="Skeleton3D/Body" unique_id=141418337 instance=ExtResource("4_2lutf")]
-transform = Transform3D(1, 2.842171e-14, -1.2423524e-21, 0, -4.371139e-08, -1, -2.842171e-14, 1, -4.371139e-08, -1.098, 2.391, 4.4)
+[node name="MuzzleFlash1" parent="Skeleton3D/Body" unique_id=141418337 instance=ExtResource("4_2lutf")]
+transform = Transform3D(1, 2.842171e-14, -1.2423524e-21, 0, -4.371139e-08, -1, -2.842171e-14, 1, -4.371139e-08, -1.098, 2.391, 5.2060876)
 visible = false
 mesh = SubResource("SphereMesh_vq2wp")
 
-[node name="MuzzleFlashBottom" parent="Skeleton3D/Body" unique_id=2090315604 instance=ExtResource("4_2lutf")]
-transform = Transform3D(1, 5.6843415e-14, -2.4847046e-21, 0, -4.371139e-08, -1, -5.6843415e-14, 1, -4.371139e-08, -1.098, 1.421, 4.4)
+[node name="MuzzleFlash2" parent="Skeleton3D/Body" unique_id=2090315604 instance=ExtResource("4_2lutf")]
+transform = Transform3D(1, 5.6843415e-14, -2.4847046e-21, 0, -4.371139e-08, -1, -5.6843415e-14, 1, -4.371139e-08, -1.098, 1.421, 5.2060876)
 visible = false
 mesh = SubResource("SphereMesh_vq2wp")
 
@@ -388,4 +403,5 @@ light_energy = 30.0
 light_volumetric_fog_energy = 10.0
 light_specular = 1.0
 distance_fade_enabled = true
+distance_fade_begin = 400.0
 omni_range = 15.0

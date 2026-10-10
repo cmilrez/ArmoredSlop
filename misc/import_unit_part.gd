@@ -24,10 +24,7 @@ func iterate(node: Node) -> void:
 	var data: UnitData
 	
 	if not ResourceLoader.exists(param_path):
-		var param: Resource
-		match unit_type:
-			'melee':      param = MeleeWeaponParam.new()
-			'projectile': param = ProjectileWeaponParam.new()
+		var param = WeaponParam.new()
 		ResourceSaver.save(param, param_path)
 	
 	if ResourceLoader.exists(scene_path):
@@ -50,23 +47,23 @@ func update_scene(_path: String, node: Node3D) -> void:
 	var node_skel = node.find_child('Skeleton3D')
 	var scene_skel = scene_node.find_child('Skeleton3D')
 	if node_skel and scene_skel:
-		update_skeleton(node_skel, scene_skel)
+		copy_skeleton(node_skel, scene_skel)
 	var new_scene = PackedScene.new()
 	new_scene.pack(scene_node)
 	ResourceSaver.save(new_scene, _path)
 
-func update_skeleton(source_skel: Skeleton3D, target_skel: Skeleton3D) -> void:
-	target_skel.clear_bones()
-	for bone in range(source_skel.get_bone_count()):
-		var name = source_skel.get_bone_name(bone)
-		var rest = source_skel.get_bone_rest(bone)
-		target_skel.add_bone(name)
-		target_skel.set_bone_rest(bone, rest)
-	for bone in range(source_skel.get_bone_count()):
-		var parent_bone = source_skel.get_bone_parent(bone)
+func copy_skeleton(source: Skeleton3D, target: Skeleton3D) -> void:
+	target.clear_bones()
+	for bone in range(source.get_bone_count()):
+		var name = source.get_bone_name(bone)
+		var rest = source.get_bone_rest(bone)
+		target.add_bone(name)
+		target.set_bone_rest(bone, rest)
+	for bone in range(source.get_bone_count()):
+		var parent_bone = source.get_bone_parent(bone)
 		if parent_bone > -1:
-			target_skel.set_bone_parent(bone, parent_bone)
-	target_skel.reset_bone_poses()
+			target.set_bone_parent(bone, parent_bone)
+	target.reset_bone_poses()
 
 func create_scene(_path: String, node: Node3D) -> void:
 	setup_children(node, node)

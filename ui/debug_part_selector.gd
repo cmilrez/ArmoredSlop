@@ -74,4 +74,4 @@ func fetch_parts() -> void:
 			continue
 		if parts[i].has(data):
 			continue
-		parts[i].append(data)
+		parts[i].push_back(data)

@@ -8,8 +8,6 @@
 [ext_resource type="Resource" uid="uid://bed12ld81mg4b" path="res://parts/test/test_generator_data.tres" id="4_0aexc"]
 [ext_resource type="Resource" uid="uid://dot84okom8lcg" path="res://parts/test/test_torso_1_data.tres" id="6_7qhri"]
 [ext_resource type="Resource" uid="uid://dsleum4ja8lju" path="res://parts/test/test_lock_on_data.tres" id="6_tdw7n"]
-[ext_resource type="Resource" uid="uid://ubin0k0l6o0u" path="res://parts/test/laser_rifle_data.tres" id="6_vvsxd"]
-[ext_resource type="Resource" uid="uid://na3pq2d3ikpd" path="res://parts/test/missile_launcher_3_data.tres" id="7_0aexc"]
 [ext_resource type="Resource" uid="uid://dnxm1fgyfmrr7" path="res://parts/test/test_leg_biped_1_data.tres" id="8_0bit8"]
 [ext_resource type="Resource" uid="uid://bauqvinm0fdje" path="res://parts/test/bazooka_data.tres" id="9_ub7kw"]
 [ext_resource type="Script" uid="uid://drfjnpmbdy7gg" path="res://parts/robot_builder.gd" id="12_i7v7b"]
@@ -38,8 +36,6 @@ arms = ExtResource("2_qhjbi")
 torso = ExtResource("6_7qhri")
 legs = ExtResource("8_0bit8")
 right_arm = ExtResource("9_ub7kw")
-left_arm = ExtResource("6_vvsxd")
-left_back = ExtResource("7_0aexc")
 booster = ExtResource("3_ub7kw")
 generator = ExtResource("4_0aexc")
 lock_on = ExtResource("6_tdw7n")
@@ -80,10 +76,10 @@ bind/1/name = &"Hand.L"
 bind/1/bone = -1
 bind/1/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -1, 0, -1.509958e-07)
 
-[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_vvsxd"]
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_0aexc"]
 angle = 3.1415927
 
-[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_74i7b"]
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_0bit8"]
 angle = 2.0943952
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_itl3e"]
@@ -104,12 +100,9 @@ lock_on_marker = NodePath("Skeleton3D/RetargetModifier3D/Skeleton3D/Torso/LockOn
 weapons = [null, null, null, null]
 metadata/_custom_type_script = "uid://b31okcihcprx6"
 
-[node name="BUILDER" type="Node" parent="." unique_id=266228657 node_paths=PackedStringArray("weapon_nodes", "body_nodes", "booster_nodes")]
+[node name="BUILDER" type="Node" parent="." unique_id=266228657]
 script = ExtResource("12_i7v7b")
 data = SubResource("Resource_c5gkk")
-weapon_nodes = [null, null, null, null]
-body_nodes = [null, null, null, null]
-booster_nodes = [null, null, null, null]
 metadata/_custom_type_script = "uid://drfjnpmbdy7gg"
 
 [node name="Timer" type="Timer" parent="." unique_id=1516407593]
@@ -654,21 +647,21 @@ settings/1/end_bone = 18
 settings/1/extend_end_bone = false
 settings/1/joint_count = 3
 settings/0/joints/0/rotation_axis = 3
-settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_vvsxd")
+settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_0aexc")
 settings/0/joints/0/limitation/right_axis = 0
 settings/0/joints/0/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
 settings/0/joints/1/rotation_axis = 0
-settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_74i7b")
+settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_0bit8")
 settings/0/joints/1/limitation/right_axis = 0
 settings/0/joints/1/limitation/rotation_offset = Quaternion(-0.5, 0, 0, 0.8660254)
 settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 settings/1/joints/0/rotation_axis = 3
-settings/1/joints/0/limitation = SubResource("JointLimitationCone3D_vvsxd")
+settings/1/joints/0/limitation = SubResource("JointLimitationCone3D_0aexc")
 settings/1/joints/0/limitation/right_axis = 0
 settings/1/joints/0/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
 settings/1/joints/1/rotation_axis = 0
-settings/1/joints/1/limitation = SubResource("JointLimitationCone3D_74i7b")
+settings/1/joints/1/limitation = SubResource("JointLimitationCone3D_0bit8")
 settings/1/joints/1/limitation/right_axis = 0
 settings/1/joints/1/limitation/rotation_offset = Quaternion(-0.5, 0, 0, 0.8660254)
 settings/1/joints/2/rotation_axis = 3

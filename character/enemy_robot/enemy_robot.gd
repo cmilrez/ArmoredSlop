@@ -5,7 +5,7 @@ enum {WANDER, COMBAT}
 @onready var action_timer = $ActionTimer
 @onready var atk_timer = $AtkTimer
 
-var action := WANDER: set=set_action
+var action: int = WANDER: set=set_action
 var home_position := Vector3.ZERO
 
 func set_action(value):
@@ -34,7 +34,7 @@ func _process(delta):
 			var hor_vel = Vector2(velocity.z, velocity.x)
 			if hor_vel:
 				angle_y = hor_vel.angle() + PI
-			if tracker.is_target_valid():
+			if tracker.target:
 				action = COMBAT
 		COMBAT:
 			enable_look_at = true
@@ -54,5 +54,5 @@ func _process(delta):
 				activate_unit(0)
 				activate_unit(3)
 				atk_timer.start(maxf(0.3, 1.0 * randf()))
-			if not tracker.is_target_valid():
+			if not tracker.target:
 				action = WANDER

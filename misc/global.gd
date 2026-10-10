@@ -1,7 +1,5 @@
 extends Node
 
-const HALF_PI := PI / 2.0
-const QUARTER_PI := PI / 4.0
 const LARGE_FLOAT: float = 0x7FEFFFFFFFFFFFFF
 
 func _ready():

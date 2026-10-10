@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="MeleeWeaponParam" format=3 uid="uid://bnoxbmrnonice"]
+[gd_resource type="Resource" script_class="WeaponParam" format=3 uid="uid://d266rut6k2uic"]
 
-[ext_resource type="Script" uid="uid://cxfsqgj7aiv3e" path="res://parts/melee_weapon_param.gd" id="2_vc76s"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/weapon_param.gd" id="1_n6xej"]
 
 [resource]
-script = ExtResource("2_vc76s")
+script = ExtResource("1_n6xej")
 reload_time = 3.1
 energy_damage = 400.0
-metadata/_custom_type_script = "uid://cxfsqgj7aiv3e"
+metadata/_custom_type_script = "uid://tu33ba2v3a1y"

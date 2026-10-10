@@ -7,13 +7,10 @@ initial_velocity_max = 4.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fje11"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
 blend_mode = 1
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0, 1.1778815, 3.2944162, 0.2509804)
+albedo_color = Color(0, 1.178, 3.294, 1)
 texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_vq2wp"]

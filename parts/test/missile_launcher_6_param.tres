@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://bsfp38yuyt1q"]
+[gd_resource type="Resource" script_class="WeaponParam" format=3 uid="uid://bsfp38yuyt1q"]
 
 [ext_resource type="PackedScene" uid="uid://ct2ftp143gfyt" path="res://projectile/missile_basic.tscn" id="1_5oylv"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="2_siaw7"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/weapon_param.gd" id="2_siaw7"]
 
 [resource]
 script = ExtResource("2_siaw7")
-multishot_interval = 0.1
 reload_time = 4.2
 lock_duration = 1.7
 lock_count = 6

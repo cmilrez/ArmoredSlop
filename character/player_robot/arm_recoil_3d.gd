@@ -70,5 +70,5 @@ func _process_modification_with_delta(delta):
 
 func _on_builder_weapons_built(nodes):
 	var wp = nodes[side]
-	if wp is ProjectileWeapon3D:
+	if wp:
 		wp.shot_fired.connect(activate)

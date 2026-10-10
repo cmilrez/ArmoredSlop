@@ -66,49 +66,33 @@ func change_direction(new_dir: Vector3) -> void:
 		move_direction = new_dir
 
 func reload_unit(id: int) -> void:
-	if _enable_units:
-		if id > 1: # only reload arm units
-			return
-		var unit = weapons.get(id)
-		if unit:
-			unit.reload(true)
+	if id > 1: # only reload arm units
+		return
+	var unit = weapons.get(id)
+	if unit:
+		unit.reload(true)
 
-func activate_unit(id: int, targets: Array[Character3D] = []) -> void:
+func activate_unit(id: int) -> void:
 	var unit = weapons.get(id)
 	if not unit:
 		return
 	if _enable_units:
-		if unit.recoil and unit.can_use:
-			if unit is MeleeWeapon3D:
-				state = MELEE
-			else:
-				if id > 1:
-					state = BACK_RECOIL
-					get_tree().create_timer(0.5, false).timeout.connect(_activate_state_weapon.bind(id))
-					_toggle_arm_look_at(id == 0, id == 1)
-				else:
-					state = ARM_RECOIL
-					_toggle_arm_look_at(false, false)
-					#_toggle_arm_look_at(id == 0, id == 1)
-					anim_tree.set_arm_recoil(id == 0)
-			return
-		if unit is ProjectileWeapon3D:
-			if unit_lock_time[id] >= get_unit_lock_duration(id):
-				if targets.is_empty():
-					targets.append(tracker.target)
-			else:
-				targets.clear()
-		unit.activate(tracker, targets)
-	elif state == BACK_RECOIL:
-		if id > 1: # use two shoulder units at the same time
-			#BUG unit.can_use will not be false for 0.5 sec
-			if unit.recoil and unit.can_use:
-				get_tree().create_timer(0.5, false).timeout.connect(_activate_state_weapon.bind(id))
-				_state_start()
+		var ctx: TargetContext
+		if is_unit_locked(id):
+			ctx = target_ctx
+		else:
+			ctx = TargetContext.new()
+			ctx.tracker = tracker
+		unit.activate(ctx)
+
+func is_unit_locked(id: int) -> bool:
+	return unit_lock_time[id] >= get_unit_lock_duration(id)
 
 func get_unit_lock_duration(id: int) -> float:
 	var unit = weapons.get(id)
-	var duration = 0.0
+	if not unit:
+		return 0.0
+	var duration: float
 	if unit.param.lock_count > 1:
 		duration = unit.param.lock_duration - data.lock_on.multi_lock_reduction
 	else:
@@ -130,14 +114,13 @@ func _state_start() -> void:
 			timer.start(0.5) # timeout
 		MELEE:
 			_toggle_arm_look_at(false, false)
-			if tracker.is_target_valid():
+			if tracker.target:
 				timer.start(1.0) # timeout
 			else:
 				timer.start(0.5) # timeout
 			timer.timeout.connect(anim_tree.start_melee_attack, CONNECT_ONE_SHOT)
 			tracker.lock_target = true
-			if weapons[1] is MeleeWeapon3D:
-				weapons[1].activate(tracker)
+			# TODO prepare melee weapon
 		DASH:
 			if not move_direction:
 				move_direction = -basis.z
@@ -367,37 +350,37 @@ func _toggle_look_at(torso: bool, leg_base := true) -> void:
 	%LookAtLegBase.active = not is_on_floor() and leg_base and enable_look_at
 
 func _toggle_arm_look_at(right_arm := true, left_arm := true) -> void:
-	var wp = weapons.get(0)
-	var value = false
-	if wp is ProjectileWeapon3D:
-		value = right_arm and enable_look_at and not (wp.reloading or wp.ammo_empty)
+	var unit = weapons.get(0)
+	var value = is_instance_valid(unit)
+	if value:
+		value = right_arm and enable_look_at and not (unit.reloading or unit.ammo_empty)
 	%ArmLookAtR.toggle(value)
-	wp = weapons.get(1)
-	value = false
-	if wp is ProjectileWeapon3D:
-		value = left_arm and enable_look_at and not (wp.reloading or wp.ammo_empty)
+	unit = weapons.get(1)
+	value = is_instance_valid(unit)
+	if value:
+		value = left_arm and enable_look_at and not (unit.reloading or unit.ammo_empty)
 	%ArmLookAtL.toggle(value)
 
 func _activate_state_weapon(id := 1) -> void: # default to left arm unit
 	if state == DEATH:
 		return
-	var wp = weapons[id]
-	if wp is MeleeWeapon3D:
-		wp.attack()
-	elif wp:
+	var unit = weapons[id]
+	if unit:
 		if not tank_legs:
 			var knockback = 8.0 if id > 1 else 5.0
 			velocity += global_basis.z * knockback
-		var tar: Array[Character3D] = []
-		if unit_lock_time[id] >= get_unit_lock_duration(id):
-			tar.append(tracker.target)
-		wp.activate(tracker, tar)
+		var ctx: TargetContext
+		if is_unit_locked(id):
+			ctx = target_ctx
+		else:
+			ctx = TargetContext.new()
+			ctx.tracker = tracker
+		unit.activate(ctx)
 
 func _on_animation_tree_state_finished(state_name: StringName) -> void:
 	match state_name:
 		&'Melee':
-			if weapons[1] is MeleeWeapon3D:
-				weapons[1].cooldown()
+			weapons[1].cooldown()
 	exit_special_state()
 
 func exit_special_state() -> void:
@@ -416,8 +399,7 @@ func _reset_lock_time() -> void:
 		unit_lock_time[i] = 0.0
 
 func _on_animation_toggled_melee_hurtbox(value: bool) -> void:
-	if weapons[1] is MeleeWeapon3D:
-		weapons[1].toggle_hurtbox(value)
+	weapons[1].toggle_hurtbox(value)
 
 func _on_builder_body_built(nodes) -> void:
 	tank_legs = data.legs.leg_type == LegsData.Type.TANK

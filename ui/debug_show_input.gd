@@ -15,7 +15,7 @@ func _ready():
 	for i in range(MAX_COUNT):
 		var new_label = Label.new()
 		add_child(new_label)
-		labels.append(new_label)
+		labels.push_back(new_label)
 		new_label.position.x = 24.0
 		new_label.position.y = i * 18.0
 		new_label.modulate = Color.LIME_GREEN

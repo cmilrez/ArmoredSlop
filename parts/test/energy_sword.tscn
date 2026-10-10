@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxr16p8i8u6qh"]
 
-[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon_3d.gd" id="1_nymui"]
-[ext_resource type="Resource" uid="uid://b3h5pcge5dy16" path="res://parts/test/energy_sword_param.tres" id="2_16qkg"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_7w8g1"]
+[ext_resource type="Resource" uid="uid://dp7eq8wvtjkld" path="res://parts/test/energy_sword_param.tres" id="2_81hid"]
 [ext_resource type="ArrayMesh" uid="uid://caw2uxjytapel" path="res://assets/TestWeapons_EnergySword.res" id="3_7w8g1"]
 [ext_resource type="Shader" uid="uid://roqo0mnm8o1q" path="res://effect/particle_trail.gdshader" id="3_16qkg"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox_3d.gd" id="4_lcwht"]
@@ -77,7 +77,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ymj4f"]
-resource_name = "Ready"
+resource_name = "Melee"
 length = 0.3
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
@@ -177,7 +177,7 @@ tracks/1/keys = {
 _data = {
 &"Attack": SubResource("Animation_climr"),
 &"Cooldown": SubResource("Animation_hi6a3"),
-&"Prepare": SubResource("Animation_ymj4f"),
+&"Melee": SubResource("Animation_ymj4f"),
 &"RESET": SubResource("Animation_g5dng"),
 &"new_animation": SubResource("Animation_16qkg")
 }
@@ -268,9 +268,8 @@ radius = 1.5
 height = 20.0
 
 [node name="EnergySword" type="Node3D" unique_id=1950415004]
-script = ExtResource("1_nymui")
-param = ExtResource("2_16qkg")
-metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
+script = ExtResource("1_7w8g1")
+param = ExtResource("2_81hid")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1228015449]
 libraries/ = SubResource("AnimationLibrary_climr")

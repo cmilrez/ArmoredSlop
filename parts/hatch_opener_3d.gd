@@ -16,7 +16,7 @@ func cache_bones():
 	var skeleton = get_skeleton()
 	for bone in skeleton.get_bone_count():
 		if skeleton.get_bone_name(bone).contains(match_name):
-			_hatch_bones.append(bone)
+			_hatch_bones.push_back(bone)
 	_step = 1.0 / _hatch_bones.size()
 
 func _process_modification_with_delta(delta):

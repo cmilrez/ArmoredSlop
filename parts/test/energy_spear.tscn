@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgm2xvvhj65dd"]
 
-[ext_resource type="Script" uid="uid://dnwu8kfxdwqya" path="res://parts/melee_weapon_3d.gd" id="1_lrm1f"]
-[ext_resource type="Resource" uid="uid://bnoxbmrnonice" path="res://parts/test/energy_spear_param.tres" id="2_bjf87"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_hqm18"]
+[ext_resource type="Resource" uid="uid://d266rut6k2uic" path="res://parts/test/energy_spear_param.tres" id="2_bjf87"]
 [ext_resource type="Script" uid="uid://p0vi8wansauj" path="res://misc/hurtbox_3d.gd" id="4_037vq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umeg2"]
@@ -143,9 +143,8 @@ _data = {
 }
 
 [node name="EnergySpear" type="Node3D" unique_id=1380468596]
-script = ExtResource("1_lrm1f")
+script = ExtResource("1_hqm18")
 param = ExtResource("2_bjf87")
-metadata/_custom_type_script = "uid://dnwu8kfxdwqya"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1490588011]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)

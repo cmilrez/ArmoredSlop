@@ -64,7 +64,7 @@ func iterate_skeleton(skeleton: Skeleton3D, bone_id: int, data: BodyPartData) ->
 	var children = skeleton.get_bone_children(bone_id)
 	var children_names = []
 	for child: int in children:
-		children_names.append(StringName(skeleton.get_bone_name(child)))
+		children_names.push_back(StringName(skeleton.get_bone_name(child)))
 	if regex.search(name): # flip shoulders and torso for some reason
 		pose = pose.rotated(Vector3.UP, PI)
 	data.bone_list.get_or_add(name, [pose, children_names])

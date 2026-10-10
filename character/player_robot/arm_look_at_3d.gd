@@ -12,9 +12,9 @@ const DURATION = 0.2 # sec
 	set(value):
 		arm_name = value
 		_update_bone(&'arm_bone', arm_name)
-@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var shoulder_angle := Global.QUARTER_PI
-@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var x_limit_angle := Global.QUARTER_PI
-@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var z_limit_angle := Global.QUARTER_PI
+@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var shoulder_angle := PI / 4.0
+@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var x_limit_angle := PI / 4.0
+@export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var z_limit_angle := PI / 4.0
 var primary_rotation_axis := Vector3.RIGHT
 var secondary_rotation_axis := Vector3.BACK
 var shoulder_bone := -1

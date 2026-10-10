@@ -13,6 +13,7 @@ enum Teams {
 @export var lock_on_marker: Node3D = null
 @export var weapons: Array[Weapon3D] = []
 
+var target_ctx := TargetContext.new()
 var move_direction := Vector3.ZERO
 var speed := 40.0
 var alive := true

@@ -14,7 +14,7 @@ func _process(delta):
 	angle_y = camera.get_arm_rotation()
 	
 	var reload = Input.is_action_pressed('reload')
-	var max_multi_lock_count = 0
+	var max_lock_count = 1
 	for i in range(UNIT_ACTIONS.size()):
 		var unit = weapons[i]
 		if unit and unit.reloading:
@@ -25,7 +25,7 @@ func _process(delta):
 			IDLE:
 				continue
 			NORMAL:
-				var is_multi_lock = unit is ProjectileWeapon3D and unit.param.lock_count > 1
+				var is_multi_lock = unit and unit.param.lock_count > 1
 				if Input.is_action_pressed(UNIT_ACTIONS[i]):
 					if is_multi_lock:
 						multi_lock_hold_time[i] += delta
@@ -49,25 +49,18 @@ func _process(delta):
 					unit_lock_time[i] = 0.0
 					unit_action_state[i] = IDLE
 					continue
-				var multi_lock_finished = unit_lock_time[i] >= get_unit_lock_duration(i)
-				if multi_lock_finished:
-					if unit.param.lock_count > max_multi_lock_count:
-						max_multi_lock_count = unit.param.lock_count - 1
+				var multi_locked = is_unit_locked(i)
+				if multi_locked:
+					if unit.param.lock_count > max_lock_count:
+						max_lock_count = unit.param.lock_count
 				if not Input.is_action_pressed(UNIT_ACTIONS[i]):
-					if multi_lock_finished:
-						var targets: Array[Character3D] = [tracker.target]
-						targets.append_array(camera.multi_target_list)
-						if targets.size() > unit.param.lock_count:
-							targets.resize(unit.param.lock_count)
-						activate_unit(i, targets)
-					else:
-						activate_unit(i)
+					activate_unit(i)
 					unit_lock_time[i] = 0.0
 					unit_action_state[i] = IDLE
 				continue
 			CHARGED:
 				continue
-	camera.multi_target_count = max_multi_lock_count
+	camera.target_count = max_lock_count
 
 func _unhandled_input(event):
 	if event.is_action_pressed('superboost'): # TODO

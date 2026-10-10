@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dp8cyfxnawvug"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_c2qr6"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_rxscm"]
 [ext_resource type="ArrayMesh" uid="uid://cotairvpxnf7" path="res://assets/TestWeapons_LaserRifle.res" id="1_t67y8"]
-[ext_resource type="Resource" uid="uid://dxa5jcpi7toit" path="res://parts/test/laser_rifle_param.tres" id="2_rxscm"]
+[ext_resource type="Resource" uid="uid://dxa5jcpi7toit" path="res://parts/test/laser_rifle_param.tres" id="2_k3fft"]
 [ext_resource type="PackedScene" uid="uid://d35iikqq86ibh" path="res://effect/energy_sparks.tscn" id="4_rxscm"]
 
 [sub_resource type="Animation" id="Animation_k3fft"]
@@ -54,6 +54,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MuzzleLight:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MuzzleLight:omni_range")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
 
 [sub_resource type="Animation" id="Animation_87rtx"]
 resource_name = "Ready"
@@ -69,7 +93,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.3, 1, 0.8660254, 0, 0, 0.
 
 [sub_resource type="Animation" id="Animation_umm2t"]
 resource_name = "Shoot"
-length = 0.7
+length = 0.8
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,6 +133,44 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MuzzleLight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MuzzleLight:omni_range")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 15.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"shoot_one"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_rxscm"]
@@ -159,10 +221,9 @@ _data = {
 }
 
 [node name="LaserRifle" type="Node3D" unique_id=1202161091 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_c2qr6")
+script = ExtResource("1_rxscm")
 spawners = NodePath("Skeleton3D/LaserRifle")
-param = ExtResource("2_rxscm")
-metadata/_custom_type_script = "uid://brdkpe831f6pw"
+param = ExtResource("2_k3fft")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=651302115]
 libraries/ = SubResource("AnimationLibrary_i7bry")
@@ -225,4 +286,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14058116, 3.5238237)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14058116, 3.5238237)
 emitting = false
 amount = 20
+explosiveness = 0.5
 local_coords = true
+
+[node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=456259000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14058116, 3.5238237)
+visible = false
+layers = 16
+light_color = Color(0, 0.33333334, 1, 1)
+light_energy = 30.0
+light_volumetric_fog_energy = 30.0
+light_specular = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 300.0

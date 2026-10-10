@@ -19,5 +19,5 @@ func _on_builder_body_built(nodes):
 	list.clear()
 	for part in nodes:
 		if part is Booster:
-			list.append(part)
+			list.push_back(part)
 	toggle.call_deferred(on_off)

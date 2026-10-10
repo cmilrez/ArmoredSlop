@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="ProjectileWeaponParam" format=3 uid="uid://bwpsbh7fpv5no"]
+[gd_resource type="Resource" script_class="WeaponParam" format=3 uid="uid://bwpsbh7fpv5no"]
 
 [ext_resource type="PackedScene" uid="uid://b3bw8s34mvk7j" path="res://projectile/missile_split.tscn" id="2_wrgg5"]
-[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/projectile_weapon_param.gd" id="3_2cg7a"]
+[ext_resource type="Script" uid="uid://tu33ba2v3a1y" path="res://parts/weapon_param.gd" id="3_2cg7a"]
 
 [resource]
 script = ExtResource("3_2cg7a")
 reload_time = 4.0
 lock_duration = 2.2
-clip_size = 1
 ammo_max = 50
 ammo_cost = 1
 explosive_damage = 16.0

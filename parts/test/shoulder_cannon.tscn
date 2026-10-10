@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cb8tx40201w3a"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_3lgcg"]
-[ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_65uri"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_bp5to"]
+[ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_5ji6c"]
 [ext_resource type="ArrayMesh" uid="uid://cguc6r0qa33v1" path="res://assets/TestWeapons_ShoulderCannon.res" id="3_l7aj2"]
 [ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="4_65uri"]
 [ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="5_bp5to"]
@@ -113,6 +113,30 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Skeleton3D/Body/MuzzleLight:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Skeleton3D/Body/MuzzleLight:omni_range")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
 }
 
 [sub_resource type="Animation" id="Animation_65uri"]
@@ -283,10 +307,48 @@ tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlash:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(2, 6, 2), Vector3(8, 16, 8), Vector3(5, 10, 5), Vector3(1, 3, 1)]
+"values": [Vector3(1, 2, 1), Vector3(2, 6, 2), Vector3(8, 16, 8), Vector3(4, 12, 4), Vector3(1, 4, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"shoot_one"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D/Body/MuzzleLight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton3D/Body/MuzzleLight:omni_range")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.16666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [5.0, 20.0, 20.0, 10.0]
 }
 
 [sub_resource type="Animation" id="Animation_l7aj2"]
@@ -361,11 +423,9 @@ rings = 4
 is_hemisphere = true
 
 [node name="ShoulderCannon" type="Node3D" unique_id=1687019098 node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_3lgcg")
+script = ExtResource("1_bp5to")
 spawners = NodePath("Skeleton3D/Body/Spawners")
-param = ExtResource("2_65uri")
-recoil = true
-metadata/_custom_type_script = "uid://brdkpe831f6pw"
+param = ExtResource("2_5ji6c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931819844]
 libraries/ = SubResource("AnimationLibrary_74cd2")
@@ -403,7 +463,6 @@ mesh = ExtResource("3_l7aj2")
 skeleton = NodePath("..")
 
 [node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=1084848362]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 bone_name = "Body"
 bone_idx = 0
 
@@ -434,9 +493,18 @@ layers = 2
 gi_mode = 0
 mesh = SubResource("CylinderMesh_65uri")
 
-[node name="MuzzleFlash" type="MeshInstance3D" parent="Skeleton3D/Body" unique_id=1435270467 instance=ExtResource("5_bp5to")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.258, 1.535, 7.1)
+[node name="MuzzleFlash" parent="Skeleton3D/Body" unique_id=1435270467 instance=ExtResource("5_bp5to")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.258, 1.535, 7.28715)
+visible = false
+mesh = SubResource("SphereMesh_vq2wp")
+
+[node name="MuzzleLight" type="OmniLight3D" parent="Skeleton3D/Body" unique_id=1137939913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258, 1.535, 10)
 visible = false
 layers = 16
-cast_shadow = 0
-mesh = SubResource("SphereMesh_vq2wp")
+light_color = Color(1, 0.7372549, 0, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 30.0
+light_specular = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 400.0

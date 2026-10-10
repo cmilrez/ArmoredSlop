@@ -30,7 +30,7 @@ func _process(delta):
 	if not alive:
 		state = DEATH
 		return
-	if tracker.is_target_valid():
+	if tracker.target:
 		state = CHASE
 	else:
 		state = WANDER
@@ -76,8 +76,8 @@ func _physics_process(delta):
 						velocity.y = 0.0
 					timer.start(0.3)
 					await timer.timeout
-					if tracker.is_target_valid():
-						weapons[0].activate(tracker, [tracker.target])
+					if tracker.target:
+						weapons[0].activate(target_ctx)
 						move_direction = Vector3.ZERO
 						velocity = Vector3.ZERO
 						timer.start(maxf(1.0, 2.0 * randf()))

@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://dm2rrfv3e4pdg"]
 
-[ext_resource type="Script" uid="uid://brdkpe831f6pw" path="res://parts/projectile_weapon_3d.gd" id="1_8tt4q"]
-[ext_resource type="Resource" uid="uid://bexjj32v62a7e" path="res://parts/test/smg_param.tres" id="2_h2jik"]
+[ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_8tt4q"]
+[ext_resource type="Resource" uid="uid://bexjj32v62a7e" path="res://parts/test/smg_param.tres" id="2_1tc31"]
 [ext_resource type="ArrayMesh" uid="uid://d3144n31gpe46" path="res://assets/TestWeapons_SMG.res" id="4_1tc31"]
 [ext_resource type="PackedScene" uid="uid://bbaakg2n7jy2h" path="res://parts/test/test_ammo_mag_2.tscn" id="4_8tt4q"]
 [ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="5_1tc31"]
-[ext_resource type="PhysicsMaterial" uid="uid://cvt2moqr0tad0" path="res://misc/f1 b0_5 pmtl.tres" id="5_tg8lo"]
 
 [sub_resource type="Animation" id="Animation_8tt4q"]
 length = 0.001
@@ -104,6 +103,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MuzzleLight:omni_range")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
 }
 
 [sub_resource type="Animation" id="Animation_tg8lo"]
@@ -212,7 +223,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_1tc31"]
 resource_name = "Shoot"
-length = 0.3
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -220,10 +231,10 @@ tracks/0/path = NodePath("MuzzleFlash:visible")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666667, 0.20000002, 0.26666668),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -235,7 +246,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666667, 0.20000002, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(3, 5, 3), Vector3(1, 1, 1), Vector3(3, 5, 3), Vector3(1, 1, 1), Vector3(3, 5, 3)]
+"values": [Vector3(1, 1, 1), Vector3(2, 5, 2), Vector3(1, 1, 1), Vector3(2, 5, 2), Vector3(1, 1, 1), Vector3(2, 5, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -244,10 +255,42 @@ tracks/2/path = NodePath("MuzzleLight:visible")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.30000004),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"shoot_one"
+}, {
+"args": [0],
+"method": &"shoot_one"
+}, {
+"args": [0],
+"method": &"shoot_one"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MuzzleLight:omni_range")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.16666669, 0.20000002, 0.2666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false]
+"update": 0,
+"values": [5.0, 15.0, 5.0, 15.0, 5.0, 15.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tg8lo"]
@@ -258,24 +301,24 @@ _data = {
 &"Shoot": SubResource("Animation_1tc31")
 }
 
-[sub_resource type="Gradient" id="Gradient_8tt4q"]
+[sub_resource type="Gradient" id="Gradient_1tc31"]
 offsets = PackedFloat32Array(0.2, 0.8, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
 metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xshul"]
-gradient = SubResource("Gradient_8tt4q")
+gradient = SubResource("Gradient_1tc31")
 fill_to = Vector2(0, 1)
 metadata/_snap_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0tl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tg8lo"]
 shading_mode = 0
 albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
 albedo_texture = SubResource("GradientTexture2D_xshul")
 uv1_offset = Vector3(0, 0.01, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vq2wp"]
-material = SubResource("StandardMaterial3D_sb0tl")
+material = SubResource("StandardMaterial3D_tg8lo")
 radius = 1.0
 radial_segments = 8
 rings = 4
@@ -283,9 +326,8 @@ is_hemisphere = true
 
 [node name="SMG" type="Node3D" unique_id=301609697 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_8tt4q")
-spawners = NodePath("Skeleton3D/Body")
-param = ExtResource("2_h2jik")
-metadata/_custom_type_script = "uid://brdkpe831f6pw"
+spawners = NodePath("Skeleton3D/SMG")
+param = ExtResource("2_1tc31")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2003102181]
 libraries/ = SubResource("AnimationLibrary_tg8lo")
@@ -313,37 +355,20 @@ layers = 4
 mesh = ExtResource("4_1tc31")
 skeleton = NodePath("..")
 
-[node name="Body" type="BoneAttachment3D" parent="Skeleton3D" unique_id=844728119]
-bone_name = "Body"
-bone_idx = 0
-
-[node name="Marker3D" type="Marker3D" parent="Skeleton3D/Body" unique_id=632917113]
+[node name="Marker3D" type="Marker3D" parent="Skeleton3D/SMG" unique_id=632917113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 0.71450627, 2.9182513)
 
-[node name="Marker3D2" type="Marker3D" parent="Skeleton3D/Body" unique_id=694881967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 0.71450627, 2.9182513)
-
-[node name="Marker3D3" type="Marker3D" parent="Skeleton3D/Body" unique_id=1984577220]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 0.71450627, 2.9182513)
-
-[node name="AmmoMagBody" type="RigidBody3D" parent="." unique_id=2004031557 instance=ExtResource("4_8tt4q")]
+[node name="AmmoMagBody" parent="." unique_id=2004031557 instance=ExtResource("4_8tt4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4186256, 1.4236169)
-collision_layer = 0
-collision_mask = 3
-input_ray_pickable = false
-mass = 10.0
-physics_material_override = ExtResource("5_tg8lo")
 freeze = true
 
-[node name="MuzzleFlash" type="MeshInstance3D" parent="." unique_id=1435270467 instance=ExtResource("5_1tc31")]
+[node name="MuzzleFlash" parent="." unique_id=1435270467 instance=ExtResource("5_1tc31")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -9.536743e-07, 0.71450627, 2.9182513)
 visible = false
-layers = 16
-cast_shadow = 0
 mesh = SubResource("SphereMesh_vq2wp")
 
 [node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=876710684]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715, 4.5)
 visible = false
 layers = 16
 light_color = Color(1, 0.7372549, 0, 1)
@@ -351,4 +376,4 @@ light_energy = 16.0
 light_volumetric_fog_energy = 30.0
 light_specular = 1.0
 distance_fade_enabled = true
-omni_range = 15.0
+distance_fade_begin = 300.0
