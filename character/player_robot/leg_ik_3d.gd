@@ -1,21 +1,24 @@
 @tool
 class_name LegIK3D extends SkeletonModifier3D
 
-@onready var marker_right: Marker3D = $IKRightLeg
-@onready var marker_left: Marker3D = $IKLeftLeg
-@onready var ray_leg_base: RayCast3D = $RayCastLegBase
-@onready var ray_right: RayCast3D = $RayCastR
-@onready var ray_left: RayCast3D = $RayCastL
+@onready var marker_right: Marker3D = $MarkerR
+@onready var marker_left: Marker3D = $MarkerL
+@onready var ray_leg_base: RayCast3D = $RayLegBase
+@onready var ray_right: RayCast3D = $RayLegR
+@onready var ray_left: RayCast3D = $RayLegL
 @onready var ik_mod: CCDIK3D = $'../CCDIK3D'
 
 var feet_rest_height := 0.0
 var leg_base_height := 0.0
-var leg_base_bone := -1
-var shin_r_bone := -1
-var shin_l_bone := -1
+var leg_base_bone := -2
+var shin_r_bone := -3
+var shin_l_bone := -4
 
 func _ready():
+	marker_right.top_level = true
+	marker_left.top_level = true
 	setup()
+	active = leg_base_bone > -1 and shin_r_bone > -1 and shin_l_bone > -1
 
 func _process_modification_with_delta(delta):
 	var skel = get_skeleton()
@@ -66,14 +69,17 @@ func setup() -> void:
 	ik_mod.set_root_bone_name(1, 'Thigh.L')
 	ik_mod.set_end_bone_name(0, 'Feet.R')
 	ik_mod.set_end_bone_name(1, 'Feet.L')
+	
 	var joint_limit = JointLimitationCone3D.new()
 	joint_limit.angle = deg_to_rad(180.0)
 	ik_mod.set_joint_limitation(0, 0, joint_limit)
 	ik_mod.set_joint_limitation(1, 0, joint_limit)
+	
 	joint_limit = JointLimitationCone3D.new()
 	joint_limit.angle = deg_to_rad(120.0)
 	ik_mod.set_joint_limitation(0, 1, joint_limit)
 	ik_mod.set_joint_limitation(1, 1, joint_limit)
+	
 	var quat = Quaternion(Vector3.RIGHT, deg_to_rad(-60))
 	ik_mod.set_joint_limitation_rotation_offset(0, 1, quat)
 	ik_mod.set_joint_limitation_rotation_offset(1, 1, quat)

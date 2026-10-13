@@ -79,7 +79,8 @@ func activate(ctx: TargetContext) -> void:
 		_state_shoot()
 
 func shoot_one(spawner_idx := 0) -> void:
-	check_ammo_loaded()
+	if check_ammo_loaded():
+		return
 	var list_size = target_ctx.list.size()
 	var spawn = spawners.get_child(spawner_idx)
 	var new_projectile = param.projectile_scene.instantiate()

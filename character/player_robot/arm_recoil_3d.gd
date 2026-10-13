@@ -14,8 +14,8 @@ const DURATION = 0.2 # sec
 		arm_name = value
 		_update_bone(&'arm_bone', arm_name)
 @export_tool_button('Test', 'MainPlay') var button1 = activate
-var shoulder_bone := -1
-var arm_bone := -1
+var shoulder_bone := -5
+var arm_bone := -6
 var rand_angle := 0.0
 var tween: Tween = null
 
@@ -30,6 +30,8 @@ func activate() -> void:
 func initialize() -> void:
 	_update_bone(&'shoulder_bone', shoulder_name)
 	_update_bone(&'arm_bone', arm_name)
+	if shoulder_bone < 0 or arm_bone < 0:
+		influence = 0.0
 
 func _update_bone(property: StringName, bone_name: String) -> void:
 	var skel = get_skeleton()
@@ -54,8 +56,7 @@ func _set(property, value):
 	return false
 
 func _ready():
-	shoulder_name = shoulder_name
-	arm_name = arm_name
+	initialize()
 
 func _process_modification_with_delta(delta):
 	var skel = get_skeleton()

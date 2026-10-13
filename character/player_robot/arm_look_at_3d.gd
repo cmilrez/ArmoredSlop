@@ -17,8 +17,8 @@ const DURATION = 0.2 # sec
 @export_range(0.0, 90.0, 0.01, 'radians_as_degrees') var z_limit_angle := PI / 4.0
 var primary_rotation_axis := Vector3.RIGHT
 var secondary_rotation_axis := Vector3.BACK
-var shoulder_bone := -1
-var arm_bone := -1
+var shoulder_bone := -7
+var arm_bone := -8
 var tween: Tween = null
 var on_off := false
 
@@ -38,6 +38,8 @@ func toggle(value: bool) -> void:
 func initialize() -> void:
 	_update_bone(&'shoulder_bone', shoulder_name)
 	_update_bone(&'arm_bone', arm_name)
+	if shoulder_bone < 0 or arm_bone < 0:
+		influence = 0.0
 
 func _update_bone(property: StringName, bone_name: String) -> void:
 	var skel = get_skeleton()

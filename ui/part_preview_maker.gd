@@ -29,8 +29,10 @@ func save_preview(path: String) -> PortableCompressedTexture2D:
 	pctex.create_from_image(get_texture().get_image(), PortableCompressedTexture2D.COMPRESSION_MODE_S3TC)
 	var error = ResourceSaver.save(pctex, path)
 	if error:
+		prints(path, error_string(error))
 		return null
-	return pctex
+	return ResourceLoader.load(path)
+	#return pctex
 
 func create_one_miniature() -> void:
 	if not (Engine.is_editor_hint() and camera):

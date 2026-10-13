@@ -5,13 +5,13 @@ class_name PlayerCamera3D extends Node3D
 @onready var eye_ray: RayCast3D = $EyeRay
 @onready var tracker: Tracker3D = %Tracker3D
 @onready var player: Robot3D = get_parent()
-@onready var robot_hud: RobotHUD = %RobotHUD
+@onready var robot_hud: RobotHUD = %RobotHud
 
 @export_range(0.01, 1.0, 0.01, 'or_greater', 'hide_control') var mouse_sensitivity := 0.3
 @export_range(-1, 1, 2) var invert_y := -1
 @export_range(-1, 1, 2) var invert_x := -1
-@export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var max_angle_x := PI / 2
-@export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -PI / 2
+@export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var max_angle_x := deg_to_rad(85)
+@export_range(-90.0, 90.0, 0.1, 'radians_as_degrees') var min_angle_x := -deg_to_rad(85)
 @export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var arm_length := 13.0
 @export_range(0.0, 20.0, 0.1, 'or_greater', 'hide_control') var height := 12.0
 

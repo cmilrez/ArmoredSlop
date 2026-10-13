@@ -6,7 +6,6 @@ var marker: Label = null
 var count := 0
 
 func _ready():
-	position = Vector2(6.0, 8.0)
 	marker = Label.new()
 	add_child(marker)
 	marker.text = '>'

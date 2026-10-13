@@ -26,7 +26,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://bsjiiau4va7dj" path="res://character/player_robot/AnimBiped.res" id="14_dx0bn"]
 [ext_resource type="PackedScene" uid="uid://bgktynat53xno" path="res://parts/test/test_booster.tscn" id="14_ufs7v"]
 [ext_resource type="Script" uid="uid://802cykxrtjmf" path="res://misc/hitbox_3d.gd" id="15_0j0i7"]
-[ext_resource type="ArrayMesh" uid="uid://cmtrt70icob7v" path="res://assets/Hands_Hands.res" id="15_f8ko1"]
+[ext_resource type="ArrayMesh" uid="uid://kamoouxgf6ai" path="res://assets/Hands_Mesh.res" id="20_t8q8f"]
 [ext_resource type="PackedScene" uid="uid://t6gmjg35gaww" path="res://parts/test/test_torso_2.tscn" id="22_dx0bn"]
 [ext_resource type="Script" uid="uid://dx3r7rc0pv7nc" path="res://character/player_robot/arm_look_at_3d.gd" id="28_u4a80"]
 [ext_resource type="Script" uid="uid://kbey4qccoxs4" path="res://character/player_robot/arm_recoil_3d.gd" id="29_t8q8f"]
@@ -496,7 +496,7 @@ bones/32/scale = Vector3(1, 1, 1)
 [node name="Hands" type="MeshInstance3D" parent="Skeleton3D" unique_id=2009124637]
 unique_name_in_owner = true
 layers = 4
-mesh = ExtResource("15_f8ko1")
+mesh = ExtResource("20_t8q8f")
 skin = SubResource("Skin_mhxkn")
 skeleton = NodePath("..")
 

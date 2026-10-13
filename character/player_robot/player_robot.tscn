@@ -8,17 +8,19 @@
 [ext_resource type="Resource" uid="uid://bed12ld81mg4b" path="res://parts/test/test_generator_data.tres" id="4_0aexc"]
 [ext_resource type="Resource" uid="uid://dot84okom8lcg" path="res://parts/test/test_torso_1_data.tres" id="6_7qhri"]
 [ext_resource type="Resource" uid="uid://dsleum4ja8lju" path="res://parts/test/test_lock_on_data.tres" id="6_tdw7n"]
+[ext_resource type="Resource" uid="uid://cj4xuodqbebt" path="res://parts/test/smg_data.tres" id="6_vvsxd"]
+[ext_resource type="Resource" uid="uid://cowfkhskd3huo" path="res://parts/test/missile_launcher_6_data.tres" id="7_74i7b"]
 [ext_resource type="Resource" uid="uid://dnxm1fgyfmrr7" path="res://parts/test/test_leg_biped_1_data.tres" id="8_0bit8"]
 [ext_resource type="Resource" uid="uid://bauqvinm0fdje" path="res://parts/test/bazooka_data.tres" id="9_ub7kw"]
 [ext_resource type="Script" uid="uid://drfjnpmbdy7gg" path="res://parts/robot_builder.gd" id="12_i7v7b"]
 [ext_resource type="Script" uid="uid://c2tribd38lidp" path="res://parts/booster_controller.gd" id="14_vkh4f"]
 [ext_resource type="Script" uid="uid://ch5cqu8ctoscg" path="res://misc/health.gd" id="15_u4jiq"]
 [ext_resource type="AnimationLibrary" uid="uid://bsjiiau4va7dj" path="res://character/player_robot/AnimBiped.res" id="17_0aexc"]
+[ext_resource type="ArrayMesh" uid="uid://kamoouxgf6ai" path="res://assets/Hands_Mesh.res" id="17_nuddx"]
 [ext_resource type="AnimationLibrary" uid="uid://bpq6hwddh0v4c" path="res://character/player_robot/AnimQuad.tres" id="18_0bit8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d0l8o7aa41i5l" path="res://character/player_robot/anim_machine_robot.res" id="19_o0m7j"]
 [ext_resource type="AnimationLibrary" uid="uid://cxg738fjtpc3v" path="res://character/player_robot/AnimTank.res" id="19_vvsxd"]
 [ext_resource type="Script" uid="uid://dtnaqmcmkkxtq" path="res://character/robot_animator.gd" id="20_vt4jt"]
-[ext_resource type="ArrayMesh" uid="uid://cmtrt70icob7v" path="res://assets/Hands_Hands.res" id="21_nnqj3"]
 [ext_resource type="SkeletonProfile" uid="uid://d2mbi6rktahlx" path="res://misc/biped_robot_skeleton_profile.tres" id="22_0bit8"]
 [ext_resource type="Script" uid="uid://d1fq0xbo8v0ic" path="res://character/player_robot/player_camera_3d.gd" id="22_5033q"]
 [ext_resource type="Script" uid="uid://dx3r7rc0pv7nc" path="res://character/player_robot/arm_look_at_3d.gd" id="23_0bit8"]
@@ -36,13 +38,15 @@ arms = ExtResource("2_qhjbi")
 torso = ExtResource("6_7qhri")
 legs = ExtResource("8_0bit8")
 right_arm = ExtResource("9_ub7kw")
+left_arm = ExtResource("6_vvsxd")
+left_back = ExtResource("7_74i7b")
 booster = ExtResource("3_ub7kw")
 generator = ExtResource("4_0aexc")
 lock_on = ExtResource("6_tdw7n")
 max_hp = 1000.0
 metadata/_custom_type_script = "uid://btwwmhfbra0fh"
 
-[sub_resource type="Animation" id="Animation_0aexc"]
+[sub_resource type="Animation" id="Animation_vvsxd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,10 +63,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0bit8"]
 _data = {
-&"RESET": SubResource("Animation_0aexc")
+&"RESET": SubResource("Animation_vvsxd")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_paxjy"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_atnys"]
 radius = 4.0
 height = 10.0
 
@@ -76,13 +80,13 @@ bind/1/name = &"Hand.L"
 bind/1/bone = -1
 bind/1/pose = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -1, 0, -1.509958e-07)
 
-[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_0aexc"]
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_vvsxd"]
 angle = 3.1415927
 
-[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_0bit8"]
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_74i7b"]
 angle = 2.0943952
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_itl3e"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ub7kw"]
 radius = 1.0
 
 [node name="PlayerRobot" type="CharacterBody3D" unique_id=1597961581 node_paths=PackedStringArray("camera", "lock_on_marker", "weapons")]
@@ -100,24 +104,24 @@ lock_on_marker = NodePath("Skeleton3D/RetargetModifier3D/Skeleton3D/Torso/LockOn
 weapons = [null, null, null, null]
 metadata/_custom_type_script = "uid://b31okcihcprx6"
 
-[node name="BUILDER" type="Node" parent="." unique_id=266228657]
+[node name="RobotBuilder" type="Node" parent="." unique_id=838758257]
 script = ExtResource("12_i7v7b")
 data = SubResource("Resource_c5gkk")
 metadata/_custom_type_script = "uid://drfjnpmbdy7gg"
 
-[node name="Timer" type="Timer" parent="." unique_id=1516407593]
+[node name="Timer" type="Timer" parent="." unique_id=303668248]
 one_shot = true
 
-[node name="BoosterController" type="Node" parent="." unique_id=1876761495 node_paths=PackedStringArray("character")]
+[node name="BoosterController" type="Node" parent="." unique_id=1387936132 node_paths=PackedStringArray("character")]
 script = ExtResource("14_vkh4f")
 character = NodePath("..")
 
-[node name="Health" type="Node" parent="." unique_id=527874754]
+[node name="Health" type="Node" parent="." unique_id=1533280070]
 script = ExtResource("15_u4jiq")
 data = SubResource("Resource_c5gkk")
 metadata/_custom_type_script = "uid://ch5cqu8ctoscg"
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1707411749]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=561749743]
 active = false
 root_motion_track = NodePath("Skeleton3D:Root")
 libraries/ = SubResource("AnimationLibrary_0bit8")
@@ -126,40 +130,39 @@ libraries/AnimQuad = ExtResource("18_0bit8")
 libraries/AnimTank = ExtResource("19_vvsxd")
 tree_root = ExtResource("19_o0m7j")
 advance_expression_base_node = NodePath("..")
-parameters/Airborne/LegType/current_state = "Biped"
+parameters/Airborne/LegType/current_state = ""
 parameters/Airborne/LegType/transition_request = ""
-parameters/Airborne/LegType/current_index = 0
+parameters/Airborne/LegType/current_index = -1
 parameters/Airborne/Biped/blend_position = Vector2(0, 0)
 parameters/Airborne/Quad/blend_position = Vector2(0, 0)
 parameters/ArmRecoil/conditions/left_arm = false
 parameters/ArmRecoil/conditions/right_arm = false
-parameters/Boost/LegType/current_state = "Biped"
+parameters/Boost/LegType/current_state = ""
 parameters/Boost/LegType/transition_request = ""
-parameters/Boost/LegType/current_index = 0
+parameters/Boost/LegType/current_index = -1
 parameters/Boost/Biped/blend_position = Vector2(0, 0)
 parameters/Boost/Quad/blend_position = Vector2(0, 0)
-parameters/Ground/LegType/current_state = "Biped"
+parameters/Ground/LegType/current_state = ""
 parameters/Ground/LegType/transition_request = ""
-parameters/Ground/LegType/current_index = 0
+parameters/Ground/LegType/current_index = -1
 parameters/Ground/Biped/blend_position = Vector2(0, 0)
 parameters/Ground/Tank/blend_position = Vector2(0, 0)
 parameters/Ground/Quad/blend_position = Vector2(0, 0)
 parameters/Melee/conditions/start_combo = false
-parameters/Superboost/LegType/current_state = "Biped"
+parameters/Superboost/LegType/current_state = ""
 parameters/Superboost/LegType/transition_request = ""
-parameters/Superboost/LegType/current_index = 0
+parameters/Superboost/LegType/current_index = -1
 script = ExtResource("20_vt4jt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=181849056]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=904082958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
-shape = SubResource("CapsuleShape3D_paxjy")
+shape = SubResource("CapsuleShape3D_atnys")
 
-[node name="Tracker3D" type="Marker3D" parent="." unique_id=943173528]
+[node name="Tracker3D" type="Marker3D" parent="." unique_id=1111072531]
 unique_name_in_owner = true
 script = ExtResource("24_1oi2e")
-metadata/_custom_type_script = "uid://bdm7gjqpj0ksu"
 
-[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=374531564]
+[node name="Skeleton3D" type="Skeleton3D" parent="." unique_id=2026636141]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
@@ -259,11 +262,11 @@ bones/13/position = Vector3(5.488374e-09, 1.7382643, -6.0535967e-09)
 bones/13/rotation = Quaternion(0.6958386, 0.120814204, 0.12050343, 0.69763285)
 bones/13/scale = Vector3(1, 1.0000001, 1)
 
-[node name="RetargetModifier3D" type="RetargetModifier3D" parent="Skeleton3D" unique_id=742442931]
+[node name="RetargetModifier3D" type="RetargetModifier3D" parent="Skeleton3D" unique_id=691292431]
 unique_name_in_owner = true
 profile = ExtResource("22_0bit8")
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Skeleton3D/RetargetModifier3D" unique_id=435639541]
+[node name="Skeleton3D" type="Skeleton3D" parent="Skeleton3D/RetargetModifier3D" unique_id=2022033092]
 unique_name_in_owner = true
 bones/0/name = "ArmUnit.L"
 bones/0/parent = 2
@@ -483,79 +486,70 @@ bones/30/position = Vector3(-0.167372, 0, 0.542358)
 bones/30/rotation = Quaternion(0, 0, 0, 1)
 bones/30/scale = Vector3(1, 1, 1)
 
-[node name="Hands" type="MeshInstance3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=2009124637]
+[node name="Hands" type="MeshInstance3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=2074878783]
 unique_name_in_owner = true
 layers = 4
-mesh = ExtResource("21_nnqj3")
+mesh = ExtResource("17_nuddx")
 skin = SubResource("Skin_6k86l")
 skeleton = NodePath("..")
 
-[node name="ArmUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=107614448]
-unique_name_in_owner = true
-transform = Transform3D(-1, 1.4494276e-08, -3.3754117e-07, 1.45344075e-08, 1, -1.0640366e-07, 3.384724e-07, -4.9359983e-08, -1, 2.7167313, 6.3129697, -0.8226998)
-bone_name = "ArmUnit.R"
-bone_idx = 1
-
-[node name="ArmUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1374810305]
-unique_name_in_owner = true
-transform = Transform3D(-1.0000002, 4.2945416e-08, -5.3633056e-07, 1.3485894e-07, 1.0000002, 4.7497473e-08, 5.6322244e-07, 1.1874363e-08, -0.99999964, -2.7167325, 6.3129687, -0.8226996)
-bone_name = "ArmUnit.L"
-bone_idx = 0
-
-[node name="HandUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=19241375]
+[node name="HandUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=427176715]
 unique_name_in_owner = true
 transform = Transform3D(-1, 5.919773e-08, -5.3125626e-07, 5.923789e-08, 1, -1.06403604e-07, 5.321876e-07, -4.936001e-08, -1, 2.0966578, 6.3129697, -2.133463)
 bone_name = "HandUnit.R"
 bone_idx = 29
 
-[node name="HandUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=954387833]
+[node name="HandUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=747236933]
 unique_name_in_owner = true
 transform = Transform3D(-1.0000002, 2.8044251e-08, -5.512317e-07, 1.1995778e-07, 1.0000002, 4.7497473e-08, 5.781236e-07, 1.1874369e-08, -0.99999964, -2.0966601, 6.3129687, -2.1334631)
 bone_name = "HandUnit.L"
 bone_idx = 30
 
-[node name="BackUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1784945259]
+[node name="ArmUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1055950638]
+unique_name_in_owner = true
+transform = Transform3D(-1, 1.4494276e-08, -3.3754117e-07, 1.45344075e-08, 1, -1.0640366e-07, 3.384724e-07, -4.9359983e-08, -1, 2.7167313, 6.3129697, -0.8226998)
+bone_name = "ArmUnit.R"
+bone_idx = 1
+
+[node name="ArmUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1326794475]
+unique_name_in_owner = true
+transform = Transform3D(-1.0000002, 4.2945416e-08, -5.3633056e-07, 1.3485894e-07, 1.0000002, 4.7497473e-08, 5.6322244e-07, 1.1874363e-08, -0.99999964, -2.7167325, 6.3129687, -0.8226996)
+bone_name = "ArmUnit.L"
+bone_idx = 0
+
+[node name="BackUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1350390846]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -3.2584134e-07, 0, 1, 0, 3.2584134e-07, 0, -1, 1.8254788, 8.434486, 2.1017776)
 bone_name = "BackUnit.R"
 bone_idx = 11
 
-[node name="BackUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1528119877]
+[node name="BackUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1110184499]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -3.2584134e-07, 0, 1, 0, 3.2584134e-07, 0, -1, -1.8254802, 8.434486, 2.1017766)
 bone_name = "BackUnit.L"
 bone_idx = 10
 
-[node name="ShinR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1222260708]
+[node name="ShinR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1654094478]
 unique_name_in_owner = true
 transform = Transform3D(0.9999861, 0.00416689, 0.0019660415, 0.0043718973, -0.9927068, -0.1204707, 0.0014497046, 0.12047799, -0.99271464, 0.8791745, 4.058201, -0.049561795)
 bone_name = "Shin.R"
 bone_idx = 25
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/ShinR" unique_id=1909339179]
-update_scale = false
-
-[node name="ShinL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1595965222]
+[node name="ShinL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=366602232]
 unique_name_in_owner = true
 transform = Transform3D(0.99998623, -0.004166917, -0.0019659535, -0.004371933, -0.992707, -0.120470084, -0.0014496255, 0.12047738, -0.99271476, -0.87917435, 4.058201, -0.04955986)
 bone_name = "Shin.L"
 bone_idx = 24
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/ShinL" unique_id=996504847]
-update_scale = false
-
-[node name="Torso" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1584084535]
+[node name="Torso" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=912996010]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 6.136316, 4.172325e-07)
-bone_name = "LegBase"
-bone_idx = 20
+transform = Transform3D(-1, 0, -3.8941437e-07, 0, 1, 0, 3.8941437e-07, 0, -1, 0, 6.8440456, 0.092853546)
+bone_name = "Torso"
+bone_idx = 13
 
-[node name="LockOnMarker" type="Marker3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/Torso" unique_id=1149488759]
+[node name="LockOnMarker" type="Marker3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/Torso" unique_id=1244808200]
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/Torso" unique_id=836369633]
-update_scale = false
-
-[node name="LookAtLegBase" type="LookAtModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1533857658]
+[node name="LookAtLegBase" type="LookAtModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=262284209]
 unique_name_in_owner = true
 active = false
 target_node = NodePath("../../../../Tracker3D")
@@ -569,7 +563,7 @@ symmetry_limitation = true
 primary_limit_angle = 1.7453293
 primary_damp_threshold = 1.0
 
-[node name="LookAtTorso" type="LookAtModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1123159923]
+[node name="LookAtTorso" type="LookAtModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=576380586]
 unique_name_in_owner = true
 active = false
 target_node = NodePath("../../../../Tracker3D")
@@ -583,7 +577,7 @@ symmetry_limitation = true
 primary_limit_angle = 1.5707964
 primary_damp_threshold = 1.0
 
-[node name="LegIK3D" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=262530171]
+[node name="LegIK3D" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1998816984]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -603,32 +597,26 @@ influence = 1.0
 script = ExtResource("26_vvsxd")
 metadata/_custom_type_script = "uid://baeu4q24xw168"
 
-[node name="IKRightLeg" type="Marker3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=143667936]
+[node name="MarkerR" type="Marker3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=454894784]
 top_level = true
 
-[node name="IKLeftLeg" type="Marker3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1786724780]
+[node name="MarkerL" type="Marker3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=948968882]
 top_level = true
 
-[node name="RayCastLegBase" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1648541811]
+[node name="RayLegBase" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=975888758]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.636316, 4.172325e-07)
 target_position = Vector3(0, -6.636316, 0)
 collision_mask = 3
-hit_back_faces = false
-debug_shape_custom_color = Color(1, 1, 1, 1)
 
-[node name="RayCastR" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1337616637]
+[node name="RayLegR" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1806075305]
 transform = Transform3D(0.9999861, 0.00416689, 0.0019660415, 0.0043718973, -0.9927068, -0.1204707, 0.0014497046, 0.12047799, -0.99271464, 0.8791745, 4.058201, -0.049561795)
 target_position = Vector3(0, 4.558146, 0)
-hit_back_faces = false
-debug_shape_custom_color = Color(1, 1, 1, 1)
 
-[node name="RayCastL" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=2075604923]
+[node name="RayLegL" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1100460179]
 transform = Transform3D(0.99998623, -0.004166917, -0.0019659535, -0.004371933, -0.992707, -0.120470084, -0.0014496255, 0.12047738, -0.99271476, -0.87917435, 4.058201, -0.04955986)
 target_position = Vector3(0, 4.5581465, 0)
-hit_back_faces = false
-debug_shape_custom_color = Color(1, 1, 1, 1)
 
-[node name="CCDIK3D" type="CCDIK3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1618670537]
+[node name="CCDIK3D" type="CCDIK3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=2063313410]
 max_iterations = 50
 deterministic = true
 setting_count = 2
@@ -647,27 +635,27 @@ settings/1/end_bone = 18
 settings/1/extend_end_bone = false
 settings/1/joint_count = 3
 settings/0/joints/0/rotation_axis = 3
-settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_0aexc")
+settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_vvsxd")
 settings/0/joints/0/limitation/right_axis = 0
 settings/0/joints/0/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
 settings/0/joints/1/rotation_axis = 0
-settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_0bit8")
+settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_74i7b")
 settings/0/joints/1/limitation/right_axis = 0
 settings/0/joints/1/limitation/rotation_offset = Quaternion(-0.5, 0, 0, 0.8660254)
 settings/0/joints/2/rotation_axis = 3
 settings/0/joints/2/limitation = null
 settings/1/joints/0/rotation_axis = 3
-settings/1/joints/0/limitation = SubResource("JointLimitationCone3D_0aexc")
+settings/1/joints/0/limitation = SubResource("JointLimitationCone3D_vvsxd")
 settings/1/joints/0/limitation/right_axis = 0
 settings/1/joints/0/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
 settings/1/joints/1/rotation_axis = 0
-settings/1/joints/1/limitation = SubResource("JointLimitationCone3D_0bit8")
+settings/1/joints/1/limitation = SubResource("JointLimitationCone3D_74i7b")
 settings/1/joints/1/limitation/right_axis = 0
 settings/1/joints/1/limitation/rotation_offset = Quaternion(-0.5, 0, 0, 0.8660254)
 settings/1/joints/2/rotation_axis = 3
 settings/1/joints/2/limitation = null
 
-[node name="ArmLookAtR" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=969360959 node_paths=PackedStringArray("target")]
+[node name="ArmLookAtR" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=254657320 node_paths=PackedStringArray("target")]
 unique_name_in_owner = true
 process_mode = 0
 process_priority = 0
@@ -683,7 +671,7 @@ top_level = false
 visible = true
 visibility_parent = NodePath("")
 active = false
-influence = 0.0
+influence = 1.0
 script = ExtResource("23_0bit8")
 target = NodePath("../../../../Tracker3D")
 shoulder_name = "Shoulder.R"
@@ -693,7 +681,7 @@ x_limit_angle = 1.5707963267948966
 z_limit_angle = 0.5235987755982988
 metadata/_custom_type_script = "uid://dx3r7rc0pv7nc"
 
-[node name="ArmLookAtL" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=862643105 node_paths=PackedStringArray("target")]
+[node name="ArmLookAtL" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=35201283 node_paths=PackedStringArray("target")]
 unique_name_in_owner = true
 process_mode = 0
 process_priority = 0
@@ -709,7 +697,7 @@ top_level = false
 visible = true
 visibility_parent = NodePath("")
 active = false
-influence = 0.0
+influence = 1.0
 script = ExtResource("23_0bit8")
 target = NodePath("../../../../Tracker3D")
 shoulder_name = "Shoulder.L"
@@ -719,7 +707,7 @@ x_limit_angle = 1.5707963267948966
 z_limit_angle = 0.5235987755982988
 metadata/_custom_type_script = "uid://dx3r7rc0pv7nc"
 
-[node name="ArmRecoilR" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=249754228]
+[node name="ArmRecoilR" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1127136871]
 unique_name_in_owner = true
 process_mode = 0
 process_priority = 0
@@ -741,7 +729,7 @@ shoulder_name = "Shoulder.R"
 arm_name = "Forearm.R"
 metadata/_custom_type_script = "uid://kbey4qccoxs4"
 
-[node name="ArmRecoilL" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=634914906]
+[node name="ArmRecoilL" type="SkeletonModifier3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1379924606]
 unique_name_in_owner = true
 process_mode = 0
 process_priority = 0
@@ -764,49 +752,48 @@ shoulder_name = "Shoulder.L"
 arm_name = "Forearm.L"
 metadata/_custom_type_script = "uid://kbey4qccoxs4"
 
-[node name="PlayerCamera3D" type="Node3D" parent="." unique_id=1923910416]
+[node name="PlayerCamera3D" type="Node3D" parent="." unique_id=2009389466]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
 script = ExtResource("22_5033q")
-max_angle_x = 1.4835298641951802
-min_angle_x = -1.4835298641951802
 metadata/_custom_type_script = "uid://d1fq0xbo8v0ic"
 
-[node name="SpringArm3D" type="SpringArm3D" parent="PlayerCamera3D" unique_id=147766160]
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerCamera3D" unique_id=1331590314]
 collision_mask = 3
-shape = SubResource("SphereShape3D_itl3e")
+shape = SubResource("SphereShape3D_ub7kw")
 
-[node name="Camera3D" type="Camera3D" parent="PlayerCamera3D/SpringArm3D" unique_id=1893629186]
-current = true
+[node name="Camera3D" type="Camera3D" parent="PlayerCamera3D/SpringArm3D" unique_id=434324932]
 
-[node name="EyeRay" type="RayCast3D" parent="PlayerCamera3D" unique_id=1476738954]
+[node name="EyeRay" type="RayCast3D" parent="PlayerCamera3D" unique_id=1259920221]
 enabled = false
 collision_mask = 3
 
-[node name="RobotHUD" parent="." unique_id=2067285992 instance=ExtResource("27_qyn47")]
+[node name="RobotHud" parent="." unique_id=2067285992 instance=ExtResource("27_qyn47")]
 unique_name_in_owner = true
 
-[node name="DebugShowInput" type="ColorRect" parent="." unique_id=615223600]
+[node name="DebugShowInput" type="ColorRect" parent="." unique_id=303489607]
 custom_minimum_size = Vector2(318, 60)
-offset_right = 320.0
-offset_bottom = 96.0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 326.0
+offset_bottom = 104.0
 color = Color(0, 0, 0, 0.5)
 script = ExtResource("26_fnwv7")
 
 [node name="DebugPartSelector" parent="." unique_id=664977063 instance=ExtResource("28_lkna1")]
 
-[connection signal="body_built" from="BUILDER" to="." method="_on_builder_body_built"]
-[connection signal="body_built" from="BUILDER" to="BoosterController" method="_on_builder_body_built"]
-[connection signal="body_built" from="BUILDER" to="AnimationTree" method="_on_builder_body_built"]
-[connection signal="body_built" from="BUILDER" to="Health" method="refresh_values" unbinds=1]
-[connection signal="body_built" from="BUILDER" to="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" method="setup" unbinds=1]
-[connection signal="weapons_built" from="BUILDER" to="." method="set_weapons"]
-[connection signal="weapons_built" from="BUILDER" to="Skeleton3D/RetargetModifier3D/Skeleton3D/ArmRecoilR" method="_on_builder_weapons_built"]
-[connection signal="weapons_built" from="BUILDER" to="Skeleton3D/RetargetModifier3D/Skeleton3D/ArmRecoilL" method="_on_builder_weapons_built"]
-[connection signal="weapons_built" from="BUILDER" to="RobotHUD" method="_on_builder_weapons_built"]
-[connection signal="changed" from="Health" to="RobotHUD" method="_update_armor_display"]
+[connection signal="body_built" from="RobotBuilder" to="." method="_on_builder_body_built"]
+[connection signal="body_built" from="RobotBuilder" to="BoosterController" method="_on_builder_body_built"]
+[connection signal="body_built" from="RobotBuilder" to="AnimationTree" method="_on_builder_body_built"]
+[connection signal="body_built" from="RobotBuilder" to="Health" method="refresh_values" unbinds=1]
+[connection signal="body_built" from="RobotBuilder" to="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" method="setup" unbinds=1]
+[connection signal="weapons_built" from="RobotBuilder" to="." method="set_weapons"]
+[connection signal="weapons_built" from="RobotBuilder" to="Skeleton3D/RetargetModifier3D/Skeleton3D/ArmRecoilR" method="_on_builder_weapons_built"]
+[connection signal="weapons_built" from="RobotBuilder" to="Skeleton3D/RetargetModifier3D/Skeleton3D/ArmRecoilL" method="_on_builder_weapons_built"]
+[connection signal="weapons_built" from="RobotBuilder" to="RobotHud" method="_on_builder_weapons_built"]
+[connection signal="changed" from="Health" to="RobotHud" method="_update_armor_display"]
 [connection signal="state_finished" from="AnimationTree" to="." method="_on_animation_tree_state_finished"]
 [connection signal="toggled_melee_hurtbox" from="AnimationTree" to="." method="_on_animation_toggled_melee_hurtbox"]
 [connection signal="target_changed" from="Tracker3D" to="." method="_reset_lock_time"]
-[connection signal="part_selected" from="DebugPartSelector" to="BUILDER" method="set_part_scene"]
+[connection signal="part_selected" from="DebugPartSelector" to="RobotBuilder" method="set_part_scene"]

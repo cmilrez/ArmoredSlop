@@ -8,9 +8,9 @@ signal weapons_built(nodes: Array[Weapon3D])
 @export_tool_button('BUILD WEAPONS', 'BuildCSharp') var build2 = _build_weapons
 @export var make_owner := false
 @export var data: RobotData = null
-@export var weapon_nodes: Array[Weapon3D] = [null, null, null, null]
-@export var body_nodes: Array[BodyPart] = []
-@export var booster_nodes: Array[Booster] = []
+var weapon_nodes: Array[Weapon3D] = []
+var body_nodes: Array[BodyPart] = []
+var booster_nodes: Array[Booster] = []
 var hand_unit_r_rest := Transform3D(Basis.IDENTITY, Vector3(0.167372, 0.0, 0.542358))
 var hand_unit_l_rest := Transform3D(Basis.IDENTITY, Vector3(-0.167372, 0.0, 0.542358))
 
@@ -89,7 +89,6 @@ func _clear_weapons() -> void:
 	for node in weapon_nodes:
 		if node:
 			node.free()
-	weapon_nodes.clear()
 	weapon_nodes.resize(4)
 
 func _build_body() -> void:

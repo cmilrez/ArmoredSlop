@@ -41,11 +41,10 @@ func get_part_scene(id: String) -> void:
 
 func build_ui() -> void:
 	clear_nodes()
-	var base_button: TextureButton = $BaseButton
 	for i in range(parts.size()):
 		for j in range(parts[i].size()):
 			var data: PartData = parts[i][j]
-			var new_button = base_button.duplicate()
+			var new_button = $BaseButton.duplicate()
 			var tab = tabs.get_child(i)
 			tab.add_child(new_button)
 			new_button.owner = self
@@ -67,6 +66,11 @@ func fetch_parts() -> void:
 		elif data is ArmsData:      i = 1
 		elif data is TorsoData:     i = 2
 		elif data is LegsData:      i = 3
+		elif data is UnitData:
+			if data.slot == UnitData.Slot.HAND or data.slot == UnitData.Slot.ARM:
+				i = 4
+			elif data.slot == UnitData.Slot.BACK:
+				i = 5
 		elif data is BoosterData:   i = 6
 		elif data is GeneratorData: i = 7
 		elif data is LockOnData:    i = 8
