@@ -17,10 +17,10 @@ func _process(delta):
 	var max_lock_count = 1
 	for i in range(UNIT_ACTIONS.size()):
 		var unit = weapons[i]
-		if unit and unit.reloading:
-			unit_lock_time[i] = 0.0
-		else:
+		if unit and unit.is_online():
 			unit_lock_time[i] += delta
+		else:
+			unit_lock_time[i] = 0.0
 		match unit_action_state[i]:
 			IDLE:
 				continue
@@ -63,7 +63,7 @@ func _process(delta):
 	camera.target_count = max_lock_count
 
 func _unhandled_input(event):
-	if event.is_action_pressed('superboost'): # TODO
+	if event.is_action_pressed('superboost'):
 		superboost = not superboost
 		return
 	for i in range(UNIT_ACTIONS.size()):

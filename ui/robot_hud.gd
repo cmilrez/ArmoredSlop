@@ -53,7 +53,7 @@ func _update_lock_progression() -> void:
 		if not wp:
 			continue
 		var bar = lock_on_bars.get_child(i)
-		if wp.reloading:
+		if not wp.is_online():
 			bar.value = 0.0
 			continue
 		if tracker.target:
@@ -78,7 +78,7 @@ func _update_ammo_display(loaded: int, left: int, id: int) -> void:
 		return
 	child.text = '-EMPTY-'
 
-func _on_weapon_started_reloading(id: int) -> void:
+func _on_weapon_reload_started(id: int) -> void:
 	var child: Label = ammo_labels.get_child(id)
 	child.text = '-RELOADING-'
 
@@ -87,7 +87,7 @@ func _on_builder_weapons_built(nodes: Array[Weapon3D]):
 	for unit in nodes:
 		if unit:
 			unit.ammo_changed.connect(_update_ammo_display.bind(i))
-			unit.started_reloading.connect(_on_weapon_started_reloading.bind(i))
+			unit.reload_started.connect(_on_weapon_reload_started.bind(i))
 			_update_ammo_display(unit.ammo_loaded, unit.ammo_left, i)
 			lock_on_bars.get_child(i).show()
 		else:

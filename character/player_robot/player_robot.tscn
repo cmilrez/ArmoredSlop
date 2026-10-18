@@ -131,26 +131,26 @@ libraries/AnimTank = ExtResource("19_vvsxd")
 tree_root = ExtResource("19_o0m7j")
 advance_expression_base_node = NodePath("..")
 parameters/Airborne/LegType/current_state = ""
-parameters/Airborne/LegType/transition_request = ""
+parameters/Airborne/LegType/transition_request = "Biped"
 parameters/Airborne/LegType/current_index = -1
 parameters/Airborne/Biped/blend_position = Vector2(0, 0)
 parameters/Airborne/Quad/blend_position = Vector2(0, 0)
 parameters/ArmRecoil/conditions/left_arm = false
 parameters/ArmRecoil/conditions/right_arm = false
 parameters/Boost/LegType/current_state = ""
-parameters/Boost/LegType/transition_request = ""
+parameters/Boost/LegType/transition_request = "Biped"
 parameters/Boost/LegType/current_index = -1
 parameters/Boost/Biped/blend_position = Vector2(0, 0)
 parameters/Boost/Quad/blend_position = Vector2(0, 0)
 parameters/Ground/LegType/current_state = ""
-parameters/Ground/LegType/transition_request = ""
+parameters/Ground/LegType/transition_request = "Biped"
 parameters/Ground/LegType/current_index = -1
 parameters/Ground/Biped/blend_position = Vector2(0, 0)
 parameters/Ground/Tank/blend_position = Vector2(0, 0)
 parameters/Ground/Quad/blend_position = Vector2(0, 0)
 parameters/Melee/conditions/start_combo = false
 parameters/Superboost/LegType/current_state = ""
-parameters/Superboost/LegType/transition_request = ""
+parameters/Superboost/LegType/transition_request = "Biped"
 parameters/Superboost/LegType/current_index = -1
 script = ExtResource("20_vt4jt")
 
@@ -495,55 +495,55 @@ skeleton = NodePath("..")
 
 [node name="HandUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=427176715]
 unique_name_in_owner = true
-transform = Transform3D(-1, 5.919773e-08, -5.3125626e-07, 5.923789e-08, 1, -1.06403604e-07, 5.321876e-07, -4.936001e-08, -1, 2.0966578, 6.3129697, -2.133463)
+transform = Transform3D(-1, 5.919773e-08, -5.3125626e-07, 5.923789e-08, 1, -1.06403604e-07, 5.321876e-07, -4.936001e-08, -1, 2.0966578, 6.8129697, -2.133463)
 bone_name = "HandUnit.R"
 bone_idx = 29
 
 [node name="HandUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=747236933]
 unique_name_in_owner = true
-transform = Transform3D(-1.0000002, 2.8044251e-08, -5.512317e-07, 1.1995778e-07, 1.0000002, 4.7497473e-08, 5.781236e-07, 1.1874369e-08, -0.99999964, -2.0966601, 6.3129687, -2.1334631)
+transform = Transform3D(-1.0000002, 2.8044251e-08, -5.512317e-07, 1.1995778e-07, 1.0000002, 4.7497473e-08, 5.781236e-07, 1.1874369e-08, -0.99999964, -2.0966601, 6.8129687, -2.1334631)
 bone_name = "HandUnit.L"
 bone_idx = 30
 
 [node name="ArmUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1055950638]
 unique_name_in_owner = true
-transform = Transform3D(-1, 1.4494276e-08, -3.3754117e-07, 1.45344075e-08, 1, -1.0640366e-07, 3.384724e-07, -4.9359983e-08, -1, 2.7167313, 6.3129697, -0.8226998)
+transform = Transform3D(-1, 1.4494276e-08, -3.3754117e-07, 1.45344075e-08, 1, -1.0640366e-07, 3.384724e-07, -4.9359983e-08, -1, 2.7167313, 6.8129697, -0.8226998)
 bone_name = "ArmUnit.R"
 bone_idx = 1
 
 [node name="ArmUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1326794475]
 unique_name_in_owner = true
-transform = Transform3D(-1.0000002, 4.2945416e-08, -5.3633056e-07, 1.3485894e-07, 1.0000002, 4.7497473e-08, 5.6322244e-07, 1.1874363e-08, -0.99999964, -2.7167325, 6.3129687, -0.8226996)
+transform = Transform3D(-1.0000002, 4.2945416e-08, -5.3633056e-07, 1.3485894e-07, 1.0000002, 4.7497473e-08, 5.6322244e-07, 1.1874363e-08, -0.99999964, -2.7167325, 6.8129687, -0.8226996)
 bone_name = "ArmUnit.L"
 bone_idx = 0
 
 [node name="BackUnitR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1350390846]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -3.2584134e-07, 0, 1, 0, 3.2584134e-07, 0, -1, 1.8254788, 8.434486, 2.1017776)
+transform = Transform3D(-1, 0, -3.2584134e-07, 0, 1, 0, 3.2584134e-07, 0, -1, 1.8254788, 8.934486, 2.1017776)
 bone_name = "BackUnit.R"
 bone_idx = 11
 
 [node name="BackUnitL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1110184499]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -3.2584134e-07, 0, 1, 0, 3.2584134e-07, 0, -1, -1.8254802, 8.434486, 2.1017766)
+transform = Transform3D(-1, 0, -3.2584134e-07, 0, 1, 0, 3.2584134e-07, 0, -1, -1.8254802, 8.934486, 2.1017766)
 bone_name = "BackUnit.L"
 bone_idx = 10
 
 [node name="ShinR" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=1654094478]
 unique_name_in_owner = true
-transform = Transform3D(0.9999861, 0.00416689, 0.0019660415, 0.0043718973, -0.9927068, -0.1204707, 0.0014497046, 0.12047799, -0.99271464, 0.8791745, 4.058201, -0.049561795)
+transform = Transform3D(0.9999861, 0.00416689, 0.0019660415, 0.0043718973, -0.9927068, -0.1204707, 0.0014497046, 0.12047799, -0.99271464, 0.8791745, 4.558201, -0.049561795)
 bone_name = "Shin.R"
 bone_idx = 25
 
 [node name="ShinL" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=366602232]
 unique_name_in_owner = true
-transform = Transform3D(0.99998623, -0.004166917, -0.0019659535, -0.004371933, -0.992707, -0.120470084, -0.0014496255, 0.12047738, -0.99271476, -0.87917435, 4.058201, -0.04955986)
+transform = Transform3D(0.99998623, -0.004166917, -0.0019659535, -0.004371933, -0.992707, -0.120470084, -0.0014496255, 0.12047738, -0.99271476, -0.87917435, 4.558201, -0.04955986)
 bone_name = "Shin.L"
 bone_idx = 24
 
 [node name="Torso" type="BoneAttachment3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=912996010]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -3.8941437e-07, 0, 1, 0, 3.8941437e-07, 0, -1, 0, 6.8440456, 0.092853546)
+transform = Transform3D(-1, 0, -3.8941437e-07, 0, 1, 0, 3.8941437e-07, 0, -1, 0, 7.3440456, 0.092853546)
 bone_name = "Torso"
 bone_idx = 13
 
@@ -592,7 +592,7 @@ rotation_order = 2
 top_level = false
 visible = true
 visibility_parent = NodePath("")
-active = true
+active = false
 influence = 1.0
 script = ExtResource("26_vvsxd")
 metadata/_custom_type_script = "uid://baeu4q24xw168"
@@ -609,11 +609,11 @@ target_position = Vector3(0, -6.636316, 0)
 collision_mask = 3
 
 [node name="RayLegR" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1806075305]
-transform = Transform3D(0.9999861, 0.00416689, 0.0019660415, 0.0043718973, -0.9927068, -0.1204707, 0.0014497046, 0.12047799, -0.99271464, 0.8791745, 4.058201, -0.049561795)
+transform = Transform3D(0.9999861, 0.00416689, 0.0019660415, 0.0043718973, -0.9927068, -0.1204707, 0.0014497046, 0.12047799, -0.99271464, 0.8791745, 4.558201, -0.049561795)
 target_position = Vector3(0, 4.558146, 0)
 
 [node name="RayLegL" type="RayCast3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D/LegIK3D" unique_id=1100460179]
-transform = Transform3D(0.99998623, -0.004166917, -0.0019659535, -0.004371933, -0.992707, -0.120470084, -0.0014496255, 0.12047738, -0.99271476, -0.87917435, 4.058201, -0.04955986)
+transform = Transform3D(0.99998623, -0.004166917, -0.0019659535, -0.004371933, -0.992707, -0.120470084, -0.0014496255, 0.12047738, -0.99271476, -0.87917435, 4.558201, -0.04955986)
 target_position = Vector3(0, 4.5581465, 0)
 
 [node name="CCDIK3D" type="CCDIK3D" parent="Skeleton3D/RetargetModifier3D/Skeleton3D" unique_id=2063313410]

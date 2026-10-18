@@ -272,7 +272,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_hx7wj"]
-resource_name = "Shoot"
+resource_name = "Active"
 length = 0.3
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
@@ -381,7 +381,7 @@ _data = {
 &"RESET": SubResource("Animation_wllxb"),
 &"Ready": SubResource("Animation_65uri"),
 &"Reload": SubResource("Animation_lh3q2"),
-&"Shoot": SubResource("Animation_hx7wj"),
+&"Active": SubResource("Animation_hx7wj"),
 &"Start": SubResource("Animation_l7aj2")
 }
 

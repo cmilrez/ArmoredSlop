@@ -2,8 +2,122 @@
 
 [ext_resource type="Script" uid="uid://b3jwuceipevwg" path="res://parts/weapon_3d.gd" id="1_2lutf"]
 [ext_resource type="ArrayMesh" uid="uid://bpkms70dx0bde" path="res://assets/TestWeapons_GrenadeCannon.res" id="1_fcknw"]
-[ext_resource type="Resource" uid="uid://bft6b5d30e2su" path="res://parts/test/shoulder_cannon_param.tres" id="2_oaj8m"]
+[ext_resource type="Resource" uid="uid://8p56itgq0fjv" path="res://parts/test/grenade_cannon_param.tres" id="2_2lutf"]
 [ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="4_2lutf"]
+
+[sub_resource type="Animation" id="Animation_14jua"]
+resource_name = "Active"
+length = 0.6
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Body")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, -3.774901e-08, -2.3841855e-07, -2.3841852e-07, 1, 0.06666667, 1, 0.024611123, -2.3247918e-07, -2.4423818e-07, 0.9996971, 0.16666667, 1, -0.024665684, -2.4423338e-07, -2.3195405e-07, 0.9996958, 0.2, 1, -0.024665684, -2.4423338e-07, -2.3195405e-07, 0.9996958, 0.30000004, 1, -1.0530023e-07, -2.3841855e-07, -2.3841855e-07, 1, 0.36666667, 1, 0.026598074, -2.3199544e-07, -2.447866e-07, 0.9996462, 0.46666673, 1, -0.056192517, -2.5146366e-07, -2.2275468e-07, 0.99841994)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:CannonTop")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = PackedFloat32Array(0, 1, -1.0976351, 2.3911889, 1.5512593, 0.1, 1, -1.098, 2.391, 0.526, 0.4, 1, -1.098, 2.391, 1.114)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:CannonBottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = PackedFloat32Array(0, 1, -1.0976346, 1.4211884, 1.5512586, 0.3, 1, -1.0976346, 1.4211884, 1.5512586, 0.4, 1, -1.098, 1.421, 0.679)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlash1:visible")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlash1:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 4, 1), Vector3(3, 8, 3), Vector3(6, 12, 6), Vector3(1, 4, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlash2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.36666667, 0.4333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 4, 1), Vector3(1, 4, 1), Vector3(3, 8, 3), Vector3(6, 12, 6), Vector3(1, 4, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton3D/Body/MuzzleLight:visible")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.3, 0.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton3D/Body/MuzzleLight:omni_range")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.30000004, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [15.0, 30.0, 15.0, 30.0]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0],
+"method": &"shoot_one"
+}, {
+"args": [1],
+"method": &"shoot_one"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bhnus"]
 length = 0.001
@@ -148,119 +262,41 @@ tracks/2/path = NodePath("Skeleton3D:CannonBottom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(1.1920929e-07, 1, -1.098, 1.421, 0.679, 0.6, 1, -1.097636, 1.4211886, -1.4487419)
-
-[sub_resource type="Animation" id="Animation_14jua"]
-resource_name = "Shoot"
-length = 0.6
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton3D:Body")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = PackedFloat32Array(0, 1, -3.774901e-08, -2.3841855e-07, -2.3841852e-07, 1, 0.06666667, 1, 0.024611123, -2.3247918e-07, -2.4423818e-07, 0.9996971, 0.16666667, 1, -0.024665684, -2.4423338e-07, -2.3195405e-07, 0.9996958, 0.2, 1, -0.024665684, -2.4423338e-07, -2.3195405e-07, 0.9996958, 0.30000004, 1, -1.0530023e-07, -2.3841855e-07, -2.3841855e-07, 1, 0.36666667, 1, 0.026598074, -2.3199544e-07, -2.447866e-07, 0.9996462, 0.46666673, 1, -0.056192517, -2.5146366e-07, -2.2275468e-07, 0.99841994)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Skeleton3D:CannonTop")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = PackedFloat32Array(0, 1, -1.0976351, 2.3911889, 1.5512593, 0.1, 1, -1.098, 2.391, 0.526, 0.4, 1, -1.098, 2.391, 1.114)
-tracks/2/type = "position_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Skeleton3D:CannonBottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = false
-tracks/2/keys = PackedFloat32Array(0, 1, -1.0976346, 1.4211884, 1.5512586, 0.3, 1, -1.0976346, 1.4211884, 1.5512586, 0.4, 1, -1.098, 1.421, 0.679)
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("Skeleton3D/Body/MuzzleFlash1:visible")
-tracks/3/interp = 0
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlash1:scale")
+tracks/4/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 4, 1), Vector3(3, 8, 3), Vector3(6, 12, 6), Vector3(1, 4, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Skeleton3D/Body/MuzzleFlash2:visible")
-tracks/5/interp = 0
+tracks/5/path = NodePath("Skeleton3D/Body/MuzzleLight:visible")
+tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5333333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Skeleton3D/Body/MuzzleFlash2:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.36666667, 0.4333333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 4, 1), Vector3(1, 4, 1), Vector3(3, 8, 3), Vector3(6, 12, 6), Vector3(1, 4, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Skeleton3D/Body/MuzzleLight:visible")
-tracks/7/interp = 0
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.3, 0.5333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Skeleton3D/Body/MuzzleLight:omni_range")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.30000004, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [15.0, 30.0, 15.0, 30.0]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath(".")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [0],
-"method": &"shoot_one"
-}, {
-"args": [1],
-"method": &"shoot_one"
-}]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_wb2w2"]
@@ -290,10 +326,10 @@ tracks/2/keys = PackedFloat32Array(0, 1, -1.097636, 1.4211886, -1.4487419, 0.8, 
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00mfj"]
 _data = {
+&"Active": SubResource("Animation_14jua"),
 &"RESET": SubResource("Animation_bhnus"),
 &"Ready": SubResource("Animation_2lutf"),
 &"Reload": SubResource("Animation_oaj8m"),
-&"Shoot": SubResource("Animation_14jua"),
 &"Start": SubResource("Animation_wb2w2")
 }
 
@@ -336,7 +372,7 @@ is_hemisphere = true
 [node name="GrenadeCannon" type="Node3D" unique_id=392511085 node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_2lutf")
 spawners = NodePath("Skeleton3D/Body/Spawners")
-param = ExtResource("2_oaj8m")
+param = ExtResource("2_2lutf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1517335675]
 libraries/ = SubResource("AnimationLibrary_00mfj")

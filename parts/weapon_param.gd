@@ -11,3 +11,10 @@ class_name WeaponParam extends Resource
 @export_range(0.0, 100.0, 1.0, 'or_greater', 'hide_control') var energy_damage := 0.0
 @export_range(0.0, 100.0, 1.0, 'or_greater', 'hide_control') var explosive_damage := 0.0
 @export var projectile_scene: PackedScene = null
+
+func get_damage_data() -> DamageData:
+	var new_dmg = DamageData.new()
+	new_dmg.kinetic_damage = kinetic_damage
+	new_dmg.energy_damage = energy_damage
+	new_dmg.explosive_damage = explosive_damage
+	return new_dmg

@@ -13,12 +13,15 @@ var leg_base_height := 0.0
 var leg_base_bone := -2
 var shin_r_bone := -3
 var shin_l_bone := -4
+var feet_r_bone := -11
+var feet_l_bone := -12
 
 func _ready():
 	marker_right.top_level = true
 	marker_left.top_level = true
 	setup()
-	active = leg_base_bone > -1 and shin_r_bone > -1 and shin_l_bone > -1
+	if not Engine.is_editor_hint():
+		active = leg_base_bone > -1 and shin_r_bone > -1 and shin_l_bone > -1 and feet_r_bone > -1 and feet_l_bone > -1
 
 func _process_modification_with_delta(delta):
 	var skel = get_skeleton()
@@ -33,11 +36,18 @@ func _process_modification_with_delta(delta):
 	skel.set_bone_global_pose(leg_base_bone, leg_base_pose)
 	ray_right.transform = skel.get_bone_global_pose(shin_r_bone)
 	ray_left.transform = skel.get_bone_global_pose(shin_l_bone)
-	position_marker(ray_right, marker_right, 0)
-	position_marker(ray_left, marker_left, 1)
+	position_marker(ray_right, marker_right, 0, feet_r_bone)
+	position_marker(ray_left, marker_left, 1, feet_l_bone)
 
-func position_marker(ray: RayCast3D, marker: Marker3D, index: int) -> void:
+func position_marker(ray: RayCast3D, marker: Marker3D, index: int, feet_bone: int) -> void:
 	if ray.is_colliding():
+		#var skel = get_skeleton()
+		#var feet_transform: Transform3D
+		#feet_transform = skel.get_bone_global_pose(feet_bone)
+		#var col_normal = ray.get_collision_normal()
+		#var basis_y = col_normal.cross(feet_transform.basis.x)
+		#feet_transform.basis = Basis(feet_transform.basis.x, basis_y, col_normal)
+		#skel.set_bone_global_pose(feet_bone, feet_transform)
 		marker.position = ray.get_collision_point()
 		marker.position.y += feet_rest_height
 		ik_mod.set_target_node(index, marker.get_path())
@@ -49,7 +59,9 @@ func setup() -> void:
 	leg_base_bone = skel.find_bone('LegBase')
 	shin_r_bone = skel.find_bone('Shin.R')
 	shin_l_bone = skel.find_bone('Shin.L')
-	feet_rest_height = skel.get_bone_global_rest(skel.find_bone('Feet.R')).origin.y
+	feet_r_bone = skel.find_bone('Feet.R')
+	feet_l_bone = skel.find_bone('Feet.L')
+	feet_rest_height = skel.get_bone_global_rest(feet_r_bone).origin.y
 	
 	var id = skel.find_bone('Shin.L')
 	var rest_y = skel.get_bone_global_rest(id).origin.y

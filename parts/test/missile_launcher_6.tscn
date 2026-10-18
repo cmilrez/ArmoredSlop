@@ -6,6 +6,207 @@
 [ext_resource type="ArrayMesh" uid="uid://cufeghvhcr55m" path="res://assets/TestWeapons_MissileLauncher6.res" id="3_hfhwc"]
 [ext_resource type="PackedScene" uid="uid://cqv5n131o7bmq" path="res://effect/muzzle_flash.tscn" id="5_v3c1r"]
 
+[sub_resource type="Animation" id="Animation_wkyba"]
+resource_name = "Active"
+length = 0.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.20000002, 0.3, 0.4, 0.50000006, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"shoot_one"
+}, {
+"args": [1],
+"method": &"shoot_one"
+}, {
+"args": [2],
+"method": &"shoot_one"
+}, {
+"args": [3],
+"method": &"shoot_one"
+}, {
+"args": [4],
+"method": &"shoot_one"
+}, {
+"args": [5],
+"method": &"shoot_one"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MuzzleLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004, 0.50000006, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleFlash6:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MuzzleFlash5:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.40000004, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MuzzleFlash4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MuzzleFlash3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MuzzleFlash2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MuzzleFlash:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MuzzleFlash6:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(1.5, 3, 1.5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MuzzleFlash5:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.40000004, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(1.5, 3, 1.5)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MuzzleFlash4:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(1.5, 3, 1.5)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MuzzleFlash3:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(1.5, 3, 1.5)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("MuzzleFlash2:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(1.5, 3, 1.5)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MuzzleFlash:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.20000002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.5, 0.2), Vector3(1.5, 3, 1.5)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MuzzleLight:omni_range")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004, 0.50000006, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [10.0, 15.0, 10.0, 15.0, 10.0, 15.0, 10.0, 15.0]
+}
+
 [sub_resource type="Animation" id="Animation_hkpe4"]
 length = 0.001
 tracks/0/type = "value"
@@ -255,207 +456,6 @@ tracks/1/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_wkyba"]
-resource_name = "Shoot"
-length = 0.8
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"values": [{
-"args": [0],
-"method": &"shoot_one"
-}, {
-"args": [1],
-"method": &"shoot_one"
-}, {
-"args": [2],
-"method": &"shoot_one"
-}, {
-"args": [3],
-"method": &"shoot_one"
-}, {
-"args": [4],
-"method": &"shoot_one"
-}, {
-"args": [5],
-"method": &"shoot_one"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MuzzleLight:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004, 0.50000006, 0.6, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false, true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MuzzleFlash6:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MuzzleFlash5:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.40000004, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MuzzleFlash4:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MuzzleFlash3:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("MuzzleFlash2:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("MuzzleFlash:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("MuzzleFlash6:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(0.8, 2, 0.8)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("MuzzleFlash5:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.40000004, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(0.8, 2, 0.8)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("MuzzleFlash4:scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(0.8, 2, 0.8)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("MuzzleFlash3:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.40000004),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(0.8, 2, 0.8)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("MuzzleFlash2:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.2, 0.5, 0.2), Vector3(0.8, 2, 0.8)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("MuzzleFlash:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.20000002),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.5, 0.2), Vector3(0.8, 2, 0.8)]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("MuzzleLight:omni_range")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004, 0.50000006, 0.6, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [10.0, 15.0, 10.0, 15.0, 10.0, 15.0, 10.0, 15.0]
-}
-
 [sub_resource type="Animation" id="Animation_hfhwc"]
 resource_name = "Start"
 length = 1.5
@@ -486,10 +486,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wy3l3"]
 _data = {
+&"Active": SubResource("Animation_wkyba"),
 &"RESET": SubResource("Animation_hkpe4"),
 &"Ready": SubResource("Animation_wy3l3"),
 &"Reload": SubResource("Animation_6poma"),
-&"Shoot": SubResource("Animation_wkyba"),
 &"Start": SubResource("Animation_hfhwc")
 }
 
@@ -555,29 +555,6 @@ bones/6/position = Vector3(-0.19999981, 1.0034181, 0.33025235)
 bones/6/rotation = Quaternion(0, 1, 0, -7.54979e-08)
 bones/6/scale = Vector3(1, 1, 1)
 
-[node name="MissileLauncher6" type="MeshInstance3D" parent="Skeleton3D" unique_id=870687191]
-layers = 4
-mesh = ExtResource("3_hfhwc")
-skeleton = NodePath("..")
-
-[node name="Marker3D1" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=2008045242]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.6999998, 0.45, 0.33025223)
-
-[node name="Marker3D2" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=867690926]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.6999998, 0.45, -0.66974765)
-
-[node name="Marker3D3" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=1472790491]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.6999998, 0.45, -1.6697476)
-
-[node name="Marker3D4" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=407795850]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -1.6999998, 0.45, 0.33025223)
-
-[node name="Marker3D5" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=2076642312]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -1.6999998, 0.45, -0.66974765)
-
-[node name="Marker3D6" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=1962946772]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -1.6999998, 0.45, -1.6697476)
-
 [node name="HatchOpener" type="SkeletonModifier3D" parent="Skeleton3D" unique_id=122309509]
 unique_name_in_owner = false
 process_mode = 0
@@ -596,9 +573,30 @@ visibility_parent = NodePath("")
 active = true
 influence = 1.0
 script = ExtResource("3_0vhiq")
-max_angle = 1.9198621771937625
-_hatch_bones = Array[int]([1, 2, 3, 4, 5, 6])
 metadata/_custom_type_script = "uid://bmwkw0gcjr4vm"
+
+[node name="MissileLauncher6" type="MeshInstance3D" parent="Skeleton3D" unique_id=870687191]
+layers = 4
+mesh = ExtResource("3_hfhwc")
+skeleton = NodePath("..")
+
+[node name="0" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=2008045242]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.6999998, 0.45, 0.33025223)
+
+[node name="1" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=867690926]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.6999998, 0.45, -0.66974765)
+
+[node name="2" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=1472790491]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -0.6999998, 0.45, -1.6697476)
+
+[node name="3" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=407795850]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -1.6999998, 0.45, 0.33025223)
+
+[node name="4" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=2076642312]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -1.6999998, 0.45, -0.66974765)
+
+[node name="5" type="Marker3D" parent="Skeleton3D/MissileLauncher6" unique_id=1962946772]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, -1.6999998, 0.45, -1.6697476)
 
 [node name="MuzzleLight" type="OmniLight3D" parent="." unique_id=1135010403]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 2, -0.67)

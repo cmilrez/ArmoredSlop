@@ -1,11 +1,10 @@
 @tool
 class_name HatchOpener extends SkeletonModifier3D
 
-#@export_tool_button('CacheBones', 'Bone') var button1 = cache_bones
 @export var match_name := 'Hatch'
-@export_range(0.0, 180.0, 0.001, 'or_greater', 'radians_as_degrees') var max_angle := PI
+@export_range(0.0, 180.0, 0.001, 'or_greater', 'radians_as_degrees') var max_angle := deg_to_rad(120.0)
 @export_range(0.0, 1.0, 0.001) var progress := 0.0
-@export var _hatch_bones: Array[int] = []
+var _hatch_bones: Array[int] = []
 var _step = 0.0
 
 func _ready():

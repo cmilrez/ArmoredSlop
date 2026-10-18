@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_y4g11")
 clip_size = 3500
+ammo_max = 0
 ammo_cost = 35
 energy_damage = 30.0
 projectile_scene = ExtResource("1_nkmfj")

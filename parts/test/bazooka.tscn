@@ -57,7 +57,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_3ibfs"]
-resource_name = "Shoot"
+resource_name = "Active"
 length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -125,7 +125,7 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nubwc"]
 _data = {
 &"RESET": SubResource("Animation_dy6xa"),
-&"Shoot": SubResource("Animation_3ibfs")
+&"Active": SubResource("Animation_3ibfs")
 }
 
 [sub_resource type="Gradient" id="Gradient_8tt4q"]

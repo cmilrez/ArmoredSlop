@@ -70,7 +70,7 @@ func reload_unit(id: int) -> void:
 		return
 	var unit = weapons.get(id)
 	if unit:
-		unit.reload(true)
+		unit.manual_reload()
 
 func activate_unit(id: int) -> void:
 	var unit = weapons.get(id)
@@ -78,11 +78,18 @@ func activate_unit(id: int) -> void:
 		return
 	if _enable_units:
 		var ctx: TargetContext
-		if is_unit_locked(id):
-			ctx = target_ctx
+		if target_ctx.list:
+			if unit.param.lock_count > 1:
+				ctx = target_ctx.duplicate()
+				if not is_unit_locked(id):
+					ctx.list.clear()
+			if is_unit_locked(id):
+				ctx = target_ctx
+			else:
+				ctx = TargetContext.new()
+				ctx.tracker = tracker
 		else:
-			ctx = TargetContext.new()
-			ctx.tracker = tracker
+			ctx = target_ctx
 		unit.activate(ctx)
 
 func is_unit_locked(id: int) -> bool:
@@ -353,12 +360,12 @@ func _toggle_arm_look_at(right_arm := true, left_arm := true) -> void:
 	var unit = weapons.get(0)
 	var value = is_instance_valid(unit)
 	if value:
-		value = right_arm and enable_look_at and not (unit.reloading or unit.ammo_empty)
+		value = right_arm and enable_look_at and unit.is_online()
 	%ArmLookAtR.toggle(value)
 	unit = weapons.get(1)
 	value = is_instance_valid(unit)
 	if value:
-		value = left_arm and enable_look_at and not (unit.reloading or unit.ammo_empty)
+		value = left_arm and enable_look_at and unit.is_online()
 	%ArmLookAtL.toggle(value)
 
 func _activate_state_weapon(id := 1) -> void: # default to left arm unit
@@ -399,7 +406,9 @@ func _reset_lock_time() -> void:
 		unit_lock_time[i] = 0.0
 
 func _on_animation_toggled_melee_hurtbox(value: bool) -> void:
-	weapons[1].toggle_hurtbox(value)
+	var unit = weapons.get(1)
+	if unit:
+		unit.toggle_hurtbox(value)
 
 func _on_builder_body_built(nodes) -> void:
 	tank_legs = data.legs.leg_type == LegsData.Type.TANK
